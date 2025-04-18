@@ -57,8 +57,8 @@ export async function createPaymentIntent(
           line1: shippingDetails.address.line1,
           city: shippingDetails.address.city,
           state: shippingDetails.address.state,
-          postal_code: shippingDetails.address.postal_code,
-          country: shippingDetails.address.country,
+          postal_code: shippingDetails.postal_code,
+          country: shippingDetails.country,
         },
       },
     })

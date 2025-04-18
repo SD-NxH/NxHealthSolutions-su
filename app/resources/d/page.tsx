@@ -42,7 +42,7 @@ const foods = [
     image: "/vibrant-dill.png",
     description: "Aromatic herb with distinctive flavor and impressive medicinal properties",
     benefits: ["Digestive aid", "Antimicrobial properties", "Anti-inflammatory", "Rich in antioxidants"],
-    link: "/resources/foods/dill",
+    link: "/resources/d/dill",
     isNextPage: true,
   },
   {
@@ -51,7 +51,7 @@ const foods = [
     image: "/spiky-durian.png",
     description: "Notorious 'king of fruits' with strong odor but exceptional nutritional profile",
     benefits: ["Energy booster", "Blood pressure regulation", "Fertility support", "Rich in B vitamins"],
-    link: "/resources/foods/durian",
+    link: "/resources/d/durian",
     isNextPage: true,
   },
   {
@@ -158,12 +158,11 @@ export default function FoodsStartingWithD() {
                   <CardFooter>
                     {food.link ? (
                       food.isNextPage ? (
-                        <Button
-                          className="w-full bg-green-600 hover:bg-green-700 text-white"
-                          onClick={() => (window.location.href = food.link)}
-                        >
-                          Learn More About {food.name}
-                        </Button>
+                        <Link href={food.link} className="w-full">
+                          <Button className="w-full bg-green-600 hover:bg-green-700 text-white">
+                            Learn More About {food.name}
+                          </Button>
+                        </Link>
                       ) : (
                         <a href={food.link} target="_blank" rel="noopener noreferrer" className="w-full">
                           <Button className="w-full bg-green-600 hover:bg-green-700 text-white">
