@@ -1,0 +1,7 @@
+<svg width="160" height="160" viewBox="0 0 160 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="80" cy="80" r="79" stroke="#367936" stroke-width="2"/>
+  <path d="M50 50L80 110L110 50" stroke="#367936" stroke-width="4"/>
+  <path d="M50 110H110" stroke="#367936" stroke-width="4"/>
+  <text x="80" y="85" font-family="serif" font-size="36" text-anchor="middle" fill="#367936">NX</text>
+  <text x="80" y="130" font-family="sans-serif" font-size="12" text-anchor="middle" fill="#367936">HEALTH SOLUTIONS</text>
+</svg>
