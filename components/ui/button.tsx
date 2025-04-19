@@ -41,7 +41,12 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   ({ className, variant, size, asChild = false, href, ...props }, ref) => {
     const Comp = asChild ? Slot : "button"
     return asChild ? (
-      <Link href={href} className={cn(buttonVariants({ variant, size, className }))} ref={ref} {...props}>
+      <Link
+        href="https://buy.stripe.com/7sI9AFbPOfR15mU00F"
+        className={cn(buttonVariants({ variant, size, className }))}
+        ref={ref}
+        {...props}
+      >
         {/* Apply buttonVariants to the child */}
         <Comp
           className="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50"

@@ -107,7 +107,7 @@ export default function Home() {
         <div className="container px-4 md:px-6 mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
-            animate={isServicesInView ? { opacity: 1, y: 0 } : {}}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             className="text-center mb-16"
           >
@@ -153,10 +153,7 @@ export default function Home() {
                 Expert guidance on nutrition and dietary habits to help you achieve your health goals.
               </p>
               {/* For the Diet Counseling service */}
-              <Link
-                href="/services#specialized-services"
-                className="mt-6 inline-flex items-center text-green-600 font-medium"
-              >
+              <Link href="/services/diet-coaching" className="mt-6 inline-flex items-center text-green-600 font-medium">
                 Learn more <ChevronRight className="ml-1 w-4 h-4" />
               </Link>
             </motion.div>
@@ -175,11 +172,8 @@ export default function Home() {
                 Personalized nutrition recommendations based on your unique health profile and goals.
               </p>
               {/* For the Nutrition Advice service */}
-              <Link
-                href="/services#specialized-services"
-                className="mt-6 inline-flex items-center text-green-600 font-medium"
-              >
-                Learn more <ChevronRight className="ml-1 w-4 h-4" />
+              <Link href="/get-started" className="mt-6 inline-flex items-center text-green-600 font-medium">
+                Get Started <ChevronRight className="ml-1 w-4 h-4" />
               </Link>
             </motion.div>
           </div>
@@ -236,7 +230,7 @@ export default function Home() {
         <div className="container px-4 md:px-6 mx-auto text-center">
           <motion.h2
             initial={{ opacity: 0, y: 40 }}
-            animate={isCtaInView ? { opacity: 1, y: 0 } : {}}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             className="text-3xl md:text-4xl font-serif font-light mb-6"
           >
@@ -244,7 +238,7 @@ export default function Home() {
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 40 }}
-            animate={isCtaInView ? { opacity: 1, y: 0 } : {}}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
             className="text-xl text-green-100 max-w-2xl mx-auto mb-10"
           >
@@ -252,12 +246,21 @@ export default function Home() {
           </motion.p>
           <motion.div
             initial={{ opacity: 0, y: 40 }}
-            animate={isCtaInView ? { opacity: 1, y: 0 } : {}}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
+            className="flex flex-col sm:flex-row gap-4 justify-center"
           >
             <Button className="bg-white text-green-800 hover:bg-green-100 rounded-full px-8 py-6 text-lg">
               <Link href="/get-started">Get Started Today</Link>
             </Button>
+            <Link href="/contact">
+              <Button
+                variant="outline"
+                className="border-white text-white hover:bg-green-700 rounded-full px-8 py-6 text-lg"
+              >
+                Contact Us
+              </Button>
+            </Link>
           </motion.div>
         </div>
       </section>

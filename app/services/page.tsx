@@ -191,7 +191,7 @@ export default function ServicesPage() {
                 </li>
               </ul>
               <div className="text-center">
-                <Link href="/get-started">
+                <Link href="/services/nutrition-planning">
                   <Button variant="outline" className="border-green-600 text-green-600 hover:bg-green-50 rounded-full">
                     Purchase
                   </Button>
