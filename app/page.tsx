@@ -7,6 +7,14 @@ import { Button } from "@/components/ui/button"
 import { ChevronRight, Leaf, ClipboardList, Apple } from "lucide-react"
 import { motion, useScroll, useTransform, useInView } from "framer-motion"
 import { useMobile } from "@/hooks/use-mobile"
+import { useRouter } from "next/navigation"
+import { cn } from "@/lib/utils"
+
+function getRandomUrl() {
+  const urls = ["/resources", "/about", "/shop", "/resources/foods/apple", "/resources/foods/dates"]
+  const randomIndex = Math.floor(Math.random() * urls.length)
+  return urls[randomIndex]
+}
 
 export default function Home() {
   const isMobile = useMobile()
@@ -14,6 +22,7 @@ export default function Home() {
   const servicesRef = useRef(null)
   const aboutRef = useRef(null)
   const ctaRef = useRef(null)
+  const router = useRouter()
 
   const isServicesInView = useInView(servicesRef, { once: true, amount: 0.2 })
   const isAboutInView = useInView(aboutRef, { once: true, amount: 0.2 })
@@ -86,17 +95,16 @@ export default function Home() {
               transition={{ duration: 0.8, delay: 0.8 }}
               className="flex flex-col sm:flex-row gap-4 pt-4"
             >
-              <Button className="bg-green-600 hover:bg-green-700 text-white rounded-full px-8 py-6 text-lg">
-                <Link href="/services">Our Services</Link>
+              <Button
+                className={cn(
+                  "bg-green-600 hover:bg-green-700 text-white rounded-full px-8 py-6 text-lg",
+                  "transition-transform transform hover:scale-105",
+                )}
+                className="bg-green-600 hover:bg-green-700 text-white rounded-full px-8 py-6 text-lg"
+                onClick={() => router.push(getRandomUrl())}
+              >
+                Explore
               </Button>
-              <Link href="/shop">
-                <Button
-                  variant="outline"
-                  className="border-green-600 text-green-600 hover:bg-green-50 rounded-full px-8 py-6 text-lg"
-                >
-                  Shop Our Menu
-                </Button>
-              </Link>
             </motion.div>
           </div>
         </div>
@@ -135,7 +143,7 @@ export default function Home() {
 
               {/* For the Health & Wellness service */}
               <Link href="/health-wellness" className="mt-6 inline-flex items-center text-green-600 font-medium">
-                Learn more <ChevronRight className="ml-1 w-4 h-4" />
+                Explore <ChevronRight className="ml-1 w-4 h-4" />
               </Link>
             </motion.div>
 
@@ -154,7 +162,7 @@ export default function Home() {
               </p>
               {/* For the Diet Counseling service */}
               <Link href="/services/diet-coaching" className="mt-6 inline-flex items-center text-green-600 font-medium">
-                Learn more <ChevronRight className="ml-1 w-4 h-4" />
+                Explore <ChevronRight className="ml-1 w-4 h-4" />
               </Link>
             </motion.div>
 
