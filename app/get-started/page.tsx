@@ -233,6 +233,27 @@ export default function GetStartedPage() {
                     <input type="hidden" name="_captcha" value="false" />
                     <input type="text" name="_honey" style={{ display: "none" }} />
 
+                    <input type="hidden" name="firstName" value={formData.firstName} />
+                    <input type="hidden" name="lastName" value={formData.lastName} />
+                    <input type="hidden" name="email" value={formData.email} />
+                    <input type="hidden" name="phone" value={formData.phone} />
+                    <input type="hidden" name="age" value={formData.age} />
+                    <input type="hidden" name="height" value={formData.height} />
+                    <input type="hidden" name="weight" value={formData.weight} />
+                    <input type="hidden" name="primaryConcern" value={formData.primaryConcern} />
+                    <input type="hidden" name="allergies" value={formData.allergies} />
+                    <input type="hidden" name="medicalConditions" value={formData.medicalConditions.join(", ")} />
+                    <input type="hidden" name="medications" value={formData.medications} />
+                    <input type="hidden" name="dietType" value={formData.dietType} />
+                    <input type="hidden" name="activityLevel" value={formData.activityLevel} />
+                    <input type="hidden" name="sleepQuality" value={formData.sleepQuality} />
+                    <input type="hidden" name="stressLevel" value={formData.stressLevel} />
+                    <input type="hidden" name="healthGoals" value={formData.healthGoals.join(", ")} />
+                    <input type="hidden" name="timeframe" value={formData.timeframe} />
+                    <input type="hidden" name="additionalInfo" value={formData.additionalInfo} />
+                    <input type="hidden" name="heardFrom" value={formData.heardFrom} />
+                    <input type="hidden" name="preferredContact" value={formData.preferredContact} />
+
                     {/* Step 1: Personal Information */}
                     {step === 1 && (
                       <div className="space-y-6">
