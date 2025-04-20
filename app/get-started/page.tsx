@@ -230,6 +230,7 @@ export default function GetStartedPage() {
                     {/* FormSubmit Configuration */}
                     <input type="hidden" name="_next" value="https://nxhealthsolutions.org" />
                     <input type="hidden" name="_subject" value="New Health Assessment Submission" />
+                    <input type="hidden" name="_captcha" value="false" />
                     <input type="hidden" name="_captcha" value="true" />
                     <input type="hidden" name="_template" value="table" />
                     <input type="text" name="_honey" style={{ display: "none" }} />

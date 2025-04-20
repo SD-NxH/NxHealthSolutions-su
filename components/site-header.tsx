@@ -1,7 +1,5 @@
 "use client"
 
-import { useRouter } from "next/navigation"
-
 import Link from "next/link"
 import ResponsiveImage from "@/components/responsive-image"
 import { usePathname } from "next/navigation"
@@ -16,17 +14,11 @@ import { Menu } from "lucide-react"
 export default function SiteHeader() {
   const pathname = usePathname()
   const isMobile = useMobile()
-  const router = useRouter()
   const [isMounted, setIsMounted] = useState(false)
-  const [isOpen, setIsOpen] = useState(false)
 
   useEffect(() => {
     setIsMounted(true)
   }, [])
-
-  const handleNavigation = () => {
-    setIsOpen(false)
-  }
 
   return (
     <header className="bg-background sticky top-0 z-40 w-full border-b">
@@ -114,25 +106,13 @@ export default function SiteHeader() {
                 </SheetTrigger>
                 <SheetContent className="w-full sm:max-w-sm bg-white">
                   <div className="grid gap-4 py-4">
-                    <Link
-                      href="/about"
-                      onClick={handleNavigation}
-                      className="px-4 py-2 rounded-md hover:bg-gray-100 block"
-                    >
+                    <Link href="/about" className="px-4 py-2 rounded-md hover:bg-gray-100 block">
                       About
                     </Link>
-                    <Link
-                      href="/services"
-                      onClick={handleNavigation}
-                      className="px-4 py-2 rounded-md hover:bg-gray-100 block"
-                    >
+                    <Link href="/services" className="px-4 py-2 rounded-md hover:bg-gray-100 block">
                       Services
                     </Link>
-                    <Link
-                      href="/resources"
-                      onClick={handleNavigation}
-                      className="px-4 py-2 rounded-md hover:bg-gray-100 block"
-                    >
+                    <Link href="/resources" className="px-4 py-2 rounded-md hover:bg-gray-100 block">
                       Resources
                     </Link>
                     <Link href="/shop" className="px-4 py-2 rounded-md hover:bg-gray-100 block">
