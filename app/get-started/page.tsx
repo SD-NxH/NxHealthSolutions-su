@@ -117,7 +117,7 @@ export default function GetStartedPage() {
 
   return (
     <div className="flex flex-col min-h-screen">
-      {/* Hero Section */}
+      {/* Header Section */}
       <section ref={headerRef} className="relative w-full py-16 md:py-24 bg-gradient-to-b from-green-50 to-white">
         <div className="container px-4 md:px-6">
           <motion.div
@@ -181,7 +181,7 @@ export default function GetStartedPage() {
         <div className="container px-4 md:px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
-            animate={isFormInView ? { opacity: 1, y: 0 } : {}}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             className="max-w-3xl mx-auto"
           >
@@ -231,8 +231,6 @@ export default function GetStartedPage() {
                     <input type="hidden" name="_next" value="https://nxhealthsolutions.org" />
                     <input type="hidden" name="_subject" value="New Health Assessment Submission" />
                     <input type="hidden" name="_captcha" value="false" />
-                    <input type="hidden" name="_captcha" value="true" />
-                    <input type="hidden" name="_template" value="table" />
                     <input type="text" name="_honey" style={{ display: "none" }} />
 
                     {/* Step 1: Personal Information */}
