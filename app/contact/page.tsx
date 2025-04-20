@@ -17,6 +17,7 @@ const ContactPage = () => {
         <div className="p-6 rounded-lg shadow-md">
           <h2 className="text-2xl font-semibold mb-4">Send us a Message</h2>
           <form action="https://formsubmit.co/nxhealthsolutions@gmail.com" method="POST">
+            <input type="hidden" name="_next" value="https://nxhealthsolutions.org" />
             <div className="mb-4">
               <label htmlFor="name" className="block text-gray-700 text-sm font-bold mb-2">
                 Your Name
