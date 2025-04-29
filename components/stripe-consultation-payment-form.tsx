@@ -37,7 +37,8 @@ export function StripeConsultationPaymentForm({
     const { error, paymentIntent } = await stripe.confirmPayment({
       elements,
       confirmParams: {
-        return_url: `${window.location.origin}/checkout/success?type=consultation`,
+        // Remove the return_url to prevent redirects
+        // return_url: `${window.location.origin}/checkout/success?type=consultation`,
       },
       redirect: "if_required",
     })
@@ -51,7 +52,7 @@ export function StripeConsultationPaymentForm({
       setMessage("Payment successful!")
       setPaymentStatus("success")
 
-      // Add a small delay before redirecting to show the success animation
+      // Add a small delay before calling onSuccess to show the success animation
       setTimeout(() => {
         onSuccess()
       }, 1500)

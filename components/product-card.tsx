@@ -16,9 +16,10 @@ interface Product {
 
 interface ProductCardProps {
   product: Product
+  className?: string
 }
 
-export default function ProductCard({ product }: ProductCardProps) {
+export default function ProductCard({ product, className = "" }: ProductCardProps) {
   const { items, addItem, updateQuantity } = useCart()
   const existingItem = items.find((item) => item.id === product.id)
   const quantity = existingItem?.quantity || 0
@@ -42,7 +43,9 @@ export default function ProductCard({ product }: ProductCardProps) {
   }
 
   return (
-    <div className="group bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300">
+    <div
+      className={`group bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300 ${className}`}
+    >
       <div className="relative h-48 w-full bg-gray-100">
         <Image
           src={product.image || "/placeholder.svg"}

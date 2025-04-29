@@ -1,11 +1,44 @@
+"use client"
+
+import type React from "react"
+
 import Image from "next/image"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Bell, Mail } from "lucide-react"
+import { useState } from "react"
 
 export default function CuisinesPage() {
+  const [email, setEmail] = useState("")
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitStatus, setSubmitStatus] = useState<null | "success" | "error">(null)
+  const [statusMessage, setStatusMessage] = useState("")
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setIsSubmitting(true)
+    setSubmitStatus(null)
+
+    try {
+      // In a real app, you would call a server action or API endpoint here
+      // For now, we'll simulate a successful submission after a delay
+      await new Promise((resolve) => setTimeout(resolve, 1000))
+
+      // Simulate successful submission
+      setSubmitStatus("success")
+      setStatusMessage("Thank you! You'll be notified when our cuisine guides are ready.")
+      setEmail("")
+    } catch (error) {
+      setSubmitStatus("error")
+      setStatusMessage("Something went wrong. Please try again.")
+      console.error("Form submission error:", error)
+    } finally {
+      setIsSubmitting(false)
+    }
+  }
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-green-50 to-white">
       {/* Hero Section */}
@@ -91,17 +124,63 @@ export default function CuisinesPage() {
                 access.
               </p>
 
-              <form className="max-w-md mx-auto">
+              <form onSubmit={handleSubmit} className="max-w-md mx-auto">
                 <div className="flex gap-2">
                   <div className="relative flex-grow">
                     <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
-                    <Input type="email" placeholder="Your email address" className="pl-10 py-6 rounded-full" required />
+                    <Input
+                      type="email"
+                      placeholder="Your email address"
+                      className="pl-10 py-6 rounded-full"
+                      required
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      disabled={isSubmitting}
+                    />
                   </div>
-                  <Button type="submit" className="bg-green-600 hover:bg-green-700 text-white rounded-full px-6">
-                    <Bell className="h-5 w-5 mr-2" />
-                    Notify Me
+                  <Button
+                    type="submit"
+                    className="bg-green-600 hover:bg-green-700 text-white rounded-full px-6"
+                    disabled={isSubmitting}
+                  >
+                    {isSubmitting ? (
+                      <span className="flex items-center">
+                        <svg
+                          className="animate-spin -ml-1 mr-2 h-4 w-4 text-white"
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                        >
+                          <circle
+                            className="opacity-25"
+                            cx="12"
+                            cy="12"
+                            r="10"
+                            stroke="currentColor"
+                            strokeWidth="4"
+                          ></circle>
+                          <path
+                            className="opacity-75"
+                            fill="currentColor"
+                            d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                          ></path>
+                        </svg>
+                        Processing
+                      </span>
+                    ) : (
+                      <>
+                        <Bell className="h-5 w-5 mr-2" />
+                        Notify Me
+                      </>
+                    )}
                   </Button>
                 </div>
+
+                {submitStatus && (
+                  <div className={`mt-4 text-center ${submitStatus === "success" ? "text-green-700" : "text-red-600"}`}>
+                    {statusMessage}
+                  </div>
+                )}
               </form>
             </div>
 

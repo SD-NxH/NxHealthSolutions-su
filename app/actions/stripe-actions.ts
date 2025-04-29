@@ -5,6 +5,7 @@ import Stripe from "stripe"
 import type { CartItem } from "@/context/cart-context"
 
 // Initialize Stripe with the secret key from environment variables
+// IMPORTANT: This is server-side code, so it's safe to use the secret key here
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || "", {
   apiVersion: "2023-10-16",
 })

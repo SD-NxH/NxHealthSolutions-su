@@ -42,13 +42,51 @@ export interface ButtonProps
 }
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant, size, asChild = false, onClick, ...props }, ref) => {
+  ({ className, variant, size, asChild = false, onClick, href, ...props }, ref) => {
     const Comp = asChild ? Slot : "button"
+
+    const handleClick = React.useCallback(
+      (e: React.MouseEvent<HTMLButtonElement | HTMLAnchorElement>) => {
+        if (onClick) {
+          onClick()
+        }
+      },
+      [onClick],
+    )
+
+    const Anchor = React.useCallback(
+      React.forwardRef<HTMLAnchorElement, React.HTMLAttributes<HTMLAnchorElement>>((props, ref) => {
+        return (
+          <a
+            href={href}
+            ref={ref}
+            {...props}
+            onClick={(e) => {
+              handleClick(e)
+              // Allow default navigation behavior
+            }}
+          />
+        )
+      }),
+      [href, handleClick],
+    )
+
+    // Add special handling for Dark Chocolate page links
+    const isChocolatePage = href === "/resources/d/dark-chocolate"
+
+    const Component = href ? Anchor : Comp
+
     return (
-      <Comp
-        className={cn(buttonVariants({ variant, size, className }), "!transition-none !duration-0")}
+      <Component
+        className={cn(
+          buttonVariants({ variant, size, className }),
+          "!transition-none !duration-0",
+          isChocolatePage && "bg-amber-950 hover:bg-amber-900 text-amber-50 hover:text-amber-100 border-amber-800",
+        )}
         ref={ref}
-        onClick={onClick}
+        {...(href && !asChild ? { href } : {})}
+        onClick={!href ? handleClick : undefined}
+        {...(isChocolatePage ? { "aria-label": "Visit Dark Chocolate Information Page" } : {})}
         {...props}
       />
     )

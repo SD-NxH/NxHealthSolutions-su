@@ -77,6 +77,111 @@ const products = [
     image: "/placeholder.svg?height=300&width=300",
     category: "Snacks",
   },
+  {
+    id: 10,
+    name: "Peanut Butter Cup",
+    description: "Decadent chocolate blended with organic peanut butter for a guilt-free treat.",
+    price: 9.99,
+    image: "/peanut-butter-cup-spread-jar.png",
+    category: "Nut Butters",
+  },
+  {
+    id: 11,
+    name: "Pumpkin Pie",
+    description: "Seasonal favorite with real pumpkin, pecans and warm spices.",
+    price: 12.99,
+    image: "/spiced-pumpkin-swirl.png",
+    category: "Nut Butters",
+  },
+  {
+    id: 12,
+    name: "Cinnamon Roll",
+    description: "Creamy almond base with swirls of cinnamon and vanilla.",
+    price: 11.99,
+    image: "/swirled-cinnamon-nut-butter.png",
+    category: "Nut Butters",
+  },
+  {
+    id: 13,
+    name: "Hazel Nut Butter",
+    description: "Rich, pure hazelnut butter made from roasted organic hazelnuts.",
+    price: 13.99,
+    image: "/creamy-hazelnut-spread.png",
+    category: "Nut Butters",
+  },
+  {
+    id: 14,
+    name: "Choco-Hazel Nut",
+    description: "Chocolate-infused hazelnut butter for a healthier dessert alternative.",
+    price: 14.99,
+    image: "/decadent-chocolate-hazelnut.png",
+    category: "Nut Butters",
+  },
+  {
+    id: 15,
+    name: "Macadamia Butter",
+    description: "Ultra-creamy butter from premium macadamia nuts with a hint of sea salt.",
+    price: 16.99,
+    image: "/placeholder.svg?height=300&width=300&query=macadamia nut butter",
+    category: "Nut Butters",
+  },
+  {
+    id: 16,
+    name: "Cashew Butter",
+    description: "Smooth, naturally sweet cashew butter perfect for spreading or recipes.",
+    price: 12.99,
+    image: "/placeholder.svg?height=300&width=300&query=cashew butter jar",
+    category: "Nut Butters",
+  },
+  {
+    id: 17,
+    name: "Almond Butter",
+    description: "Classic stone-ground almond butter with no additives or sugar.",
+    price: 11.99,
+    image: "/placeholder.svg?height=300&width=300&query=almond butter",
+    category: "Nut Butters",
+  },
+  {
+    id: 18,
+    name: "Pecan Butter",
+    description: "Luxurious pecan butter with a naturally sweet, buttery flavor.",
+    price: 14.99,
+    image: "/placeholder.svg?height=300&width=300&query=pecan butter jar",
+    category: "Nut Butters",
+  },
+  {
+    id: 19,
+    name: "Pecan Pie",
+    description: "Dessert-inspired pecan butter with maple and vanilla notes.",
+    price: 13.99,
+    image: "/placeholder.svg?height=300&width=300&query=pecan pie nut butter",
+    category: "Nut Butters",
+  },
+  {
+    id: 20,
+    name: "Pumpkin Seed Butter",
+    description: "Nutrient-rich butter made from organic pumpkin seeds.",
+    price: 12.99,
+    image: "/placeholder.svg?height=300&width=300&query=pumpkin seed butter",
+    category: "Nut Butters",
+  },
+  {
+    id: 21,
+    name: "Super Seed Butter",
+    description: "Blend of nutritious seeds for a protein-packed spread.",
+    price: 14.99,
+    image: "/placeholder.svg?height=300&width=300&query=mixed seed butter",
+    category: "Nut Butters",
+  },
+  {
+    id: 22,
+    name: "Eric's Choice",
+    description: "Our founder's special blend of nuts, seeds and superfoods. Staff favorite!",
+    price: 17.99,
+    image: "/placeholder.svg?height=300&width=300&query=premium artisanal nut butter",
+    category: "Nut Butters",
+    featured: true,
+  },
 ]
 
 // Group products by category
@@ -117,7 +222,11 @@ export default function ShopPage() {
               </h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
                 {categoryProducts.map((product) => (
-                  <ProductCard key={product.id} product={product} />
+                  <ProductCard
+                    key={product.id}
+                    product={product}
+                    className={product.featured ? "ring-2 ring-green-400 shadow-lg" : ""}
+                  />
                 ))}
               </div>
             </div>

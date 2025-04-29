@@ -1,50 +1,61 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import { useRouter } from "next/navigation"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Separator } from "@/components/ui/separator"
-import { ArrowLeft, Check, AlertCircle } from "lucide-react"
+import { ArrowLeft, Check, AlertCircle, CreditCard } from "lucide-react"
 import { motion } from "framer-motion"
-import { createConsultationPaymentIntent } from "@/app/actions/stripe-actions"
-import { StripeProvider } from "@/components/stripe-provider"
-import { StripeConsultationPaymentForm } from "@/components/stripe-consultation-payment-form"
+import { loadStripe } from "@stripe/stripe-js"
+
+// Use the publishable key from environment variables
+const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY || "")
 
 export default function OnlineConsultationCheckout() {
   const router = useRouter()
-  const [clientSecret, setClientSecret] = useState<string | null>(null)
-  const [isLoading, setIsLoading] = useState(true)
+  const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
 
   // Fixed price for the consultation
   const price = 20.0
 
-  useEffect(() => {
-    const initializePayment = async () => {
-      try {
-        setIsLoading(true)
-        const result = await createConsultationPaymentIntent(price)
+  const handleCheckout = async () => {
+    setIsLoading(true)
+    setError(null)
 
-        if (result.clientSecret) {
-          setClientSecret(result.clientSecret)
-        } else {
-          setError("Failed to initialize payment. Please try again.")
-        }
-      } catch (err) {
-        console.error("Payment initialization error:", err)
-        setError("An error occurred while setting up the payment. Please try again.")
-      } finally {
-        setIsLoading(false)
+    try {
+      const response = await fetch("/api/create-checkout-session", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          price: price,
+          productName: "Online Consultation",
+          successUrl: `${window.location.origin}/checkout/success?session_id={CHECKOUT_SESSION_ID}`,
+          cancelUrl: window.location.href,
+        }),
+      })
+
+      const data = await response.json()
+
+      if (!response.ok) {
+        throw new Error(data.error || "Failed to create checkout session")
       }
+
+      // Redirect to Stripe Checkout
+      if (data.url) {
+        window.location.href = data.url
+      } else {
+        throw new Error("No checkout URL returned from server")
+      }
+    } catch (err) {
+      console.error("Checkout error:", err)
+      setError(err instanceof Error ? err.message : "An unexpected error occurred")
+      setIsLoading(false)
     }
-
-    initializePayment()
-  }, [])
-
-  const handlePaymentSuccess = () => {
-    router.push("/checkout/success?type=consultation")
   }
 
   return (
@@ -79,38 +90,43 @@ export default function OnlineConsultationCheckout() {
               <Card>
                 <CardHeader>
                   <CardTitle>Payment Information</CardTitle>
-                  <CardDescription>Enter your payment details to complete your purchase</CardDescription>
+                  <CardDescription>Proceed to checkout to complete your purchase</CardDescription>
                 </CardHeader>
                 <CardContent>
-                  {isLoading ? (
-                    <div className="flex flex-col items-center justify-center py-8">
-                      <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-green-600"></div>
-                      <p className="mt-4 text-gray-600">Initializing payment form...</p>
-                    </div>
-                  ) : error ? (
+                  {error ? (
                     <div className="text-center py-8 bg-red-50 rounded-lg">
                       <AlertCircle className="h-12 w-12 text-red-500 mx-auto mb-4" />
                       <h3 className="text-lg font-medium text-red-800 mb-2">Payment Error</h3>
-                      <p className="text-red-600">{error}</p>
-                      <Button
-                        onClick={() => window.location.reload()}
-                        className="mt-4 bg-red-600 hover:bg-red-700 text-white"
-                      >
+                      <p className="text-red-600 mb-4">{error}</p>
+                      <Button onClick={() => setError(null)} variant="outline" className="mx-auto">
                         Try Again
                       </Button>
                     </div>
-                  ) : clientSecret ? (
-                    <StripeProvider clientSecret={clientSecret}>
-                      <StripeConsultationPaymentForm clientSecret={clientSecret} onSuccess={handlePaymentSuccess} />
-                    </StripeProvider>
                   ) : (
-                    <div className="text-center py-8">
-                      <p className="text-red-500">Failed to initialize payment form. Please try again.</p>
+                    <div className="flex flex-col items-center justify-center py-8">
+                      <div className="mb-8 text-center">
+                        <h3 className="text-xl font-medium mb-4">Ready to complete your purchase?</h3>
+                        <p className="text-gray-600 max-w-md mx-auto">
+                          Click the button below to proceed to our secure checkout. You'll be able to pay using credit
+                          card, debit card, or other payment methods.
+                        </p>
+                      </div>
                       <Button
-                        onClick={() => window.location.reload()}
-                        className="mt-4 bg-green-600 hover:bg-green-700 text-white"
+                        onClick={handleCheckout}
+                        disabled={isLoading}
+                        className="w-full max-w-md bg-green-600 hover:bg-green-700 text-white py-6 text-lg rounded-lg flex items-center justify-center"
                       >
-                        Reload
+                        {isLoading ? (
+                          <span className="flex items-center justify-center">
+                            <span className="animate-spin mr-2 h-5 w-5 border-b-2 border-white rounded-full"></span>
+                            Processing...
+                          </span>
+                        ) : (
+                          <>
+                            <CreditCard className="mr-2 h-5 w-5" />
+                            Proceed to Secure Checkout
+                          </>
+                        )}
                       </Button>
                     </div>
                   )}
