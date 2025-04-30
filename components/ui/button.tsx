@@ -3,6 +3,8 @@
 import * as React from "react"
 import { Slot } from "@radix-ui/react-slot"
 import { cva, type VariantProps } from "class-variance-authority"
+import Link from "next/link"
+import { useRouter } from "next/navigation"
 
 import { cn } from "@/lib/utils"
 
@@ -18,6 +20,8 @@ const buttonVariants = cva(
         secondary: "bg-secondary text-secondary-foreground hover:bg-secondary hover:text-secondary-foreground",
         ghost: "hover:bg-transparent hover:text-inherit",
         link: "text-primary underline-offset-4 hover:text-primary",
+        chocolate: "bg-amber-950 hover:bg-amber-900 text-amber-50 hover:text-amber-100 border-amber-800",
+        dulse: "bg-red-900 hover:bg-red-800 text-red-50 hover:text-red-100 border-red-950",
       },
       size: {
         default: "h-10 px-4 py-2",
@@ -37,56 +41,42 @@ export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement>,
     VariantProps<typeof buttonVariants> {
   asChild?: boolean
-  onClick?: () => void
   href?: string
 }
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant, size, asChild = false, onClick, href, ...props }, ref) => {
+  ({ className, variant, size, asChild = false, href, ...props }, ref) => {
+    const router = useRouter()
+
+    // Only render as Link if href is explicitly provided
+    if (href && !asChild) {
+      return (
+        <Link
+          href={href}
+          className={cn(buttonVariants({ variant, size, className }), "!transition-none !duration-0")}
+          {...props}
+        >
+          {props.children}
+        </Link>
+      )
+    }
+
+    // Otherwise render as button or slot
     const Comp = asChild ? Slot : "button"
-
-    const handleClick = React.useCallback(
-      (e: React.MouseEvent<HTMLButtonElement | HTMLAnchorElement>) => {
-        if (onClick) {
-          onClick()
-        }
-      },
-      [onClick],
-    )
-
-    const Anchor = React.useCallback(
-      React.forwardRef<HTMLAnchorElement, React.HTMLAttributes<HTMLAnchorElement>>((props, ref) => {
-        return (
-          <a
-            href={href}
-            ref={ref}
-            {...props}
-            onClick={(e) => {
-              handleClick(e)
-              // Allow default navigation behavior
-            }}
-          />
-        )
-      }),
-      [href, handleClick],
-    )
-
-    // Add special handling for Dark Chocolate page links
-    const isChocolatePage = href === "/resources/d/dark-chocolate"
-
-    const Component = href ? Anchor : Comp
-
     return (
-      <Component
-        className={cn(
-          buttonVariants({ variant, size, className }),
-          "!transition-none !duration-0",
-          isChocolatePage && "bg-amber-950 hover:bg-amber-900 text-amber-50 hover:text-amber-100 border-amber-800",
-        )}
+      <Comp
+        className={cn(buttonVariants({ variant, size, className }), "!transition-none !duration-0")}
         ref={ref}
-        {...(href && !asChild ? { href } : {})}
-        onClick={!href ? handleClick : undefined}
-        {...(isChocolatePage ? { "aria-label": "Visit Dark Chocolate Information Page" } : {})}
+        onClick={(e) => {
+          // Call the original onClick if it exists
+          if (props.onClick) {
+            props.onClick(e as any)
+          }
+          // Navigate to Get Started page if not using asChild
+          if (!asChild && !href) {
+            router.push("/get-started")
+          }
+        }}
         {...props}
       />
     )

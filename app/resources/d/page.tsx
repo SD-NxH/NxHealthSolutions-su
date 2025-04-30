@@ -16,7 +16,6 @@ const foods = [
     description: "Sweet, energy-dense fruits packed with fiber, potassium, and antioxidants",
     benefits: ["Natural energy booster", "Digestive health", "Heart health support", "Bone health"],
     link: "/resources/foods/dates",
-    isNextPage: true,
   },
   {
     id: "dandelion-greens",
@@ -25,7 +24,6 @@ const foods = [
     description: "Nutrient-rich leafy greens with powerful detoxifying and anti-inflammatory properties",
     benefits: ["Liver support", "Digestive aid", "Anti-inflammatory", "Rich in vitamins A and K"],
     link: "/resources/foods/dandelion-greens",
-    isNextPage: true,
   },
   {
     id: "dragon-fruit",
@@ -34,7 +32,6 @@ const foods = [
     description: "Exotic, antioxidant-rich fruit with striking appearance and mild, sweet flavor",
     benefits: ["Immune support", "Digestive health", "Rich in magnesium", "Low in calories"],
     link: "/resources/foods/dragon-fruit",
-    isNextPage: true,
   },
   {
     id: "dill",
@@ -43,7 +40,6 @@ const foods = [
     description: "Aromatic herb with distinctive flavor and impressive medicinal properties",
     benefits: ["Digestive aid", "Antimicrobial properties", "Anti-inflammatory", "Rich in antioxidants"],
     link: "/resources/d/dill",
-    isNextPage: true,
   },
   {
     id: "durian",
@@ -52,7 +48,6 @@ const foods = [
     description: "Notorious 'king of fruits' with strong odor but exceptional nutritional profile",
     benefits: ["Energy booster", "Blood pressure regulation", "Fertility support", "Rich in B vitamins"],
     link: "/resources/d/durian",
-    isNextPage: true,
   },
   {
     id: "daikon",
@@ -61,7 +56,6 @@ const foods = [
     description: "Mild winter radish popular in Asian cuisine with impressive detoxifying properties",
     benefits: ["Digestive aid", "Detoxification support", "Anti-inflammatory", "Low in calories"],
     link: "/resources/foods/daikon",
-    isNextPage: true,
   },
   {
     id: "damson-plums",
@@ -70,7 +64,6 @@ const foods = [
     description: "Small, tart plums packed with antioxidants and fiber for digestive health",
     benefits: ["Digestive health", "Antioxidant protection", "Anti-inflammatory", "Heart health support"],
     link: "/resources/foods/damson-plums",
-    isNextPage: true,
   },
   {
     id: "dark-chocolate",
@@ -78,8 +71,7 @@ const foods = [
     image: "/dark-chocolate-still-life.png",
     description: "Antioxidant-rich treat derived from cacao with numerous health benefits when consumed in moderation",
     benefits: ["Heart health support", "Mood enhancer", "Antioxidant protection", "Brain function support"],
-    link: "/resources/foods/dark-chocolate",
-    isNextPage: true,
+    link: "/resources/d/dark-chocolate",
   },
   {
     id: "dulse",
@@ -87,8 +79,7 @@ const foods = [
     image: "/crimson-seaweed-harvest.png",
     description: "Mineral-rich red seaweed with a unique flavor profile and impressive iodine content",
     benefits: ["Thyroid support", "Rich in minerals", "Protein source", "Blood pressure regulation"],
-    link: "/resources/foods/dulse",
-    isNextPage: true,
+    link: "/resources/d/dulse",
   },
 ]
 
@@ -156,23 +147,17 @@ export default function FoodsStartingWithD() {
                     </ul>
                   </CardContent>
                   <CardFooter>
-                    {food.link ? (
-                      food.isNextPage ? (
-                        <Link href={food.link} className="w-full">
-                          <Button className="w-full bg-green-600 hover:bg-green-700 text-white">
-                            Learn More About {food.name}
-                          </Button>
-                        </Link>
-                      ) : (
-                        <a href={food.link} target="_blank" rel="noopener noreferrer" className="w-full">
-                          <Button className="w-full bg-green-600 hover:bg-green-700 text-white">
-                            Learn More About {food.name}
-                          </Button>
-                        </a>
-                      )
+                    {food.id === "dark-chocolate" ? (
+                      <Button href={food.link} variant="chocolate" className="w-full">
+                        Learn More About {food.name}
+                      </Button>
+                    ) : food.id === "dulse" ? (
+                      <Button href={food.link} variant="dulse" className="w-full">
+                        Learn More About {food.name}
+                      </Button>
                     ) : (
-                      <Button className="w-full bg-green-600 hover:bg-green-700 text-white opacity-70" disabled>
-                        Coming Soon
+                      <Button href={food.link} className="w-full bg-green-600 hover:bg-green-700 text-white">
+                        Learn More About {food.name}
                       </Button>
                     )}
                   </CardFooter>

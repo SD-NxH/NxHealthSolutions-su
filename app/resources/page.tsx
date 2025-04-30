@@ -110,8 +110,8 @@ export default function ResourcesPage() {
             </p>
             <div className="bg-green-50 p-4 rounded-lg text-sm text-gray-600 mb-8">
               <p>
-                <strong>Note:</strong> Our A-Z food guide is now complete! Browse through all letters to discover the
-                healing properties of various foods.
+                <strong>Note:</strong> Our A-Z food guide is still under construction. Browse through available letters
+                to discover the healing properties of various foods.
               </p>
             </div>
           </motion.div>
