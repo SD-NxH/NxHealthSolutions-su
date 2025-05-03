@@ -10,6 +10,7 @@ import "./globals.css"
 import { CartProvider } from "@/context/cart-context"
 import MaintenanceNotification from "@/components/maintenance-notification"
 import { registerServiceWorker } from "./pwa"
+import type { Metadata } from "next"
 
 const inter = Inter({
   subsets: ["latin"],
@@ -21,13 +22,16 @@ const playfair = Playfair_Display({
   variable: "--font-serif",
 })
 
-export const metadata = {
-  title: "NxHealth Solutions - Better Health, Better Life",
-  description: "We provide evidence-based health and wellness solutions to improve your quality of life.",
+export const metadata: Metadata = {
+  title: {
+    default: "NxHealth",
+    template: "%s | NxHealth",
+  },
+  description: "Evidence-based health and wellness solutions to improve your quality of life",
+  manifest: "/manifest.json",
   icons: {
     icon: "/nxlogo1.png",
   },
-  manifest: "/manifest.json",
   themeColor: "#10b981",
   appleWebApp: {
     capable: true,
