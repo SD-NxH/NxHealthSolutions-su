@@ -9,6 +9,7 @@ import "./globals.css"
 // Import the CartProvider
 import { CartProvider } from "@/context/cart-context"
 import MaintenanceNotification from "@/components/maintenance-notification"
+import { registerServiceWorker } from "./pwa"
 
 const inter = Inter({
   subsets: ["latin"],
@@ -26,6 +27,13 @@ export const metadata = {
   icons: {
     icon: "/nxlogo1.png",
   },
+  manifest: "/manifest.json",
+  themeColor: "#10b981",
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "default",
+    title: "NxHealth Solutions",
+  },
     generator: 'v0.dev'
 }
 
@@ -35,6 +43,11 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
+  // Register service worker for PWA
+  if (typeof window !== "undefined") {
+    registerServiceWorker()
+  }
+
   return (
     <html lang="en">
       <body className={`${inter.variable} ${playfair.variable} font-sans`}>
