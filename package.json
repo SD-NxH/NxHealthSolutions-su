@@ -62,7 +62,9 @@
     "@stripe/stripe-js": "latest",
     "framer-motion": "latest",
     "@stripe/react-stripe-js": "latest",
-    "stripe": "latest"
+    "stripe": "latest",
+    "fs": "latest",
+    "path": "latest"
   },
   "devDependencies": {
     "@types/node": "^22",
