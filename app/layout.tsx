@@ -9,6 +9,7 @@ import "./globals.css"
 // Import the CartProvider
 import { CartProvider } from "@/context/cart-context"
 import MaintenanceNotification from "@/components/maintenance-notification"
+import Script from "next/script"
 
 const inter = Inter({
   subsets: ["latin"],
@@ -23,8 +24,19 @@ const playfair = Playfair_Display({
 export const metadata = {
   title: "NxHealth - Better Health, Better Life",
   description: "We provide evidence-based health and wellness solutions to improve your quality of life.",
+  manifest: "/manifest.json",
+  themeColor: "#4ade80",
+  appleWebApp: {
+    title: "NxHealth",
+    statusBarStyle: "default",
+    startupImage: ["/icons/apple-touch-icon.png"],
+  },
   icons: {
-    icon: "/nxlogo-alt-2.png",
+    icon: [
+      { url: "/icons/icon-192x192.png", sizes: "192x192", type: "image/png" },
+      { url: "/icons/icon-512x512.png", sizes: "512x512", type: "image/png" },
+    ],
+    apple: [{ url: "/icons/apple-touch-icon.png" }],
   },
     generator: 'v0.dev'
 }
@@ -37,6 +49,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+        <meta name="theme-color" content="#4ade80" />
+        <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
+        <link rel="manifest" href="/manifest.json" />
+      </head>
       <body className={`${inter.variable} ${playfair.variable} font-sans`}>
         <ThemeProvider attribute="class" defaultTheme="light">
           <CartProvider>
@@ -50,6 +68,7 @@ export default function RootLayout({
             </div>
           </CartProvider>
         </ThemeProvider>
+        <Script src="/register-sw.js" strategy="lazyOnload" />
       </body>
     </html>
   )

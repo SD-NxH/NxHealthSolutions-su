@@ -57,16 +57,17 @@ export default function Home() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="relative w-40 h-40 md:w-56 md:h-56"
+              className="relative w-32 h-32 sm:w-40 sm:h-40 md:w-56 md:h-56"
             >
               <Link href="/resources" className="p-4">
                 <div className="absolute inset-0 bg-green-100/30 backdrop-blur-md rounded-full transform -rotate-6 scale-110"></div>
                 <div className="relative w-full h-full rounded-full overflow-hidden shadow-xl border-4 border-white/30 backdrop-filter backdrop-blur-sm">
                   <Image
-                    src="/NxLogo-ALT-2.png"
-                    alt="NX Health Solutions Logo"
+                    src="/nxlogo-alt-2.png"
+                    alt="NxHealth Logo"
                     fill
                     className="object-contain scale-95 hover:scale-100 transition-all duration-500"
+                    priority
                   />
                 </div>
                 <div className="absolute -inset-4 bg-green-200/20 rounded-full blur-xl -z-10 animate-pulse"></div>
@@ -76,7 +77,7 @@ export default function Home() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
-              className="text-5xl md:text-7xl font-serif font-light tracking-tight text-green-800"
+              className="text-4xl sm:text-5xl md:text-7xl font-serif font-light tracking-tight text-green-800"
             >
               Better Health.
               <br />
@@ -86,7 +87,7 @@ export default function Home() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.6 }}
-              className="text-xl md:text-2xl text-gray-600 max-w-2xl"
+              className="text-lg sm:text-xl md:text-2xl text-gray-600 max-w-2xl"
             >
               We provide evidence-based health solutions to help you achieve optimal wellness and improve your quality
               of life.
@@ -99,10 +100,9 @@ export default function Home() {
             >
               <Button
                 className={cn(
-                  "bg-green-600 hover:bg-green-700 text-white rounded-full px-8 py-6 text-lg",
+                  "bg-green-600 hover:bg-green-700 text-white rounded-full px-6 sm:px-8 py-5 sm:py-6 text-base sm:text-lg",
                   "transition-transform transform hover:scale-105",
                 )}
-                className="bg-green-600 hover:bg-green-700 text-white rounded-full px-8 py-6 text-lg explore"
                 data-explore="true"
               >
                 Explore
@@ -319,8 +319,8 @@ export default function Home() {
             >
               <h2 className="text-3xl md:text-4xl font-serif font-light text-gray-900 mb-6">Our Mission</h2>
               <p className="text-xl text-gray-600 mb-6">
-                At NxHealth Solutions, our goal is to help increase the quality of your life in any way possible. We
-                believe that everyone deserves access to quality health information and services.
+                At NxHealth, our goal is to help increase the quality of your life in any way possible. We believe that
+                everyone deserves access to quality health information and services.
               </p>
               <p className="text-xl text-gray-600 mb-8">
                 Through evidence-based approaches and personalized care, we empower you to take control of your health
