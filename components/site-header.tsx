@@ -1,6 +1,7 @@
 "use client"
 
 import Link from "next/link"
+import { useRouter } from "next/navigation"
 import ResponsiveImage from "@/components/responsive-image"
 import { usePathname } from "next/navigation"
 import { useState, useEffect } from "react"
@@ -13,12 +14,20 @@ import { Menu } from "lucide-react"
 
 export default function SiteHeader() {
   const pathname = usePathname()
+  const router = useRouter()
   const isMobile = useMobile()
   const [isMounted, setIsMounted] = useState(false)
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
 
   useEffect(() => {
     setIsMounted(true)
   }, [])
+
+  // Handle mobile menu link clicks
+  const handleMenuLinkClick = (href: string) => {
+    setIsMenuOpen(false) // Close the menu
+    router.push(href) // Navigate to the clicked link
+  }
 
   return (
     <header className="bg-background sticky top-0 z-40 w-full border-b">
@@ -87,8 +96,6 @@ export default function SiteHeader() {
           <div className="flex items-center space-x-2">
             <ShoppingCartButton />
 
-            {/* Sign Up Button - Desktop */}
-
             {/* Get Started Button - Desktop */}
             <div className="hidden md:block">
               <Button className="bg-green-600 hover:bg-green-700 text-white rounded-full">
@@ -97,7 +104,7 @@ export default function SiteHeader() {
             </div>
 
             {isMobile && (
-              <Sheet>
+              <Sheet open={isMenuOpen} onOpenChange={setIsMenuOpen}>
                 <SheetTrigger asChild>
                   <button className="p-2 rounded-md hover:bg-gray-100">
                     <Menu className="h-5 w-5" />
@@ -106,26 +113,59 @@ export default function SiteHeader() {
                 </SheetTrigger>
                 <SheetContent className="w-full sm:max-w-sm bg-white">
                   <div className="grid gap-4 py-4">
-                    <Link href="/about" className="px-4 py-2 rounded-md hover:bg-gray-100 block">
+                    <button
+                      onClick={() => handleMenuLinkClick("/about")}
+                      className={cn(
+                        "px-4 py-2 rounded-md hover:bg-gray-100 block text-left",
+                        pathname === "/about" ? "text-green-600" : "text-gray-500",
+                      )}
+                    >
                       About
-                    </Link>
-                    <Link href="/services" className="px-4 py-2 rounded-md hover:bg-gray-100 block">
+                    </button>
+                    <button
+                      onClick={() => handleMenuLinkClick("/services")}
+                      className={cn(
+                        "px-4 py-2 rounded-md hover:bg-gray-100 block text-left",
+                        pathname === "/services" ? "text-green-600" : "text-gray-500",
+                      )}
+                    >
                       Services
-                    </Link>
-                    <Link href="/resources" className="px-4 py-2 rounded-md hover:bg-gray-100 block">
+                    </button>
+                    <button
+                      onClick={() => handleMenuLinkClick("/resources")}
+                      className={cn(
+                        "px-4 py-2 rounded-md hover:bg-gray-100 block text-left",
+                        pathname === "/resources" ? "text-green-600" : "text-gray-500",
+                      )}
+                    >
                       Resources
-                    </Link>
-                    <Link href="/shop" className="px-4 py-2 rounded-md hover:bg-gray-100 block">
+                    </button>
+                    <button
+                      onClick={() => handleMenuLinkClick("/shop")}
+                      className={cn(
+                        "px-4 py-2 rounded-md hover:bg-gray-100 block text-left",
+                        pathname === "/shop" ? "text-green-600" : "text-gray-500",
+                      )}
+                    >
                       Shop
-                    </Link>
-                    <Link href="/contact" className="px-4 py-2 rounded-md hover:bg-gray-100 block">
+                    </button>
+                    <button
+                      onClick={() => handleMenuLinkClick("/contact")}
+                      className={cn(
+                        "px-4 py-2 rounded-md hover:bg-gray-100 block text-left",
+                        pathname === "/contact" ? "text-green-600" : "text-gray-500",
+                      )}
+                    >
                       Contact
-                    </Link>
+                    </button>
 
                     {/* Get Started Button - Mobile */}
                     <div className="mt-4">
-                      <Button className="bg-green-600 hover:bg-green-700 text-white rounded-full w-full">
-                        <Link href="/get-started">Get Started</Link>
+                      <Button
+                        className="bg-green-600 hover:bg-green-700 text-white rounded-full w-full"
+                        onClick={() => handleMenuLinkClick("/get-started")}
+                      >
+                        Get Started
                       </Button>
                     </div>
                   </div>
