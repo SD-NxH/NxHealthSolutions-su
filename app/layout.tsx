@@ -21,10 +21,10 @@ const playfair = Playfair_Display({
 })
 
 export const metadata = {
-  title: "NxHealth Solutions - Better Health, Better Life",
+  title: "NxHealth - Better Health, Better Life",
   description: "We provide evidence-based health and wellness solutions to improve your quality of life.",
   icons: {
-    icon: "/nxlogo1.png",
+    icon: "/nxlogo-alt-2.png",
   },
     generator: 'v0.dev'
 }

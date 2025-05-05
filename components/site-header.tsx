@@ -26,8 +26,8 @@ export default function SiteHeader() {
         <Link href="/" className="flex items-center gap-2">
           <div className="relative overflow-hidden rounded-full bg-green-100/70 backdrop-blur-sm shadow-md p-1 transition-all duration-300 hover:shadow-lg">
             <ResponsiveImage
-              src="/nxlogo-alt.png"
-              alt="NxHealth Solutions Logo"
+              src="/nxlogo-alt-2.png"
+              alt="NxHealth Logo"
               width={40}
               height={40}
               className="object-contain rounded-full filter drop-shadow-sm"
