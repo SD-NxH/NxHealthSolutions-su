@@ -1,17 +1,19 @@
-// Service Worker for NxHealth PWA
-
 const CACHE_NAME = "nxhealth-cache-v1"
 const urlsToCache = [
   "/",
   "/index.html",
   "/globals.css",
-  "/nxlogo-alt-2.png",
+  "/manifest.json",
   "/icons/icon-192x192.png",
   "/icons/icon-512x512.png",
-  "/manifest.json",
+  "/icons/apple-touch-icon.png",
+  "/resources",
+  "/services",
+  "/about",
+  "/contact",
 ]
 
-// Install event - cache assets
+// Install a service worker
 self.addEventListener("install", (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => {
@@ -21,23 +23,7 @@ self.addEventListener("install", (event) => {
   )
 })
 
-// Activate event - clean up old caches
-self.addEventListener("activate", (event) => {
-  const cacheWhitelist = [CACHE_NAME]
-  event.waitUntil(
-    caches.keys().then((cacheNames) => {
-      return Promise.all(
-        cacheNames.map((cacheName) => {
-          if (cacheWhitelist.indexOf(cacheName) === -1) {
-            return caches.delete(cacheName)
-          }
-        }),
-      )
-    }),
-  )
-})
-
-// Fetch event - serve from cache or network
+// Cache and return requests
 self.addEventListener("fetch", (event) => {
   event.respondWith(
     caches.match(event.request).then((response) => {
@@ -62,4 +48,32 @@ self.addEventListener("fetch", (event) => {
       })
     }),
   )
+})
+
+// Update a service worker
+self.addEventListener("activate", (event) => {
+  const cacheWhitelist = [CACHE_NAME]
+  event.waitUntil(
+    caches.keys().then((cacheNames) => {
+      return Promise.all(
+        cacheNames.map((cacheName) => {
+          if (cacheWhitelist.indexOf(cacheName) === -1) {
+            return caches.delete(cacheName)
+          }
+        }),
+      )
+    }),
+  )
+})
+
+// Offline fallback
+self.addEventListener("fetch", (event) => {
+  // Check if the request is for a page
+  if (event.request.mode === "navigate") {
+    event.respondWith(
+      fetch(event.request).catch(() => {
+        return caches.match("/offline.html")
+      }),
+    )
+  }
 })
