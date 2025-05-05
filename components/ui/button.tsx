@@ -45,18 +45,28 @@ export interface ButtonProps
 }
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant, size, asChild = false, href, ...props }, ref) => {
+  ({ className, variant, size, asChild = false, href, onClick, children, ...props }, ref) => {
     const router = useRouter()
 
     // Only render as Link if href is explicitly provided
     if (href && !asChild) {
+      // Extract only the props that are valid for the Link component
+      // to avoid passing invalid props like type, etc.
+      const { type, ...linkProps } = props
+
       return (
         <Link
           href={href}
           className={cn(buttonVariants({ variant, size, className }), "!transition-none !duration-0")}
-          {...props}
+          onClick={(e) => {
+            // Call the original onClick if it exists
+            if (onClick) {
+              onClick(e as any)
+            }
+          }}
+          {...linkProps}
         >
-          {props.children}
+          {children}
         </Link>
       )
     }
@@ -72,13 +82,19 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
           if (props.onClick) {
             props.onClick(e as any)
           }
-          // Navigate to Get Started page if not using asChild
-          if (!asChild && !href) {
-            router.push("/get-started")
+          // Check if this is a banana-related button
+          if (props.className && typeof props.className === "string" && props.className.includes("banana-link")) {
+            router.push("/resources/foods/banana")
+          }
+          // Navigate to Banana information page if not using asChild
+          else if (!asChild && !href) {
+            router.push("/resources/foods/banana")
           }
         }}
         {...props}
-      />
+      >
+        {children}
+      </Comp>
     )
   },
 )
