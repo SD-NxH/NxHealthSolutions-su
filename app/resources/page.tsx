@@ -47,8 +47,6 @@ export default function ResourcesPage() {
   const getLetterHref = (letter: string) => {
     if (letter < "D") {
       return `/resources/${letter.toLowerCase()}`
-    } else if (letter === "D" || letter === "E") {
-      return `/resources/${letter.toLowerCase()}`
     } else {
       return `/food-pages/${letter.toLowerCase()}-page.html`
     }
@@ -128,15 +126,9 @@ export default function ResourcesPage() {
               {letters.map((letter, index) => (
                 <Link
                   key={letter}
-                  href={getLetterHref(letter)}
-                  className={`flex items-center justify-center h-12 w-12 rounded-full font-medium text-lg transition-all duration-300 ${
-                    letter === "D" || letter === "E"
-                      ? "bg-green-600 text-white hover:bg-green-700"
-                      : letter < "D"
-                        ? "bg-green-600 text-white hover:bg-green-700"
-                        : "bg-gray-200 text-gray-500 hover:bg-gray-300"
-                  }`}
-                  target={letter > "E" ? "_blank" : undefined}
+                  href={letter === "D" ? "/resources/d" : getLetterHref(letter)}
+                  className="flex items-center justify-center h-12 w-12 rounded-full font-medium text-lg transition-all duration-300 bg-green-600 text-white hover:bg-green-700"
+                  target={letter >= "D" ? "_blank" : undefined}
                 >
                   {letter}
                 </Link>

@@ -3,7 +3,7 @@
 import Link from "next/link"
 import ResponsiveImage from "@/components/responsive-image"
 import { usePathname } from "next/navigation"
-import { useState, useEffect, useCallback } from "react"
+import { useState, useEffect } from "react"
 import { useMobile } from "@/hooks/use-mobile"
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
@@ -15,11 +15,6 @@ export default function SiteHeader() {
   const pathname = usePathname()
   const isMobile = useMobile()
   const [isMounted, setIsMounted] = useState(false)
-  const [sheetOpen, setSheetOpen] = useState(false)
-
-  const handleLinkClick = useCallback(() => {
-    setSheetOpen(false)
-  }, [])
 
   useEffect(() => {
     setIsMounted(true)
@@ -102,7 +97,7 @@ export default function SiteHeader() {
             </div>
 
             {isMobile && (
-              <Sheet open={sheetOpen} onOpenChange={setSheetOpen}>
+              <Sheet>
                 <SheetTrigger asChild>
                   <button className="p-2 rounded-md hover:bg-gray-100">
                     <Menu className="h-5 w-5" />
@@ -111,48 +106,26 @@ export default function SiteHeader() {
                 </SheetTrigger>
                 <SheetContent className="w-full sm:max-w-sm bg-white">
                   <div className="grid gap-4 py-4">
-                    <Link
-                      href="/about"
-                      className="px-4 py-2 rounded-md hover:bg-gray-100 block"
-                      onClick={handleLinkClick}
-                    >
+                    <Link href="/about" className="px-4 py-2 rounded-md hover:bg-gray-100 block">
                       About
                     </Link>
-                    <Link
-                      href="/services"
-                      className="px-4 py-2 rounded-md hover:bg-gray-100 block"
-                      onClick={handleLinkClick}
-                    >
+                    <Link href="/services" className="px-4 py-2 rounded-md hover:bg-gray-100 block">
                       Services
                     </Link>
-                    <Link
-                      href="/resources"
-                      className="px-4 py-2 rounded-md hover:bg-gray-100 block"
-                      onClick={handleLinkClick}
-                    >
+                    <Link href="/resources" className="px-4 py-2 rounded-md hover:bg-gray-100 block">
                       Resources
                     </Link>
-                    <Link
-                      href="/shop"
-                      className="px-4 py-2 rounded-md hover:bg-gray-100 block"
-                      onClick={handleLinkClick}
-                    >
+                    <Link href="/shop" className="px-4 py-2 rounded-md hover:bg-gray-100 block">
                       Shop
                     </Link>
-                    <Link
-                      href="/contact"
-                      className="px-4 py-2 rounded-md hover:bg-gray-100 block"
-                      onClick={handleLinkClick}
-                    >
+                    <Link href="/contact" className="px-4 py-2 rounded-md hover:bg-gray-100 block">
                       Contact
                     </Link>
 
                     {/* Get Started Button - Mobile */}
                     <div className="mt-4">
                       <Button className="bg-green-600 hover:bg-green-700 text-white rounded-full w-full">
-                        <Link href="/get-started" onClick={handleLinkClick}>
-                          Get Started
-                        </Link>
+                        <Link href="/get-started">Get Started</Link>
                       </Button>
                     </div>
                   </div>

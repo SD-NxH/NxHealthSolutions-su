@@ -105,7 +105,8 @@ export default function CalorieCounterPage() {
           <h3 className="text-xl font-semibold mb-3">Important Note</h3>
           <p>
             These calculators provide estimates only. Individual needs may vary based on factors not accounted for in
-            these calculations. For personalized nutrition advice, consult with our health professionals.
+            these calculations. For personalized nutrition advice, consult with a healthcare professional or registered
+            dietitian.
           </p>
         </div>
       </div>

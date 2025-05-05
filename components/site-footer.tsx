@@ -68,17 +68,22 @@ export default function SiteFooter() {
             <h3 className="text-sm font-semibold text-gray-900 uppercase tracking-wider mb-4">Services</h3>
             <ul className="space-y-3">
               <li>
-                <Link href="/health-wellness-info" className="text-gray-600 hover:text-green-600">
+                <Link href="/services/health-wellness" className="text-gray-600 hover:text-green-600">
                   Health & Wellness
                 </Link>
               </li>
               <li>
-                <Link href="/nutrition-planning-info" className="text-gray-600 hover:text-green-600">
+                <Link href="/services/diet-coaching" className="text-gray-600 hover:text-green-600">
+                  Diet Coaching
+                </Link>
+              </li>
+              <li>
+                <Link href="/services/nutrition-planning" className="text-gray-600 hover:text-green-600">
                   Nutrition Planning
                 </Link>
               </li>
               <li>
-                <Link href="/wellness-program-info" className="text-gray-600 hover:text-green-600">
+                <Link href="/services/wellness-programs" className="text-gray-600 hover:text-green-600">
                   Wellness Programs
                 </Link>
               </li>

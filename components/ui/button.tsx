@@ -45,28 +45,18 @@ export interface ButtonProps
 }
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant, size, asChild = false, href, onClick, children, ...props }, ref) => {
+  ({ className, variant, size, asChild = false, href, ...props }, ref) => {
     const router = useRouter()
 
     // Only render as Link if href is explicitly provided
     if (href && !asChild) {
-      // Extract only the props that are valid for the Link component
-      // to avoid passing invalid props like type, etc.
-      const { type, ...linkProps } = props
-
       return (
         <Link
           href={href}
           className={cn(buttonVariants({ variant, size, className }), "!transition-none !duration-0")}
-          onClick={(e) => {
-            // Call the original onClick if it exists
-            if (onClick) {
-              onClick(e as any)
-            }
-          }}
-          {...linkProps}
+          {...props}
         >
-          {children}
+          {props.children}
         </Link>
       )
     }
@@ -82,19 +72,42 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
           if (props.onClick) {
             props.onClick(e as any)
           }
-          // Check if this is a banana-related button
-          if (props.className && typeof props.className === "string" && props.className.includes("banana-link")) {
-            router.push("/resources/foods/banana")
+
+          // Check if this is an explore button
+          const isExploreButton = props.className?.includes("explore") || (props as any)["data-explore"] === "true"
+
+          if (isExploreButton) {
+            // List of possible pages to navigate to
+            const pages = [
+              "/resources",
+              "/about",
+              "/services",
+              "/contact",
+              "/get-started",
+              "/resources/foods/apple",
+              "/resources/foods/almond",
+              "/resources/foods/avocado",
+              "/resources/foods/artichoke",
+              "/resources/foods/asparagus",
+              "/resources/foods/dark-chocolate",
+              "/resources/foods/dulse",
+              "/resources/foods/damson-plums",
+              "/resources/d/dill",
+              "/resources/calorie-counter",
+              "/resources/what-to-eat",
+            ]
+
+            // Select a random page
+            const randomPage = pages[Math.floor(Math.random() * pages.length)]
+            router.push(randomPage)
           }
-          // Navigate to Banana information page if not using asChild
+          // Navigate to Get Started page if not using asChild and not an explore button
           else if (!asChild && !href) {
-            router.push("/resources/foods/banana")
+            router.push("/get-started")
           }
         }}
         {...props}
-      >
-        {children}
-      </Comp>
+      />
     )
   },
 )

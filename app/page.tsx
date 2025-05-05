@@ -4,7 +4,7 @@ import { useRef } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import { ChevronRight, Leaf, ClipboardList, Apple } from "lucide-react"
+import { ChevronRight, Leaf, ClipboardList, Apple, ArrowRight } from "lucide-react"
 import { motion, useScroll, useTransform, useInView } from "framer-motion"
 import { useMobile } from "@/hooks/use-mobile"
 import { useRouter } from "next/navigation"
@@ -19,11 +19,13 @@ function getRandomUrl() {
 export default function Home() {
   const isMobile = useMobile()
   const heroRef = useRef(null)
+  const featuredRef = useRef(null)
   const servicesRef = useRef(null)
   const aboutRef = useRef(null)
   const ctaRef = useRef(null)
   const router = useRouter()
 
+  const isFeaturedInView = useInView(featuredRef, { once: true, amount: 0.2 })
   const isServicesInView = useInView(servicesRef, { once: true, amount: 0.2 })
   const isAboutInView = useInView(aboutRef, { once: true, amount: 0.2 })
   const isCtaInView = useInView(ctaRef, { once: true, amount: 0.2 })
@@ -100,8 +102,8 @@ export default function Home() {
                   "bg-green-600 hover:bg-green-700 text-white rounded-full px-8 py-6 text-lg",
                   "transition-transform transform hover:scale-105",
                 )}
-                className="bg-green-600 hover:bg-green-700 text-white rounded-full px-8 py-6 text-lg"
-                onClick={() => router.push(getRandomUrl())}
+                className="bg-green-600 hover:bg-green-700 text-white rounded-full px-8 py-6 text-lg explore"
+                data-explore="true"
               >
                 Explore
               </Button>
@@ -110,8 +112,126 @@ export default function Home() {
         </div>
       </motion.section>
 
+      {/* Featured Articles Section */}
+      <section ref={featuredRef} className="py-20 bg-white">
+        <div className="container px-4 md:px-6 mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            animate={isFeaturedInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.8 }}
+            className="text-center mb-12"
+          >
+            <h2 className="text-3xl md:text-4xl font-serif font-light text-gray-900 mb-4">Featured Reads</h2>
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+              Discover our latest articles and insights on health, nutrition, and wellness
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {/* Article 1 */}
+            <motion.div
+              initial={{ opacity: 0, y: 40 }}
+              animate={isFeaturedInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.8, delay: 0.1 }}
+              className="bg-white rounded-xl overflow-hidden shadow-md transition-all duration-300 hover:shadow-lg"
+            >
+              <div className="relative h-48 w-full">
+                <Image
+                  src="/vibrant-healthy-groceries.png"
+                  alt="Colorful array of fresh fruits and vegetables"
+                  fill
+                  className="object-cover"
+                />
+              </div>
+              <div className="p-6">
+                <span className="text-xs font-semibold text-green-600 uppercase tracking-wider">Nutrition</span>
+                <h3 className="text-xl font-serif font-medium text-gray-900 mt-2 mb-3">
+                  The Power of Plant-Based Eating
+                </h3>
+                <p className="text-gray-600 mb-4 line-clamp-3">
+                  Discover how incorporating more plant-based foods into your diet can transform your health and energy
+                  levels.
+                </p>
+                <Link href="/resources/what-to-eat" className="inline-flex items-center text-green-600 font-medium">
+                  Read More <ArrowRight className="ml-2 h-4 w-4" />
+                </Link>
+              </div>
+            </motion.div>
+
+            {/* Article 2 */}
+            <motion.div
+              initial={{ opacity: 0, y: 40 }}
+              animate={isFeaturedInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="bg-white rounded-xl overflow-hidden shadow-md transition-all duration-300 hover:shadow-lg"
+            >
+              <div className="relative h-48 w-full">
+                <Image
+                  src="/dark-chocolate-still-life.png"
+                  alt="Pieces of dark chocolate with cacao beans"
+                  fill
+                  className="object-cover"
+                />
+              </div>
+              <div className="p-6">
+                <span className="text-xs font-semibold text-green-600 uppercase tracking-wider">Wellness</span>
+                <h3 className="text-xl font-serif font-medium text-gray-900 mt-2 mb-3">
+                  Dark Chocolate: A Healthy Indulgence
+                </h3>
+                <p className="text-gray-600 mb-4 line-clamp-3">
+                  Learn about the surprising health benefits of dark chocolate and how to incorporate it into a balanced
+                  diet.
+                </p>
+                <Link
+                  href="/resources/foods/dark-chocolate"
+                  className="inline-flex items-center text-green-600 font-medium"
+                >
+                  Read More <ArrowRight className="ml-2 h-4 w-4" />
+                </Link>
+              </div>
+            </motion.div>
+
+            {/* Article 3 */}
+            <motion.div
+              initial={{ opacity: 0, y: 40 }}
+              animate={isFeaturedInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.8, delay: 0.3 }}
+              className="bg-white rounded-xl overflow-hidden shadow-md transition-all duration-300 hover:shadow-lg"
+            >
+              <div className="relative h-48 w-full">
+                <Image
+                  src="/balanced-diet-calculation.png"
+                  alt="Person calculating nutritional information"
+                  fill
+                  className="object-cover"
+                />
+              </div>
+              <div className="p-6">
+                <span className="text-xs font-semibold text-green-600 uppercase tracking-wider">Health</span>
+                <h3 className="text-xl font-serif font-medium text-gray-900 mt-2 mb-3">
+                  Understanding Your Caloric Needs
+                </h3>
+                <p className="text-gray-600 mb-4 line-clamp-3">
+                  Find out how to calculate your daily caloric needs and create a balanced nutrition plan that works for
+                  your lifestyle.
+                </p>
+                <Link href="/resources/calorie-counter" className="inline-flex items-center text-green-600 font-medium">
+                  Read More <ArrowRight className="ml-2 h-4 w-4" />
+                </Link>
+              </div>
+            </motion.div>
+          </div>
+
+          <div className="text-center mt-12">
+            <Button variant="outline" className="border-green-600 text-green-600 hover:bg-green-50 rounded-full">
+              <Link href="/resources">View All Articles</Link>
+            </Button>
+          </div>
+        </div>
+      </section>
+
       {/* Services Section */}
-      <section ref={servicesRef} className="py-20 bg-white">
+      <section ref={servicesRef} className="py-20 bg-green-50">
         <div className="container px-4 md:px-6 mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
@@ -189,7 +309,7 @@ export default function Home() {
       </section>
 
       {/* About Section */}
-      <section ref={aboutRef} className="py-20 bg-green-50">
+      <section ref={aboutRef} className="py-20 bg-white">
         <div className="container px-4 md:px-6 mx-auto">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <motion.div

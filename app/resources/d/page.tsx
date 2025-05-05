@@ -3,10 +3,10 @@
 import { useRef } from "react"
 import Image from "next/image"
 import Link from "next/link"
+import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { ChevronLeft } from "lucide-react"
 import { motion, useInView } from "framer-motion"
-import { cn } from "@/lib/utils"
 
 const foods = [
   {
@@ -148,38 +148,17 @@ export default function FoodsStartingWithD() {
                   </CardContent>
                   <CardFooter>
                     {food.id === "dark-chocolate" ? (
-                      <Link
-                        href={food.link}
-                        className={cn(
-                          "w-full inline-flex items-center justify-center rounded-md text-sm font-medium",
-                          "bg-amber-950 hover:bg-amber-900 text-amber-50 hover:text-amber-100 border-amber-800",
-                          "h-10 px-4 py-2",
-                        )}
-                      >
+                      <Button href={food.link} variant="chocolate" className="w-full">
                         Learn More About {food.name}
-                      </Link>
+                      </Button>
                     ) : food.id === "dulse" ? (
-                      <Link
-                        href={food.link}
-                        className={cn(
-                          "w-full inline-flex items-center justify-center rounded-md text-sm font-medium",
-                          "bg-red-900 hover:bg-red-800 text-red-50 hover:text-red-100 border-red-950",
-                          "h-10 px-4 py-2",
-                        )}
-                      >
+                      <Button href={food.link} variant="dulse" className="w-full">
                         Learn More About {food.name}
-                      </Link>
+                      </Button>
                     ) : (
-                      <Link
-                        href={food.link}
-                        className={cn(
-                          "w-full inline-flex items-center justify-center rounded-md text-sm font-medium",
-                          "bg-green-600 hover:bg-green-700 text-white",
-                          "h-10 px-4 py-2",
-                        )}
-                      >
+                      <Button href={food.link} className="w-full bg-green-600 hover:bg-green-700 text-white">
                         Learn More About {food.name}
-                      </Link>
+                      </Button>
                     )}
                   </CardFooter>
                 </Card>

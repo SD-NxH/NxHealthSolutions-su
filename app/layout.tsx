@@ -9,8 +9,6 @@ import "./globals.css"
 // Import the CartProvider
 import { CartProvider } from "@/context/cart-context"
 import MaintenanceNotification from "@/components/maintenance-notification"
-import { registerServiceWorker } from "./pwa"
-import type { Metadata } from "next"
 
 const inter = Inter({
   subsets: ["latin"],
@@ -22,21 +20,11 @@ const playfair = Playfair_Display({
   variable: "--font-serif",
 })
 
-export const metadata: Metadata = {
-  title: {
-    default: "NxHealth",
-    template: "%s | NxHealth",
-  },
-  description: "Evidence-based health and wellness solutions to improve your quality of life",
-  manifest: "/manifest.json",
+export const metadata = {
+  title: "NxHealth Solutions - Better Health, Better Life",
+  description: "We provide evidence-based health and wellness solutions to improve your quality of life.",
   icons: {
     icon: "/nxlogo1.png",
-  },
-  themeColor: "#10b981",
-  appleWebApp: {
-    capable: true,
-    statusBarStyle: "default",
-    title: "NxHealth Solutions",
   },
     generator: 'v0.dev'
 }
@@ -47,11 +35,6 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
-  // Register service worker for PWA
-  if (typeof window !== "undefined") {
-    registerServiceWorker()
-  }
-
   return (
     <html lang="en">
       <body className={`${inter.variable} ${playfair.variable} font-sans`}>
