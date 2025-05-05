@@ -11,8 +11,8 @@ export default function SiteFooter() {
             <Link href="/" className="flex items-center gap-2 mb-6">
               <div className="relative overflow-hidden rounded-full bg-green-100/70 backdrop-blur-sm shadow-md p-1 transition-all duration-300 hover:shadow-lg">
                 <ResponsiveImage
-                  src="/nxlogo-alt.png"
-                  alt="NX Health Solutions Logo"
+                  src="/nxlogo-alt-2.png"
+                  alt="NxHealth Logo"
                   width={60}
                   height={60}
                   className="object-contain rounded-full filter drop-shadow-sm"
@@ -129,7 +129,7 @@ export default function SiteFooter() {
 
         <div className="border-t border-gray-200 mt-12 pt-8">
           <p className="text-sm text-gray-500 text-center">
-            © {new Date().getFullYear()} NxHealth Solutions. All rights reserved.
+            © {new Date().getFullYear()} NxHealth. All rights reserved.
           </p>
         </div>
       </div>
