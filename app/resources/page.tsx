@@ -9,11 +9,20 @@ import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-import { Search, ArrowRight, Users, BookOpen } from "lucide-react"
+import { Search, ArrowRight, Users, BookOpen, ShoppingBag, Check } from "lucide-react"
 import { motion, useInView } from "framer-motion"
+import { Label } from "@/components/ui/label"
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { Slider } from "@/components/ui/slider"
 
 export default function ResourcesPage() {
   const [searchQuery, setSearchQuery] = useState("")
+  const [recipe, setRecipe] = useState("main")
+  const [cuisine, setCuisine] = useState("mediterranean")
+  const [servings, setServings] = useState([2])
+  const [diet, setDiet] = useState("regular")
+  const [groceryList, setGroceryList] = useState(null)
   const router = useRouter()
 
   const heroRef = useRef(null)
@@ -50,6 +59,95 @@ export default function ResourcesPage() {
     } else {
       return `/food-pages/${letter.toLowerCase()}-page.html`
     }
+  }
+
+  const generateGroceryList = () => {
+    // Sample grocery lists based on recipe type and diet
+    const lists = {
+      main: {
+        regular: {
+          mediterranean: {
+            produce: [
+              { name: "Fresh tomatoes", quantity: `${servings[0] * 2} medium` },
+              { name: "Red onion", quantity: `${servings[0] / 2} medium` },
+              { name: "Cucumber", quantity: `${servings[0] / 2} medium` },
+              { name: "Bell pepper", quantity: `${servings[0] / 2} medium` },
+              { name: "Fresh parsley", quantity: "1 bunch" },
+            ],
+            protein: [{ name: "Chicken breast", quantity: `${servings[0] * 4} oz` }],
+            grains: [{ name: "Couscous", quantity: `${servings[0] / 2} cup uncooked` }],
+            pantry: [
+              { name: "Olive oil", quantity: `${servings[0]} tbsp` },
+              { name: "Lemon", quantity: `${servings[0] / 2} medium` },
+              { name: "Garlic", quantity: `${servings[0]} clove(s)` },
+              { name: "Dried oregano", quantity: "1 tsp" },
+            ],
+          },
+          asian: {
+            produce: [
+              { name: "Broccoli", quantity: `${servings[0] * 0.5} cup` },
+              { name: "Carrots", quantity: `${servings[0]} medium` },
+              { name: "Green onions", quantity: `${servings[0] * 2} stalks` },
+              { name: "Ginger root", quantity: "1 small piece" },
+            ],
+            protein: [{ name: "Tofu", quantity: `${servings[0] * 3} oz` }],
+            grains: [{ name: "Rice", quantity: `${servings[0] / 2} cup uncooked` }],
+            pantry: [
+              { name: "Soy sauce", quantity: `${servings[0]} tbsp` },
+              { name: "Sesame oil", quantity: `${servings[0] / 2} tbsp` },
+              { name: "Garlic", quantity: `${servings[0]} clove(s)` },
+            ],
+          },
+          american: {
+            produce: [
+              { name: "Lettuce", quantity: `${servings[0] / 2} head` },
+              { name: "Tomato", quantity: `${servings[0] / 2} medium` },
+              { name: "Onion", quantity: `${servings[0] / 4} medium` },
+            ],
+            protein: [{ name: "Ground beef", quantity: `${servings[0] * 4} oz` }],
+            grains: [{ name: "Burger buns", quantity: `${servings[0]} bun(s)` }],
+            pantry: [
+              { name: "Ketchup", quantity: `${servings[0]} tbsp` },
+              { name: "Mustard", quantity: `${servings[0]} tsp` },
+              { name: "Salt and pepper", quantity: "to taste" },
+            ],
+          },
+        },
+        vegetarian: {
+          mediterranean: {
+            produce: [
+              { name: "Fresh tomatoes", quantity: `${servings[0] * 2} medium` },
+              { name: "Red onion", quantity: `${servings[0] / 2} medium` },
+              { name: "Cucumber", quantity: `${servings[0] / 2} medium` },
+              { name: "Bell pepper", quantity: `${servings[0] / 2} medium` },
+              { name: "Fresh parsley", quantity: "1 bunch" },
+            ],
+            protein: [
+              { name: "Feta cheese", quantity: `${servings[0] * 2} oz` },
+              { name: "Chickpeas", quantity: `${servings[0] / 2} can` },
+            ],
+            grains: [{ name: "Couscous", quantity: `${servings[0] / 2} cup uncooked` }],
+            pantry: [
+              { name: "Olive oil", quantity: `${servings[0]} tbsp` },
+              { name: "Lemon", quantity: `${servings[0] / 2} medium` },
+              { name: "Garlic", quantity: `${servings[0]} clove(s)` },
+              { name: "Dried oregano", quantity: "1 tsp" },
+            ],
+          },
+        },
+        vegan: {
+          // Sample vegan lists would go here
+        },
+      },
+      side: {
+        // Sample side dish lists would go here
+      },
+    }
+
+    // Get the list based on user selections, with fallbacks
+    const selectedList = lists[recipe]?.[diet]?.[cuisine] || lists.main.regular.mediterranean
+
+    setGroceryList(selectedList)
   }
 
   return (
@@ -212,7 +310,7 @@ export default function ResourcesPage() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="max-w-5xl mx-auto"
           >
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <Link
                 href="/resources/cuisines"
                 className="group block transform transition-all duration-300 hover:scale-105 hover:-translate-y-1"
@@ -252,27 +350,6 @@ export default function ResourcesPage() {
                 </div>
               </Link>
 
-              <Link
-                href="/resources/grocery-list"
-                className="group block transform transition-all duration-300 hover:scale-105 hover:-translate-y-1"
-              >
-                <div className="bg-green-50 rounded-xl overflow-hidden shadow-sm transition-all duration-300 hover:shadow-xl h-full">
-                  <div className="relative h-40 w-full">
-                    <Image
-                      src="/vibrant-healthy-groceries.png"
-                      alt="Grocery shopping list with fresh produce"
-                      fill
-                      className="object-cover"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end transition-all duration-300 group-hover:from-black/75">
-                      <div className="p-4 text-white transform transition-all duration-300 group-hover:translate-y-[-4px]">
-                        <h3 className="text-xl font-medium mb-1">Grocery List Builder</h3>
-                        <p className="text-sm text-white/80">Create & customize your shopping list</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </Link>
               <a
                 href="/resources/calorie-counter"
                 className="group block transform transition-all duration-300 hover:scale-105 hover:-translate-y-1"
@@ -291,6 +368,187 @@ export default function ResourcesPage() {
               </a>
             </div>
           </motion.div>
+
+          {/* Add the grocery list builder below the cards */}
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            animate={isWhatToEatInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            className="max-w-5xl mx-auto mt-12"
+          >
+            <Card className="border-green-100 shadow-md">
+              <CardHeader className="border-b border-green-50 bg-green-50">
+                <CardTitle className="text-2xl font-serif font-light text-green-800">Grocery List Builder</CardTitle>
+                <CardDescription>Generate a shopping list with quantities for a single meal</CardDescription>
+              </CardHeader>
+              <CardContent className="pt-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                  <div className="space-y-6">
+                    <div className="space-y-2">
+                      <Label htmlFor="recipe-type">Recipe Type</Label>
+                      <Select value={recipe} onValueChange={setRecipe}>
+                        <SelectTrigger id="recipe-type" className="w-full">
+                          <SelectValue placeholder="Select recipe type" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="main">Main Dish</SelectItem>
+                          <SelectItem value="side">Side Dish</SelectItem>
+                          <SelectItem value="salad">Salad</SelectItem>
+                          <SelectItem value="soup">Soup</SelectItem>
+                          <SelectItem value="dessert">Dessert</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+
+                    <div className="space-y-2">
+                      <Label htmlFor="cuisine">Cuisine</Label>
+                      <Select value={cuisine} onValueChange={setCuisine}>
+                        <SelectTrigger id="cuisine" className="w-full">
+                          <SelectValue placeholder="Select cuisine" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="mediterranean">Mediterranean</SelectItem>
+                          <SelectItem value="asian">Asian</SelectItem>
+                          <SelectItem value="american">American</SelectItem>
+                          <SelectItem value="mexican">Mexican</SelectItem>
+                          <SelectItem value="indian">Indian</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+
+                    <div className="space-y-2">
+                      <div className="flex justify-between">
+                        <Label htmlFor="servings">Servings: {servings[0]}</Label>
+                      </div>
+                      <Slider
+                        id="servings"
+                        min={1}
+                        max={8}
+                        step={1}
+                        value={servings}
+                        onValueChange={setServings}
+                        className="w-full"
+                      />
+                    </div>
+
+                    <div className="space-y-2">
+                      <Label>Dietary Preference</Label>
+                      <RadioGroup value={diet} onValueChange={setDiet} className="flex flex-col space-y-1">
+                        <div className="flex items-center space-x-2">
+                          <RadioGroupItem value="regular" id="regular" />
+                          <Label htmlFor="regular" className="font-normal">
+                            Regular
+                          </Label>
+                        </div>
+                        <div className="flex items-center space-x-2">
+                          <RadioGroupItem value="vegetarian" id="vegetarian" />
+                          <Label htmlFor="vegetarian" className="font-normal">
+                            Vegetarian
+                          </Label>
+                        </div>
+                        <div className="flex items-center space-x-2">
+                          <RadioGroupItem value="vegan" id="vegan" />
+                          <Label htmlFor="vegan" className="font-normal">
+                            Vegan
+                          </Label>
+                        </div>
+                        <div className="flex items-center space-x-2">
+                          <RadioGroupItem value="gluten-free" id="gluten-free" />
+                          <Label htmlFor="gluten-free" className="font-normal">
+                            Gluten-Free
+                          </Label>
+                        </div>
+                      </RadioGroup>
+                    </div>
+
+                    <Button className="w-full bg-green-600 hover:bg-green-700" onClick={generateGroceryList}>
+                      Generate Grocery List
+                    </Button>
+                  </div>
+
+                  <div className="border-t md:border-t-0 md:border-l border-green-100 pt-6 md:pt-0 md:pl-8">
+                    <h3 className="text-xl font-medium text-gray-900 mb-4">
+                      {groceryList ? "Your Grocery List" : "Grocery List Preview"}
+                    </h3>
+                    {!groceryList ? (
+                      <div className="text-center py-12 text-gray-500">
+                        <ShoppingBag className="mx-auto h-12 w-12 text-gray-400 mb-4" />
+                        <p>Generate a list to see your personalized grocery items</p>
+                      </div>
+                    ) : (
+                      <div className="space-y-4">
+                        <div>
+                          <h4 className="font-medium text-green-700 mb-2">Produce</h4>
+                          <ul className="space-y-1">
+                            {groceryList.produce.map((item, index) => (
+                              <li key={index} className="flex items-start">
+                                <Check className="h-5 w-5 text-green-500 mr-2 flex-shrink-0 mt-0.5" />
+                                <span>
+                                  <span className="font-medium">{item.name}</span>
+                                  <span className="text-gray-600 ml-2">({item.quantity})</span>
+                                </span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+
+                        <div>
+                          <h4 className="font-medium text-green-700 mb-2">Protein</h4>
+                          <ul className="space-y-1">
+                            {groceryList.protein.map((item, index) => (
+                              <li key={index} className="flex items-start">
+                                <Check className="h-5 w-5 text-green-500 mr-2 flex-shrink-0 mt-0.5" />
+                                <span>
+                                  <span className="font-medium">{item.name}</span>
+                                  <span className="text-gray-600 ml-2">({item.quantity})</span>
+                                </span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+
+                        <div>
+                          <h4 className="font-medium text-green-700 mb-2">Grains</h4>
+                          <ul className="space-y-1">
+                            {groceryList.grains.map((item, index) => (
+                              <li key={index} className="flex items-start">
+                                <Check className="h-5 w-5 text-green-500 mr-2 flex-shrink-0 mt-0.5" />
+                                <span>
+                                  <span className="font-medium">{item.name}</span>
+                                  <span className="text-gray-600 ml-2">({item.quantity})</span>
+                                </span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+
+                        <div>
+                          <h4 className="font-medium text-green-700 mb-2">Pantry Items</h4>
+                          <ul className="space-y-1">
+                            {groceryList.pantry.map((item, index) => (
+                              <li key={index} className="flex items-start">
+                                <Check className="h-5 w-5 text-green-500 mr-2 flex-shrink-0 mt-0.5" />
+                                <span>
+                                  <span className="font-medium">{item.name}</span>
+                                  <span className="text-gray-600 ml-2">({item.quantity})</span>
+                                </span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+
+                        <div className="pt-4 border-t border-green-100">
+                          <Button variant="outline" className="w-full">
+                            Print List
+                          </Button>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </motion.div>
         </div>
       </section>
 
@@ -304,34 +562,17 @@ export default function ResourcesPage() {
               transition={{ duration: 0.8 }}
               className="order-2 md:order-1 relative rounded-xl overflow-hidden"
             >
-              <div className="aspect-video relative">
-                <Image
-                  src="/placeholder.svg?height=400&width=600"
-                  alt="NxPlate cooking show"
-                  fill
-                  className="object-cover rounded-xl"
-                />
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="h-16 w-16 bg-white/90 rounded-full flex items-center justify-center">
-                    <div className="h-12 w-12 bg-green-600 rounded-full flex items-center justify-center">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 24 24"
-                        fill="currentColor"
-                        className="w-6 h-6 text-white ml-1"
-                      >
-                        <path
-                          fillRule="evenodd"
-                          d="M4.5 5.653c0-1.426 1.529-2.33 2.779-1.643l11.54 6.348c1.295.712 1.295 2.573 0 3.285L7.28 19.991c-1.25.687-2.779-.217-2.779-.1643V5.653z"
-                          clipRule="evenodd"
-                        />
-                      </svg>
-                    </div>
-                  </div>
-                </div>
+              <div className="aspect-video relative rounded-xl overflow-hidden shadow-md">
+                <iframe
+                  src="https://www.youtube.com/embed/0bKOol-3rJM"
+                  title="NxHealth Video"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                  className="absolute top-0 left-0 w-full h-full border-0"
+                ></iframe>
               </div>
-              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-6">
-                <h3 className="text-xl font-medium text-white">Latest Episode: Superfood Smoothies</h3>
+              <div className="mt-4">
+                <h3 className="text-xl font-medium text-gray-900">Latest Episode: Nutrition Fundamentals</h3>
               </div>
             </motion.div>
             <motion.div
