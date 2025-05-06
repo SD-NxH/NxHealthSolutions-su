@@ -152,7 +152,10 @@ export default function Home() {
                   Discover how incorporating more plant-based foods into your diet can transform your health and energy
                   levels.
                 </p>
-                <Link href="/resources/what-to-eat" className="inline-flex items-center text-green-600 font-medium">
+                <Link
+                  href="/resources/articles/power-up-with-plants"
+                  className="inline-flex items-center text-green-600 font-medium"
+                >
                   Read More <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
               </div>
