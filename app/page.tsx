@@ -186,7 +186,7 @@ export default function Home() {
                   diet.
                 </p>
                 <Link
-                  href="/resources/foods/dark-chocolate"
+                  href="/resources/articles/dark-chocolate-wellness"
                   className="inline-flex items-center text-green-600 font-medium"
                 >
                   Read More <ArrowRight className="ml-2 h-4 w-4" />

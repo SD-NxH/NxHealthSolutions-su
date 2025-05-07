@@ -73,37 +73,70 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
             props.onClick(e as any)
           }
 
-          // Check if this is an explore button
-          const isExploreButton = props.className?.includes("explore") || (props as any)["data-explore"] === "true"
+          // Check if this is a share button
+          const isShareButton =
+            props.className?.includes("share") ||
+            (props as any)["data-share"] === "true" ||
+            props.children?.toString().toLowerCase().includes("share")
 
-          if (isExploreButton) {
-            // List of possible pages to navigate to
-            const pages = [
-              "/resources",
-              "/about",
-              "/services",
-              "/contact",
-              "/get-started",
-              "/resources/foods/apple",
-              "/resources/foods/almond",
-              "/resources/foods/avocado",
-              "/resources/foods/artichoke",
-              "/resources/foods/asparagus",
-              "/resources/foods/dark-chocolate",
-              "/resources/foods/dulse",
-              "/resources/foods/damson-plums",
-              "/resources/d/dill",
-              "/resources/calorie-counter",
-              "/resources/what-to-eat",
-            ]
+          if (isShareButton) {
+            // Copy the current URL to clipboard
+            const currentUrl = window.location.href
+            navigator.clipboard
+              .writeText(currentUrl)
+              .then(() => {
+                // Show success feedback
+                const button = e.currentTarget as HTMLButtonElement
+                const originalText = button.innerText
 
-            // Select a random page
-            const randomPage = pages[Math.floor(Math.random() * pages.length)]
-            router.push(randomPage)
+                // Store original content
+                const originalContent = button.innerHTML
+
+                // Change text to "Copied!"
+                button.innerHTML = "Copied!"
+
+                // Reset after 2 seconds
+                setTimeout(() => {
+                  button.innerHTML = originalContent
+                }, 2000)
+              })
+              .catch((err) => {
+                console.error("Failed to copy URL: ", err)
+              })
           }
-          // Navigate to Get Started page if not using asChild and not an explore button
-          else if (!asChild && !href) {
-            router.push("/get-started")
+          // Check if this is an explore button
+          else {
+            const isExploreButton = props.className?.includes("explore") || (props as any)["data-explore"] === "true"
+
+            if (isExploreButton) {
+              // List of possible pages to navigate to
+              const pages = [
+                "/resources",
+                "/about",
+                "/services",
+                "/contact",
+                "/get-started",
+                "/resources/foods/apple",
+                "/resources/foods/almond",
+                "/resources/foods/avocado",
+                "/resources/foods/artichoke",
+                "/resources/foods/asparagus",
+                "/resources/foods/dark-chocolate",
+                "/resources/foods/dulse",
+                "/resources/foods/damson-plums",
+                "/resources/d/dill",
+                "/resources/calorie-counter",
+                "/resources/what-to-eat",
+              ]
+
+              // Select a random page
+              const randomPage = pages[Math.floor(Math.random() * pages.length)]
+              router.push(randomPage)
+            }
+            // Navigate to Get Started page if not using asChild and not an explore button
+            else if (!asChild && !href) {
+              router.push("/get-started")
+            }
           }
         }}
         {...props}

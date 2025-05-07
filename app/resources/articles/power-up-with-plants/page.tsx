@@ -158,7 +158,16 @@ export default function PowerUpWithPlantsPage() {
                         British Heart Foundation: Ultra-processed foods
                       </a>
                     </li>
-                    <li>Research on food reward systems and nutritional impact on brain function</li>
+                    <li>
+                      <a
+                        href="https://pmc.ncbi.nlm.nih.gov/articles/PMC8210981/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-green-600 hover:underline"
+                      >
+                        PMC: Food reward system and nutritional impact on brain function
+                      </a>
+                    </li>
                   </ol>
                 </div>
 
