@@ -186,7 +186,7 @@ export default function Home() {
                   diet.
                 </p>
                 <Link
-                  href="/resources/articles/dark-chocolate-wellness"
+                  href="/resources/foods/dark-chocolate"
                   className="inline-flex items-center text-green-600 font-medium"
                 >
                   Read More <ArrowRight className="ml-2 h-4 w-4" />
@@ -218,7 +218,10 @@ export default function Home() {
                   Find out how to calculate your daily caloric needs and create a balanced nutrition plan that works for
                   your lifestyle.
                 </p>
-                <Link href="/resources/calorie-counter" className="inline-flex items-center text-green-600 font-medium">
+                <Link
+                  href="/resources/articles/understanding-caloric-needs"
+                  className="inline-flex items-center text-green-600 font-medium"
+                >
                   Read More <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
               </div>
@@ -227,7 +230,7 @@ export default function Home() {
 
           <div className="text-center mt-12">
             <Button variant="outline" className="border-green-600 text-green-600 hover:bg-green-50 rounded-full">
-              <Link href="/resources">View All Articles</Link>
+              <Link href="/resources/articles">View All Articles</Link>
             </Button>
           </div>
         </div>

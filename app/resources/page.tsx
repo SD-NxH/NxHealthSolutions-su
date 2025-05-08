@@ -686,6 +686,99 @@ export default function ResourcesPage() {
           </motion.div>
         </div>
       </section>
+
+      {/* Services Section */}
+      <section className="py-16 bg-white">
+        <div className="container px-4 md:px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            animate={isServicesInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.8 }}
+            className="max-w-4xl mx-auto text-center mb-12"
+          >
+            <h2 className="text-3xl md:text-4xl font-serif font-light text-gray-900 mb-6">Explore Our Articles</h2>
+            <p className="text-lg text-gray-600 mb-8">
+              Dive into our collection of articles covering a wide range of health and wellness topics.
+            </p>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            animate={isServicesInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="max-w-5xl mx-auto"
+          >
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {/* Example Article Card - Replace with actual article data */}
+              <Link href="/resources/articles/article-1" className="group block">
+                <div className="bg-green-50 rounded-xl overflow-hidden shadow-sm transition-all duration-300 hover:shadow-xl h-full">
+                  <div className="relative h-40 w-full">
+                    <Image
+                      src="/article-placeholder.png"
+                      alt="Placeholder Article Image"
+                      fill
+                      className="object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end">
+                      <div className="p-4 text-white">
+                        <h3 className="text-xl font-medium mb-1">Article Title 1</h3>
+                        <p className="text-sm text-white/80">Brief article summary...</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </Link>
+
+              <Link href="/resources/articles/article-2" className="group block">
+                <div className="bg-green-50 rounded-xl overflow-hidden shadow-sm transition-all duration-300 hover:shadow-xl h-full">
+                  <div className="relative h-40 w-full">
+                    <Image
+                      src="/article-placeholder.png"
+                      alt="Placeholder Article Image"
+                      fill
+                      className="object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end">
+                      <div className="p-4 text-white">
+                        <h3 className="text-xl font-medium mb-1">Article Title 2</h3>
+                        <p className="text-sm text-white/80">Brief article summary...</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </Link>
+
+              <Link href="/resources/articles/article-3" className="group block">
+                <div className="bg-green-50 rounded-xl overflow-hidden shadow-sm transition-all duration-300 hover:shadow-xl h-full">
+                  <div className="relative h-40 w-full">
+                    <Image
+                      src="/article-placeholder.png"
+                      alt="Placeholder Article Image"
+                      fill
+                      className="object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end">
+                      <div className="p-4 text-white">
+                        <h3 className="text-xl font-medium mb-1">Article Title 3</h3>
+                        <p className="text-sm text-white/80">Brief article summary...</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </Link>
+            </div>
+
+            <div className="mt-8 text-center">
+              <Link
+                href="/resources/articles"
+                className="inline-block bg-green-600 hover:bg-green-700 text-white rounded-full px-8 py-3 text-lg transition-colors duration-300"
+              >
+                View All Articles
+              </Link>
+            </div>
+          </motion.div>
+        </div>
+      </section>
     </div>
   )
 }
