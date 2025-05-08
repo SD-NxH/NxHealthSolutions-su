@@ -79,13 +79,43 @@ const additionalArticles = [
     readTime: "9 min read",
     url: "#",
   },
+  {
+    id: "fitness-beginners",
+    title: "Fitness for Beginners: Where to Start",
+    description: "A comprehensive guide to starting your fitness journey with confidence and safety.",
+    image: "/fitness-beginners.png",
+    category: "Fitness",
+    date: "February 15, 2023",
+    readTime: "10 min read",
+    url: "#",
+  },
+  {
+    id: "quick-healthy-recipes",
+    title: "10 Quick and Healthy Recipes for Busy Professionals",
+    description: "Delicious, nutritious meals you can prepare in under 30 minutes for your busy lifestyle.",
+    image: "/healthy-quick-meals.png",
+    category: "Recipes",
+    date: "January 28, 2023",
+    readTime: "8 min read",
+    url: "#",
+  },
+  {
+    id: "mindfulness-practice",
+    title: "Mindfulness Practices for Daily Wellness",
+    description: "Simple mindfulness techniques you can incorporate into your daily routine for better mental health.",
+    image: "/mindfulness-meditation.png",
+    category: "Wellness",
+    date: "January 10, 2023",
+    readTime: "6 min read",
+    url: "#",
+  },
 ]
 
 // Combine all articles
 const allArticles = [...articles, ...additionalArticles]
 
 // Categories for filtering
-const categories = ["All", "Nutrition", "Wellness", "Health", "Lifestyle"]
+const categories = ["All", "Nutrition", "Wellness", "Health", "Lifestyle", "Fitness", "Recipes"]
 
 export default function ArticlesPage() {
   const [searchTerm, setSearchTerm] = React.useState("")

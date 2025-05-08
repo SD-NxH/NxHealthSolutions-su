@@ -8,6 +8,9 @@ import { useRouter } from "next/navigation"
 
 import { cn } from "@/lib/utils"
 
+// This is the core Button component used throughout the application.
+// It provides consistent styling and behavior for all buttons.
+// Removing it would break the application.
 const buttonVariants = cva(
   "inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-none focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-offset-0 disabled:pointer-events-none disabled:opacity-50",
   {
@@ -47,6 +50,11 @@ export interface ButtonProps
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   ({ className, variant, size, asChild = false, href, ...props }, ref) => {
     const router = useRouter()
+
+    // Check if this button should be hidden
+    if (props["data-hidden"] === "true") {
+      return null
+    }
 
     // Only render as Link if href is explicitly provided
     if (href && !asChild) {
@@ -104,6 +112,15 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
                 console.error("Failed to copy URL: ", err)
               })
           }
+          // Check if this is an articles button
+          else if (
+            props.className?.includes("articles") ||
+            (props as any)["data-articles"] === "true" ||
+            (props.children && typeof props.children === "string" && props.children.toLowerCase().includes("articles"))
+          ) {
+            // Navigate to the articles hub
+            router.push("/resources/articles")
+          }
           // Check if this is an explore button
           else {
             const isExploreButton = props.className?.includes("explore") || (props as any)["data-explore"] === "true"
@@ -133,9 +150,9 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
               const randomPage = pages[Math.floor(Math.random() * pages.length)]
               router.push(randomPage)
             }
-            // Navigate to Get Started page if not using asChild and not an explore button
+            // Navigate to Articles page if not using asChild and not an explore button
             else if (!asChild && !href) {
-              router.push("/get-started")
+              router.push("/resources/articles")
             }
           }
         }}
