@@ -137,7 +137,7 @@ export default function Home() {
             >
               <div className="relative h-48 w-full">
                 <Image
-                  src="/vibrant-healthy-groceries.png"
+                  src="/colorful-fruits-vegetables.png"
                   alt="Colorful array of fresh fruits and vegetables"
                   fill
                   className="object-cover"

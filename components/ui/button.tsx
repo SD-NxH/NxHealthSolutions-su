@@ -48,7 +48,7 @@ export interface ButtonProps
 }
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant, size, asChild = false, href, ...props }, ref) => {
+  ({ className, variant, size, asChild = false, href, children = "Get Started", ...props }, ref) => {
     const router = useRouter()
 
     // Check if this button should be hidden
@@ -56,36 +56,59 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       return null
     }
 
+    // Check if children contains a Link component
+    const hasLinkChild = React.Children.toArray(children).some(
+      (child) => React.isValidElement(child) && (child.type === Link || (child.type as any)?.displayName === "Link"),
+    )
+
+    // If children contains a Link, use asChild to avoid nested <a> tags
+    if (hasLinkChild) {
+      return (
+        <Slot
+          className={cn(buttonVariants({ variant, size, className }), "!transition-none !duration-0")}
+          ref={ref}
+          {...props}
+        >
+          {children}
+        </Slot>
+      )
+    }
+
     // Only render as Link if href is explicitly provided
-    if (href && !asChild) {
+    if (href) {
       return (
         <Link
           href={href}
           className={cn(buttonVariants({ variant, size, className }), "!transition-none !duration-0")}
           {...props}
         >
-          {props.children}
+          {children}
         </Link>
       )
     }
 
-    // Otherwise render as button or slot
-    const Comp = asChild ? Slot : "button"
+    // Otherwise render as button
     return (
-      <Comp
+      <button
         className={cn(buttonVariants({ variant, size, className }), "!transition-none !duration-0")}
         ref={ref}
         onClick={(e) => {
           // Call the original onClick if it exists
           if (props.onClick) {
             props.onClick(e as any)
+          } else {
+            // Default navigation to Stripe checkout
+            window.open("https://buy.stripe.com/7sI9AFbPOfR15mU00F", "_blank")
           }
+
+          // The rest of the click handler logic is kept for compatibility
+          // but will only run if the default navigation doesn't happen
 
           // Check if this is a share button
           const isShareButton =
             props.className?.includes("share") ||
             (props as any)["data-share"] === "true" ||
-            props.children?.toString().toLowerCase().includes("share")
+            (typeof children === "string" && children.toString().toLowerCase().includes("share"))
 
           if (isShareButton) {
             // Copy the current URL to clipboard
@@ -112,11 +135,34 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
                 console.error("Failed to copy URL: ", err)
               })
           }
+          // Check if this is a consultation button
+          else if (
+            props.className?.includes("consultation") ||
+            (props as any)["data-consultation"] === "true" ||
+            (typeof children === "string" &&
+              (children.toString().toLowerCase().includes("consultation") ||
+                children.toString().toLowerCase().includes("consult") ||
+                children.toString().toLowerCase().includes("schedule")))
+          ) {
+            // Navigate to the consultation page
+            router.push("/services/consultation")
+          }
+          // Check if this is a nutrition plan button
+          else if (
+            props.className?.includes("nutrition-plan") ||
+            (props as any)["data-nutrition-plan"] === "true" ||
+            (typeof children === "string" &&
+              (children.toString().toLowerCase().includes("nutrition plan") ||
+                children.toString().toLowerCase().includes("meal plan")))
+          ) {
+            // Navigate to the nutrition plans page
+            router.push("/services/nutrition-plans")
+          }
           // Check if this is an articles button
           else if (
             props.className?.includes("articles") ||
             (props as any)["data-articles"] === "true" ||
-            (props.children && typeof props.children === "string" && props.children.toLowerCase().includes("articles"))
+            (typeof children === "string" && children.toString().toLowerCase().includes("articles"))
           ) {
             // Navigate to the articles hub
             router.push("/resources/articles")
@@ -144,20 +190,20 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
                 "/resources/d/dill",
                 "/resources/calorie-counter",
                 "/resources/what-to-eat",
+                "/services/nutrition-plans",
+                "/services/consultation",
               ]
 
               // Select a random page
               const randomPage = pages[Math.floor(Math.random() * pages.length)]
               router.push(randomPage)
             }
-            // Navigate to Articles page if not using asChild and not an explore button
-            else if (!asChild && !href) {
-              router.push("/resources/articles")
-            }
           }
         }}
         {...props}
-      />
+      >
+        {children}
+      </button>
     )
   },
 )

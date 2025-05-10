@@ -109,8 +109,8 @@ export default function SiteFooter() {
                 </Link>
               </li>
               <li>
-                <Link href="/blog" className="text-gray-600 hover:text-green-600">
-                  Blog
+                <Link href="/resources/articles" className="text-gray-600 hover:text-green-600">
+                  Articles
                 </Link>
               </li>
             </ul>

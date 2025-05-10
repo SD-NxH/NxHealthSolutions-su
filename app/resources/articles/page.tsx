@@ -16,7 +16,7 @@ const articles = [
     title: "The Power of Plant-Based Eating",
     description:
       "Discover how incorporating more plant-based foods into your diet can transform your health and energy levels.",
-    image: "/vibrant-healthy-groceries.png",
+    image: "/colorful-fruits-vegetables.png",
     category: "Nutrition",
     date: "May 2, 2023",
     readTime: "6 min read",
