@@ -96,9 +96,12 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
           // Call the original onClick if it exists
           if (props.onClick) {
             props.onClick(e as any)
+          } else if (href) {
+            // Navigate to the href if provided
+            router.push(href)
           } else {
-            // Default navigation to Stripe checkout
-            window.open("https://buy.stripe.com/7sI9AFbPOfR15mU00F", "_blank")
+            // Default navigation to Stripe checkout only if no href is provided
+            window.open("https://buy.stripe.com/bIY4gl9HG5cn8z67sz", "_blank")
           }
 
           // The rest of the click handler logic is kept for compatibility

@@ -74,11 +74,13 @@ export default function ServicesPage() {
               transition={{ duration: 0.8, delay: 0.1 }}
               className="bg-white rounded-xl overflow-hidden shadow-md"
             >
-              <div className="relative h-64 w-full">
+              <div className="relative w-full" style={{ minHeight: "200px", height: "30vh", maxHeight: "300px" }}>
                 <Image
                   src="/nutrition-image.jpeg"
                   alt="Health consultation with a nutrition specialist"
                   fill
+                  sizes="(max-width: 768px) 100vw, 33vw"
+                  priority
                   className="object-cover"
                 />
               </div>
@@ -99,8 +101,15 @@ export default function ServicesPage() {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="bg-white rounded-xl overflow-hidden shadow-md"
             >
-              <div className="relative h-64 w-full">
-                <Image src="/async-consult.jpg" alt="Online health consultation form" fill className="object-cover" />
+              <div className="relative w-full" style={{ minHeight: "200px", height: "30vh", maxHeight: "300px" }}>
+                <Image
+                  src="/async-consult.jpg"
+                  alt="Online health consultation form"
+                  fill
+                  sizes="(max-width: 768px) 100vw, 33vw"
+                  priority
+                  className="object-cover"
+                />
               </div>
               <div className="p-6 text-center">
                 <h3 className="text-2xl font-serif font-medium text-gray-900 mb-3">Online Consultation</h3>
@@ -123,8 +132,15 @@ export default function ServicesPage() {
               transition={{ duration: 0.8, delay: 0.3 }}
               className="bg-white rounded-xl overflow-hidden shadow-md"
             >
-              <div className="relative h-64 w-full">
-                <Image src="/group-session.jpg" alt="Group health solutions session" fill className="object-cover" />
+              <div className="relative w-full" style={{ minHeight: "200px", height: "30vh", maxHeight: "300px" }}>
+                <Image
+                  src="/group-session.jpg"
+                  alt="Group health solutions session"
+                  fill
+                  sizes="(max-width: 768px) 100vw, 33vw"
+                  priority
+                  className="object-cover"
+                />
               </div>
               <div className="p-6 text-center">
                 <h3 className="text-2xl font-serif font-medium text-gray-900 mb-3">Standard Solutions Session</h3>
@@ -401,7 +417,7 @@ export default function ServicesPage() {
               <div className="text-center">
                 <Link href="/get-started">
                   <Button variant="outline" className="border-green-600 text-green-600 hover:bg-green-50 rounded-full">
-                    Purchase
+                    Get Started
                   </Button>
                 </Link>
               </div>
@@ -459,7 +475,7 @@ export default function ServicesPage() {
               <div className="text-center">
                 <Link href="/get-started">
                   <Button variant="outline" className="border-green-600 text-green-600 hover:bg-green-50 rounded-full">
-                    Purchase
+                    Get Started
                   </Button>
                 </Link>
               </div>
@@ -502,7 +518,7 @@ export default function ServicesPage() {
               <div className="text-center">
                 <Link href="/get-started">
                   <Button variant="outline" className="border-green-600 text-green-600 hover:bg-green-50 rounded-full">
-                    Purchase
+                    Get Started
                   </Button>
                 </Link>
               </div>
