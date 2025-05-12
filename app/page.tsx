@@ -39,6 +39,12 @@ export default function Home() {
   const heroScale = useTransform(scrollYProgress, [0, 0.5], [1, 0.9])
   const heroY = useTransform(scrollYProgress, [0, 0.5], [0, 100])
 
+  // Function to handle the random navigation
+  const handleExploreClick = () => {
+    const randomUrl = getRandomUrl()
+    router.push(randomUrl)
+  }
+
   return (
     <div className="flex flex-col min-h-screen">
       {/* Hero Section */}
@@ -103,7 +109,8 @@ export default function Home() {
                   "bg-green-600 hover:bg-green-700 text-white rounded-full px-6 sm:px-8 py-5 sm:py-6 text-base sm:text-lg",
                   "transition-transform transform hover:scale-105",
                 )}
-                data-explore="true"
+                onClick={handleExploreClick}
+                data-random-explore="true"
               >
                 Explore
               </Button>
@@ -112,6 +119,7 @@ export default function Home() {
         </div>
       </motion.section>
 
+      {/* Rest of the component remains unchanged */}
       {/* Featured Articles Section */}
       <section ref={featuredRef} className="py-20 bg-white">
         <div className="container px-4 md:px-6 mx-auto">
@@ -229,8 +237,12 @@ export default function Home() {
           </div>
 
           <div className="text-center mt-12">
-            <Button variant="outline" className="border-green-600 text-green-600 hover:bg-green-50 rounded-full">
-              <Link href="/resources/articles">View All Articles</Link>
+            <Button
+              variant="outline"
+              className="border-green-600 text-green-600 hover:bg-green-50 rounded-full btn-articles"
+              href="/resources/articles"
+            >
+              View All Articles
             </Button>
           </div>
         </div>
@@ -332,8 +344,11 @@ export default function Home() {
                 Through evidence-based approaches and personalized care, we empower you to take control of your health
                 journey.
               </p>
-              <Button className="bg-green-600 hover:bg-green-700 text-white rounded-full px-8 py-6 text-lg">
-                <Link href="/about">About Us</Link>
+              <Button
+                className="bg-green-600 hover:bg-green-700 text-white rounded-full px-8 py-6 text-lg btn-about"
+                href="/about"
+              >
+                About Us
               </Button>
             </motion.div>
             <motion.div
@@ -384,8 +399,11 @@ export default function Home() {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="flex flex-col sm:flex-row gap-4 justify-center"
           >
-            <Button className="bg-white text-green-800 hover:bg-green-100 rounded-full px-8 py-6 text-lg">
-              <Link href="/get-started">Get Started Today</Link>
+            <Button
+              className="bg-white text-green-800 hover:bg-green-100 rounded-full px-8 py-6 text-lg btn-get-started"
+              href="/get-started"
+            >
+              Get Started Today
             </Button>
             <Link href="/contact">
               <Button

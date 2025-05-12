@@ -251,7 +251,7 @@ export default function AboutPage() {
             <p className="text-lg text-gray-600">Meet the dedicated professionals behind NxHealth Solutions.</p>
           </motion.div>
 
-          <div className="flex justify-center">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 justify-items-center">
             <motion.div
               initial={{ opacity: 0, y: 40 }}
               animate={isTeamInView ? { opacity: 1, y: 0 } : {}}
@@ -275,6 +275,34 @@ export default function AboutPage() {
                   science. I created NxHealth to help improve quality of life through targeted health solutions. Our
                   health is our true wealth, and the food we consume, along with our daily habits, can create conditions
                   for our bodies to heal and thrive.
+                </p>
+              </div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 40 }}
+              animate={isTeamInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="bg-white rounded-xl overflow-hidden shadow-sm max-w-sm"
+            >
+              <div className="relative h-80 w-full overflow-hidden">
+                <Image
+                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/jasmine_profile%20photo-JiCD0gr2ealUo12h1DSfZAWBK15v8R.jpeg"
+                  alt="Jasmine M. Johnson, Holistic Health Practitioner"
+                  fill
+                  className="object-cover"
+                  priority
+                />
+              </div>
+              <div className="p-6 text-center">
+                <h3 className="text-xl font-medium text-gray-900 mb-1">Jasmine M. Johnson</h3>
+                <p className="text-green-600 mb-3">Holistic Health Practitioner</p>
+                <p className="text-gray-600 text-sm">
+                  Jasmine is a certified Holistic Health Practitioner, born and raised in Elizabeth City, North
+                  Carolina. A proud graduate of North Carolina Central University with a degree in Criminal Justice,
+                  Jasmine's passion has always centered on mental health, particularly in supporting incarcerated
+                  individuals. Her journey led her to explore holistic healing, where she discovered the powerful
+                  connection between the mind, body, and spirit.
                 </p>
               </div>
             </motion.div>

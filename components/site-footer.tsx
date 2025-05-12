@@ -99,7 +99,7 @@ export default function SiteFooter() {
                 </Link>
               </li>
               <li>
-                <Link href="/team" className="text-gray-600 hover:text-green-600">
+                <Link href="/about" className="text-gray-600 hover:text-green-600">
                   Our Team
                 </Link>
               </li>
