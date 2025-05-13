@@ -12,6 +12,17 @@ import { motion } from "framer-motion"
 
 const articles = [
   {
+    id: "understanding-breast-cancer",
+    title: "Understanding Breast Cancer: A Holistic Approach to Management",
+    description:
+      "A comprehensive guide to breast cancer, including types, stages, and holistic management strategies with a focus on plant-based nutrition and lifestyle interventions.",
+    image: "/breast-cancer-awareness.png",
+    category: "Health",
+    date: "May 10, 2023",
+    readTime: "15 min read",
+    url: "/resources/articles/understanding-breast-cancer",
+  },
+  {
     id: "power-up-with-plants",
     title: "The Power of Plant-Based Eating",
     description:
@@ -53,7 +64,7 @@ const additionalArticles = [
     title: "Seasonal Eating: Why It Matters",
     description:
       "Explore the benefits of eating foods when they're in season and how it can improve your health and the environment.",
-    image: "/placeholder.svg?key=igfmj",
+    image: "/seasonal-produce.png",
     category: "Nutrition",
     date: "March 22, 2023",
     readTime: "4 min read",
@@ -73,7 +84,7 @@ const additionalArticles = [
     id: "gut-health",
     title: "The Gut-Brain Connection: How Your Diet Affects Your Mood",
     description: "Understand the fascinating relationship between your gut microbiome and your mental wellbeing.",
-    image: "/placeholder.svg?key=suvlj",
+    image: "/placeholder.svg?key=w839x",
     category: "Health",
     date: "February 28, 2023",
     readTime: "9 min read",
@@ -200,14 +211,20 @@ export default function ArticlesPage() {
                 transition={{ duration: 0.5, delay: index * 0.1 }}
               >
                 <Card className="h-full overflow-hidden hover:shadow-lg transition-shadow duration-300">
-                  <div className="relative h-48 md:h-56 w-full">
-                    <Image
-                      src={article.image || "/placeholder.svg"}
-                      alt={article.title}
-                      fill
-                      className="object-cover"
-                    />
-                  </div>
+                  {article.id === "understanding-breast-cancer" ? (
+                    <div className="relative h-48 md:h-56 w-full bg-pink-400 flex items-center justify-center">
+                      <span className="text-white text-xl font-bold">Breast Cancer Awareness</span>
+                    </div>
+                  ) : (
+                    <div className="relative h-48 md:h-56 w-full">
+                      <Image
+                        src={article.image || "/placeholder.svg"}
+                        alt={article.title}
+                        fill
+                        className="object-cover"
+                      />
+                    </div>
+                  )}
                   <CardContent className="p-6">
                     <div className="flex items-center justify-between mb-2">
                       <span className="text-xs font-semibold text-green-600 uppercase tracking-wider">
@@ -260,12 +277,18 @@ export default function ArticlesPage() {
                 >
                   <Card className="h-full hover:shadow-md transition-shadow duration-300">
                     <div className="relative h-48 w-full">
-                      <Image
-                        src={article.image || "/placeholder.svg"}
-                        alt={article.title}
-                        fill
-                        className="object-cover"
-                      />
+                      {article.id === "understanding-breast-cancer" ? (
+                        <div className="h-full w-full bg-pink-400 flex items-center justify-center">
+                          <span className="text-white text-xl font-bold">Breast Cancer Awareness</span>
+                        </div>
+                      ) : (
+                        <Image
+                          src={article.image || "/placeholder.svg"}
+                          alt={article.title}
+                          fill
+                          className="object-cover"
+                        />
+                      )}
                     </div>
                     <CardContent className="p-6">
                       <div className="flex items-center justify-between mb-2">

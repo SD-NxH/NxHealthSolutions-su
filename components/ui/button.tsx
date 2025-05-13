@@ -93,7 +93,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         className={cn(
           buttonVariants({ variant, size, className }),
           "!transition-none !duration-0",
-          "nxhealth-button get-started-default-button cursor-pointer",
+          "nxhealth-button carrots-default-button cursor-pointer",
         )}
         role="button"
         tabIndex={0}
@@ -201,8 +201,8 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
             return
           }
 
-          // If all else fails, navigate to the Get Started page as the default
-          router.push("/get-started")
+          // If all else fails, navigate to the Carrots page as the default
+          router.push("/resources/foods/carrots")
         }}
         onKeyDown={(e) => {
           // Handle keyboard accessibility
