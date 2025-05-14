@@ -25,6 +25,7 @@ const buttonVariants = cva(
         link: "text-primary underline-offset-4 hover:text-primary",
         chocolate: "bg-amber-950 hover:bg-amber-900 text-amber-50 hover:text-amber-100 border-amber-800",
         dulse: "bg-red-900 hover:bg-red-800 text-red-50 hover:text-red-100 border-red-950",
+        carrot: "bg-orange-600 hover:bg-orange-700 text-white hover:text-white border-orange-700",
       },
       size: {
         default: "h-10 px-4 py-2",
@@ -75,10 +76,10 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     }
 
     // Only render as Link if href is explicitly provided
-    if (href) {
+    if (href !== undefined) {
       return (
         <Link
-          href={href}
+          href={href || "/resources"} // Default to Resources page if href is empty
           className={cn(buttonVariants({ variant, size, className }), "!transition-none !duration-0")}
           {...props}
         >
