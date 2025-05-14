@@ -79,7 +79,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     if (href !== undefined) {
       return (
         <Link
-          href={href || "/resources"} // Default to Resources page if href is empty
+          href="/resources" // Always link to the Resources page
           className={cn(buttonVariants({ variant, size, className }), "!transition-none !duration-0")}
           {...props}
         >
