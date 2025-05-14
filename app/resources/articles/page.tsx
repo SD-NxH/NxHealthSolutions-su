@@ -12,6 +12,17 @@ import { motion } from "framer-motion"
 
 const articles = [
   {
+    id: "plant-based-strategies-colorectal-cancer",
+    title: "Plant-Based Dietary Strategies and Lifestyle Modifications for Colorectal Cancer",
+    description:
+      "A comprehensive examination of plant-based dietary strategies and lifestyle modifications as approaches for addressing colorectal cancer.",
+    image: "/colorful-fruits-vegetables.png",
+    category: "Health",
+    date: "March 30, 2025",
+    readTime: "15 min read",
+    url: "/resources/articles/plant-based-strategies-colorectal-cancer",
+  },
+  {
     id: "understanding-breast-cancer",
     title: "Understanding Breast Cancer: A Holistic Approach to Management",
     description:
