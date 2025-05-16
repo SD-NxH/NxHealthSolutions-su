@@ -86,21 +86,23 @@ export default function FreedomFromFoodPage() {
               <div className="bg-gradient-to-br from-green-50 to-green-100 p-8 md:p-10 rounded-2xl shadow-sm mb-10">
                 <h3 className="text-2xl font-serif text-green-800 mb-6 text-center">Program Highlights</h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
-                  <div className="flex items-start bg-white p-4 rounded-xl shadow-sm">
-                    <Calendar className="h-6 w-6 text-green-600 mt-0.5 mr-3 flex-shrink-0" />
-                    <p className="text-gray-700 font-medium">Daily live or pre-recorded sessions (14 days)</p>
+                  <div className="flex flex-col items-center bg-white p-6 rounded-xl shadow-sm">
+                    <Calendar className="h-10 w-10 text-green-600 mb-3" />
+                    <p className="text-gray-700 font-medium text-center">
+                      Daily live or pre-recorded sessions (14 days)
+                    </p>
                   </div>
-                  <div className="flex items-start bg-white p-4 rounded-xl shadow-sm">
-                    <BookOpen className="h-6 w-6 text-green-600 mt-0.5 mr-3 flex-shrink-0" />
-                    <p className="text-gray-700 font-medium">Comprehensive Digital Sources</p>
+                  <div className="flex flex-col items-center bg-white p-6 rounded-xl shadow-sm">
+                    <BookOpen className="h-10 w-10 text-green-600 mb-3" />
+                    <p className="text-gray-700 font-medium text-center">Comprehensive Digital Sources</p>
                   </div>
-                  <div className="flex items-start bg-white p-4 rounded-xl shadow-sm">
-                    <MessageCircle className="h-6 w-6 text-green-600 mt-0.5 mr-3 flex-shrink-0" />
-                    <p className="text-gray-700 font-medium">Daily email support and motivation</p>
+                  <div className="flex flex-col items-center bg-white p-6 rounded-xl shadow-sm">
+                    <MessageCircle className="h-10 w-10 text-green-600 mb-3" />
+                    <p className="text-gray-700 font-medium text-center">Daily email support and motivation</p>
                   </div>
-                  <div className="flex items-start bg-white p-4 rounded-xl shadow-sm">
-                    <Users className="h-6 w-6 text-green-600 mt-0.5 mr-3 flex-shrink-0" />
-                    <p className="text-gray-700 font-medium">Private online community support</p>
+                  <div className="flex flex-col items-center bg-white p-6 rounded-xl shadow-sm">
+                    <Users className="h-10 w-10 text-green-600 mb-3" />
+                    <p className="text-gray-700 font-medium text-center">Private online community support</p>
                   </div>
                 </div>
               </div>
