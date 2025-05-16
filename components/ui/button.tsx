@@ -26,6 +26,8 @@ const buttonVariants = cva(
         chocolate: "bg-amber-950 hover:bg-amber-900 text-amber-50 hover:text-amber-100 border-amber-800",
         dulse: "bg-red-900 hover:bg-red-800 text-red-50 hover:text-red-100 border-red-950",
         carrot: "bg-orange-600 hover:bg-orange-700 text-white hover:text-white border-orange-700",
+        banana: "bg-yellow-400 hover:bg-yellow-500 text-yellow-900 hover:text-yellow-950 border-yellow-500",
+        beetroot: "bg-purple-900 hover:bg-purple-950 text-pink-50 hover:text-pink-100 border-purple-800",
       },
       size: {
         default: "h-10 px-4 py-2",
@@ -79,7 +81,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     if (href !== undefined) {
       return (
         <Link
-          href="/resources" // Always link to the Resources page
+          href="/services" // Always link to the Services page
           className={cn(buttonVariants({ variant, size, className }), "!transition-none !duration-0")}
           {...props}
         >
@@ -90,14 +92,13 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 
     // Otherwise render as div instead of button
     return (
-      <div
+      <button
         className={cn(
           buttonVariants({ variant, size, className }),
           "!transition-none !duration-0",
-          "nxhealth-button freedom-food-default-button cursor-pointer",
+          "nxhealth-button freedom-food-default-button",
         )}
-        role="button"
-        tabIndex={0}
+        ref={ref}
         onClick={(e) => {
           // Call the original onClick if it exists
           if (props.onClick) {
@@ -175,6 +176,10 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
             "food freedom": "/services/freedom-from-food",
             "habit forming": "/services/freedom-from-food",
             "2-week": "/services/freedom-from-food",
+            banana: "/resources/foods/banana",
+            bananas: "/resources/foods/banana",
+            beetroot: "/resources/foods/beetroot",
+            beets: "/resources/foods/beetroot",
           }
 
           // Check if the button text contains any of the mapped keywords
@@ -214,17 +219,10 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
           // If all else fails, navigate to the Get Started page as the default
           router.push("/get-started")
         }}
-        onKeyDown={(e) => {
-          // Handle keyboard accessibility
-          if (e.key === "Enter" || e.key === " ") {
-            e.preventDefault()
-            e.currentTarget.click()
-          }
-        }}
         {...props}
       >
         {children}
-      </div>
+      </button>
     )
   },
 )

@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button"
 import { ChevronUp } from "lucide-react"
 import { motion, AnimatePresence } from "framer-motion"
 
-export default function ScrollToTop() {
+export function ScrollToTop() {
   const [isVisible, setIsVisible] = useState(false)
 
   useEffect(() => {
@@ -52,3 +52,6 @@ export default function ScrollToTop() {
     </AnimatePresence>
   )
 }
+
+// Also export as default for backward compatibility
+export default ScrollToTop
