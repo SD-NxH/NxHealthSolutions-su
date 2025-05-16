@@ -94,7 +94,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         className={cn(
           buttonVariants({ variant, size, className }),
           "!transition-none !duration-0",
-          "nxhealth-button carrots-default-button cursor-pointer",
+          "nxhealth-button freedom-food-default-button cursor-pointer",
         )}
         role="button"
         tabIndex={0}
@@ -171,6 +171,10 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
             profile: "/user-profile",
             cart: "/cart",
             checkout: "/checkout",
+            "freedom from food": "/services/freedom-from-food",
+            "food freedom": "/services/freedom-from-food",
+            "habit forming": "/services/freedom-from-food",
+            "2-week": "/services/freedom-from-food",
           }
 
           // Check if the button text contains any of the mapped keywords
@@ -202,8 +206,13 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
             return
           }
 
-          // If all else fails, navigate to the Carrots page as the default
-          router.push("/resources/foods/carrots")
+          if (props.className?.includes("freedom") || buttonText.includes("freedom") || buttonText.includes("habit")) {
+            router.push("/services/freedom-from-food")
+            return
+          }
+
+          // If all else fails, navigate to the Get Started page as the default
+          router.push("/get-started")
         }}
         onKeyDown={(e) => {
           // Handle keyboard accessibility

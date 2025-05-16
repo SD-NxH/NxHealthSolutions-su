@@ -5,7 +5,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
-import { Users, Leaf, HeartPulse } from "lucide-react"
+import { Users, Leaf, HeartPulse, Calendar, BookOpen, MessageCircle, CheckCircle } from "lucide-react"
 import { motion, useInView } from "framer-motion"
 import { redirectToStripePayment } from "../actions/stripe-redirect"
 import { useRouter } from "next/navigation"
@@ -17,11 +17,13 @@ export default function ServicesPage() {
   const specializedServicesRef = useRef(null)
   const pricingRef = useRef(null)
   const faqRef = useRef(null)
+  const habitProgramRef = useRef(null)
 
   const isMainServicesInView = useInView(mainServicesRef, { once: true, amount: 0.2 })
   const isSpecializedServicesInView = useInView(specializedServicesRef, { once: true, amount: 0.2 })
   const isPricingInView = useInView(pricingRef, { once: true, amount: 0.2 })
   const isFaqInView = useInView(faqRef, { once: true, amount: 0.2 })
+  const isHabitProgramInView = useInView(habitProgramRef, { once: true, amount: 0.2 })
 
   const handlePaymentClick = async () => {
     const result = await redirectToStripePayment()
@@ -152,6 +154,87 @@ export default function ServicesPage() {
               </div>
             </motion.div>
           </div>
+        </div>
+      </section>
+
+      {/* 2 Week Habit Forming Program Section */}
+      <section ref={habitProgramRef} className="py-16 bg-gradient-to-r from-green-100 to-blue-50">
+        <div className="container px-4 md:px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            animate={isHabitProgramInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.8 }}
+            className="max-w-5xl mx-auto"
+          >
+            <div className="bg-white rounded-2xl overflow-hidden shadow-xl">
+              <div className="md:flex">
+                <div className="md:w-2/5 bg-gradient-to-br from-green-600 to-green-800 text-white p-8 flex flex-col justify-center">
+                  <h2 className="text-3xl md:text-4xl font-serif font-light mb-4">2 Week Habit Forming Program</h2>
+                  <h3 className="text-xl md:text-2xl font-medium mb-6">Food Freedom Fast Track</h3>
+                  <p className="text-green-50 mb-8">
+                    An immersive and supportive 14-day journey to break the cycle of food addiction through education,
+                    daily guidance, and community support.
+                  </p>
+                  <div className="hidden md:block">
+                    <Link href="/services/freedom-from-food">
+                      <Button className="bg-white text-green-700 hover:bg-green-50 rounded-full px-8 py-6">
+                        Learn More
+                      </Button>
+                    </Link>
+                  </div>
+                </div>
+                <div className="md:w-3/5 p-8">
+                  <h4 className="text-xl font-medium text-gray-900 mb-4">Program Highlights:</h4>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                    <div className="flex items-start">
+                      <Calendar className="h-5 w-5 text-green-600 mt-0.5 mr-2 flex-shrink-0" />
+                      <p className="text-gray-700">Daily live or pre-recorded sessions (14 days)</p>
+                    </div>
+                    <div className="flex items-start">
+                      <BookOpen className="h-5 w-5 text-green-600 mt-0.5 mr-2 flex-shrink-0" />
+                      <p className="text-gray-700">Comprehensive digital workbook</p>
+                    </div>
+                    <div className="flex items-start">
+                      <MessageCircle className="h-5 w-5 text-green-600 mt-0.5 mr-2 flex-shrink-0" />
+                      <p className="text-gray-700">Daily email support and motivation</p>
+                    </div>
+                    <div className="flex items-start">
+                      <Users className="h-5 w-5 text-green-600 mt-0.5 mr-2 flex-shrink-0" />
+                      <p className="text-gray-700">Private online community support</p>
+                    </div>
+                  </div>
+
+                  <h4 className="text-xl font-medium text-gray-900 mb-4">What You'll Learn:</h4>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-6">
+                    <div className="flex items-start">
+                      <CheckCircle className="h-5 w-5 text-green-600 mt-0.5 mr-2 flex-shrink-0" />
+                      <p className="text-gray-700">Identify and manage food triggers</p>
+                    </div>
+                    <div className="flex items-start">
+                      <CheckCircle className="h-5 w-5 text-green-600 mt-0.5 mr-2 flex-shrink-0" />
+                      <p className="text-gray-700">Break the physical cycle of addiction</p>
+                    </div>
+                    <div className="flex items-start">
+                      <CheckCircle className="h-5 w-5 text-green-600 mt-0.5 mr-2 flex-shrink-0" />
+                      <p className="text-gray-700">Develop sustainable eating habits</p>
+                    </div>
+                    <div className="flex items-start">
+                      <CheckCircle className="h-5 w-5 text-green-600 mt-0.5 mr-2 flex-shrink-0" />
+                      <p className="text-gray-700">Create a long-term vision for success</p>
+                    </div>
+                  </div>
+
+                  <div className="md:hidden mt-6">
+                    <Link href="/services/freedom-from-food">
+                      <Button className="w-full bg-green-600 hover:bg-green-700 text-white rounded-full">
+                        Learn More
+                      </Button>
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </motion.div>
         </div>
       </section>
 
