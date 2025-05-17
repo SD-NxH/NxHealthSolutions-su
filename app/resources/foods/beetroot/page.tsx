@@ -62,6 +62,48 @@ export default function BeetrootPage() {
           </div>
         </section>
 
+        {/* General Information */}
+        <section className="bg-gradient-to-b from-purple-950 to-purple-100 text-white py-12 md:py-16">
+          <div className="container px-4 md:px-6">
+            <div className="max-w-3xl mx-auto">
+              <h2 className="text-2xl md:text-3xl font-bold mb-6 text-center text-pink-50">About Beetroot</h2>
+
+              <div className="prose prose-lg prose-invert max-w-none">
+                <p className="mb-4">
+                  Beetroot (Beta vulgaris), also known simply as beet, is a root vegetable known for its distinctive
+                  deep crimson color. It belongs to the same family as chard and spinach, and both the roots and leaves
+                  are edible and packed with nutrients.
+                </p>
+
+                <p className="mb-4">
+                  Originally grown around the Mediterranean and Atlantic coasts of Europe, beetroot has been cultivated
+                  for thousands of years. The ancient Romans were among the first to cultivate beets and used them for
+                  their medicinal properties rather than as food.
+                </p>
+
+                <p className="mb-4">
+                  Today, beetroot is celebrated not only for its earthy, sweet flavor but also for its remarkable health
+                  benefits. Modern research has revealed that beetroot contains unique bioactive compounds called
+                  betalains, which give it both its color and many of its health-promoting properties.
+                </p>
+
+                <div className="bg-purple-800 p-6 rounded-lg mt-6 shadow-inner">
+                  <h3 className="text-xl font-semibold mb-3 text-pink-100">Key Characteristics:</h3>
+                  <ul className="list-disc pl-6 space-y-2">
+                    <li>Rich in essential nutrients including folate, manganese, potassium, iron, and vitamin C</li>
+                    <li>
+                      Contains high levels of inorganic nitrates, which can improve blood flow and lower blood pressure
+                    </li>
+                    <li>Excellent source of fiber, supporting digestive health</li>
+                    <li>Low in calories but high in nutritional value</li>
+                    <li>Available year-round but at its peak from June to October</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* Nutritional Information */}
         <section className="py-12 md:py-16 bg-gradient-to-b from-purple-50 to-white">
           <div className="container px-4 md:px-6">
@@ -262,12 +304,7 @@ export default function BeetrootPage() {
             <div className="grid gap-8 md:grid-cols-2">
               <Card className="bg-white border-purple-200 shadow-sm hover:shadow-md transition-shadow overflow-hidden">
                 <div className="aspect-video relative">
-                  <Image
-                    src="/placeholder-7m8zq.png"
-                    alt="Roasted beetroot with herbs"
-                    fill
-                    className="object-cover"
-                  />
+                  <Image src="/fresh-beetroots.png" alt="Fresh beetroots with leaves" fill className="object-cover" />
                 </div>
                 <CardContent className="p-6">
                   <h3 className="font-medium text-purple-900 mb-2 flex items-center">

@@ -2,7 +2,7 @@
 
 import type React from "react"
 
-import { useRef, useState } from "react"
+import { useRef, useState, useEffect } from "react"
 import { useRouter } from "next/navigation"
 import Image from "next/image"
 import Link from "next/link"
@@ -16,6 +16,18 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Slider } from "@/components/ui/slider"
 
+// Define the article interface
+interface Article {
+  id: string
+  title: string
+  description: string
+  image: string
+  category: string
+  date: string
+  readTime: string
+  url: string
+}
+
 export default function ResourcesPage() {
   const [searchQuery, setSearchQuery] = useState("")
   const [recipe, setRecipe] = useState("main")
@@ -23,6 +35,8 @@ export default function ResourcesPage() {
   const [servings, setServings] = useState([2])
   const [diet, setDiet] = useState("regular")
   const [groceryList, setGroceryList] = useState(null)
+  const [randomArticles, setRandomArticles] = useState<Article[]>([])
+  const [isLoading, setIsLoading] = useState(true)
   const router = useRouter()
 
   const heroRef = useRef(null)
@@ -31,16 +45,139 @@ export default function ResourcesPage() {
   const referRef = useRef(null)
   const nxplateRef = useRef(null)
   const servicesRef = useRef(null)
-  // Add a new ref for the "What To Eat" section after the existing refs
   const whatToEatRef = useRef(null)
+  const articlesRef = useRef(null)
 
   const isAzListInView = useInView(azListRef, { once: true, amount: 0.2 })
   const isStartHereInView = useInView(startHereRef, { once: true, amount: 0.2 })
   const isReferInView = useInView(referRef, { once: true, amount: 0.2 })
   const isNxplateInView = useInView(nxplateRef, { once: true, amount: 0.2 })
   const isServicesInView = useInView(servicesRef, { once: true, amount: 0.2 })
-  // Add a new useInView hook for the "What To Eat" section after the existing useInView hooks
   const isWhatToEatInView = useInView(whatToEatRef, { once: true, amount: 0.2 })
+  const isArticlesInView = useInView(articlesRef, { once: true, amount: 0.2 })
+
+  // List of all available articles
+  const allArticles: Article[] = [
+    {
+      id: "food-pyramid-deception",
+      title: "The Food Pyramid Deception: It's Time to Reclaim Control of Your Plate",
+      description:
+        "Challenge conventional nutritional wisdom and discover how to become an empowered advocate for your own nutritional sovereignty.",
+      image: "/food-pyramid-deception.png",
+      category: "Nutrition",
+      date: "May 15, 2025",
+      readTime: "12 min read",
+      url: "/resources/articles/food-pyramid-deception",
+    },
+    {
+      id: "power-up-with-plants",
+      title: "Power Up with Plants: Transforming Your Health with Plant-Based Eating",
+      description:
+        "Discover how incorporating more plant-based foods into your diet can transform your health and energy levels.",
+      image: "/colorful-fruits-vegetables.png",
+      category: "Nutrition",
+      date: "April 28, 2025",
+      readTime: "8 min read",
+      url: "/resources/articles/power-up-with-plants",
+    },
+    {
+      id: "understanding-caloric-needs",
+      title: "Understanding Your Caloric Needs",
+      description:
+        "Find out how to calculate your daily caloric needs and create a balanced nutrition plan that works for your lifestyle.",
+      image: "/balanced-diet-calculation.png",
+      category: "Nutrition",
+      date: "April 15, 2025",
+      readTime: "10 min read",
+      url: "/resources/articles/understanding-caloric-needs",
+    },
+    {
+      id: "understanding-breast-cancer",
+      title: "Understanding Breast Cancer: Prevention Through Nutrition",
+      description:
+        "Learn about the role of nutrition in breast cancer prevention and how dietary choices can impact your health.",
+      image: "/healthy-meal-prep.png",
+      category: "Health",
+      date: "March 22, 2025",
+      readTime: "15 min read",
+      url: "/resources/articles/understanding-breast-cancer",
+    },
+    {
+      id: "plant-based-strategies-colorectal-cancer",
+      title: "Plant-Based Strategies for Colorectal Cancer Prevention",
+      description:
+        "Explore how plant-based eating patterns can help reduce the risk of colorectal cancer and promote gut health.",
+      image: "/vibrant-plant-based-spread.png",
+      category: "Health",
+      date: "March 10, 2025",
+      readTime: "14 min read",
+      url: "/resources/articles/plant-based-strategies-colorectal-cancer",
+    },
+    {
+      id: "seasonal-eating",
+      title: "Seasonal Eating: Why It Matters",
+      description:
+        "Explore the benefits of eating foods when they're in season and how it can improve your health and the environment.",
+      image: "/seasonal-produce.png",
+      category: "Nutrition",
+      date: "February 18, 2025",
+      readTime: "9 min read",
+      url: "/resources/articles/seasonal-eating",
+    },
+    {
+      id: "mindfulness-meditation",
+      title: "Mindfulness Meditation for Stress Reduction",
+      description: "Learn practical mindfulness techniques to reduce stress and improve your overall well-being.",
+      image: "/mindfulness-meditation.png",
+      category: "Wellness",
+      date: "February 5, 2025",
+      readTime: "11 min read",
+      url: "/resources/articles/mindfulness-meditation",
+    },
+    {
+      id: "fitness-beginners",
+      title: "Fitness for Beginners: Starting Your Journey",
+      description:
+        "A comprehensive guide to starting your fitness journey with practical tips and beginner-friendly workouts.",
+      image: "/fitness-beginners.png",
+      category: "Fitness",
+      date: "January 20, 2025",
+      readTime: "13 min read",
+      url: "/resources/articles/fitness-beginners",
+    },
+    {
+      id: "healthy-quick-meals",
+      title: "Healthy Quick Meals for Busy Professionals",
+      description:
+        "Discover nutritious and delicious meals that can be prepared in 30 minutes or less for your busy lifestyle.",
+      image: "/healthy-quick-meals.png",
+      category: "Nutrition",
+      date: "January 8, 2025",
+      readTime: "7 min read",
+      url: "/resources/articles/healthy-quick-meals",
+    },
+  ]
+
+  // Fisher-Yates shuffle algorithm for true randomness
+  const shuffleArray = (array: any[]) => {
+    const newArray = [...array]
+    for (let i = newArray.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1))
+      ;[newArray[i], newArray[j]] = [newArray[j], newArray[i]]
+    }
+    return newArray
+  }
+
+  // Get random articles on component mount (page refresh)
+  useEffect(() => {
+    setIsLoading(true)
+    // Simulate a small delay to prevent flickering
+    setTimeout(() => {
+      const shuffled = shuffleArray(allArticles)
+      setRandomArticles(shuffled.slice(0, 3))
+      setIsLoading(false)
+    }, 300)
+  }, [])
 
   // Generate A-Z letters
   const letters = Array.from({ length: 26 }, (_, i) => String.fromCharCode(65 + i))
@@ -687,12 +824,12 @@ export default function ResourcesPage() {
         </div>
       </section>
 
-      {/* Services Section */}
-      <section className="py-16 bg-white">
+      {/* Articles Section */}
+      <section ref={articlesRef} className="py-16 bg-white">
         <div className="container px-4 md:px-6">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
-            animate={isServicesInView ? { opacity: 1, y: 0 } : {}}
+            animate={isArticlesInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8 }}
             className="max-w-4xl mx-auto text-center mb-12"
           >
@@ -704,68 +841,52 @@ export default function ResourcesPage() {
 
           <motion.div
             initial={{ opacity: 0, y: 40 }}
-            animate={isServicesInView ? { opacity: 1, y: 0 } : {}}
+            animate={isArticlesInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.2 }}
             className="max-w-5xl mx-auto"
           >
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {/* Example Article Card - Replace with actual article data */}
-              <Link href="/resources/articles/article-1" className="group block">
-                <div className="bg-green-50 rounded-xl overflow-hidden shadow-sm transition-all duration-300 hover:shadow-xl h-full">
-                  <div className="relative h-40 w-full">
-                    <Image
-                      src="/article-placeholder.png"
-                      alt="Placeholder Article Image"
-                      fill
-                      className="object-cover"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end">
-                      <div className="p-4 text-white">
-                        <h3 className="text-xl font-medium mb-1">Article Title 1</h3>
-                        <p className="text-sm text-white/80">Brief article summary...</p>
+              {isLoading
+                ? // Loading state
+                  Array(3)
+                    .fill(0)
+                    .map((_, index) => (
+                      <div key={index} className="bg-gray-100 rounded-xl overflow-hidden h-full animate-pulse">
+                        <div className="h-40 w-full bg-gray-200"></div>
+                        <div className="p-4">
+                          <div className="h-6 bg-gray-200 rounded mb-2 w-3/4"></div>
+                          <div className="h-4 bg-gray-200 rounded w-full mb-2"></div>
+                          <div className="h-4 bg-gray-200 rounded w-2/3"></div>
+                        </div>
                       </div>
-                    </div>
-                  </div>
-                </div>
-              </Link>
-
-              <Link href="/resources/articles/article-2" className="group block">
-                <div className="bg-green-50 rounded-xl overflow-hidden shadow-sm transition-all duration-300 hover:shadow-xl h-full">
-                  <div className="relative h-40 w-full">
-                    <Image
-                      src="/article-placeholder.png"
-                      alt="Placeholder Article Image"
-                      fill
-                      className="object-cover"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end">
-                      <div className="p-4 text-white">
-                        <h3 className="text-xl font-medium mb-1">Article Title 2</h3>
-                        <p className="text-sm text-white/80">Brief article summary...</p>
+                    ))
+                : // Random articles
+                  randomArticles.map((article) => (
+                    <Link key={article.id} href={article.url} className="group block">
+                      <div className="bg-green-50 rounded-xl overflow-hidden shadow-sm transition-all duration-300 hover:shadow-xl h-full">
+                        <div className="relative h-40 w-full">
+                          <Image
+                            src={article.image || "/placeholder.svg"}
+                            alt={article.title}
+                            fill
+                            className="object-cover"
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end">
+                            <div className="p-4 text-white">
+                              <div className="flex items-center mb-2">
+                                <span className="text-xs bg-green-600 text-white px-2 py-1 rounded-full">
+                                  {article.category}
+                                </span>
+                                <span className="text-xs text-green-100 ml-2">{article.readTime}</span>
+                              </div>
+                              <h3 className="text-xl font-medium mb-1 line-clamp-1">{article.title}</h3>
+                              <p className="text-sm text-white/80 line-clamp-2">{article.description}</p>
+                            </div>
+                          </div>
+                        </div>
                       </div>
-                    </div>
-                  </div>
-                </div>
-              </Link>
-
-              <Link href="/resources/articles/article-3" className="group block">
-                <div className="bg-green-50 rounded-xl overflow-hidden shadow-sm transition-all duration-300 hover:shadow-xl h-full">
-                  <div className="relative h-40 w-full">
-                    <Image
-                      src="/article-placeholder.png"
-                      alt="Placeholder Article Image"
-                      fill
-                      className="object-cover"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end">
-                      <div className="p-4 text-white">
-                        <h3 className="text-xl font-medium mb-1">Article Title 3</h3>
-                        <p className="text-sm text-white/80">Brief article summary...</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </Link>
+                    </Link>
+                  ))}
             </div>
 
             <div className="mt-8 text-center">

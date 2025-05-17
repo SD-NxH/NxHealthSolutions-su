@@ -12,6 +12,17 @@ import { motion } from "framer-motion"
 
 const articles = [
   {
+    id: "food-pyramid-deception",
+    title: "The Food Pyramid Deception: It's Time to Reclaim Control of Your Plate",
+    description:
+      "Challenge conventional nutritional wisdom as we unpack the flaws in the traditional food pyramid and discover how to make truly informed choices about what goes on your plate.",
+    image: "/food-pyramid-deception.png",
+    category: "Nutrition",
+    date: "May 15, 2025",
+    readTime: "12 min read",
+    url: "/resources/articles/food-pyramid-deception",
+  },
+  {
     id: "plant-based-strategies-colorectal-cancer",
     title: "Plant-Based Dietary Strategies and Lifestyle Modifications for Colorectal Cancer",
     description:
