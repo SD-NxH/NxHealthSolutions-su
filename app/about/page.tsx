@@ -86,6 +86,30 @@ export default function AboutPage() {
         </div>
       </section>
 
+      {/* Video Section */}
+      <section className="py-16 bg-green-50">
+        <div className="container px-4 md:px-6">
+          <div className="max-w-3xl mx-auto text-center mb-8">
+            <h2 className="text-3xl md:text-4xl font-serif font-light text-gray-900 mb-6">Our Mission in Action</h2>
+            <p className="text-lg text-gray-600 mb-8">
+              Watch how we're making a difference in people's lives through our holistic approach to health and
+              wellness.
+            </p>
+          </div>
+          <div className="flex justify-center">
+            <div className="relative w-full max-w-2xl aspect-video rounded-xl overflow-hidden shadow-lg">
+              <iframe
+                src="https://www.youtube.com/embed/dJhahkNzu4g"
+                title="NxHealth Mission Video"
+                className="absolute top-0 left-0 w-full h-full"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              ></iframe>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Our Values Section */}
       <section ref={valuesRef} className="py-16 bg-green-50">
         <div className="container px-4 md:px-6">
