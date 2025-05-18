@@ -1,86 +1,53 @@
 "use client"
 
-import type React from "react"
-
 import { useState } from "react"
-import Image from "next/image"
-import { getImagePath } from "@/utils/url-helpers"
+import Image, { type ImageProps } from "next/image"
+import { cn } from "@/lib/utils"
 
-interface ResponsiveImageProps {
-  src: string
-  alt: string
-  width?: number
-  height?: number
-  className?: string
-  priority?: boolean
-  fill?: boolean
-  sizes?: string
-  quality?: number
-  objectFit?: "contain" | "cover" | "fill" | "none" | "scale-down"
+interface ResponsiveImageProps extends Omit<ImageProps, "onError" | "onLoad"> {
+  fallbackSrc?: string
+  objectFit?: "cover" | "contain" | "fill" | "none" | "scale-down"
 }
 
-const ResponsiveImage: React.FC<ResponsiveImageProps> = ({
+export default function ResponsiveImage({
   src,
   alt,
-  width,
-  height,
-  className = "",
-  priority = false,
-  fill = false,
-  sizes = "(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw",
-  quality = 85,
+  className,
+  fallbackSrc = "/placeholder.svg",
   objectFit = "cover",
-}) => {
-  const [loading, setLoading] = useState(true)
+  ...props
+}: ResponsiveImageProps) {
+  const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState(false)
 
-  // Use the utility function to get the correct image path
-  const imageSrc = getImagePath(src || "/placeholder.svg")
-
-  // Simple blur data URL for placeholder
-  const blurDataURL =
-    "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg=="
-
-  // Handle image load complete
-  const handleLoadComplete = () => {
-    setLoading(false)
+  const handleLoad = () => {
+    setIsLoading(false)
   }
 
-  // Handle image load error
   const handleError = () => {
+    setIsLoading(false)
     setError(true)
-    setLoading(false)
   }
 
   return (
-    <div className={`relative ${className} ${loading ? "bg-gray-100 animate-pulse" : ""}`}>
-      {error ? (
-        <div className="flex items-center justify-center w-full h-full bg-gray-100 text-gray-500">
-          <span>Image not available</span>
-        </div>
-      ) : (
-        <Image
-          src={error ? "/placeholder.svg" : imageSrc}
-          alt={alt}
-          width={fill ? undefined : width || 1200}
-          height={fill ? undefined : height || 800}
-          fill={fill}
-          sizes={sizes}
-          quality={quality}
-          priority={priority}
-          loading={priority ? "eager" : "lazy"}
-          placeholder="blur"
-          blurDataURL={blurDataURL}
-          onLoadingComplete={handleLoadComplete}
-          onError={handleError}
-          className={`transition-opacity duration-300 ${loading ? "opacity-0" : "opacity-100"} ${fill ? "object-cover" : ""}`}
-          style={{
-            objectFit: objectFit,
-          }}
-        />
+    <>
+      {isLoading && (
+        <div className={cn("absolute inset-0 bg-gray-200 animate-pulse rounded", className)} aria-hidden="true" />
       )}
-    </div>
+
+      <Image
+        src={error ? fallbackSrc : src}
+        alt={alt}
+        className={cn(
+          "transition-opacity duration-300",
+          isLoading ? "opacity-0" : "opacity-100",
+          `object-${objectFit}`,
+          className,
+        )}
+        onLoad={handleLoad}
+        onError={handleError}
+        {...props}
+      />
+    </>
   )
 }
-
-export default ResponsiveImage

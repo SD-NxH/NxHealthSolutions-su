@@ -11,21 +11,18 @@ export default function ImageWithFallback({
   src,
   alt,
   fallbackSrc = "/placeholder.svg",
-  ...rest
+  ...props
 }: ImageWithFallbackProps) {
   const [imgSrc, setImgSrc] = useState(src)
-  const [hasError, setHasError] = useState(false)
 
   return (
     <Image
-      {...rest}
+      {...props}
       src={imgSrc || "/placeholder.svg"}
       alt={alt}
       onError={() => {
         setImgSrc(fallbackSrc)
-        setHasError(true)
       }}
-      className={`${rest.className || ""} ${hasError ? "object-contain bg-gray-100" : ""}`}
     />
   )
 }

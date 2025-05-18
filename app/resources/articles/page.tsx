@@ -2,14 +2,13 @@
 
 import React from "react"
 import Link from "next/link"
+import Image from "next/image"
 import { ArrowRight, Search } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Card, CardContent } from "@/components/ui/card"
 import { Separator } from "@/components/ui/separator"
 import { motion } from "framer-motion"
-import ResponsiveImage from "@/components/responsive-image"
-import { getImageLoadingStrategy, getImageSizes } from "@/utils/image-helpers"
 
 const articles = [
   {
@@ -152,7 +151,7 @@ const additionalArticles = [
     category: "Recipes",
     date: "May 18, 2023",
     readTime: "5 min read",
-    url: "/resources/articles/planted-fried-rice",
+    url: "/resources/planted-fried-rice",
   },
 ]
 
@@ -165,17 +164,6 @@ const categories = ["All", "Nutrition", "Wellness", "Health", "Lifestyle", "Fitn
 export default function ArticlesPage() {
   const [searchTerm, setSearchTerm] = React.useState("")
   const [selectedCategory, setSelectedCategory] = React.useState("All")
-  const [imagesLoaded, setImagesLoaded] = React.useState(false)
-
-  // Track when critical images are loaded
-  React.useEffect(() => {
-    // Set a timeout to ensure we don't wait forever for images
-    const timer = setTimeout(() => {
-      setImagesLoaded(true)
-    }, 3000)
-
-    return () => clearTimeout(timer)
-  }, [])
 
   // Filter articles based on search term and category
   const filteredArticles = allArticles.filter((article) => {
@@ -262,14 +250,13 @@ export default function ArticlesPage() {
                     </div>
                   ) : (
                     <div className="relative h-48 md:h-56 w-full">
-                      <ResponsiveImage
-                        src={article.image}
+                      <Image
+                        src={article.image || "/placeholder.svg"}
                         alt={article.title}
                         fill
-                        sizes={getImageSizes("card")}
-                        {...getImageLoadingStrategy(index, true)}
-                        className="transition-all duration-300"
-                        objectFit="cover"
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        priority={index < 3}
+                        className="object-cover"
                       />
                     </div>
                   )}
@@ -320,8 +307,8 @@ export default function ArticlesPage() {
                 <motion.div
                   key={article.id}
                   initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: imagesLoaded ? 1 : 0.7, y: imagesLoaded ? 0 : 10 }}
-                  transition={{ duration: 0.5, delay: index * 0.05 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
                 >
                   <Card className="h-full hover:shadow-md transition-shadow duration-300">
                     <div className="relative h-48 w-full">
@@ -330,14 +317,13 @@ export default function ArticlesPage() {
                           <span className="text-white text-xl font-bold">Breast Cancer Awareness</span>
                         </div>
                       ) : (
-                        <ResponsiveImage
-                          src={article.image}
+                        <Image
+                          src={article.image || "/placeholder.svg"}
                           alt={article.title}
                           fill
-                          sizes={getImageSizes("card")}
-                          {...getImageLoadingStrategy(index, false)}
-                          className="transition-all duration-300"
-                          objectFit="cover"
+                          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                          loading="lazy"
+                          className="object-cover"
                         />
                       )}
                     </div>
@@ -350,7 +336,10 @@ export default function ArticlesPage() {
                       </div>
                       <h3 className="text-lg font-serif font-medium text-gray-900 mb-3">{article.title}</h3>
                       <p className="text-gray-600 mb-4 line-clamp-2">{article.description}</p>
-                      <Link href={article.url} className="inline-flex items-center text-green-600 font-medium text-sm">
+                      <Link
+                        href={article.id === "planted-fried-rice" ? "/resources/planted-fried-rice" : article.url}
+                        className="inline-flex items-center text-green-600 font-medium text-sm"
+                      >
                         Read Article <ArrowRight className="ml-1 h-3 w-3" />
                       </Link>
                     </CardContent>
