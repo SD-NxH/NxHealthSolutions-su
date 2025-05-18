@@ -130,7 +130,7 @@ const additionalArticles = [
     category: "Recipes",
     date: "January 28, 2023",
     readTime: "8 min read",
-    url: "#",
+    url: "/resources/articles/quick-healthy-recipes",
   },
   {
     id: "mindfulness-practice",
@@ -141,6 +141,17 @@ const additionalArticles = [
     date: "January 10, 2023",
     readTime: "6 min read",
     url: "#",
+  },
+  {
+    id: "planted-fried-rice",
+    title: "Planted Fried Rice: A Nutrient-Dense Plant-Based Recipe",
+    description:
+      "A delicious and nutritious plant-based fried rice recipe packed with vegetables and plant protein that's perfect for a quick weeknight dinner.",
+    image: "/colorful-vegetable-fried-rice.png",
+    category: "Recipes",
+    date: "May 18, 2023",
+    readTime: "5 min read",
+    url: "/resources/articles/planted-fried-rice",
   },
 ]
 
