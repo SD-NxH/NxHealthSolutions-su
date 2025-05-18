@@ -9,7 +9,14 @@ const nextConfig = {
   },
   images: {
     domains: ['v0.blob.com'],
-    unoptimized: true,
+    // Removed unoptimized: true to enable Next.js image optimization
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: '**',
+      },
+    ],
+    formats: ['image/avif', 'image/webp'],
   },
   // Add headers for PWA
   async headers() {
