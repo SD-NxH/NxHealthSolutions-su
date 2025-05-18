@@ -254,6 +254,8 @@ export default function ArticlesPage() {
                         src={article.image || "/placeholder.svg"}
                         alt={article.title}
                         fill
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        priority={index < 3}
                         className="object-cover"
                       />
                     </div>
@@ -319,6 +321,8 @@ export default function ArticlesPage() {
                           src={article.image || "/placeholder.svg"}
                           alt={article.title}
                           fill
+                          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                          loading="lazy"
                           className="object-cover"
                         />
                       )}
