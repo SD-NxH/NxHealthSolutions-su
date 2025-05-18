@@ -81,7 +81,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     if (href !== undefined) {
       return (
         <Link
-          href="/resources/articles" // Always link to the Articles page
+          href={href} // Use the provided href value
           className={cn(buttonVariants({ variant, size, className }), "!transition-none !duration-0")}
           {...props}
         >
