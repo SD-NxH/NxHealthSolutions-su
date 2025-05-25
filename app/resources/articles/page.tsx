@@ -153,6 +153,17 @@ const additionalArticles = [
     readTime: "5 min read",
     url: "/resources/planted-fried-rice",
   },
+  {
+    id: "tropical-green-smoothie",
+    title: "Tropical Green Smoothie: A Nutrient-Packed Refreshing Blend",
+    description:
+      "This vibrant smoothie is packed with vitamins, minerals, and healthy fats from avocado, tropical fruits, and fresh greens, making it a refreshing and filling option perfect for any time of day.",
+    image: "/tropical-green-smoothie.png",
+    category: "Recipes",
+    date: "May 20, 2023",
+    readTime: "3 min read",
+    url: "/resources/tropical-green-smoothie",
+  },
 ]
 
 // Combine all articles
@@ -337,7 +348,13 @@ export default function ArticlesPage() {
                       <h3 className="text-lg font-serif font-medium text-gray-900 mb-3">{article.title}</h3>
                       <p className="text-gray-600 mb-4 line-clamp-2">{article.description}</p>
                       <Link
-                        href={article.id === "planted-fried-rice" ? "/resources/planted-fried-rice" : article.url}
+                        href={
+                          article.id === "planted-fried-rice"
+                            ? "/resources/planted-fried-rice"
+                            : article.id === "tropical-green-smoothie"
+                              ? "/resources/tropical-green-smoothie"
+                              : article.url
+                        }
                         className="inline-flex items-center text-green-600 font-medium text-sm"
                       >
                         Read Article <ArrowRight className="ml-1 h-3 w-3" />
