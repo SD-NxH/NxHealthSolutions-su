@@ -164,6 +164,17 @@ const additionalArticles = [
     readTime: "3 min read",
     url: "/resources/tropical-green-smoothie",
   },
+  {
+    id: "banana-buckwheat-muffins",
+    title: "Banana Buckwheat Muffins with Nuts & Seeds",
+    description:
+      "Naturally gluten-free muffins packed with flavor and fiber, made with buckwheat flour and loaded with nutritious nuts and seeds for a perfect snack or breakfast.",
+    image: "/banana-buckwheat-muffins.png",
+    category: "Recipes",
+    date: "May 27, 2025",
+    readTime: "4 min read",
+    url: "/resources/banana-buckwheat-muffins",
+  },
 ]
 
 // Combine all articles
@@ -353,7 +364,9 @@ export default function ArticlesPage() {
                             ? "/resources/planted-fried-rice"
                             : article.id === "tropical-green-smoothie"
                               ? "/resources/tropical-green-smoothie"
-                              : article.url
+                              : article.id === "banana-buckwheat-muffins"
+                                ? "/resources/banana-buckwheat-muffins"
+                                : article.url
                         }
                         className="inline-flex items-center text-green-600 font-medium text-sm"
                       >
