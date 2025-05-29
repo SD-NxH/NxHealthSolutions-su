@@ -175,6 +175,17 @@ const additionalArticles = [
     readTime: "4 min read",
     url: "/resources/banana-buckwheat-muffins",
   },
+  {
+    id: "vanilla-coconut-ice-cream",
+    title: "Vanilla 'Nice' Cream (Freeze & Blend Method)",
+    description:
+      "A simple, plant-based frozen treat made with almond milk that's naturally sweet and creamy. This easy recipe focuses on simplicity and natural sweetness for a refreshing dessert.",
+    image: "/vanilla-coconut-ice-cream.jpeg",
+    category: "Recipes",
+    date: "May 29, 2025",
+    readTime: "3 min read",
+    url: "/resources/vanilla-coconut-ice-cream",
+  },
 ]
 
 // Combine all articles
@@ -366,7 +377,9 @@ export default function ArticlesPage() {
                               ? "/resources/tropical-green-smoothie"
                               : article.id === "banana-buckwheat-muffins"
                                 ? "/resources/banana-buckwheat-muffins"
-                                : article.url
+                                : article.id === "vanilla-coconut-ice-cream"
+                                  ? "/resources/vanilla-coconut-ice-cream"
+                                  : article.url
                         }
                         className="inline-flex items-center text-green-600 font-medium text-sm"
                       >
