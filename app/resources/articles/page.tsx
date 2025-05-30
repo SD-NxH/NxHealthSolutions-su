@@ -186,6 +186,17 @@ const additionalArticles = [
     readTime: "3 min read",
     url: "/resources/vanilla-coconut-ice-cream",
   },
+  {
+    id: "secret-eating-to-sobriety",
+    title: "From Secret Eating To Sobriety",
+    description:
+      "A personal journey exploring the connections between disordered eating patterns and addiction, with insights on finding balance and recovery through mindful nutrition and self-compassion.",
+    image: "/placeholder.svg?height=300&width=400",
+    category: "Wellness",
+    date: "June 2, 2025",
+    readTime: "8 min read",
+    url: "/resources/articles/secret-eating-to-sobriety",
+  },
 ]
 
 // Combine all articles
@@ -379,7 +390,9 @@ export default function ArticlesPage() {
                                 ? "/resources/banana-buckwheat-muffins"
                                 : article.id === "vanilla-coconut-ice-cream"
                                   ? "/resources/vanilla-coconut-ice-cream"
-                                  : article.url
+                                  : article.id === "secret-eating-to-sobriety"
+                                    ? "/resources/articles/secret-eating-to-sobriety"
+                                    : article.url
                         }
                         className="inline-flex items-center text-green-600 font-medium text-sm"
                       >
