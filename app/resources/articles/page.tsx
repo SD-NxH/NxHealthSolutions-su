@@ -191,7 +191,7 @@ const additionalArticles = [
     title: "From Secret Eating To Sobriety",
     description:
       "A personal journey exploring the connections between disordered eating patterns and addiction, with insights on finding balance and recovery through mindful nutrition and self-compassion.",
-    image: "/placeholder.svg?height=300&width=400",
+    image: "/weight-scale-measuring-tape.png",
     category: "Wellness",
     date: "June 2, 2025",
     readTime: "8 min read",

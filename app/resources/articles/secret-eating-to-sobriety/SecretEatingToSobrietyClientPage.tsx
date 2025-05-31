@@ -113,8 +113,8 @@ export default function SecretEatingToSobrietyClientPage() {
               {/* Hero Image */}
               <div className="relative h-64 md:h-96 w-full mb-8 rounded-lg overflow-hidden">
                 <Image
-                  src="/placeholder.svg?height=400&width=800&text=Recovery+Journey"
-                  alt="Recovery and wellness journey"
+                  src="/weight-scale-measuring-tape.png"
+                  alt="Vintage kitchen scale with measuring tape symbolizing the weight loss journey"
                   fill
                   className="object-cover"
                   priority
@@ -175,6 +175,18 @@ export default function SecretEatingToSobrietyClientPage() {
                   Weight Watchers. "Once I stopped trying to scheme how I could lose weight fast, I decided to go back
                   to my go-to, which was Weight Watchers, and lose weight the right way," she explained.
                 </p>
+
+                <div className="my-8 relative aspect-video max-w-2xl mx-auto rounded-lg overflow-hidden shadow-lg">
+                  <Image
+                    src="/weight-scale-measuring-tape.png"
+                    alt="Vintage scale with measuring tape symbolizing the weight loss journey"
+                    fill
+                    className="object-cover"
+                  />
+                  <div className="absolute bottom-0 left-0 right-0 bg-black/60 text-white text-xs p-2 text-center">
+                    The journey of weight management requires patience, consistency, and the right tools
+                  </div>
+                </div>
 
                 <p>
                   Since last July, she has lost an impressive 65 pounds, now weighing 135.8 pounds. Her current routine
