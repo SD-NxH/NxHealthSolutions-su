@@ -90,7 +90,11 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       )
     }
 
-    // Otherwise render as div instead of button
+    // Otherwise render as button instead of anchor tag
+    if (props["data-hide-button"] === "true") {
+      return null
+    }
+
     return (
       <button
         className={cn(
@@ -100,124 +104,8 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         )}
         ref={ref}
         onClick={(e) => {
-          // Call the original onClick if it exists
-          if (props.onClick) {
-            props.onClick(e as any)
-            return // Stop here to let the custom onClick handle everything
-          }
-
-          // Check for data attributes that specify custom behavior
-          if (props["data-target"]) {
-            router.push(props["data-target"] as string)
-            return
-          }
-
-          // Navigation based on class names
-          const classStr = className || ""
-
-          // Map of class names to destination pages
-          const classToPageMap = {
-            "btn-articles": "/resources/articles",
-            "btn-about": "/about",
-            "btn-services": "/services",
-            "btn-contact": "/contact",
-            "btn-get-started": "/get-started",
-            "btn-resources": "/resources",
-            "btn-foods": "/resources/foods/apple",
-            "btn-consultation": "/services/consultation",
-            "btn-nutrition": "/services/nutrition-plans",
-            "btn-calorie-counter": "/resources/calorie-counter",
-            "btn-what-to-eat": "/resources/what-to-eat",
-            "btn-meal-planning": "/resources/meal-planning",
-            "btn-shop": "/shop",
-            "btn-login": "/login",
-            "btn-signup": "/sign-up",
-            "btn-profile": "/user-profile",
-            "btn-cart": "/cart",
-            "btn-checkout": "/checkout",
-          }
-
-          // Check if the button has any of the mapped classes
-          for (const [btnClass, page] of Object.entries(classToPageMap)) {
-            if (classStr.includes(btnClass)) {
-              router.push(page)
-              return
-            }
-          }
-
-          // Determine navigation based on button text content
-          const buttonText = typeof children === "string" ? children.toLowerCase() : ""
-
-          // Map of button text keywords to destination pages
-          const textToPageMap = {
-            about: "/about",
-            services: "/services",
-            contact: "/contact",
-            "get started": "/get-started",
-            resources: "/resources",
-            articles: "/resources/articles",
-            consultation: "/services/consultation",
-            consult: "/services/consultation",
-            schedule: "/services/consultation",
-            nutrition: "/services/nutrition-plans",
-            "meal plan": "/services/nutrition-plans",
-            diet: "/services/nutrition-plans",
-            foods: "/resources/foods/apple",
-            calorie: "/resources/calorie-counter",
-            "what to eat": "/resources/what-to-eat",
-            "meal planning": "/resources/meal-planning",
-            shop: "/shop",
-            login: "/login",
-            "sign up": "/sign-up",
-            profile: "/user-profile",
-            cart: "/cart",
-            checkout: "/checkout",
-            "freedom from food": "/services/freedom-from-food",
-            "food freedom": "/services/freedom-from-food",
-            "habit forming": "/services/freedom-from-food",
-            "2-week": "/services/freedom-from-food",
-            banana: "/resources/foods/banana",
-            bananas: "/resources/foods/banana",
-            beetroot: "/resources/foods/beetroot",
-            beets: "/resources/foods/beetroot",
-          }
-
-          // Check if the button text contains any of the mapped keywords
-          for (const [keyword, page] of Object.entries(textToPageMap)) {
-            if (buttonText.includes(keyword)) {
-              router.push(page)
-              return
-            }
-          }
-
-          // If we still don't know where to navigate, use the default based on the button's context
-          if (props.className?.includes("consultation") || buttonText.includes("consult")) {
-            router.push("/services/consultation")
-            return
-          }
-
-          if (props.className?.includes("nutrition") || buttonText.includes("nutrition")) {
-            router.push("/services/nutrition-plans")
-            return
-          }
-
-          if (props.className?.includes("article") || buttonText.includes("article")) {
-            router.push("/resources/articles")
-            return
-          }
-
-          if (props.className?.includes("resource") || buttonText.includes("resource")) {
-            router.push("/resources")
-            return
-          }
-
-          if (props.className?.includes("freedom") || buttonText.includes("freedom") || buttonText.includes("habit")) {
-            router.push("/services/freedom-from-food")
-            return
-          }
-
-          // If all else fails, navigate to the Get Started page as the default
-          router.push("/get-started")
+          e.preventDefault()
+          router.push("/checkout/secure-checkout-pack")
         }}
         {...props}
       >

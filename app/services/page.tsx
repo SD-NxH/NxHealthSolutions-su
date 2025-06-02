@@ -635,32 +635,42 @@ export default function ServicesPage() {
             >
               <div className="p-6 text-center">
                 <h3 className="text-2xl font-serif font-medium text-gray-900 mb-2">Basic Package</h3>
-                <div className="text-4xl font-bold text-green-600 mb-4 filter blur(5px)">$99</div>
                 <p className="text-gray-600 mb-6">Perfect for those just starting their health journey</p>
                 <ul className="space-y-3 text-left mb-8">
                   <li className="flex items-start">
                     <span className="inline-block h-5 w-5 rounded-full bg-green-100 text-green-600 flex-shrink-0 mr-2 text-center text-sm">
                       ✓
                     </span>
-                    <span className="text-gray-600">Initial consultation (60 min)</span>
+                    <span className="text-gray-600">
+                      The 3-month program guides teams of 2-5 through weekly coaching sessions to achieve their shared
+                      health goals.
+                    </span>
                   </li>
                   <li className="flex items-start">
                     <span className="inline-block h-5 w-5 rounded-full bg-green-100 text-green-600 flex-shrink-0 mr-2 text-center text-sm">
                       ✓
                     </span>
-                    <span className="text-gray-600">Basic health assessment</span>
+                    <span className="text-gray-600">
+                      Teams benefit from personalized strategies, expert guidance, and powerful peer accountability.
+                    </span>
                   </li>
                   <li className="flex items-start">
                     <span className="inline-block h-5 w-5 rounded-full bg-green-100 text-green-600 flex-shrink-0 mr-2 text-center text-sm">
                       ✓
                     </span>
-                    <span className="text-gray-600">Personalized health plan</span>
+                    <span className="text-gray-600">
+                      We empower your group to build sustainable habits, enhance resilience, and optimize collective
+                      well-being.
+                    </span>
                   </li>
                   <li className="flex items-start">
                     <span className="inline-block h-5 w-5 rounded-full bg-green-100 text-green-600 flex-shrink-0 mr-2 text-center text-sm">
                       ✓
                     </span>
-                    <span className="text-gray-600">1 follow-up session (30 min)</span>
+                    <span className="text-gray-600">
+                      Together, you'll experience transformative shifts in energy, digestion, and overall vitality for
+                      lasting results.
+                    </span>
                   </li>
                   <li className="flex items-start">
                     <span className="inline-block h-5 w-5 rounded-full bg-green-100 text-green-600 flex-shrink-0 mr-2 text-center text-sm">
@@ -669,7 +679,6 @@ export default function ServicesPage() {
                     <span className="text-gray-600">Access to our NxHealth Support Community</span>
                   </li>
                 </ul>
-                <Button className="w-full bg-green-600 hover:bg-green-700 text-white rounded-full">Get Started</Button>
               </div>
             </motion.div>
 
@@ -683,32 +692,39 @@ export default function ServicesPage() {
               <div className="bg-green-600 text-white py-2 text-center text-sm font-medium">MOST POPULAR</div>
               <div className="p-6 text-center">
                 <h3 className="text-2xl font-serif font-medium text-gray-900 mb-2">Premium Package</h3>
-                <div className="text-4xl font-bold text-green-600 mb-4 filter blur(5px)">$249</div>
                 <p className="text-gray-600 mb-6">Comprehensive support for significant health improvements</p>
                 <ul className="space-y-3 text-left mb-8">
                   <li className="flex items-start">
                     <span className="inline-block h-5 w-5 rounded-full bg-green-100 text-green-600 flex-shrink-0 mr-2 text-center text-sm">
                       ✓
                     </span>
-                    <span className="text-gray-600">In-depth consultation (90 min)</span>
+                    <span className="text-gray-600">
+                      6-month program takes you through deep, lasting health transformation.
+                    </span>
                   </li>
                   <li className="flex items-start">
                     <span className="inline-block h-5 w-5 rounded-full bg-green-100 text-green-600 flex-shrink-0 mr-2 text-center text-sm">
                       ✓
                     </span>
-                    <span className="text-gray-600">Comprehensive health assessment</span>
+                    <span className="text-gray-600">
+                      Consistent, weekly expert guidance for their unique health goals.
+                    </span>
                   </li>
                   <li className="flex items-start">
                     <span className="inline-block h-5 w-5 rounded-full bg-green-100 text-green-600 flex-shrink-0 mr-2 text-center text-sm">
                       ✓
                     </span>
-                    <span className="text-gray-600">Customized nutrition and wellness plan</span>
+                    <span className="text-gray-600">
+                      Cultivate profound healing, optimize vitality, and master sustainable wellness together.
+                    </span>
                   </li>
                   <li className="flex items-start">
                     <span className="inline-block h-5 w-5 rounded-full bg-green-100 text-green-600 flex-shrink-0 mr-2 text-center text-sm">
                       ✓
                     </span>
-                    <span className="text-gray-600">3 follow-up sessions (45 min each)</span>
+                    <span className="text-gray-600">
+                      Access premium coaching with an accessible monthly investment, amplified by team power.
+                    </span>
                   </li>
                   <li className="flex items-start">
                     <span className="inline-block h-5 w-5 rounded-full bg-green-100 text-green-600 flex-shrink-0 mr-2 text-center text-sm">
@@ -723,7 +739,6 @@ export default function ServicesPage() {
                     <span className="text-gray-600">Access to our NxHealth Support Community</span>
                   </li>
                 </ul>
-                <Button className="w-full bg-green-600 hover:bg-green-700 text-white rounded-full">Get Started</Button>
               </div>
             </motion.div>
 
@@ -736,53 +751,11 @@ export default function ServicesPage() {
             >
               <div className="p-6 text-center">
                 <h3 className="text-2xl font-serif font-medium text-gray-900 mb-2">Ultimate Package</h3>
-                <div className="text-4xl font-bold text-green-600 mb-4 filter blur(5px)">$399</div>
                 <p className="text-gray-600 mb-6">Complete health transformation with ongoing support</p>
-                <ul className="space-y-3 text-left mb-8">
-                  <li className="flex items-start">
-                    <span className="inline-block h-5 w-5 rounded-full bg-green-100 text-green-600 flex-shrink-0 mr-2 text-center text-sm">
-                      ✓
-                    </span>
-                    <span className="text-gray-600">VIP consultation (120 min)</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="inline-block h-5 w-5 rounded-full bg-green-100 text-green-600 flex-shrink-0 mr-2 text-center text-sm">
-                      ✓
-                    </span>
-                    <span className="text-gray-600">Advanced health assessment</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="inline-block h-5 w-5 rounded-full bg-green-100 text-green-600 flex-shrink-0 mr-2 text-center text-sm">
-                      ✓
-                    </span>
-                    <span className="text-gray-600">Comprehensive wellness program</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="inline-block h-5 w-5 rounded-full bg-green-100 text-green-600 flex-shrink-0 mr-2 text-center text-sm">
-                      ✓
-                    </span>
-                    <span className="text-gray-600">6 follow-up sessions (45 min each)</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="inline-block h-5 w-5 rounded-full bg-green-100 text-green-600 flex-shrink-0 mr-2 text-center text-sm">
-                      ✓
-                    </span>
-                    <span className="text-gray-600">Priority email and text support</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="inline-block h-5 w-5 rounded-full bg-green-100 text-green-600 flex-shrink-0 mr-2 text-center text-sm">
-                      ✓
-                    </span>
-                    <span className="text-gray-600">Access to exclusive resources</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="inline-block h-5 w-5 rounded-full bg-green-100 text-green-600 flex-shrink-0 mr-2 text-center text-sm">
-                      ✓
-                    </span>
-                    <span className="text-gray-600">Access to our NxHealth Support Community</span>
-                  </li>
-                </ul>
-                <Button className="w-full bg-green-600 hover:bg-green-700 text-white rounded-full">Get Started</Button>
+                <p className="text-gray-600 mb-8">
+                  This program helps you make big, lasting changes to your whole life. You will get constant help from
+                  experts on your health, your mind, and how you perform, so your new habits really stick.
+                </p>
               </div>
             </motion.div>
           </div>
