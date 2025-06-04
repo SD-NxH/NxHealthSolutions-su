@@ -50,8 +50,8 @@ export default function CalorieCounterPage() {
           <div className="bg-green-50 p-6 rounded-lg">
             <h4 className="font-semibold text-lg mb-2">Protein</h4>
             <p className="text-sm">
-              Essential for muscle repair and growth. Each gram provides 4 calories. Good sources include lean meats,
-              fish, eggs, dairy, legumes, and plant-based proteins.
+              Essential for muscle repair and growth. Each gram provides 4 calories. Good protein-packed plant-based
+              options include: Pumpkin Seeds, Seitan, Tempeh, Lentils, Edamame, Peanuts, Hemp Seeds.
             </p>
           </div>
 
