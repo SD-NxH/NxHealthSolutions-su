@@ -93,6 +93,20 @@ export default function BuckwheatPage() {
                 <li>Make buckwheat porridge for a hearty breakfast</li>
               </ul>
 
+              <div className="bg-amber-50 border border-amber-200 p-6 rounded-lg mb-6">
+                <h3 className="text-xl font-medium text-amber-800 mb-2">Featured Recipe</h3>
+                <p className="text-amber-700 mb-3">
+                  Try our delicious Banana Buckwheat Muffins with Nuts & Seeds - a perfect way to enjoy the nutritional
+                  benefits of buckwheat in a tasty treat!
+                </p>
+                <Link
+                  href="/resources/banana-buckwheat-muffins"
+                  className="inline-flex items-center text-amber-600 hover:text-amber-700 font-medium"
+                >
+                  View Recipe →
+                </Link>
+              </div>
+
               <div className="bg-green-100 p-6 rounded-lg mb-6">
                 <h3 className="text-xl font-medium text-green-800 mb-2">Did You Know?</h3>
                 <p className="text-gray-700">
