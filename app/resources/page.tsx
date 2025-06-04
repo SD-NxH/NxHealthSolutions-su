@@ -15,6 +15,7 @@ import { Label } from "@/components/ui/label"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Slider } from "@/components/ui/slider"
+import jsPDF from "jspdf"
 
 // Define the article interface
 interface Article {
@@ -168,6 +169,13 @@ export default function ResourcesPage() {
     return newArray
   }
 
+  // Add a randomization helper function after the shuffleArray function:
+
+  function getRandomItems(array, count) {
+    const shuffled = [...array].sort(() => 0.5 - Math.random())
+    return shuffled.slice(0, count)
+  }
+
   // Get random articles on component mount (page refresh)
   useEffect(() => {
     setIsLoading(true)
@@ -198,93 +206,200 @@ export default function ResourcesPage() {
     }
   }
 
+  // Modify the generateGroceryList function to include randomization:
+
   const generateGroceryList = () => {
-    // Sample grocery lists based on recipe type and diet
-    const lists = {
-      main: {
-        regular: {
-          mediterranean: {
-            produce: [
-              { name: "Fresh tomatoes", quantity: `${servings[0] * 2} medium` },
-              { name: "Red onion", quantity: `${servings[0] / 2} medium` },
-              { name: "Cucumber", quantity: `${servings[0] / 2} medium` },
-              { name: "Bell pepper", quantity: `${servings[0] / 2} medium` },
-              { name: "Fresh parsley", quantity: "1 bunch" },
-            ],
-            protein: [{ name: "Chicken breast", quantity: `${servings[0] * 4} oz` }],
-            grains: [{ name: "Couscous", quantity: `${servings[0] / 2} cup uncooked` }],
-            pantry: [
-              { name: "Olive oil", quantity: `${servings[0]} tbsp` },
-              { name: "Lemon", quantity: `${servings[0] / 2} medium` },
-              { name: "Garlic", quantity: `${servings[0]} clove(s)` },
-              { name: "Dried oregano", quantity: "1 tsp" },
-            ],
-          },
-          asian: {
-            produce: [
-              { name: "Broccoli", quantity: `${servings[0] * 0.5} cup` },
-              { name: "Carrots", quantity: `${servings[0]} medium` },
-              { name: "Green onions", quantity: `${servings[0] * 2} stalks` },
-              { name: "Ginger root", quantity: "1 small piece" },
-            ],
-            protein: [{ name: "Tofu", quantity: `${servings[0] * 3} oz` }],
-            grains: [{ name: "Rice", quantity: `${servings[0] / 2} cup uncooked` }],
-            pantry: [
-              { name: "Soy sauce", quantity: `${servings[0]} tbsp` },
-              { name: "Sesame oil", quantity: `${servings[0] / 2} tbsp` },
-              { name: "Garlic", quantity: `${servings[0]} clove(s)` },
-            ],
-          },
-          american: {
-            produce: [
-              { name: "Lettuce", quantity: `${servings[0] / 2} head` },
-              { name: "Tomato", quantity: `${servings[0] / 2} medium` },
-              { name: "Onion", quantity: `${servings[0] / 4} medium` },
-            ],
-            protein: [{ name: "Ground beef", quantity: `${servings[0] * 4} oz` }],
-            grains: [{ name: "Burger buns", quantity: `${servings[0]} bun(s)` }],
-            pantry: [
-              { name: "Ketchup", quantity: `${servings[0]} tbsp` },
-              { name: "Mustard", quantity: `${servings[0]} tsp` },
-              { name: "Salt and pepper", quantity: "to taste" },
-            ],
-          },
-        },
-        vegetarian: {
-          mediterranean: {
-            produce: [
-              { name: "Fresh tomatoes", quantity: `${servings[0] * 2} medium` },
-              { name: "Red onion", quantity: `${servings[0] / 2} medium` },
-              { name: "Cucumber", quantity: `${servings[0] / 2} medium` },
-              { name: "Bell pepper", quantity: `${servings[0] / 2} medium` },
-              { name: "Fresh parsley", quantity: "1 bunch" },
-            ],
-            protein: [
-              { name: "Feta cheese", quantity: `${servings[0] * 2} oz` },
-              { name: "Chickpeas", quantity: `${servings[0] / 2} can` },
-            ],
-            grains: [{ name: "Couscous", quantity: `${servings[0] / 2} cup uncooked` }],
-            pantry: [
-              { name: "Olive oil", quantity: `${servings[0]} tbsp` },
-              { name: "Lemon", quantity: `${servings[0] / 2} medium` },
-              { name: "Garlic", quantity: `${servings[0]} clove(s)` },
-              { name: "Dried oregano", quantity: "1 tsp" },
-            ],
-          },
-        },
-        vegan: {
-          // Sample vegan lists would go here
-        },
-      },
-      side: {
-        // Sample side dish lists would go here
-      },
+    // Database of ingredients by category
+    const ingredientDb = {
+      produce: [
+        { name: "Fresh tomatoes", baseQuantity: 2, unit: "medium" },
+        { name: "Red onion", baseQuantity: 0.5, unit: "medium" },
+        { name: "Cucumber", baseQuantity: 0.5, unit: "medium" },
+        { name: "Bell pepper", baseQuantity: 0.5, unit: "medium" },
+        { name: "Fresh parsley", baseQuantity: 1, unit: "bunch" },
+        { name: "Spinach", baseQuantity: 1, unit: "cup" },
+        { name: "Kale", baseQuantity: 1, unit: "cup" },
+        { name: "Arugula", baseQuantity: 1, unit: "cup" },
+        { name: "Broccoli", baseQuantity: 0.5, unit: "cup" },
+        { name: "Carrots", baseQuantity: 1, unit: "medium" },
+        { name: "Green onions", baseQuantity: 2, unit: "stalks" },
+        { name: "Ginger root", baseQuantity: 1, unit: "small piece" },
+        { name: "Bok choy", baseQuantity: 1, unit: "head" },
+        { name: "Sweet potato", baseQuantity: 0.5, unit: "medium" },
+        { name: "Brussels sprouts", baseQuantity: 0.5, unit: "cup" },
+        { name: "Red cabbage", baseQuantity: 0.25, unit: "head" },
+        { name: "Avocado", baseQuantity: 0.5, unit: "medium" },
+        { name: "Mushrooms", baseQuantity: 4, unit: "oz" },
+        { name: "Zucchini", baseQuantity: 1, unit: "medium" },
+        { name: "Cauliflower", baseQuantity: 0.5, unit: "head" },
+      ],
+      protein: [
+        { name: "Chickpeas", baseQuantity: 0.5, unit: "can" },
+        { name: "Hemp seeds", baseQuantity: 1, unit: "tbsp" },
+        { name: "Tempeh", baseQuantity: 3, unit: "oz" },
+        { name: "Edamame", baseQuantity: 0.5, unit: "cup" },
+        { name: "Lentils", baseQuantity: 0.5, unit: "cup dried" },
+        { name: "Pumpkin seeds", baseQuantity: 1, unit: "tbsp" },
+        { name: "Seitan", baseQuantity: 3, unit: "oz" },
+        { name: "Tofu", baseQuantity: 3, unit: "oz" },
+        { name: "Black beans", baseQuantity: 0.5, unit: "can" },
+        { name: "Peanuts", baseQuantity: 1, unit: "tbsp" },
+        { name: "Almonds", baseQuantity: 1, unit: "tbsp" },
+        { name: "Plant protein powder", baseQuantity: 1, unit: "scoop" },
+      ],
+      grains: [
+        { name: "Quinoa", baseQuantity: 0.5, unit: "cup uncooked" },
+        { name: "Brown rice", baseQuantity: 0.5, unit: "cup uncooked" },
+        { name: "Farro", baseQuantity: 0.5, unit: "cup uncooked" },
+        { name: "Buckwheat", baseQuantity: 0.5, unit: "cup uncooked" },
+        { name: "Millet", baseQuantity: 0.5, unit: "cup uncooked" },
+        { name: "Oats", baseQuantity: 0.5, unit: "cup" },
+        { name: "Whole grain pasta", baseQuantity: 0.5, unit: "cup uncooked" },
+        { name: "Barley", baseQuantity: 0.5, unit: "cup uncooked" },
+        { name: "Corn tortillas", baseQuantity: 2, unit: "tortillas" },
+        { name: "Whole grain bread", baseQuantity: 2, unit: "slices" },
+      ],
+      pantry: [
+        { name: "Olive oil", baseQuantity: 1, unit: "tbsp" },
+        { name: "Lemon", baseQuantity: 0.5, unit: "medium" },
+        { name: "Garlic", baseQuantity: 1, unit: "clove(s)" },
+        { name: "Tahini", baseQuantity: 1, unit: "tbsp" },
+        { name: "Tamari", baseQuantity: 1, unit: "tbsp" },
+        { name: "Sesame oil", baseQuantity: 0.5, unit: "tbsp" },
+        { name: "Rice vinegar", baseQuantity: 0.5, unit: "tbsp" },
+        { name: "Nutritional yeast", baseQuantity: 1, unit: "tbsp" },
+        { name: "Coconut aminos", baseQuantity: 1, unit: "tbsp" },
+        { name: "Chia seeds", baseQuantity: 0.5, unit: "tbsp" },
+        { name: "Flax seeds", baseQuantity: 0.5, unit: "tbsp" },
+        { name: "Maple syrup", baseQuantity: 1, unit: "tbsp" },
+        { name: "Coconut milk", baseQuantity: 0.5, unit: "cup" },
+        { name: "Curry powder", baseQuantity: 1, unit: "tsp" },
+        { name: "Cumin", baseQuantity: 1, unit: "tsp" },
+        { name: "Paprika", baseQuantity: 1, unit: "tsp" },
+        { name: "Turmeric", baseQuantity: 0.5, unit: "tsp" },
+        { name: "Cinnamon", baseQuantity: 0.5, unit: "tsp" },
+      ],
     }
 
-    // Get the list based on user selections, with fallbacks
-    const selectedList = lists[recipe]?.[diet]?.[cuisine] || lists.main.regular.mediterranean
+    // Determine how many items to include from each category based on recipe type
+    const counts = {
+      produce: 4,
+      protein: 2,
+      grains: 1,
+      pantry: 3,
+    }
 
-    setGroceryList(selectedList)
+    // Adjust counts based on recipe type
+    if (recipe === "buddha-bowl" || recipe === "grain-bowl") {
+      counts.produce = 5
+      counts.protein = 2
+      counts.grains = 1
+      counts.pantry = 4
+    } else if (recipe === "smoothie") {
+      counts.produce = 4
+      counts.protein = 1
+      counts.grains = 0
+      counts.pantry = 2
+    } else if (recipe === "salad") {
+      counts.produce = 6
+      counts.protein = 1
+      counts.grains = 0
+      counts.pantry = 3
+    }
+
+    // Generate random grocery list
+    const groceryList = {
+      produce: getRandomItems(ingredientDb.produce, counts.produce).map((item) => ({
+        name: item.name,
+        quantity: `${(item.baseQuantity * servings[0]).toFixed(1).replace(/\.0$/, "")} ${item.unit}`,
+      })),
+      protein: getRandomItems(ingredientDb.protein, counts.protein).map((item) => ({
+        name: item.name,
+        quantity: `${(item.baseQuantity * servings[0]).toFixed(1).replace(/\.0$/, "")} ${item.unit}`,
+      })),
+      grains: getRandomItems(ingredientDb.grains, counts.grains).map((item) => ({
+        name: item.name,
+        quantity: `${(item.baseQuantity * servings[0]).toFixed(1).replace(/\.0$/, "")} ${item.unit}`,
+      })),
+      pantry: getRandomItems(ingredientDb.pantry, counts.pantry).map((item) => ({
+        name: item.name,
+        quantity: `${(item.baseQuantity * servings[0]).toFixed(1).replace(/\.0$/, "")} ${item.unit}`,
+      })),
+    }
+
+    setGroceryList(groceryList)
+  }
+
+  const downloadGroceryListPDF = () => {
+    if (!groceryList) return
+
+    const doc = new jsPDF()
+
+    // Set title
+    doc.setFontSize(20)
+    doc.text("NxHealth Grocery List", 20, 30)
+
+    // Add meal details
+    doc.setFontSize(12)
+    doc.text(`Recipe Type: ${recipe.charAt(0).toUpperCase() + recipe.slice(1)}`, 20, 50)
+    doc.text(`Cuisine: ${cuisine.charAt(0).toUpperCase() + cuisine.slice(1)}`, 20, 60)
+    doc.text(`Servings: ${servings[0]}`, 20, 70)
+    doc.text(`Diet: ${diet.charAt(0).toUpperCase() + diet.slice(1)}`, 20, 80)
+
+    let yPosition = 100
+
+    // Add Produce section
+    doc.setFontSize(14)
+    doc.text("Produce:", 20, yPosition)
+    yPosition += 10
+    doc.setFontSize(10)
+    groceryList.produce.forEach((item) => {
+      doc.text(`• ${item.name} (${item.quantity})`, 25, yPosition)
+      yPosition += 8
+    })
+
+    yPosition += 10
+
+    // Add Protein section
+    doc.setFontSize(14)
+    doc.text("Protein:", 20, yPosition)
+    yPosition += 10
+    doc.setFontSize(10)
+    groceryList.protein.forEach((item) => {
+      doc.text(`• ${item.name} (${item.quantity})`, 25, yPosition)
+      yPosition += 8
+    })
+
+    yPosition += 10
+
+    // Add Grains section
+    doc.setFontSize(14)
+    doc.text("Grains:", 20, yPosition)
+    yPosition += 10
+    doc.setFontSize(10)
+    groceryList.grains.forEach((item) => {
+      doc.text(`• ${item.name} (${item.quantity})`, 25, yPosition)
+      yPosition += 8
+    })
+
+    yPosition += 10
+
+    // Add Pantry section
+    doc.setFontSize(14)
+    doc.text("Pantry Items:", 20, yPosition)
+    yPosition += 10
+    doc.setFontSize(10)
+    groceryList.pantry.forEach((item) => {
+      doc.text(`• ${item.name} (${item.quantity})`, 25, yPosition)
+      yPosition += 8
+    })
+
+    // Add footer
+    doc.setFontSize(8)
+    doc.text("Generated by NxHealth - Your Partner in Wellness", 20, 280)
+
+    // Save the PDF
+    doc.save("nxhealth-grocery-list.pdf")
   }
 
   return (
@@ -532,7 +647,10 @@ export default function ResourcesPage() {
                           <SelectItem value="side">Side Dish</SelectItem>
                           <SelectItem value="salad">Salad</SelectItem>
                           <SelectItem value="soup">Soup</SelectItem>
-                          <SelectItem value="dessert">Dessert</SelectItem>
+                          <SelectItem value="smoothie">Smoothie Bowl</SelectItem>
+                          <SelectItem value="buddha-bowl">Buddha Bowl</SelectItem>
+                          <SelectItem value="stir-fry">Plant-Based Stir-Fry</SelectItem>
+                          <SelectItem value="grain-bowl">Grain Bowl</SelectItem>
                         </SelectContent>
                       </Select>
                     </div>
@@ -675,8 +793,8 @@ export default function ResourcesPage() {
                         </div>
 
                         <div className="pt-4 border-t border-green-100">
-                          <Button variant="outline" className="w-full">
-                            Print List
+                          <Button variant="outline" className="w-full" onClick={downloadGroceryListPDF}>
+                            Download PDF
                           </Button>
                         </div>
                       </div>
