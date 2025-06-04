@@ -105,7 +105,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         ref={ref}
         onClick={(e) => {
           e.preventDefault()
-          router.push("/resources/foods/chickpeas")
+          router.push("/get-started")
         }}
         {...props}
       >
