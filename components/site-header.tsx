@@ -98,9 +98,9 @@ export default function SiteHeader() {
 
             {/* Get Started Button - Desktop */}
             <div className="hidden md:block">
-              <Button className="bg-green-600 hover:bg-green-700 text-white rounded-full">
-                <Link href="/get-started">Get Started</Link>
-              </Button>
+              <Link href="/get-started">
+                <Button className="bg-green-600 hover:bg-green-700 text-white rounded-full">Get Started</Button>
+              </Link>
             </div>
 
             {isMobile && (
@@ -161,12 +161,14 @@ export default function SiteHeader() {
 
                     {/* Get Started Button - Mobile */}
                     <div className="mt-4">
-                      <Button
-                        className="bg-green-600 hover:bg-green-700 text-white rounded-full w-full"
-                        onClick={() => handleMenuLinkClick("/get-started")}
-                      >
-                        Get Started
-                      </Button>
+                      <Link href="/get-started">
+                        <Button
+                          className="bg-green-600 hover:bg-green-700 text-white rounded-full w-full"
+                          onClick={() => setIsMenuOpen(false)}
+                        >
+                          Get Started
+                        </Button>
+                      </Link>
                     </div>
                   </div>
                 </SheetContent>

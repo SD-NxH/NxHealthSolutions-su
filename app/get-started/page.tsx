@@ -13,7 +13,7 @@ import { Checkbox } from "@/components/ui/checkbox"
 import { Card, CardContent } from "@/components/ui/card"
 import { motion, useInView } from "framer-motion"
 import { toast } from "@/hooks/use-toast"
-import ImageWithFallback from "@/components/image-with-fallback"
+import Image from "next/image"
 
 export default function GetStartedPage() {
   const [step, setStep] = useState(1)
@@ -127,13 +127,12 @@ export default function GetStartedPage() {
             className="max-w-3xl mx-auto text-center"
           >
             <div className="flex justify-center mb-6">
-              <ImageWithFallback
+              <Image
                 src="/nxlogo-alt-2.png"
                 alt="NX Health Solutions Logo"
                 width={120}
                 height={120}
                 className="object-contain"
-                fallbackSrc="/placeholder.svg?height=120&width=120&text=NxHealth"
               />
             </div>
             <h1 className="text-4xl md:text-5xl font-serif font-light tracking-tight text-green-800 mb-4">

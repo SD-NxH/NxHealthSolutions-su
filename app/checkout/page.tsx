@@ -19,28 +19,7 @@ import { useCart } from "@/context/cart-context"
 import { useRouter } from "next/navigation"
 import { StripeProvider } from "@/components/stripe-provider"
 import StripePaymentForm from "@/components/stripe-payment-form"
-// Remove this import
-// import { createPaymentIntent } from "@/app/actions/stripe-actions"
-
-// Add this function to handle payment intent creation
-const createPaymentIntentAPI = async (items: any[], shippingDetails: any) => {
-  const response = await fetch("/api/create-payment-intent", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      items,
-      shippingDetails,
-    }),
-  })
-
-  if (!response.ok) {
-    throw new Error("Failed to create payment intent")
-  }
-
-  return response.json()
-}
+import { createPaymentIntent } from "@/app/actions/stripe-actions"
 
 export default function CheckoutPage() {
   const router = useRouter()
@@ -83,22 +62,7 @@ export default function CheckoutPage() {
       if (step === 3 && !clientSecret && items.length > 0) {
         try {
           setIsLoadingPaymentIntent(true)
-          // In the useEffect, replace the createPaymentIntent call:
-          // Change this:
-          // const result = await createPaymentIntent(items, {
-          //   name: `${shippingDetails.firstName} ${shippingDetails.lastName}`,
-          //   email: shippingDetails.email,
-          //   address: {
-          //     line1: shippingDetails.address,
-          //     city: shippingDetails.city,
-          //     state: shippingDetails.state,
-          //     postal_code: shippingDetails.zip,
-          //     country: shippingDetails.country,
-          //   },
-          // })
-
-          // To this:
-          const result = await createPaymentIntentAPI(items, {
+          const result = await createPaymentIntent(items, {
             name: `${shippingDetails.firstName} ${shippingDetails.lastName}`,
             email: shippingDetails.email,
             address: {
