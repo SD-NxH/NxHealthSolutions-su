@@ -6,6 +6,7 @@ import { loadStripe } from "@stripe/stripe-js"
 
 // Initialize Stripe with your publishable key from environment variables
 // IMPORTANT: Only use the publishable key on the client side
+// Make sure you have NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY in your .env.local file
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY || "")
 
 export function StripeProvider({
@@ -15,9 +16,12 @@ export function StripeProvider({
   children: ReactNode
   clientSecret?: string
 }) {
+  // Debug: Log the publishable key (remove this in production)
+  console.log("Stripe Publishable Key:", process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY ? "✓ Found" : "✗ Missing")
+
   // Define appearance options for Stripe Elements
   const appearance = {
-    theme: "stripe",
+    theme: "stripe" as const,
     variables: {
       colorPrimary: "#367936",
       colorBackground: "#ffffff",
@@ -25,7 +29,7 @@ export function StripeProvider({
       colorDanger: "#df1b41",
       fontFamily: "system-ui, sans-serif",
       spacingUnit: "4px",
-      borderRadius: "8px", // Increased border radius for a more modern look
+      borderRadius: "8px",
     },
     rules: {
       ".Input": {
@@ -53,12 +57,27 @@ export function StripeProvider({
     },
   }
 
+  // Check if publishable key is available
+  if (!process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY) {
+    return (
+      <div className="flex flex-col items-center justify-center py-8">
+        <div className="text-red-500 text-center">
+          <h3 className="text-lg font-semibold mb-2">Stripe Configuration Error</h3>
+          <p className="text-sm">
+            Stripe publishable key is missing. Please add NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY to your environment
+            variables.
+          </p>
+        </div>
+      </div>
+    )
+  }
+
   // Only create options when we have a clientSecret
   const options = clientSecret
     ? {
         clientSecret,
         appearance,
-        loader: "auto",
+        loader: "auto" as const,
       }
     : undefined
 
