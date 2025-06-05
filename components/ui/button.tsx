@@ -47,7 +47,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         ref={ref}
         onClick={(e) => {
           e.preventDefault()
-          window.location.href = "/resources/articles"
+          window.location.href = "/get-started"
         }}
         {...props}
       />
