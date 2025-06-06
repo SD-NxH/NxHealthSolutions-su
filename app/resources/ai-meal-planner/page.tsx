@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { Tabs, TabsContent } from "@/components/ui/tabs"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import PreferencesForm from "@/components/meal-planning/PreferencesForm"
 import MealPlanDisplay from "@/components/meal-planning/MealPlanDisplay"
@@ -58,20 +58,17 @@ export default function AIMealPlannerPage() {
           {/* Header */}
           <div className="text-center mb-8">
             <div className="flex items-center justify-center mb-4">
-              <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center mr-4">
-                <Brain className="w-8 h-8 text-white" />
-              </div>
               <div>
-                <h1 className="text-4xl font-bold text-primary-dark">AI Meal Planner</h1>
+                <h1 className="text-4xl font-bold text-primary-dark">NxMeal Planner</h1>
                 <p className="text-lg text-neutral-600 mt-2">
-                  Personalized nutrition powered by artificial intelligence
+                  Personalized nutrition to help you regain control of your health
                 </p>
               </div>
             </div>
             <div className="flex items-center justify-center gap-6 text-sm text-neutral-600">
               <div className="flex items-center gap-2">
                 <Sparkles className="w-4 h-4 text-primary" />
-                <span>AI-Powered</span>
+                <span>Life Changing</span>
               </div>
               <div className="flex items-center gap-2">
                 <ChefHat className="w-4 h-4 text-primary" />
@@ -97,21 +94,6 @@ export default function AIMealPlannerPage() {
             </CardHeader>
             <CardContent>
               <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-                <TabsList className="grid w-full grid-cols-3">
-                  <TabsTrigger value="preferences" className="flex items-center gap-2">
-                    <Sparkles className="w-4 h-4" />
-                    Preferences
-                  </TabsTrigger>
-                  <TabsTrigger value="meal-plan" disabled={!mealPlanData} className="flex items-center gap-2">
-                    <ChefHat className="w-4 h-4" />
-                    Meal Plan
-                  </TabsTrigger>
-                  <TabsTrigger value="grocery-list" disabled={!mealPlanData} className="flex items-center gap-2">
-                    <ShoppingCart className="w-4 h-4" />
-                    Shopping List
-                  </TabsTrigger>
-                </TabsList>
-
                 <TabsContent value="preferences" className="mt-6">
                   {error && <ErrorMessage message={error} />}
                   <PreferencesForm onSubmit={generateMealPlan} isLoading={isLoading} />
@@ -133,7 +115,7 @@ export default function AIMealPlannerPage() {
             <Card className="text-center">
               <CardHeader>
                 <Brain className="w-12 h-12 text-primary mx-auto mb-2" />
-                <CardTitle className="text-lg">AI-Powered Intelligence</CardTitle>
+                <CardTitle className="text-lg">NxHealth Powered Intelligence</CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="text-sm text-neutral-600">

@@ -12,7 +12,6 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Card, CardContent } from "@/components/ui/card"
 import { motion, useInView } from "framer-motion"
-import { toast } from "@/hooks/use-toast"
 import Image from "next/image"
 
 export default function GetStartedPage() {
@@ -101,21 +100,14 @@ export default function GetStartedPage() {
     e.preventDefault()
     setIsSubmitting(true)
 
-    // Remove this line:
-    // if (formElement.current) {
-    //   formElement.current.submit()
-    // }
-
-    // Simulate form submission without actually submitting
-    await new Promise((resolve) => setTimeout(resolve, 1000))
-
-    setIsSubmitting(false)
-    setSubmitted(true)
-
-    toast({
-      title: "Assessment Submitted",
-      description: "Thank you for completing your health assessment. We'll be in touch soon!",
-    })
+    // Submit the form to FormSubmit after a brief delay
+    setTimeout(() => {
+      if (formElement.current) {
+        // Remove the onSubmit handler temporarily to allow natural form submission
+        formElement.current.onsubmit = null
+        formElement.current.submit()
+      }
+    }, 1000)
   }
 
   return (
