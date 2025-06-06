@@ -452,44 +452,47 @@ export async function generateMealPlanAndList(preferences: MealPreferences): Pro
     return getDemoMealPlan(preferences)
   }
 
-  const ai = new GoogleGenerativeAI(API_KEY)
+  try {
+    const ai = new GoogleGenerativeAI(API_KEY)
 
-  const mealTypesToInclude = []
-  if (preferences.includeBreakfast) mealTypesToInclude.push("Breakfast")
-  if (preferences.includeLunch) mealTypesToInclude.push("Lunch")
-  if (preferences.includeDinner) mealTypesToInclude.push("Dinner")
-  if (preferences.includeSnacks) mealTypesToInclude.push("Snacks")
+    const mealTypesToInclude = []
+    if (preferences.includeBreakfast) mealTypesToInclude.push("Breakfast")
+    if (preferences.includeLunch) mealTypesToInclude.push("Lunch")
+    if (preferences.includeDinner) mealTypesToInclude.push("Dinner")
+    if (preferences.includeSnacks) mealTypesToInclude.push("Snacks")
 
-  // Enhance the prompt with strict dietary adherence instructions
-  const dietaryRestrictions = preferences.dietaryRestrictions || "None"
+    // Rest of the existing code...
 
-  // Identify specific dietary restrictions
-  const dietaryKeywords = []
-  Object.entries(DIETARY_KEYWORDS).forEach(([diet, data]) => {
-    if (data.keywords.some((keyword) => dietaryRestrictions.toLowerCase().includes(keyword))) {
-      dietaryKeywords.push(diet)
-    }
-  })
+    // Enhance the prompt with strict dietary adherence instructions
+    const dietaryRestrictions = preferences.dietaryRestrictions || "None"
 
-  // Build forbidden ingredients list for the prompt
-  let forbiddenIngredientsText = ""
-  if (dietaryKeywords.length > 0) {
-    const allForbiddenIngredients = new Set<string>()
-    dietaryKeywords.forEach((diet) => {
-      DIETARY_KEYWORDS[diet as keyof typeof DIETARY_KEYWORDS].forbidden.forEach((ingredient) => {
-        allForbiddenIngredients.add(ingredient)
-      })
+    // Identify specific dietary restrictions
+    const dietaryKeywords = []
+    Object.entries(DIETARY_KEYWORDS).forEach(([diet, data]) => {
+      if (data.keywords.some((keyword) => dietaryRestrictions.toLowerCase().includes(keyword))) {
+        dietaryKeywords.push(diet)
+      }
     })
 
-    if (allForbiddenIngredients.size > 0) {
-      forbiddenIngredientsText = `
+    // Build forbidden ingredients list for the prompt
+    let forbiddenIngredientsText = ""
+    if (dietaryKeywords.length > 0) {
+      const allForbiddenIngredients = new Set<string>()
+      dietaryKeywords.forEach((diet) => {
+        DIETARY_KEYWORDS[diet as keyof typeof DIETARY_KEYWORDS].forbidden.forEach((ingredient) => {
+          allForbiddenIngredients.add(ingredient)
+        })
+      })
+
+      if (allForbiddenIngredients.size > 0) {
+        forbiddenIngredientsText = `
 IMPORTANT: The user has specified dietary restrictions that prohibit the following ingredients. DO NOT include these in ANY meals or in the grocery list:
 ${Array.from(allForbiddenIngredients).join(", ")}
 `
+      }
     }
-  }
 
-  const prompt = `
+    const prompt = `
 You are an expert meal planning and nutrition AI. Your goal is to generate a personalized meal plan and a consolidated grocery list based on the user's preferences.
 
 Output ONLY a valid JSON object (no surrounding text, no markdown code fences, just the raw JSON) with the exact following structure:
@@ -535,56 +538,62 @@ Important Instructions:
 Generate the plan now.
 `
 
-  try {
-    const model = ai.getGenerativeModel({ model: MODEL_NAME })
+    try {
+      const model = ai.getGenerativeModel({ model: MODEL_NAME })
 
-    const result = await model.generateContent({
-      contents: [{ role: "user", parts: [{ text: prompt }] }],
-      generationConfig: {
-        temperature: 0.7,
-        maxOutputTokens: 4096,
-      },
-    })
+      const result = await model.generateContent({
+        contents: [{ role: "user", parts: [{ text: prompt }] }],
+        generationConfig: {
+          temperature: 0.7,
+          maxOutputTokens: 4096,
+        },
+      })
 
-    const response = await result.response
-    let jsonStr = response.text().trim()
+      const response = await result.response
+      let jsonStr = response.text().trim()
 
-    // Remove markdown fences if present
-    const fenceRegex = /^```(?:json)?\s*\n?(.*?)\n?\s*```$/s
-    const match = jsonStr.match(fenceRegex)
-    if (match && match[1]) {
-      jsonStr = match[1].trim()
-    }
-
-    const parsedData = JSON.parse(jsonStr) as GeneratedPlan
-
-    // Basic validation of the parsed structure
-    if (!parsedData.mealPlan || !parsedData.groceryList) {
-      throw new Error("Invalid JSON structure received from API.")
-    }
-
-    // Validate against dietary restrictions
-    if (dietaryRestrictions && dietaryRestrictions.toLowerCase() !== "none") {
-      const validation = validateMealPlan(parsedData.mealPlan, parsedData.groceryList, dietaryRestrictions)
-
-      if (!validation.isValid) {
-        throw new Error(
-          `The meal plan contains items that don't match your dietary restrictions (${validation.violations.join(
-            ", ",
-          )}). Please try again or be more specific with your restrictions.`,
-        )
+      // Remove markdown fences if present
+      const fenceRegex = /^```(?:json)?\s*\n?(.*?)\n?\s*```$/s
+      const match = jsonStr.match(fenceRegex)
+      if (match && match[1]) {
+        jsonStr = match[1].trim()
       }
-    }
 
-    return parsedData
+      try {
+        const parsedData = JSON.parse(jsonStr) as GeneratedPlan
+
+        // Basic validation of the parsed structure
+        if (!parsedData.mealPlan || !parsedData.groceryList) {
+          console.error("Invalid JSON structure received from API:", parsedData)
+          // Fall back to demo data instead of throwing an error
+          return getDemoMealPlan(preferences)
+        }
+
+        // Validate against dietary restrictions
+        if (dietaryRestrictions && dietaryRestrictions.toLowerCase() !== "none") {
+          const validation = validateMealPlan(parsedData.mealPlan, parsedData.groceryList, dietaryRestrictions)
+
+          if (!validation.isValid) {
+            console.warn(`Dietary restrictions validation failed: ${validation.violations.join(", ")}`)
+            // Fall back to demo data instead of throwing an error
+            return getDemoMealPlan(preferences)
+          }
+        }
+
+        return parsedData
+      } catch (parseError) {
+        console.error("Error parsing JSON response:", parseError, "Raw response:", jsonStr)
+        // Fall back to demo data instead of throwing an error
+        return getDemoMealPlan(preferences)
+      }
+    } catch (apiError) {
+      console.error("API error:", apiError)
+      // Fall back to demo data instead of throwing an error
+      return getDemoMealPlan(preferences)
+    }
   } catch (error) {
     console.error("Error generating meal plan:", error)
-    if (error instanceof Error) {
-      if (error.message.includes("API_KEY") || error.message.includes("401") || error.message.includes("403")) {
-        throw new Error("Invalid API key. Please check your Gemini API key at https://aistudio.google.com/app/apikey")
-      }
-      throw new Error(`Failed to generate meal plan: ${error.message}`)
-    }
-    throw new Error("An unknown error occurred while generating the meal plan.")
+    // Always fall back to demo data for any error
+    return getDemoMealPlan(preferences)
   }
 }

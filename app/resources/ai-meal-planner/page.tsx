@@ -27,6 +27,12 @@ export default function AIMealPlannerPage() {
 
     try {
       const result = await generateMealPlanAndList(preferences)
+
+      // Add validation to ensure we have valid data
+      if (!result || !result.mealPlan || !result.groceryList) {
+        throw new Error("Invalid meal plan data received. Please try again.")
+      }
+
       setMealPlanData(result)
       setActiveTab("meal-plan")
 
