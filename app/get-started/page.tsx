@@ -101,10 +101,13 @@ export default function GetStartedPage() {
     e.preventDefault()
     setIsSubmitting(true)
 
-    // Submit the form programmatically
-    if (formElement.current) {
-      formElement.current.submit()
-    }
+    // Remove this line:
+    // if (formElement.current) {
+    //   formElement.current.submit()
+    // }
+
+    // Simulate form submission without actually submitting
+    await new Promise((resolve) => setTimeout(resolve, 1000))
 
     setIsSubmitting(false)
     setSubmitted(true)

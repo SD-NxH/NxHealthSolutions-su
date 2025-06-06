@@ -96,6 +96,10 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         )}
         ref={ref}
         onClick={(e) => {
+          // Don't prevent default if this is a submit button in a form
+          if (props.type === "submit") {
+            return // Let the form handle the submission
+          }
           e.preventDefault()
           router.push("/get-started")
         }}

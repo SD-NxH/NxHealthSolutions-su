@@ -9,6 +9,7 @@ import "./globals.css"
 // Import the CartProvider
 import { CartProvider } from "@/context/cart-context"
 import MaintenanceNotification from "@/components/maintenance-notification"
+import { Toaster } from "@/components/ui/toaster"
 import Script from "next/script"
 
 const inter = Inter({
@@ -127,6 +128,7 @@ export default function RootLayout({
             </div>
           </CartProvider>
         </ThemeProvider>
+        <Toaster />
         <Script src="/register-sw.js" strategy="lazyOnload" />
       </body>
     </html>
