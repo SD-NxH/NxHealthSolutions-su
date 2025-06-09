@@ -50,7 +50,7 @@
     "zod": "latest"
   },
   "devDependencies": {
-    "@types/jspdf": "^2.3.0",
+    "@types/jspdf": "^2.5.0",
     "@types/node": "^22",
     "@types/react": "^18",
     "@types/react-dom": "^18",
