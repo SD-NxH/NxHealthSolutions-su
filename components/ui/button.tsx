@@ -24,6 +24,12 @@ const buttonVariants = cva(
         carrot: "bg-orange-600 hover:bg-orange-700 text-white hover:text-white border-orange-700",
         banana: "bg-yellow-400 hover:bg-yellow-500 text-yellow-900 hover:text-yellow-950 border-yellow-500",
         beetroot: "bg-purple-900 hover:bg-purple-950 text-pink-50 hover:text-pink-100 border-purple-800",
+        cinnamon: "bg-amber-800 hover:bg-amber-900 text-amber-50 hover:text-amber-100 border-amber-900",
+        coconut: "bg-amber-600 hover:bg-amber-700 text-amber-50 hover:text-amber-100 border-amber-700",
+        collardGreens: "bg-green-700 hover:bg-green-800 text-green-50 hover:text-green-100 border-green-800",
+        cranberries: "bg-red-700 hover:bg-red-800 text-red-50 hover:text-red-100 border-red-800",
+        cucumbers: "bg-green-600 hover:bg-green-700 text-green-50 hover:text-green-100 border-green-700",
+        cumin: "bg-amber-700 hover:bg-amber-800 text-amber-50 hover:text-amber-100 border-amber-800",
       },
       size: {
         default: "h-10 px-4 py-2",
@@ -78,6 +84,150 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
           onClick={(e) => {
             e.preventDefault()
             router.push(href)
+          }}
+          {...props}
+        >
+          {children}
+        </button>
+      )
+    }
+
+    // Special case: if this is the coconut-themed button, navigate to coconut page
+    if (variant === "coconut" || className?.includes("coconut")) {
+      return (
+        <button
+          className={cn(
+            buttonVariants({ variant: "coconut", size, className }),
+            "!transition-none !duration-0",
+            "nxhealth-button coconut-button",
+          )}
+          ref={ref}
+          onClick={(e) => {
+            if (props.type === "submit") {
+              return
+            }
+            e.preventDefault()
+            router.push("/resources/foods/coconut")
+          }}
+          {...props}
+        >
+          {children}
+        </button>
+      )
+    }
+
+    // Special case: if this is the cinnamon-themed button, navigate to cinnamon page
+    if (variant === "cinnamon" || className?.includes("cinnamon")) {
+      return (
+        <button
+          className={cn(
+            buttonVariants({ variant: "cinnamon", size, className }),
+            "!transition-none !duration-0",
+            "nxhealth-button cinnamon-button",
+          )}
+          ref={ref}
+          onClick={(e) => {
+            if (props.type === "submit") {
+              return
+            }
+            e.preventDefault()
+            router.push("/resources/foods/cinnamon")
+          }}
+          {...props}
+        >
+          {children}
+        </button>
+      )
+    }
+
+    // Special case: if this is the collard-greens-themed button, navigate to collard greens page
+    if (variant === "collardGreens" || className?.includes("collardGreens")) {
+      return (
+        <button
+          className={cn(
+            buttonVariants({ variant: "collardGreens", size, className }),
+            "!transition-none !duration-0",
+            "nxhealth-button collard-greens-button",
+          )}
+          ref={ref}
+          onClick={(e) => {
+            if (props.type === "submit") {
+              return
+            }
+            e.preventDefault()
+            router.push("/resources/foods/collard-greens")
+          }}
+          {...props}
+        >
+          {children}
+        </button>
+      )
+    }
+
+    // Special case: if this is the cranberries-themed button, navigate to cranberries page
+    if (variant === "cranberries" || className?.includes("cranberries")) {
+      return (
+        <button
+          className={cn(
+            buttonVariants({ variant: "cranberries", size, className }),
+            "!transition-none !duration-0",
+            "nxhealth-button cranberries-button",
+          )}
+          ref={ref}
+          onClick={(e) => {
+            if (props.type === "submit") {
+              return
+            }
+            e.preventDefault()
+            router.push("/resources/foods/cranberries")
+          }}
+          {...props}
+        >
+          {children}
+        </button>
+      )
+    }
+
+    // Special case: if this is the cucumbers-themed button, navigate to cucumbers page
+    if (variant === "cucumber" || variant === "cucumbers" || className?.includes("cucumber")) {
+      return (
+        <button
+          className={cn(
+            buttonVariants({ variant: "cucumbers", size, className }),
+            "!transition-none !duration-0",
+            "nxhealth-button cucumbers-button",
+          )}
+          ref={ref}
+          onClick={(e) => {
+            if (props.type === "submit") {
+              return
+            }
+            e.preventDefault()
+            router.push("/resources/foods/cucumber")
+          }}
+          {...props}
+        >
+          {children}
+        </button>
+      )
+    }
+
+    // Special case: if this is the cumin-themed button, navigate to cumin page
+    if (variant === "cumin" || className?.includes("cumin")) {
+      return (
+        <button
+          className={cn(
+            buttonVariants({ variant: "cumin", size, className }),
+            "!transition-none !duration-0",
+            "nxhealth-button cumin-button",
+          )}
+          ref={ref}
+          onClick={(e) => {
+            if (props.type === "submit") {
+              return
+            }
+            e.preventDefault()
+            router.push("/resources/foods/cumin")
           }}
           {...props}
         >

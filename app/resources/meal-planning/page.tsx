@@ -491,7 +491,7 @@ Visit us at nxhealthsolutions.org`
           <div className="text-center mb-12">
             <h1 className="text-4xl font-serif font-light text-green-800 mb-4">Meal Planning</h1>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Create a personalized meal plan tailored to your dietary preferences and nutritional needs.
+              Create a personalized single day meal plan tailored to your dietary preferences and nutritional needs.
             </p>
           </div>
 

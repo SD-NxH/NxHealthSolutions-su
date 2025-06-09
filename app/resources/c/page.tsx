@@ -67,7 +67,7 @@ const foods = [
   {
     id: "cinnamon",
     name: "Cinnamon",
-    image: "/placeholder.svg?height=300&width=300",
+    image: "/cinnamon-sticks.jpeg",
     description:
       "Aromatic spice with powerful antioxidant and anti-inflammatory properties that may help regulate blood sugar",
     benefits: ["Blood sugar control", "Anti-inflammatory", "Heart health", "Brain function"],
@@ -77,7 +77,7 @@ const foods = [
   {
     id: "coconut",
     name: "Coconut",
-    image: "/placeholder.svg?height=300&width=300",
+    image: "/fresh-coconut-halves.jpeg",
     description: "Tropical fruit rich in medium-chain triglycerides, fiber, and minerals with antimicrobial properties",
     benefits: ["Energy boost", "Heart health", "Brain function", "Immune support"],
     link: "/resources/foods/coconut",
@@ -86,7 +86,7 @@ const foods = [
   {
     id: "collard-greens",
     name: "Collard Greens",
-    image: "/placeholder.svg?height=300&width=300",
+    image: "/collard-greens-fresh.jpg",
     description:
       "Leafy green vegetable exceptionally high in vitamin K, calcium, and antioxidants that support bone health",
     benefits: ["Bone health", "Heart health", "Cancer prevention", "Digestive health"],
@@ -96,7 +96,7 @@ const foods = [
   {
     id: "cranberries",
     name: "Cranberries",
-    image: "/placeholder.svg?height=300&width=300",
+    image: "/fresh-cranberries.jpg",
     description:
       "Tart berries rich in proanthocyanidins that help prevent urinary tract infections and support oral health",
     benefits: ["Urinary tract health", "Dental health", "Heart health", "Anti-inflammatory"],
@@ -106,7 +106,7 @@ const foods = [
   {
     id: "cucumber",
     name: "Cucumber",
-    image: "/placeholder.svg?height=300&width=300",
+    image: "/fresh-cucumbers.jpg",
     description: "Refreshing vegetable with high water content, antioxidants, and compounds that support hydration",
     benefits: ["Hydration", "Skin health", "Anti-inflammatory", "Digestive health"],
     link: "/resources/foods/cucumber",
@@ -115,7 +115,7 @@ const foods = [
   {
     id: "cumin",
     name: "Cumin",
-    image: "/placeholder.svg?height=300&width=300",
+    image: "/cumin-seeds-detailed.jpg",
     description: "Aromatic spice rich in iron, antioxidants, and compounds that aid digestion and immune function",
     benefits: ["Digestive health", "Iron source", "Anti-inflammatory", "Blood sugar control"],
     link: "/resources/foods/cumin",
