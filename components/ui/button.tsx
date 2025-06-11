@@ -77,6 +77,61 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     // If href is provided, render as a standard button (not Link)
     // External components should wrap with Link explicitly
     if (href !== undefined) {
+      // Special case for "Learn More About Dark Chocolate" button - override any href
+      if (
+        children?.toString().toLowerCase().includes("learn more about dark chocolate") ||
+        children?.toString().toLowerCase().includes("dark chocolate") ||
+        href.includes("dark-chocolate") ||
+        href.includes("chocolate")
+      ) {
+        return (
+          <button
+            className={cn(
+              buttonVariants({ variant: "chocolate", size, className }),
+              "!transition-none !duration-0",
+              "nxhealth-button dark-chocolate-button",
+            )}
+            ref={ref}
+            onClick={(e) => {
+              e.preventDefault()
+              e.stopPropagation()
+              router.push("/resources/foods/dark-chocolate")
+            }}
+            {...props}
+          >
+            {children}
+          </button>
+        )
+      }
+
+      // Special case for Dulse button - override any href
+      if (
+        children?.toString().toLowerCase().includes("dulse") ||
+        href.includes("dulse") ||
+        variant === "dulse" ||
+        className?.includes("dulse")
+      ) {
+        return (
+          <button
+            className={cn(
+              buttonVariants({ variant: "dulse", size, className }),
+              "!transition-none !duration-0",
+              "nxhealth-button dulse-button",
+            )}
+            ref={ref}
+            onClick={(e) => {
+              e.preventDefault()
+              e.stopPropagation()
+              router.push("/resources/foods/dulse")
+            }}
+            {...props}
+          >
+            {children}
+          </button>
+        )
+      }
+
+      // Standard href button
       return (
         <button
           className={cn(buttonVariants({ variant, size, className }), "!transition-none !duration-0")}
@@ -228,6 +283,64 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
             }
             e.preventDefault()
             router.push("/resources/foods/cumin")
+          }}
+          {...props}
+        >
+          {children}
+        </button>
+      )
+    }
+
+    // Special case: if this is the dark-chocolate-themed button, navigate to dark chocolate page
+    if (
+      variant === "chocolate" ||
+      className?.includes("dark-chocolate") ||
+      props["data-chocolate"] === "true" ||
+      children?.toString().toLowerCase().includes("learn more about dark chocolate")
+    ) {
+      return (
+        <button
+          className={cn(
+            buttonVariants({ variant: "chocolate", size, className }),
+            "!transition-none !duration-0",
+            "nxhealth-button dark-chocolate-button",
+          )}
+          ref={ref}
+          onClick={(e) => {
+            if (props.type === "submit") {
+              return
+            }
+            e.preventDefault()
+            router.push("/resources/foods/dark-chocolate")
+          }}
+          {...props}
+        >
+          {children}
+        </button>
+      )
+    }
+
+    // Special case: if this is the dulse-themed button, navigate to dulse page
+    if (
+      variant === "dulse" ||
+      className?.includes("dulse") ||
+      props["data-dulse"] === "true" ||
+      children?.toString().toLowerCase().includes("dulse")
+    ) {
+      return (
+        <button
+          className={cn(
+            buttonVariants({ variant: "dulse", size, className }),
+            "!transition-none !duration-0",
+            "nxhealth-button dulse-button",
+          )}
+          ref={ref}
+          onClick={(e) => {
+            if (props.type === "submit") {
+              return
+            }
+            e.preventDefault()
+            router.push("/resources/foods/dulse")
           }}
           {...props}
         >

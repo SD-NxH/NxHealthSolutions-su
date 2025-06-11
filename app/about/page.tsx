@@ -275,7 +275,7 @@ export default function AboutPage() {
             <p className="text-lg text-gray-600">Meet the dedicated professionals behind NxHealth Solutions.</p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 justify-items-center">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center">
             <motion.div
               initial={{ opacity: 0, y: 40 }}
               animate={isTeamInView ? { opacity: 1, y: 0 } : {}}
@@ -327,6 +327,35 @@ export default function AboutPage() {
                   Jasmine's passion has always centered on mental health, particularly in supporting incarcerated
                   individuals. Her journey led her to explore holistic healing, where she discovered the powerful
                   connection between the mind, body, and spirit.
+                </p>
+              </div>
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: 40 }}
+              animate={isTeamInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.8, delay: 0.3 }}
+              className="bg-white rounded-xl overflow-hidden shadow-sm max-w-sm"
+            >
+              <div className="relative h-80 w-full overflow-hidden">
+                <Image
+                  src="/placeholder.svg?height=320&width=320&text=Lena+Harris"
+                  alt="Lena Harris, Health Coach"
+                  fill
+                  className="object-cover"
+                  priority
+                />
+              </div>
+              <div className="p-6 text-center">
+                <h3 className="text-xl font-medium text-gray-900 mb-1">Lena Harris</h3>
+                <p className="mb-1 text-gray-600">"The Light"</p>
+                <p className="text-green-600 mb-3">Health Coach</p>
+                <p className="text-gray-600 text-sm">
+                  Originally from Newburgh, NY, and currently living in Tampa, FL-I faced a life-altering diagnosis of
+                  congestive heart failure—and completely reversed it in just 60 days using an all-fruit diet. My
+                  journey from illness to vibrant health ignited a passion to share the truth I learned about the body's
+                  ability to heal itself naturally. Now, I'm on a mission to inspire and guide others toward reclaiming
+                  their wellness—no matter the diagnosis. If you're ready to challenge everything you thought you knew
+                  about healing, I'd love to connect.
                 </p>
               </div>
             </motion.div>

@@ -542,9 +542,17 @@ export default function ResourcesPage() {
               {letters.map((letter, index) => (
                 <Link
                   key={letter}
-                  href={letter === "D" ? "/resources/d" : getLetterHref(letter)}
+                  href={
+                    letter === "C"
+                      ? "/resources/c"
+                      : letter === "E"
+                        ? "/resources/e"
+                        : letter === "D"
+                          ? "/resources/d"
+                          : getLetterHref(letter)
+                  }
                   className="flex items-center justify-center h-12 w-12 rounded-full font-medium text-lg transition-all duration-300 bg-green-600 text-white hover:bg-green-700"
-                  target={letter >= "D" ? "_blank" : undefined}
+                  target={letter === "E" ? undefined : letter >= "F" ? "_blank" : undefined}
                 >
                   {letter}
                 </Link>
