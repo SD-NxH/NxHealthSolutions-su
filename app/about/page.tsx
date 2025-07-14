@@ -275,7 +275,7 @@ export default function AboutPage() {
             <p className="text-lg text-gray-600">Meet the dedicated professionals behind NxHealth Solutions.</p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 justify-items-center">
             <motion.div
               initial={{ opacity: 0, y: 40 }}
               animate={isTeamInView ? { opacity: 1, y: 0 } : {}}
@@ -356,6 +356,32 @@ export default function AboutPage() {
                   ability to heal itself naturally. Now, I'm on a mission to inspire and guide others toward reclaiming
                   their wellness—no matter the diagnosis. If you're ready to challenge everything you thought you knew
                   about healing, I'd love to connect.
+                </p>
+              </div>
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: 40 }}
+              animate={isTeamInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.8, delay: 0.4 }}
+              className="bg-white rounded-xl overflow-hidden shadow-sm max-w-sm"
+            >
+              <div className="relative h-80 w-full overflow-hidden">
+                <Image
+                  src="/marquezz-leday-profile.jpg"
+                  alt="Marquezz Leday, Master Herbalist"
+                  fill
+                  className="object-cover"
+                  priority
+                />
+              </div>
+              <div className="p-6 text-center">
+                <h3 className="text-xl font-medium text-gray-900 mb-1">Marquezz Leday</h3>
+                <p className="text-green-600 mb-3">Master Herbalist</p>
+                <p className="text-gray-600 text-sm">
+                  Shalom…I'm Marquezz Leday, certified Master Herbalist, I study nutrition, Cell biology and how to heal
+                  the body on a cellular level! Our bodies are designed by God to heal itself given the necessary
+                  nutrients, I believe that when the body is out of alignment with God physically and spiritually we
+                  experience dis-ease!
                 </p>
               </div>
             </motion.div>

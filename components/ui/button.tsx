@@ -349,28 +349,8 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       )
     }
 
-    // Default button behavior - navigates to /get-started
-    return (
-      <button
-        className={cn(
-          buttonVariants({ variant, size, className }),
-          "!transition-none !duration-0",
-          "nxhealth-button freedom-food-default-button",
-        )}
-        ref={ref}
-        onClick={(e) => {
-          // Don't prevent default if this is a submit button in a form
-          if (props.type === "submit") {
-            return // Let the form handle the submission
-          }
-          e.preventDefault()
-          router.push("/get-started")
-        }}
-        {...props}
-      >
-        {children}
-      </button>
-    )
+    // Default fallback - return null if no conditions match
+    return null
   },
 )
 Button.displayName = "Button"

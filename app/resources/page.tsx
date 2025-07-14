@@ -892,7 +892,7 @@ export default function ResourcesPage() {
                         </div>
 
                         <div className="pt-4 border-t border-green-100">
-                          <Button variant="outline" className="w-full" onClick={downloadGroceryListPDF}>
+                          <Button variant="outline" className="w-full bg-transparent" onClick={downloadGroceryListPDF}>
                             Download PDF
                           </Button>
                         </div>
@@ -952,6 +952,338 @@ export default function ResourcesPage() {
               </a>
             </motion.div>
           </div>
+        </div>
+      </section>
+
+      {/* Transform Your Life eBook Section */}
+      <section className="py-16 bg-gradient-to-br from-green-50 to-emerald-50">
+        <div className="container px-4 md:px-6">
+          <div className="grid md:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
+            <motion.div
+              initial={{ opacity: 0, x: -40 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+              className="order-2 md:order-1"
+            >
+              <div className="relative">
+                <motion.div
+                  initial={{ rotateY: -15, scale: 0.9 }}
+                  animate={{ rotateY: 0, scale: 1 }}
+                  transition={{ duration: 1, delay: 0.3 }}
+                  className="relative mx-auto w-80 h-96 perspective-1000"
+                >
+                  <div className="relative w-full h-full transform-gpu transition-transform duration-700 hover:rotateY-12 hover:scale-105">
+                    <div className="absolute inset-0 bg-gradient-to-br from-green-600 to-green-800 rounded-lg shadow-2xl">
+                      <div className="p-6 h-full flex flex-col justify-between text-white">
+                        <div>
+                          <h3 className="text-2xl font-bold mb-2">Transform Your Life</h3>
+                          <p className="text-lg opacity-90">In 30 Days</p>
+                        </div>
+                        <div className="text-center">
+                          <div className="w-32 h-32 mx-auto bg-white/20 rounded-full flex items-center justify-center mb-4">
+                            <div className="w-24 h-24 bg-white/30 rounded-full flex items-center justify-center">
+                              <span className="text-4xl">📖</span>
+                            </div>
+                          </div>
+                        </div>
+                        <div>
+                          <p className="text-sm opacity-80 mb-2">By Eric Johnson</p>
+                          <p className="text-xs opacity-70">NxHealth Solutions</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="absolute -right-2 top-2 w-full h-full bg-green-700 rounded-lg -z-10"></div>
+                    <div className="absolute -right-4 top-4 w-full h-full bg-green-800 rounded-lg -z-20"></div>
+                  </div>
+                </motion.div>
+
+                {/* Floating elements animation */}
+                <motion.div
+                  animate={{ y: [-10, 10, -10] }}
+                  transition={{ duration: 3, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
+                  className="absolute -top-4 -right-4 w-8 h-8 bg-yellow-400 rounded-full opacity-80"
+                ></motion.div>
+                <motion.div
+                  animate={{ y: [10, -10, 10] }}
+                  transition={{ duration: 4, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut", delay: 1 }}
+                  className="absolute -bottom-6 -left-6 w-6 h-6 bg-green-400 rounded-full opacity-70"
+                ></motion.div>
+                <motion.div
+                  animate={{ rotate: [0, 360] }}
+                  transition={{ duration: 8, repeat: Number.POSITIVE_INFINITY, ease: "linear" }}
+                  className="absolute top-1/2 -left-8 w-4 h-4 border-2 border-green-500 opacity-60"
+                ></motion.div>
+              </div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, x: 40 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="order-1 md:order-2"
+            >
+              <div className="mb-6">
+                <motion.h2
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 0.4 }}
+                  className="text-3xl md:text-4xl font-serif font-light text-gray-900 mb-4"
+                >
+                  Transform Your Life In 30 Days
+                </motion.h2>
+                <motion.div
+                  initial={{ width: 0 }}
+                  animate={{ width: "100px" }}
+                  transition={{ duration: 0.8, delay: 0.6 }}
+                  className="h-1 bg-gradient-to-r from-green-600 to-emerald-600 mb-6"
+                ></motion.div>
+              </div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.8 }}
+                className="prose prose-lg text-gray-600 mb-8"
+              >
+                <p className="mb-4">
+                  Hello! I'm Eric Johnson, and I am thrilled you're here to explore the wonderful world of health with
+                  NxHealth Solutions! For as long as I can remember, health has been a staple in my life—from my passion
+                  for basketball to becoming a personal trainer and diving deep into nutrition through higher education.
+                  My journey led me to discover how profoundly wellness and helping people achieve optimum health
+                  resonate with me.
+                </p>
+                <p className="mb-4">
+                  That's why I created "Transform Your Life In 30 Days," a 30-day approach designed for anyone seeking a
+                  fulfilling change in their life. In this book, I can't promise you instant success, but I can promise
+                  a new feeling, better habits, and the star power to truly change your life for the better. My
+                  philosophy is rooted in the centuries-old truth that food heals, and changing our relationship with
+                  what we eat and how we live can truly make us a healthier world.
+                </p>
+                <p className="mb-4">
+                  I believe that if you focus and commit to making simple habit changes, you will see and feel huge
+                  differences in your health. This isn't just about developing new habits; it's about embracing a new
+                  perspective on your health, increasing your quality of life, and finding real solutions for a
+                  healthier, happier you.
+                </p>
+                <p className="mb-6">
+                  Your new life awaits! I invite you to embark on this journey with me and see what happens. Enjoy the
+                  process, and feel free to bring a friend or family member along for the ride.
+                </p>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 1 }}
+                className="flex flex-col sm:flex-row gap-4"
+              >
+                <Button className="bg-green-600 hover:bg-green-700 text-white rounded-full px-8 py-6 text-lg font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
+                  Get Your Copy Now
+                  <ArrowRight className="ml-2 h-5 w-5" />
+                </Button>
+                <Button
+                  variant="outline"
+                  className="border-green-600 text-green-600 hover:bg-green-50 rounded-full px-8 py-6 text-lg font-medium bg-transparent"
+                >
+                  Preview Sample
+                </Button>
+              </motion.div>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 1.2 }}
+                className="mt-6 pt-6 border-t border-green-200"
+              >
+                <a
+                  href="https://buy.stripe.com/00wfZh1Bu4rd3rygzG9oc0H"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block bg-green-600 hover:bg-green-700 text-white rounded-full px-8 py-3 text-lg font-medium transition-colors duration-300"
+                >
+                  Get Your Copy
+                </a>
+              </motion.div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* NxHealth Podcast Section */}
+      <section className="py-16 bg-white">
+        <div className="container px-4 md:px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="max-w-6xl mx-auto"
+          >
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-serif font-light text-gray-900 mb-6">NxHealth Podcast</h2>
+              <p className="text-lg text-gray-600 mb-8">
+                Tune in to our podcast for expert insights on nutrition, wellness, and healthy living.
+              </p>
+              <a
+                href="https://open.spotify.com/show/2E8oq25EKHAEscmPwstEvu?si=S9e8q9aiR_yq-sogzw4yvw"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center bg-green-600 hover:bg-green-700 text-white rounded-full px-6 py-3 text-lg transition-colors duration-300"
+              >
+                <svg className="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.42 1.56-.299.421-1.02.599-1.559.3z" />
+                </svg>
+                Listen on Spotify
+              </a>
+            </div>
+
+            {/* Podcast Episodes Slider */}
+            <div className="relative">
+              <div className="overflow-x-auto scrollbar-hide">
+                <div className="flex space-x-6 pb-4" style={{ width: "max-content" }}>
+                  {/* Episode 1 */}
+                  <div className="flex-shrink-0 w-80 bg-green-50 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow duration-300">
+                    <div className="flex items-center mb-4">
+                      <div className="w-16 h-16 bg-green-600 rounded-lg flex items-center justify-center mr-4">
+                        <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                          <path d="M8 5v14l11-7z" />
+                        </svg>
+                      </div>
+                      <div>
+                        <h3 className="font-semibold text-gray-900 mb-1">Episode 1: Nutrition Fundamentals</h3>
+                        <p className="text-sm text-gray-600">45 min • Health & Wellness</p>
+                      </div>
+                    </div>
+                    <p className="text-gray-600 text-sm mb-4">
+                      Discover the building blocks of proper nutrition and how to create sustainable eating habits.
+                    </p>
+                    <div className="flex items-center justify-between">
+                      <button className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-full text-sm transition-colors duration-300">
+                        Play Episode
+                      </button>
+                      <span className="text-xs text-gray-500">Dec 15, 2024</span>
+                    </div>
+                  </div>
+
+                  {/* Episode 2 */}
+                  <div className="flex-shrink-0 w-80 bg-green-50 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow duration-300">
+                    <div className="flex items-center mb-4">
+                      <div className="w-16 h-16 bg-green-600 rounded-lg flex items-center justify-center mr-4">
+                        <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                          <path d="M8 5v14l11-7z" />
+                        </svg>
+                      </div>
+                      <div>
+                        <h3 className="font-semibold text-gray-900 mb-1">Episode 2: Plant-Based Power</h3>
+                        <p className="text-sm text-gray-600">38 min • Nutrition</p>
+                      </div>
+                    </div>
+                    <p className="text-gray-600 text-sm mb-4">
+                      Explore the benefits of plant-based eating and practical tips for incorporating more plants.
+                    </p>
+                    <div className="flex items-center justify-between">
+                      <button className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-full text-sm transition-colors duration-300">
+                        Play Episode
+                      </button>
+                      <span className="text-xs text-gray-500">Dec 8, 2024</span>
+                    </div>
+                  </div>
+
+                  {/* Episode 3 */}
+                  <div className="flex-shrink-0 w-80 bg-green-50 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow duration-300">
+                    <div className="flex items-center mb-4">
+                      <div className="w-16 h-16 bg-green-600 rounded-lg flex items-center justify-center mr-4">
+                        <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                          <path d="M8 5v14l11-7z" />
+                        </svg>
+                      </div>
+                      <div>
+                        <h3 className="font-semibold text-gray-900 mb-1">Episode 3: Mindful Eating</h3>
+                        <p className="text-sm text-gray-600">42 min • Wellness</p>
+                      </div>
+                    </div>
+                    <p className="text-gray-600 text-sm mb-4">
+                      Learn how to develop a healthier relationship with food through mindfulness practices.
+                    </p>
+                    <div className="flex items-center justify-between">
+                      <button className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-full text-sm transition-colors duration-300">
+                        Play Episode
+                      </button>
+                      <span className="text-xs text-gray-500">Dec 1, 2024</span>
+                    </div>
+                  </div>
+
+                  {/* Episode 4 */}
+                  <div className="flex-shrink-0 w-80 bg-green-50 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow duration-300">
+                    <div className="flex items-center mb-4">
+                      <div className="w-16 h-16 bg-green-600 rounded-lg flex items-center justify-center mr-4">
+                        <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                          <path d="M8 5v14l11-7z" />
+                        </svg>
+                      </div>
+                      <div>
+                        <h3 className="font-semibold text-gray-900 mb-1">Episode 4: Meal Prep Mastery</h3>
+                        <p className="text-sm text-gray-600">35 min • Practical Tips</p>
+                      </div>
+                    </div>
+                    <p className="text-gray-600 text-sm mb-4">
+                      Master the art of meal preparation to save time and maintain healthy eating habits.
+                    </p>
+                    <div className="flex items-center justify-between">
+                      <button className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-full text-sm transition-colors duration-300">
+                        Play Episode
+                      </button>
+                      <span className="text-xs text-gray-500">Nov 24, 2024</span>
+                    </div>
+                  </div>
+
+                  {/* Episode 5 */}
+                  <div className="flex-shrink-0 w-80 bg-green-50 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow duration-300">
+                    <div className="flex items-center mb-4">
+                      <div className="w-16 h-16 bg-green-600 rounded-lg flex items-center justify-center mr-4">
+                        <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                          <path d="M8 5v14l11-7z" />
+                        </svg>
+                      </div>
+                      <div>
+                        <h3 className="font-semibold text-gray-900 mb-1">Episode 5: Stress & Nutrition</h3>
+                        <p className="text-sm text-gray-600">40 min • Mental Health</p>
+                      </div>
+                    </div>
+                    <p className="text-gray-600 text-sm mb-4">
+                      Understanding the connection between stress, mental health, and nutritional choices.
+                    </p>
+                    <div className="flex items-center justify-between">
+                      <button className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-full text-sm transition-colors duration-300">
+                        Play Episode
+                      </button>
+                      <span className="text-xs text-gray-500">Nov 17, 2024</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Scroll indicators */}
+              <div className="flex justify-center mt-6 space-x-2">
+                <div className="w-2 h-2 bg-green-600 rounded-full"></div>
+                <div className="w-2 h-2 bg-gray-300 rounded-full"></div>
+                <div className="w-2 h-2 bg-gray-300 rounded-full"></div>
+              </div>
+            </div>
+
+            <div className="text-center mt-8">
+              <p className="text-gray-600 mb-4">Subscribe to never miss an episode</p>
+              <a
+                href="https://open.spotify.com/show/2E8oq25EKHAEscmPwstEvu?si=S9e8q9aiR_yq-sogzw4yvw"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center text-green-600 hover:text-green-700 font-medium transition-colors duration-300"
+              >
+                <svg className="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.42 1.56-.299.421-1.02.599-1.559.3z" />
+                </svg>
+                Follow on Spotify →
+              </a>
+            </div>
+          </motion.div>
         </div>
       </section>
 
