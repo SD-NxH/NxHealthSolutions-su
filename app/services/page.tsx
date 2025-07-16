@@ -238,6 +238,51 @@ export default function ServicesPage() {
         </div>
       </section>
 
+      {/* Personalized Meal and Grocery Planning Section */}
+      <section className="py-16 bg-white">
+        <div className="container px-4 md:px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="max-w-4xl mx-auto"
+          >
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-serif font-light text-gray-900 mb-4">
+                Personalized Meal & Grocery Planning
+              </h2>
+              <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+                Get customized meal plans and grocery lists tailored specifically to your dietary needs, preferences,
+                and health goals.
+              </p>
+            </div>
+
+            <div className="bg-green-50 rounded-2xl p-8">
+              <div className="text-center mb-8">
+                <h3 className="text-2xl font-medium text-gray-900 mb-4">Start Your Personalized Plan</h3>
+                <p className="text-gray-600 mb-6">
+                  Fill out our comprehensive form to receive meal plans and grocery lists designed just for you.
+                </p>
+              </div>
+
+              <div className="w-full max-w-4xl mx-auto">
+                <iframe
+                  src="https://docs.google.com/forms/d/e/1FAIpQLSd1OK3okwLmimjhJkZmKe61_6o8IJWR776qXT5tosAcnUjmww/viewform?embedded=true"
+                  width="100%"
+                  height="800"
+                  frameBorder="0"
+                  marginHeight={0}
+                  marginWidth={0}
+                  className="rounded-lg"
+                >
+                  Loading…
+                </iframe>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
       {/* Specialized Services Section */}
       <section ref={specializedServicesRef} className="py-16 bg-white" id="specialized-services">
         <div className="container px-4 md:px-6">
@@ -291,7 +336,10 @@ export default function ServicesPage() {
               </ul>
               <div className="text-center">
                 <Link href="/services/nutrition-planning">
-                  <Button variant="outline" className="border-green-600 text-green-600 hover:bg-green-50 rounded-full">
+                  <Button
+                    variant="outline"
+                    className="border-green-600 text-green-600 hover:bg-green-50 rounded-full bg-transparent"
+                  >
                     Purchase
                   </Button>
                 </Link>
@@ -349,7 +397,10 @@ export default function ServicesPage() {
               </ul>
               <div className="text-center">
                 <Link href="/get-started">
-                  <Button variant="outline" className="border-green-600 text-green-600 hover:bg-green-50 rounded-full">
+                  <Button
+                    variant="outline"
+                    className="border-green-600 text-green-600 hover:bg-green-50 rounded-full bg-transparent"
+                  >
                     Purchase
                   </Button>
                 </Link>
@@ -393,7 +444,10 @@ export default function ServicesPage() {
               </ul>
               <div className="text-center">
                 <Link href="/get-started">
-                  <Button variant="outline" className="border-green-600 text-green-600 hover:bg-green-50 rounded-full">
+                  <Button
+                    variant="outline"
+                    className="border-green-600 text-green-600 hover:bg-green-50 rounded-full bg-transparent"
+                  >
                     Purchase
                   </Button>
                 </Link>
@@ -436,7 +490,10 @@ export default function ServicesPage() {
               </ul>
               <div className="text-center">
                 <Link href="/get-started">
-                  <Button variant="outline" className="border-green-600 text-green-600 hover:bg-green-50 rounded-full">
+                  <Button
+                    variant="outline"
+                    className="border-green-600 text-green-600 hover:bg-green-50 rounded-full bg-transparent"
+                  >
                     Purchase
                   </Button>
                 </Link>
@@ -499,7 +556,10 @@ export default function ServicesPage() {
               </ul>
               <div className="text-center">
                 <Link href="/get-started">
-                  <Button variant="outline" className="border-green-600 text-green-600 hover:bg-green-50 rounded-full">
+                  <Button
+                    variant="outline"
+                    className="border-green-600 text-green-600 hover:bg-green-50 rounded-full bg-transparent"
+                  >
                     Get Started
                   </Button>
                 </Link>
@@ -557,7 +617,10 @@ export default function ServicesPage() {
               </ul>
               <div className="text-center">
                 <Link href="/get-started">
-                  <Button variant="outline" className="border-green-600 text-green-600 hover:bg-green-50 rounded-full">
+                  <Button
+                    variant="outline"
+                    className="border-green-600 text-green-600 hover:bg-green-50 rounded-full bg-transparent"
+                  >
                     Get Started
                   </Button>
                 </Link>
@@ -600,7 +663,10 @@ export default function ServicesPage() {
               </ul>
               <div className="text-center">
                 <Link href="/get-started">
-                  <Button variant="outline" className="border-green-600 text-green-600 hover:bg-green-50 rounded-full">
+                  <Button
+                    variant="outline"
+                    className="border-green-600 text-green-600 hover:bg-green-50 rounded-full bg-transparent"
+                  >
                     Get Started
                   </Button>
                 </Link>
@@ -912,7 +978,7 @@ export default function ServicesPage() {
             <Link href="/contact">
               <Button
                 variant="outline"
-                className="border-white text-white hover:bg-green-700 rounded-full px-8 py-6 text-lg"
+                className="border-white text-white hover:bg-green-700 rounded-full px-8 py-6 text-lg bg-transparent"
               >
                 Contact Us
               </Button>
