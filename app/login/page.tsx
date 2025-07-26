@@ -176,6 +176,21 @@ export default function LoginPage() {
                   )}
                 </Button>
               </form>
+              <Button
+                type="submit"
+                className="w-full bg-green-600 hover:bg-green-700 text-white mt-6"
+                disabled={isLoading}
+                onClick={form.handleSubmit(onSubmit)}
+              >
+                {isLoading ? (
+                  <div className="flex items-center justify-center">
+                    <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
+                    Signing in...
+                  </div>
+                ) : (
+                  "Sign In"
+                )}
+              </Button>
             </Form>
 
             <div className="mt-6">
@@ -189,7 +204,7 @@ export default function LoginPage() {
               </div>
 
               <div className="mt-6 grid grid-cols-2 gap-4">
-                <Button variant="outline" className="w-full">
+                <Button variant="outline" className="w-full bg-transparent">
                   <svg
                     className="mr-2 h-4 w-4"
                     xmlns="http://www.w3.org/2000/svg"
@@ -204,7 +219,7 @@ export default function LoginPage() {
                   </svg>
                   Facebook
                 </Button>
-                <Button variant="outline" className="w-full">
+                <Button variant="outline" className="w-full bg-transparent">
                   <svg
                     className="mr-2 h-4 w-4"
                     xmlns="http://www.w3.org/2000/svg"

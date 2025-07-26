@@ -594,7 +594,21 @@ export default function ResourcesPage() {
                 <Image src="/assessment-image.jpeg" alt="Health assessment form" fill className="object-cover" />
               </div>
               <p className="text-gray-600 text-center">Our assessment takes approximately 5-10 minutes to complete</p>
+              <div className="text-center mt-4">
+                <Link href="/get-started">
+                  <Button className="bg-green-600 hover:bg-green-700 text-white rounded-full px-6 py-3">
+                    Get Started Now <ArrowRight className="ml-2 h-4 w-4" />
+                  </Button>
+                </Link>
+              </div>
             </motion.div>
+          </div>
+          <div className="text-center mt-8">
+            <Link href="/get-started">
+              <Button className="bg-green-600 hover:bg-green-700 text-white rounded-full px-8 py-6 text-lg">
+                Get Started Now <ArrowRight className="ml-2 h-5 w-5" />
+              </Button>
+            </Link>
           </div>
         </div>
       </section>

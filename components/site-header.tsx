@@ -10,7 +10,7 @@ import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import ShoppingCartButton from "@/components/shopping-cart"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
-import { Menu } from "lucide-react"
+import { Menu, User } from "lucide-react"
 
 export default function SiteHeader() {
   const pathname = usePathname()
@@ -92,6 +92,16 @@ export default function SiteHeader() {
             >
               Contact
             </Link>
+            <Link
+              href="/login"
+              className={cn(
+                "text-sm font-medium transition-colors hover:text-green-600 flex items-center gap-1",
+                pathname === "/login" ? "text-green-600" : "text-gray-500",
+              )}
+            >
+              <User className="h-4 w-4" />
+              <span className="sr-only">Profile</span>
+            </Link>
           </nav>
           <div className="flex items-center space-x-2">
             <ShoppingCartButton />
@@ -157,6 +167,16 @@ export default function SiteHeader() {
                       )}
                     >
                       Contact
+                    </button>
+                    <button
+                      onClick={() => handleMenuLinkClick("/login")}
+                      className={cn(
+                        "px-4 py-2 rounded-md hover:bg-gray-100 flex items-center gap-2",
+                        pathname === "/login" ? "text-green-600" : "text-gray-500",
+                      )}
+                    >
+                      <User className="h-4 w-4" />
+                      Profile
                     </button>
 
                     {/* Get Started Button - Mobile */}

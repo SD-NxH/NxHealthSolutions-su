@@ -349,8 +349,16 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       )
     }
 
-    // Default fallback - return null if no conditions match
-    return null
+    // Default button implementation
+    return (
+      <button
+        className={cn(buttonVariants({ variant, size, className }), "!transition-none !duration-0")}
+        ref={ref}
+        {...props}
+      >
+        {children}
+      </button>
+    )
   },
 )
 Button.displayName = "Button"
