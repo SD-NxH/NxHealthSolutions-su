@@ -82,7 +82,7 @@ export const metadata = {
       { url: "/icons/apple-touch-icon-180x180.png", sizes: "180x180" },
     ],
   },
-    generator: 'v0.dev'
+    generator: 'v0.app'
 }
 
 // Update the RootLayout function to wrap the content with CartProvider

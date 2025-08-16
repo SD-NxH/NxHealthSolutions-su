@@ -119,7 +119,6 @@ export default function Home() {
         </div>
       </motion.section>
 
-      {/* Rest of the component remains unchanged */}
       {/* Featured Articles Section */}
       <section ref={featuredRef} className="py-20 bg-white">
         <div className="container px-4 md:px-6 mx-auto">
@@ -239,7 +238,7 @@ export default function Home() {
           <div className="text-center mt-12">
             <Button
               variant="outline"
-              className="border-green-600 text-green-600 hover:bg-green-50 rounded-full btn-articles"
+              className="border-green-600 text-green-600 hover:bg-green-50 rounded-full btn-articles bg-transparent"
               href="/resources/articles"
             >
               View All Articles
@@ -277,8 +276,6 @@ export default function Home() {
               <p className="text-gray-600">
                 Holistic approaches to improve your overall health and wellbeing through personalized wellness plans.
               </p>
-              {/* Now update the links to point to specific sections on the services page */}
-
               {/* For the Health & Wellness service */}
               <Link href="/health-wellness" className="mt-6 inline-flex items-center text-green-600 font-medium">
                 Explore <ChevronRight className="ml-1 w-4 h-4" />
@@ -371,6 +368,34 @@ export default function Home() {
               </div>
             </motion.div>
           </div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            animate={isAboutInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            className="mt-16 bg-gradient-to-r from-green-50 to-blue-50 rounded-2xl p-8 text-center max-w-2xl mx-auto"
+          >
+            <h3 className="text-2xl font-serif font-medium text-gray-900 mb-3">Stay In The Know About NxHealth</h3>
+            <p className="text-gray-600 mb-6">
+              Get exclusive health insights, wellness tips, and be the first to know about our latest resources and
+              special offers.
+            </p>
+            <form action="https://formsubmit.co/nxhealthsolutions.org" method="POST" className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
+              <input
+                type="email"
+                name="email"
+                placeholder="Enter your email address"
+                required
+                className="flex-1 px-4 py-3 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
+              />
+              <Button
+                type="submit"
+                className="bg-green-600 hover:bg-green-700 text-white rounded-full px-6 py-3 whitespace-nowrap"
+              >
+                Subscribe
+              </Button>
+            </form>
+          </motion.div>
         </div>
       </section>
 
@@ -408,7 +433,7 @@ export default function Home() {
             <Link href="/contact">
               <Button
                 variant="outline"
-                className="border-white text-white hover:bg-green-700 rounded-full px-8 py-6 text-lg"
+                className="border-white text-white hover:bg-green-700 rounded-full px-8 py-6 text-lg bg-transparent"
               >
                 Contact Us
               </Button>

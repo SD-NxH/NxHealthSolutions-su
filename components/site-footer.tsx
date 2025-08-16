@@ -87,6 +87,11 @@ export default function SiteFooter() {
                   Wellness Programs
                 </Link>
               </li>
+              <li>
+                <Link href="/services/other-services" className="text-gray-600 hover:text-green-600">
+                  Other Services
+                </Link>
+              </li>
             </ul>
           </div>
 
