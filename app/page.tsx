@@ -380,7 +380,7 @@ export default function Home() {
               Get exclusive health insights, wellness tips, and be the first to know about our latest resources and
               special offers.
             </p>
-            <form action="https://formsubmit.co/nxhealthsolutions.org" method="POST" className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
+            <form action="https://formsubmit.co/nxhealthsolutions@gmail.com" method="POST" className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
               <input
                 type="email"
                 name="email"
