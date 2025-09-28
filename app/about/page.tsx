@@ -338,8 +338,8 @@ export default function AboutPage() {
             >
               <div className="relative h-80 w-full overflow-hidden">
                 <Image
-                  src="/placeholder.svg?height=320&width=320&text=Lena+Harris"
-                  alt="Lena Harris, Health Coach"
+                  src="/lena-profile-photo.jpg"
+                  alt="Lena Harris 'The Light', Health Coach holding fresh fruit"
                   fill
                   className="object-cover"
                   priority

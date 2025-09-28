@@ -75,15 +75,6 @@ export default function SiteHeader() {
               Resources
             </Link>
             <Link
-              href="/shop"
-              className={cn(
-                "text-sm font-medium transition-colors hover:text-green-600",
-                pathname === "/shop" ? "text-green-600" : "text-gray-500",
-              )}
-            >
-              Shop
-            </Link>
-            <Link
               href="/contact"
               className={cn(
                 "text-sm font-medium transition-colors hover:text-green-600",
@@ -149,15 +140,6 @@ export default function SiteHeader() {
                       )}
                     >
                       Resources
-                    </button>
-                    <button
-                      onClick={() => handleMenuLinkClick("/shop")}
-                      className={cn(
-                        "px-4 py-2 rounded-md hover:bg-gray-100 block text-left",
-                        pathname === "/shop" ? "text-green-600" : "text-gray-500",
-                      )}
-                    >
-                      Shop
                     </button>
                     <button
                       onClick={() => handleMenuLinkClick("/contact")}

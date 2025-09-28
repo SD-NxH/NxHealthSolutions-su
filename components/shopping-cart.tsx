@@ -1,7 +1,6 @@
 "use client"
 
 import { useState } from "react"
-import { ShoppingCart } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet"
 import { useCart } from "@/context/cart-context"
@@ -18,7 +17,6 @@ export default function ShoppingCartButton() {
     <Sheet open={isOpen} onOpenChange={setIsOpen}>
       <SheetTrigger asChild>
         <Button variant="ghost" size="icon" className="relative">
-          <ShoppingCart className="h-5 w-5" />
           {itemCount > 0 && (
             <span className="absolute -top-1 -right-1 bg-green-600 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
               {itemCount}
@@ -34,7 +32,6 @@ export default function ShoppingCartButton() {
 
         {items.length === 0 ? (
           <div className="flex flex-col items-center justify-center h-[70vh]">
-            <ShoppingCart className="h-16 w-16 text-gray-300 mb-4" />
             <p className="text-gray-500 mb-6">Your cart is empty</p>
             <Link href="/shop" onClick={() => setIsOpen(false)}>
               <Button className="bg-green-600 hover:bg-green-700 text-white rounded-full">Browse Menu</Button>

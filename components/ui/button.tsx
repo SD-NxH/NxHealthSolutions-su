@@ -3,7 +3,7 @@
 import * as React from "react"
 import { Slot } from "@radix-ui/react-slot"
 import { cva, type VariantProps } from "class-variance-authority"
-import { useRouter } from "next/navigation"
+import { X } from "lucide-react"
 
 import { cn } from "@/lib/utils"
 
@@ -54,7 +54,7 @@ export interface ButtonProps
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   ({ className, variant, size, asChild = false, href, children = "Get Started", ...props }, ref) => {
-    const router = useRouter()
+    const [showPopup, setShowPopup] = React.useState(false)
 
     // Check if this button should be hidden
     if (props["data-hidden"] === "true" || props["data-hide-button"] === "true") {
@@ -74,290 +74,113 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       )
     }
 
-    // If href is provided, render as a standard button (not Link)
-    // External components should wrap with Link explicitly
-    if (href !== undefined) {
-      // Special case for "Learn More About Dark Chocolate" button - override any href
-      if (
-        children?.toString().toLowerCase().includes("learn more about dark chocolate") ||
-        children?.toString().toLowerCase().includes("dark chocolate") ||
-        href.includes("dark-chocolate") ||
-        href.includes("chocolate")
-      ) {
-        return (
-          <button
-            className={cn(
-              buttonVariants({ variant: "chocolate", size, className }),
-              "!transition-none !duration-0",
-              "nxhealth-button dark-chocolate-button",
-            )}
-            ref={ref}
-            onClick={(e) => {
-              e.preventDefault()
-              e.stopPropagation()
-              router.push("/resources/foods/dark-chocolate")
-            }}
-            {...props}
-          >
-            {children}
-          </button>
-        )
-      }
+    const handleShowPopup = () => {
+      setShowPopup(true)
+    }
 
-      // Special case for Dulse button - override any href
-      if (
-        children?.toString().toLowerCase().includes("dulse") ||
-        href.includes("dulse") ||
-        variant === "dulse" ||
-        className?.includes("dulse")
-      ) {
-        return (
-          <button
-            className={cn(
-              buttonVariants({ variant: "dulse", size, className }),
-              "!transition-none !duration-0",
-              "nxhealth-button dulse-button",
-            )}
-            ref={ref}
-            onClick={(e) => {
-              e.preventDefault()
-              e.stopPropagation()
-              router.push("/resources/foods/dulse")
-            }}
-            {...props}
-          >
-            {children}
-          </button>
-        )
-      }
-
-      // Standard href button
-      return (
+    // Default button implementation - shows PDF popup preview
+    return (
+      <>
         <button
           className={cn(buttonVariants({ variant, size, className }), "!transition-none !duration-0")}
           ref={ref}
           onClick={(e) => {
             e.preventDefault()
-            router.push(href)
+            handleShowPopup()
           }}
           {...props}
         >
           {children}
         </button>
-      )
-    }
 
-    // Special case: if this is the coconut-themed button, navigate to coconut page
-    if (variant === "coconut" || className?.includes("coconut")) {
-      return (
-        <button
-          className={cn(
-            buttonVariants({ variant: "coconut", size, className }),
-            "!transition-none !duration-0",
-            "nxhealth-button coconut-button",
-          )}
-          ref={ref}
-          onClick={(e) => {
-            if (props.type === "submit") {
-              return
-            }
-            e.preventDefault()
-            router.push("/resources/foods/coconut")
-          }}
-          {...props}
-        >
-          {children}
-        </button>
-      )
-    }
+        {showPopup && (
+          <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+            <div className="bg-white rounded-lg max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+              <div className="sticky top-0 bg-white border-b p-4 flex justify-between items-center">
+                <h2 className="text-xl font-bold text-green-800">Transform Your Life in 30 Days</h2>
+                <button onClick={() => setShowPopup(false)} className="p-1 hover:bg-gray-100 rounded">
+                  <X className="h-5 w-5" />
+                </button>
+              </div>
 
-    // Special case: if this is the cinnamon-themed button, navigate to cinnamon page
-    if (variant === "cinnamon" || className?.includes("cinnamon")) {
-      return (
-        <button
-          className={cn(
-            buttonVariants({ variant: "cinnamon", size, className }),
-            "!transition-none !duration-0",
-            "nxhealth-button cinnamon-button",
-          )}
-          ref={ref}
-          onClick={(e) => {
-            if (props.type === "submit") {
-              return
-            }
-            e.preventDefault()
-            router.push("/resources/foods/cinnamon")
-          }}
-          {...props}
-        >
-          {children}
-        </button>
-      )
-    }
+              <div className="p-6 space-y-6">
+                <div className="text-center">
+                  <h1 className="text-2xl font-bold text-green-800 mb-2">Transform Your Life in 30 Days</h1>
+                  <p className="text-lg text-green-600 mb-1">NXHEALTH SOLUTIONS</p>
+                  <p className="text-md text-gray-600">Eric Johnson M.Sc</p>
+                  <p className="text-sm text-gray-500 mt-2">M.S. Health Science & Nutrition • B.S. Exercise Science</p>
+                  <p className="text-sm text-gray-500">Food Scientist • Nutritionist • Health Fitness Specialist</p>
+                </div>
 
-    // Special case: if this is the collard-greens-themed button, navigate to collard greens page
-    if (variant === "collardGreens" || className?.includes("collardGreens")) {
-      return (
-        <button
-          className={cn(
-            buttonVariants({ variant: "collardGreens", size, className }),
-            "!transition-none !duration-0",
-            "nxhealth-button collard-greens-button",
-          )}
-          ref={ref}
-          onClick={(e) => {
-            if (props.type === "submit") {
-              return
-            }
-            e.preventDefault()
-            router.push("/resources/foods/collard-greens")
-          }}
-          {...props}
-        >
-          {children}
-        </button>
-      )
-    }
+                <div className="border-t pt-4">
+                  <h3 className="text-lg font-semibold text-green-700 mb-3">Getting Started - 3 Essential Promises</h3>
+                  <div className="space-y-4">
+                    <div className="bg-green-50 p-4 rounded-lg">
+                      <h4 className="font-semibold text-green-800">1. Don't Make Excuses</h4>
+                      <p className="text-sm text-gray-700 mt-1">
+                        Change does not have to be bad. You decided to make a change, you owe it to yourself to follow
+                        through.
+                      </p>
+                    </div>
+                    <div className="bg-green-50 p-4 rounded-lg">
+                      <h4 className="font-semibold text-green-800">2. Be Nice To Yourself</h4>
+                      <p className="text-sm text-gray-700 mt-1">
+                        Distinguish discipline from self-torture. Celebrate every positive step, no matter how small.
+                        It's about progress, not perfection.
+                      </p>
+                    </div>
+                    <div className="bg-green-50 p-4 rounded-lg">
+                      <h4 className="font-semibold text-green-800">3. Get Uncomfortable</h4>
+                      <p className="text-sm text-gray-700 mt-1">
+                        Embrace discomfort—it's where growth happens. In discomfort, you discover your true potential.
+                      </p>
+                    </div>
+                  </div>
+                </div>
 
-    // Special case: if this is the cranberries-themed button, navigate to cranberries page
-    if (variant === "cranberries" || className?.includes("cranberries")) {
-      return (
-        <button
-          className={cn(
-            buttonVariants({ variant: "cranberries", size, className }),
-            "!transition-none !duration-0",
-            "nxhealth-button cranberries-button",
-          )}
-          ref={ref}
-          onClick={(e) => {
-            if (props.type === "submit") {
-              return
-            }
-            e.preventDefault()
-            router.push("/resources/foods/cranberries")
-          }}
-          {...props}
-        >
-          {children}
-        </button>
-      )
-    }
+                <div className="border-t pt-4">
+                  <h3 className="text-lg font-semibold text-green-700 mb-3">Sample Days Preview</h3>
+                  <div className="space-y-3">
+                    <div className="bg-gray-50 p-3 rounded">
+                      <h4 className="font-medium text-green-700">Day 1: Mindful Mornings</h4>
+                      <p className="text-sm text-gray-600">Start your day with gratitude and awaken your body & mind</p>
+                    </div>
+                    <div className="bg-gray-50 p-3 rounded">
+                      <h4 className="font-medium text-green-700">Day 3: Plant-Powered</h4>
+                      <p className="text-sm text-gray-600">Discover the health wonders of plant-based nutrition</p>
+                    </div>
+                    <div className="bg-gray-50 p-3 rounded">
+                      <h4 className="font-medium text-green-700">Day 10: Positivity is Powerful</h4>
+                      <p className="text-sm text-gray-600">Cultivate a positive mindset for enhanced well-being</p>
+                    </div>
+                  </div>
+                </div>
 
-    // Special case: if this is the cucumbers-themed button, navigate to cucumbers page
-    if (variant === "cucumber" || variant === "cucumbers" || className?.includes("cucumber")) {
-      return (
-        <button
-          className={cn(
-            buttonVariants({ variant: "cucumbers", size, className }),
-            "!transition-none !duration-0",
-            "nxhealth-button cucumbers-button",
-          )}
-          ref={ref}
-          onClick={(e) => {
-            if (props.type === "submit") {
-              return
-            }
-            e.preventDefault()
-            router.push("/resources/foods/cucumber")
-          }}
-          {...props}
-        >
-          {children}
-        </button>
-      )
-    }
-
-    // Special case: if this is the cumin-themed button, navigate to cumin page
-    if (variant === "cumin" || className?.includes("cumin")) {
-      return (
-        <button
-          className={cn(
-            buttonVariants({ variant: "cumin", size, className }),
-            "!transition-none !duration-0",
-            "nxhealth-button cumin-button",
-          )}
-          ref={ref}
-          onClick={(e) => {
-            if (props.type === "submit") {
-              return
-            }
-            e.preventDefault()
-            router.push("/resources/foods/cumin")
-          }}
-          {...props}
-        >
-          {children}
-        </button>
-      )
-    }
-
-    // Special case: if this is the dark-chocolate-themed button, navigate to dark chocolate page
-    if (
-      variant === "chocolate" ||
-      className?.includes("dark-chocolate") ||
-      props["data-chocolate"] === "true" ||
-      children?.toString().toLowerCase().includes("learn more about dark chocolate")
-    ) {
-      return (
-        <button
-          className={cn(
-            buttonVariants({ variant: "chocolate", size, className }),
-            "!transition-none !duration-0",
-            "nxhealth-button dark-chocolate-button",
-          )}
-          ref={ref}
-          onClick={(e) => {
-            if (props.type === "submit") {
-              return
-            }
-            e.preventDefault()
-            router.push("/resources/foods/dark-chocolate")
-          }}
-          {...props}
-        >
-          {children}
-        </button>
-      )
-    }
-
-    // Special case: if this is the dulse-themed button, navigate to dulse page
-    if (
-      variant === "dulse" ||
-      className?.includes("dulse") ||
-      props["data-dulse"] === "true" ||
-      children?.toString().toLowerCase().includes("dulse")
-    ) {
-      return (
-        <button
-          className={cn(
-            buttonVariants({ variant: "dulse", size, className }),
-            "!transition-none !duration-0",
-            "nxhealth-button dulse-button",
-          )}
-          ref={ref}
-          onClick={(e) => {
-            if (props.type === "submit") {
-              return
-            }
-            e.preventDefault()
-            router.push("/resources/foods/dulse")
-          }}
-          {...props}
-        >
-          {children}
-        </button>
-      )
-    }
-
-    // Default button implementation
-    return (
-      <button
-        className={cn(buttonVariants({ variant, size, className }), "!transition-none !duration-0")}
-        ref={ref}
-        {...props}
-      >
-        {children}
-      </button>
+                <div className="border-t pt-4 text-center">
+                  <p className="text-sm text-gray-600 mb-4">
+                    This comprehensive 30-day guide includes daily practices, challenges, and insights to transform your
+                    health and well-being.
+                  </p>
+                  <button
+                    onClick={() => {
+                      const link = document.createElement("a")
+                      link.href = "/transform-your-life-30-days.pdf"
+                      link.download = "Transform-Your-Life-30-Days-NxHealth.pdf"
+                      document.body.appendChild(link)
+                      link.click()
+                      document.body.removeChild(link)
+                      setShowPopup(false)
+                    }}
+                    className="bg-green-600 hover:bg-green-700 text-white px-6 py-2 rounded-lg font-medium"
+                  >
+                    Download Full Guide
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+      </>
     )
   },
 )

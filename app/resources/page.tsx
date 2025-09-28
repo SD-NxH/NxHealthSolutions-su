@@ -1107,16 +1107,7 @@ export default function ResourcesPage() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 1.2 }}
                 className="mt-6 pt-6 border-t border-green-200"
-              >
-                <a
-                  href="https://buy.stripe.com/00wfZh1Bu4rd3rygzG9oc0H"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-block bg-green-600 hover:bg-green-700 text-white rounded-full px-8 py-3 text-lg font-medium transition-colors duration-300"
-                >
-                  Get Your Copy
-                </a>
-              </motion.div>
+              ></motion.div>
             </motion.div>
           </div>
         </div>

@@ -15,29 +15,38 @@ if ("serviceWorker" in navigator) {
 }
 
 // Add to home screen prompt
-let deferredPrompt
-const addBtn = document.createElement("button")
-addBtn.style.display = "none"
+if (!window.deferredPrompt) {
+  window.deferredPrompt = null
+}
+
+if (!window.addBtn) {
+  window.addBtn = document.createElement("button")
+  window.addBtn.style.display = "none"
+}
 
 window.addEventListener("beforeinstallprompt", (e) => {
   // Prevent Chrome 67 and earlier from automatically showing the prompt
   e.preventDefault()
   // Stash the event so it can be triggered later.
-  deferredPrompt = e
+  window.deferredPrompt = e
   // Update UI to notify the user they can add to home screen
-  addBtn.style.display = "block"
+  window.addBtn.style.display = "block"
 
-  addBtn.addEventListener("click", (e) => {
+  window.addBtn.removeEventListener("click", window.addBtnClickHandler)
+
+  window.addBtnClickHandler = (e) => {
     // Show the prompt
-    deferredPrompt.prompt()
+    window.deferredPrompt.prompt()
     // Wait for the user to respond to the prompt
-    deferredPrompt.userChoice.then((choiceResult) => {
+    window.deferredPrompt.userChoice.then((choiceResult) => {
       if (choiceResult.outcome === "accepted") {
         console.log("User accepted the A2HS prompt")
       } else {
         console.log("User dismissed the A2HS prompt")
       }
-      deferredPrompt = null
+      window.deferredPrompt = null
     })
-  })
+  }
+
+  window.addBtn.addEventListener("click", window.addBtnClickHandler)
 })
