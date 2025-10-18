@@ -3,11 +3,11 @@
 import React from "react"
 import Link from "next/link"
 import Image from "next/image"
-import { ArrowRight, Search } from "lucide-react"
+import { ArrowRight, Search, Filter } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Card, CardContent } from "@/components/ui/card"
-import { Separator } from "@/components/ui/separator"
+import { Badge } from "@/components/ui/badge"
 import { motion } from "framer-motion"
 
 const articles = [
@@ -77,10 +77,6 @@ const articles = [
     readTime: "7 min read",
     url: "/resources/articles/understanding-caloric-needs",
   },
-]
-
-// More articles can be added here
-const additionalArticles = [
   {
     id: "seasonal-eating",
     title: "Seasonal Eating: Why It Matters",
@@ -106,7 +102,7 @@ const additionalArticles = [
     id: "gut-health",
     title: "The Gut-Brain Connection: How Your Diet Affects Your Mood",
     description: "Understand the fascinating relationship between your gut microbiome and your mental wellbeing.",
-    image: "/placeholder.svg?key=w839x",
+    image: "/gut-health-microbiome.jpg",
     category: "Health",
     date: "February 28, 2023",
     readTime: "9 min read",
@@ -199,18 +195,13 @@ const additionalArticles = [
   },
 ]
 
-// Combine all articles
-const allArticles = [...articles, ...additionalArticles]
-
-// Categories for filtering
-const categories = ["All", "Nutrition", "Wellness", "Health", "Lifestyle", "Fitness", "Recipes"]
+const categories = ["All", "Nutrition", "Health", "Wellness", "Lifestyle", "Fitness", "Recipes"]
 
 export default function ArticlesPage() {
   const [searchTerm, setSearchTerm] = React.useState("")
   const [selectedCategory, setSelectedCategory] = React.useState("All")
 
-  // Filter articles based on search term and category
-  const filteredArticles = allArticles.filter((article) => {
+  const filteredArticles = articles.filter((article) => {
     const matchesSearch =
       article.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
       article.description.toLowerCase().includes(searchTerm.toLowerCase())
@@ -219,132 +210,107 @@ export default function ArticlesPage() {
     return matchesSearch && matchesCategory
   })
 
+  const articleCount = filteredArticles.length
+
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-background">
       {/* Hero Section */}
-      <section className="bg-green-700 text-white py-16 md:py-24">
+      <section className="bg-primary text-primary-foreground py-20 md:py-28">
         <div className="container mx-auto px-4 md:px-6">
-          <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-3xl md:text-5xl font-serif font-light mb-6">NxHealth Articles</h1>
-            <p className="text-lg md:text-xl mb-8 text-green-100">
-              Discover insights, tips, and knowledge to support your health journey
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="max-w-3xl mx-auto text-center"
+          >
+            <h1 className="text-4xl md:text-6xl font-serif font-light mb-6 text-balance">Health & Wellness Articles</h1>
+            <p className="text-lg md:text-xl mb-10 text-primary-foreground/90 text-pretty">
+              Evidence-based insights, practical tips, and inspiring stories to support your journey to optimal health
             </p>
 
             {/* Search Bar */}
-            <div className="relative max-w-lg mx-auto">
-              <div className="flex">
+            <div className="relative max-w-2xl mx-auto">
+              <div className="relative">
+                <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
                 <Input
                   type="text"
-                  placeholder="Search articles..."
-                  className="w-full bg-white/10 backdrop-blur-sm border-green-600 text-white placeholder:text-green-200 rounded-l-full rounded-r-none pl-4 pr-10 focus:ring-green-500 focus:border-green-500"
+                  placeholder="Search articles by title or topic..."
+                  className="w-full pl-12 pr-4 py-6 rounded-full bg-background text-foreground border-border focus:ring-2 focus:ring-accent"
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                 />
-                <Button
-                  className="rounded-l-none rounded-r-full bg-green-800 hover:bg-green-900 px-5"
-                  onClick={() => console.log("Search for", searchTerm)}
-                >
-                  <Search className="h-5 w-5" />
-                </Button>
               </div>
             </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Category Filter Section */}
+      <section className="sticky top-0 z-20 bg-card border-b border-border shadow-sm">
+        <div className="container mx-auto px-4 md:px-6 py-4">
+          <div className="flex items-center gap-3 overflow-x-auto pb-2 scrollbar-hide">
+            <div className="flex items-center gap-2 text-muted-foreground whitespace-nowrap">
+              <Filter className="h-4 w-4" />
+              <span className="text-sm font-medium">Filter:</span>
+            </div>
+            <div className="flex gap-2">
+              {categories.map((category) => (
+                <Button
+                  key={category}
+                  variant={selectedCategory === category ? "default" : "outline"}
+                  size="sm"
+                  className="rounded-full whitespace-nowrap"
+                  onClick={() => setSelectedCategory(category)}
+                >
+                  {category}
+                </Button>
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Category Filter */}
-      <section className="py-6 border-b border-gray-200 bg-white sticky top-0 z-10 shadow-sm">
+      {/* Results Count */}
+      <section className="py-6 bg-muted/30">
         <div className="container mx-auto px-4 md:px-6">
-          <div className="flex overflow-x-auto pb-2 scrollbar-hide space-x-2">
-            {categories.map((category) => (
-              <Button
-                key={category}
-                variant={selectedCategory === category ? "default" : "outline"}
-                className={`rounded-full text-sm px-4 py-2 whitespace-nowrap ${
-                  selectedCategory === category
-                    ? "bg-green-600 hover:bg-green-700 text-white"
-                    : "border-green-600 text-green-700 hover:bg-green-50"
-                }`}
-                onClick={() => setSelectedCategory(category)}
-              >
-                {category}
-              </Button>
-            ))}
-          </div>
+          <p className="text-sm text-muted-foreground">
+            Showing <span className="font-semibold text-foreground">{articleCount}</span>{" "}
+            {articleCount === 1 ? "article" : "articles"}
+            {selectedCategory !== "All" && (
+              <>
+                {" "}
+                in <span className="font-semibold text-foreground">{selectedCategory}</span>
+              </>
+            )}
+          </p>
         </div>
       </section>
 
-      {/* Featured Articles */}
+      {/* Articles Grid */}
       <section className="py-12 md:py-16">
         <div className="container mx-auto px-4 md:px-6">
-          <h2 className="text-2xl md:text-3xl font-serif font-light text-gray-900 mb-8">Featured Articles</h2>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
-            {articles.map((article, index) => (
-              <motion.div
-                key={article.id}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-              >
-                <Card className="h-full overflow-hidden hover:shadow-lg transition-shadow duration-300">
-                  {article.id === "understanding-breast-cancer" ? (
-                    <div className="relative h-48 md:h-56 w-full bg-pink-400 flex items-center justify-center">
-                      <span className="text-white text-xl font-bold">Breast Cancer Awareness</span>
-                    </div>
-                  ) : (
-                    <div className="relative h-48 md:h-56 w-full">
-                      <Image
-                        src={article.image || "/placeholder.svg"}
-                        alt={article.title}
-                        fill
-                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                        priority={index < 3}
-                        className="object-cover"
-                      />
-                    </div>
-                  )}
-                  <CardContent className="p-6">
-                    <div className="flex items-center justify-between mb-2">
-                      <span className="text-xs font-semibold text-green-600 uppercase tracking-wider">
-                        {article.category}
-                      </span>
-                      <span className="text-xs text-gray-500">{article.readTime}</span>
-                    </div>
-                    <h3 className="text-xl font-serif font-medium text-gray-900 mb-3">{article.title}</h3>
-                    <p className="text-gray-600 mb-4 line-clamp-3">{article.description}</p>
-                    <Link href={article.url} className="inline-flex items-center text-green-600 font-medium">
-                      Read More <ArrowRight className="ml-2 h-4 w-4" />
-                    </Link>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <Separator className="max-w-5xl mx-auto" />
-
-      {/* All Articles */}
-      <section className="py-12 md:py-16 bg-white">
-        <div className="container mx-auto px-4 md:px-6">
-          <h2 className="text-2xl md:text-3xl font-serif font-light text-gray-900 mb-8">All Articles</h2>
-
           {filteredArticles.length === 0 ? (
-            <div className="text-center py-12">
-              <p className="text-xl text-gray-500">No articles found matching your search criteria.</p>
-              <Button
-                variant="outline"
-                className="mt-4 border-green-600 text-green-600"
-                onClick={() => {
-                  setSearchTerm("")
-                  setSelectedCategory("All")
-                }}
-              >
-                Clear Filters
-              </Button>
-            </div>
+            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="text-center py-16">
+              <div className="max-w-md mx-auto">
+                <div className="w-16 h-16 bg-muted rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Search className="h-8 w-8 text-muted-foreground" />
+                </div>
+                <h3 className="text-xl font-semibold text-foreground mb-2">No articles found</h3>
+                <p className="text-muted-foreground mb-6">
+                  We couldn't find any articles matching your search criteria. Try adjusting your filters or search
+                  term.
+                </p>
+                <Button
+                  variant="outline"
+                  onClick={() => {
+                    setSearchTerm("")
+                    setSelectedCategory("All")
+                  }}
+                >
+                  Clear All Filters
+                </Button>
+              </div>
+            </motion.div>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
               {filteredArticles.map((article, index) => (
@@ -352,54 +318,48 @@ export default function ArticlesPage() {
                   key={article.id}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  transition={{ duration: 0.4, delay: index * 0.05 }}
                 >
-                  <Card className="h-full hover:shadow-md transition-shadow duration-300">
-                    <div className="relative h-48 w-full">
-                      {article.id === "understanding-breast-cancer" ? (
-                        <div className="h-full w-full bg-pink-400 flex items-center justify-center">
-                          <span className="text-white text-xl font-bold">Breast Cancer Awareness</span>
-                        </div>
-                      ) : (
-                        <Image
-                          src={article.image || "/placeholder.svg"}
-                          alt={article.title}
-                          fill
-                          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                          loading="lazy"
-                          className="object-cover"
-                        />
-                      )}
-                    </div>
-                    <CardContent className="p-6">
-                      <div className="flex items-center justify-between mb-2">
-                        <span className="text-xs font-semibold text-green-600 uppercase tracking-wider">
-                          {article.category}
-                        </span>
-                        <span className="text-xs text-gray-500">{article.date}</span>
+                  <Link href={article.url} className="group block h-full">
+                    <Card className="h-full overflow-hidden hover:shadow-lg transition-all duration-300 border-border bg-card">
+                      <div className="relative h-56 w-full overflow-hidden bg-muted">
+                        {article.id === "understanding-breast-cancer" ? (
+                          <div className="h-full w-full bg-accent flex items-center justify-center">
+                            <span className="text-accent-foreground text-xl font-semibold">
+                              Breast Cancer Awareness
+                            </span>
+                          </div>
+                        ) : (
+                          <Image
+                            src={article.image || "/placeholder.svg"}
+                            alt={article.title}
+                            fill
+                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                            className="object-cover group-hover:scale-105 transition-transform duration-300"
+                          />
+                        )}
                       </div>
-                      <h3 className="text-lg font-serif font-medium text-gray-900 mb-3">{article.title}</h3>
-                      <p className="text-gray-600 mb-4 line-clamp-2">{article.description}</p>
-                      <Link
-                        href={
-                          article.id === "planted-fried-rice"
-                            ? "/resources/planted-fried-rice"
-                            : article.id === "tropical-green-smoothie"
-                              ? "/resources/tropical-green-smoothie"
-                              : article.id === "banana-buckwheat-muffins"
-                                ? "/resources/banana-buckwheat-muffins"
-                                : article.id === "vanilla-coconut-ice-cream"
-                                  ? "/resources/vanilla-coconut-ice-cream"
-                                  : article.id === "secret-eating-to-sobriety"
-                                    ? "/resources/articles/secret-eating-to-sobriety"
-                                    : article.url
-                        }
-                        className="inline-flex items-center text-green-600 font-medium text-sm"
-                      >
-                        Read Article <ArrowRight className="ml-1 h-3 w-3" />
-                      </Link>
-                    </CardContent>
-                  </Card>
+                      <CardContent className="p-6">
+                        <div className="flex items-center justify-between mb-3">
+                          <Badge variant="secondary" className="text-xs font-semibold">
+                            {article.category}
+                          </Badge>
+                          <span className="text-xs text-muted-foreground">{article.readTime}</span>
+                        </div>
+                        <h3 className="text-xl font-serif font-medium text-foreground mb-3 line-clamp-2 group-hover:text-primary transition-colors">
+                          {article.title}
+                        </h3>
+                        <p className="text-muted-foreground text-sm mb-4 line-clamp-3">{article.description}</p>
+                        <div className="flex items-center justify-between">
+                          <span className="text-xs text-muted-foreground">{article.date}</span>
+                          <div className="inline-flex items-center text-primary font-medium text-sm group-hover:gap-2 transition-all">
+                            Read Article
+                            <ArrowRight className="ml-1 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                          </div>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </Link>
                 </motion.div>
               ))}
             </div>
@@ -407,21 +367,32 @@ export default function ArticlesPage() {
         </div>
       </section>
 
-      {/* Newsletter Section */}
-      <section className="py-12 md:py-16 bg-green-50">
+      {/* Newsletter CTA */}
+      <section className="py-16 md:py-20 bg-secondary">
         <div className="container mx-auto px-4 md:px-6">
-          <div className="max-w-2xl mx-auto text-center">
-            <h2 className="text-2xl md:text-3xl font-serif font-light text-gray-900 mb-4">
-              Stay Updated with Our Latest Articles
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="max-w-2xl mx-auto text-center"
+          >
+            <h2 className="text-3xl md:text-4xl font-serif font-light text-secondary-foreground mb-4">
+              Never Miss an Article
             </h2>
-            <p className="text-gray-600 mb-6">
-              Subscribe to our newsletter to receive new articles, tips, and exclusive content directly in your inbox.
+            <p className="text-secondary-foreground/80 mb-8 text-pretty">
+              Get the latest health insights, recipes, and wellness tips delivered straight to your inbox every week.
             </p>
-            <div className="flex flex-col sm:flex-row gap-2 max-w-md mx-auto">
-              <Input type="email" placeholder="Your email address" className="rounded-full px-4 flex-1" />
-              <Button className="bg-green-600 hover:bg-green-700 text-white rounded-full">Subscribe</Button>
+            <div className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
+              <Input type="email" placeholder="Enter your email" className="rounded-full px-6 flex-1 bg-background" />
+              <Button size="lg" className="rounded-full px-8 bg-primary hover:bg-primary/90">
+                Subscribe
+              </Button>
             </div>
-          </div>
+            <p className="text-xs text-secondary-foreground/60 mt-4">
+              Join 5,000+ health enthusiasts. Unsubscribe anytime.
+            </p>
+          </motion.div>
         </div>
       </section>
     </div>

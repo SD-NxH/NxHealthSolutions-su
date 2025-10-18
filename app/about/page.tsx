@@ -311,7 +311,7 @@ export default function AboutPage() {
             >
               <div className="relative h-80 w-full overflow-hidden">
                 <Image
-                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/jasmine_profile%20photo-JiCD0gr2ealUo12h1DSfZAWBK15v8R.jpeg"
+                  src="/images/design-mode/jasmine_profile%20photo.jpeg"
                   alt="Jasmine M. Johnson, Holistic Health Practitioner"
                   fill
                   className="object-cover"
@@ -382,6 +382,36 @@ export default function AboutPage() {
                   the body on a cellular level! Our bodies are designed by God to heal itself given the necessary
                   nutrients, I believe that when the body is out of alignment with God physically and spiritually we
                   experience dis-ease!
+                </p>
+              </div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 40 }}
+              animate={isTeamInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.8, delay: 0.5 }}
+              className="bg-white rounded-xl overflow-hidden shadow-sm max-w-sm"
+            >
+              <div className="relative h-80 w-full overflow-hidden">
+                <Image
+                  src="/team/cintya-campos.jpg"
+                  alt="Cintya Campos M.S., Nutritious Meals Specialist"
+                  fill
+                  className="object-cover"
+                  priority
+                />
+              </div>
+              <div className="p-6 text-center">
+                <h3 className="text-xl font-medium text-gray-900 mb-1">Cintya Campos M.S.</h3>
+                <p className="text-green-600 mb-3">Nutritious Meals Specialist </p>
+                <p className="text-gray-600 text-sm">
+                  With over a decade of experience in the food industry, Cintya Campos has dedicated her career to
+                  creating delicious and nutritious meals. Inspired by her son, who is a dedicated army servicemember
+                  and a passionate advocate for healthy living, Cintya embarked on her meal prep journey to help others
+                  achieve their health and wellness goals. Despite facing her own health challenges, including lupus and
+                  heart conditions, Cintya firmly believes that proper nutrition and regular exercise are key to a
+                  healthy lifestyle. Her passion for wholesome food and dedication to helping others shines through in
+                  every meal she prepares.
                 </p>
               </div>
             </motion.div>

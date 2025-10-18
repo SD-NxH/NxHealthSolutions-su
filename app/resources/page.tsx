@@ -1091,7 +1091,10 @@ export default function ResourcesPage() {
                 transition={{ duration: 0.6, delay: 1 }}
                 className="flex flex-col sm:flex-row gap-4"
               >
-                <Button className="bg-green-600 hover:bg-green-700 text-white rounded-full px-8 py-6 text-lg font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
+                <Button
+                  variant="pdfDownload"
+                  className="bg-green-600 hover:bg-green-700 text-white rounded-full px-8 py-6 text-lg font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+                >
                   Get Your Copy Now
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>

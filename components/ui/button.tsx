@@ -19,11 +19,12 @@ const buttonVariants = cva(
         secondary: "bg-secondary text-secondary-foreground hover:bg-secondary hover:text-secondary-foreground",
         ghost: "hover:bg-transparent hover:text-inherit",
         link: "text-primary underline-offset-4 hover:text-primary",
+        pdfDownload: "bg-primary text-primary-foreground hover:bg-primary hover:text-primary-foreground",
         chocolate: "bg-amber-950 hover:bg-amber-900 text-amber-50 hover:text-amber-100 border-amber-800",
         dulse: "bg-red-900 hover:bg-red-800 text-red-50 hover:text-red-100 border-red-950",
         carrot: "bg-orange-600 hover:bg-orange-700 text-white hover:text-white border-orange-700",
         banana: "bg-yellow-400 hover:bg-yellow-500 text-yellow-900 hover:text-yellow-950 border-yellow-500",
-        beetroot: "bg-purple-900 hover:bg-purple-950 text-pink-50 hover:text-pink-100 border-purple-800",
+        beetroot: "bg-purple-900 hover:bg-purple-900 text-pink-50 hover:text-pink-100 border-purple-800",
         cinnamon: "bg-amber-800 hover:bg-amber-900 text-amber-50 hover:text-amber-100 border-amber-900",
         coconut: "bg-amber-600 hover:bg-amber-700 text-amber-50 hover:text-amber-100 border-amber-700",
         collardGreens: "bg-green-700 hover:bg-green-800 text-green-50 hover:text-green-100 border-green-800",
@@ -50,10 +51,11 @@ export interface ButtonProps
     VariantProps<typeof buttonVariants> {
   asChild?: boolean
   href?: string
+  article?: string // Added article attribute for navigation to articles page
 }
 
-const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant, size, asChild = false, href, children = "Get Started", ...props }, ref) => {
+const Button = React.forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonProps>(
+  ({ className, variant, size, asChild = false, href, children = "Get Started", article, ...props }, ref) => {
     const [showPopup, setShowPopup] = React.useState(false)
 
     // Check if this button should be hidden
@@ -74,20 +76,39 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       )
     }
 
-    const handleShowPopup = () => {
-      setShowPopup(true)
+    if (variant === "pdfDownload") {
+      return (
+        <a
+          href="/transform-your-life-30-days.pdf"
+          download="Transform-Your-Life-30-Days-NxHealth.pdf"
+          className={cn(buttonVariants({ variant, size, className }), "!transition-none !duration-0")}
+          ref={ref as React.Ref<HTMLAnchorElement>}
+          {...(props as React.AnchorHTMLAttributes<HTMLAnchorElement>)}
+        >
+          {children}
+        </a>
+      )
     }
 
-    // Default button implementation - shows PDF popup preview
+    if (article) {
+      return (
+        <a
+          href="/resources/articles"
+          className={cn(buttonVariants({ variant, size, className }), "!transition-none !duration-0")}
+          ref={ref as React.Ref<HTMLAnchorElement>}
+          {...(props as React.AnchorHTMLAttributes<HTMLAnchorElement>)}
+        >
+          {children}
+        </a>
+      )
+    }
+
+    // Default button implementation
     return (
       <>
         <button
           className={cn(buttonVariants({ variant, size, className }), "!transition-none !duration-0")}
-          ref={ref}
-          onClick={(e) => {
-            e.preventDefault()
-            handleShowPopup()
-          }}
+          ref={ref as React.Ref<HTMLButtonElement>}
           {...props}
         >
           {children}
@@ -162,18 +183,10 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
                     health and well-being.
                   </p>
                   <button
-                    onClick={() => {
-                      const link = document.createElement("a")
-                      link.href = "/transform-your-life-30-days.pdf"
-                      link.download = "Transform-Your-Life-30-Days-NxHealth.pdf"
-                      document.body.appendChild(link)
-                      link.click()
-                      document.body.removeChild(link)
-                      setShowPopup(false)
-                    }}
+                    onClick={() => setShowPopup(false)}
                     className="bg-green-600 hover:bg-green-700 text-white px-6 py-2 rounded-lg font-medium"
                   >
-                    Download Full Guide
+                    Close Preview
                   </button>
                 </div>
               </div>
