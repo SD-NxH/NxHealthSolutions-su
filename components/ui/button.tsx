@@ -4,6 +4,7 @@ import * as React from "react"
 import { Slot } from "@radix-ui/react-slot"
 import { cva, type VariantProps } from "class-variance-authority"
 import { X } from "lucide-react"
+import Link from "next/link"
 
 import { cn } from "@/lib/utils"
 
@@ -92,14 +93,13 @@ const Button = React.forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonPro
 
     if (article) {
       return (
-        <a
+        <Link
           href="/resources/articles"
           className={cn(buttonVariants({ variant, size, className }), "!transition-none !duration-0")}
           ref={ref as React.Ref<HTMLAnchorElement>}
-          {...(props as React.AnchorHTMLAttributes<HTMLAnchorElement>)}
         >
           {children}
-        </a>
+        </Link>
       )
     }
 
