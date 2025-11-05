@@ -104,7 +104,7 @@ export default function FreeVaccinesArticlePage() {
             <div className="bg-card rounded-2xl overflow-hidden shadow-lg">
               <div className="aspect-video relative bg-black">
                 <iframe
-                  src="https://www.youtube.com/embed/GiG4mbu8esI"
+                  src="https://www.youtube.com/embed/9fJ9xBi6NB0"
                   title="Free Vaccines but Not Free Food? — What's Really Going On"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen
@@ -118,7 +118,7 @@ export default function FreeVaccinesArticlePage() {
                     <p className="text-sm text-muted-foreground">Watch the full video discussion on YouTube</p>
                   </div>
                   <a
-                    href="https://youtu.be/GiG4mbu8esI"
+                    href="https://youtu.be/9fJ9xBi6NB0"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-primary hover:text-primary/80 transition-colors"
@@ -320,7 +320,7 @@ export default function FreeVaccinesArticlePage() {
                       Comment on the video and share your perspective — do you think food should be treated as medicine?
                     </p>
                     <Button asChild className="w-full bg-background text-foreground hover:bg-background/90">
-                      <a href="https://youtu.be/GiG4mbu8esI" target="_blank" rel="noopener noreferrer">
+                      <a href="https://youtu.be/9fJ9xBi6NB0" target="_blank" rel="noopener noreferrer">
                         Watch & Comment
                       </a>
                     </Button>
