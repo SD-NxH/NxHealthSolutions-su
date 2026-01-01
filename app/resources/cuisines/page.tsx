@@ -40,12 +40,12 @@ export default function CuisinesPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-green-50 to-white">
+    <div className="min-h-screen bg-gradient-to-b from-brand-lighter to-background">
       {/* Hero Section */}
       <section className="relative py-16 md:py-24">
         <div className="container px-4 md:px-6 mx-auto">
           <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-4xl md:text-5xl font-serif font-light tracking-tight text-green-800 mb-6">
+            <h1 className="text-4xl md:text-5xl font-serif font-light tracking-tight text-brand-dark mb-6">
               Explore World Cuisines
             </h1>
             <p className="text-xl text-gray-600 mb-8">
@@ -74,10 +74,10 @@ export default function CuisinesPage() {
       </section>
 
       {/* Coming Soon Section */}
-      <section className="py-16 bg-white">
+      <section className="py-16 bg-background">
         <div className="container px-4 md:px-6 mx-auto">
           <div className="max-w-3xl mx-auto text-center">
-            <div className="inline-block px-4 py-2 bg-green-100 text-green-800 rounded-full text-sm font-medium mb-6">
+            <div className="inline-block px-4 py-2 bg-brand-lighter text-brand-dark rounded-full text-sm font-medium mb-6">
               Coming Soon
             </div>
             <h2 className="text-3xl md:text-4xl font-serif font-light text-gray-900 mb-6">
@@ -89,7 +89,7 @@ export default function CuisinesPage() {
             </p>
 
             <div className="grid md:grid-cols-3 gap-6 mb-12">
-              <Card className="bg-green-50 border-0">
+              <Card className="bg-brand-lighter border-0">
                 <CardContent className="pt-6">
                   <h3 className="text-xl font-medium mb-3">Healthy Recipes</h3>
                   <p className="text-gray-600">
@@ -98,7 +98,7 @@ export default function CuisinesPage() {
                 </CardContent>
               </Card>
 
-              <Card className="bg-green-50 border-0">
+              <Card className="bg-brand-lighter border-0">
                 <CardContent className="pt-6">
                   <h3 className="text-xl font-medium mb-3">Food Recommendations</h3>
                   <p className="text-gray-600">
@@ -107,7 +107,7 @@ export default function CuisinesPage() {
                 </CardContent>
               </Card>
 
-              <Card className="bg-green-50 border-0">
+              <Card className="bg-brand-lighter border-0">
                 <CardContent className="pt-6">
                   <h3 className="text-xl font-medium mb-3">Cultural Context</h3>
                   <p className="text-gray-600">
@@ -117,7 +117,7 @@ export default function CuisinesPage() {
               </Card>
             </div>
 
-            <div className="bg-green-100 rounded-xl p-8 mb-12">
+            <div className="bg-brand-lighter rounded-xl p-8 mb-12">
               <h3 className="text-2xl font-medium mb-4">Get Notified When We Launch</h3>
               <p className="text-gray-600 mb-6">
                 Be the first to know when our cuisine guides are ready. We'll send you exclusive recipes and early
@@ -140,7 +140,7 @@ export default function CuisinesPage() {
                   </div>
                   <Button
                     type="submit"
-                    className="bg-green-600 hover:bg-green-700 text-white rounded-full px-6"
+                    className="bg-brand hover:bg-brand-hover text-white rounded-full px-6"
                     disabled={isSubmitting}
                   >
                     {isSubmitting ? (
@@ -177,7 +177,9 @@ export default function CuisinesPage() {
                 </div>
 
                 {submitStatus && (
-                  <div className={`mt-4 text-center ${submitStatus === "success" ? "text-green-700" : "text-red-600"}`}>
+                  <div
+                    className={`mt-4 text-center ${submitStatus === "success" ? "text-brand-dark" : "text-destructive"}`}
+                  >
                     {statusMessage}
                   </div>
                 )}
@@ -185,7 +187,7 @@ export default function CuisinesPage() {
             </div>
 
             <Link href="/resources">
-              <Button variant="outline" className="rounded-full">
+              <Button variant="outline" className="rounded-full bg-transparent">
                 Back to Resources
               </Button>
             </Link>
@@ -194,7 +196,7 @@ export default function CuisinesPage() {
       </section>
 
       {/* Preview Section */}
-      <section className="py-16 bg-green-50">
+      <section className="py-16 bg-brand-lighter">
         <div className="container px-4 md:px-6 mx-auto">
           <div className="max-w-4xl mx-auto text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-serif font-light text-gray-900 mb-6">Cuisines We'll Feature</h2>
@@ -214,8 +216,8 @@ export default function CuisinesPage() {
               "Indian",
               "Plant-Based",
             ].map((cuisine) => (
-              <div key={cuisine} className="bg-white rounded-lg p-4 text-center shadow-sm">
-                <p className="font-medium text-green-800">{cuisine}</p>
+              <div key={cuisine} className="bg-background rounded-lg p-4 text-center shadow-sm">
+                <p className="font-medium text-brand-dark">{cuisine}</p>
               </div>
             ))}
           </div>

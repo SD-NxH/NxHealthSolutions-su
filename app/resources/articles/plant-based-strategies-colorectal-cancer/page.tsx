@@ -18,12 +18,12 @@ export default function PlantBasedStrategiesColorectalCancerPage() {
       <ScrollToTop />
 
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-green-700 to-green-600 text-white py-16 md:py-24">
+      <section className="bg-gradient-to-r from-brand-dark to-brand text-white py-16 md:py-24">
         <div className="container mx-auto px-4 md:px-6">
           <div className="max-w-4xl mx-auto">
             <Link
               href="/resources/articles"
-              className="inline-flex items-center text-green-100 hover:text-white mb-6 transition-colors"
+              className="inline-flex items-center text-brand-lighter hover:text-white mb-6 transition-colors"
             >
               <ArrowLeft className="mr-2 h-4 w-4" />
               Back to Articles
@@ -31,7 +31,7 @@ export default function PlantBasedStrategiesColorectalCancerPage() {
             <h1 className="text-3xl md:text-5xl font-serif font-light mb-6">
               Plant-Based Dietary Strategies and Lifestyle Modifications for Colorectal Cancer
             </h1>
-            <div className="flex items-center text-green-100 text-sm">
+            <div className="flex items-center text-brand-lighter text-sm">
               <span>March 30, 2025</span>
               <span className="mx-2">•</span>
               <span>15 min read</span>
@@ -47,7 +47,7 @@ export default function PlantBasedStrategiesColorectalCancerPage() {
         <div className="container mx-auto px-4 md:px-6">
           <div className="max-w-3xl mx-auto">
             <div className="prose prose-green max-w-none">
-              <p className="lead text-xl text-gray-700 mb-8">
+              <p className="lead text-xl text-muted-foreground mb-8">
                 Colorectal cancer represents a significant global health challenge, impacting a substantial portion of
                 the population and necessitating a comprehensive understanding of its prevention and management.
                 Alongside conventional medical treatments, there is a growing interest in exploring non-pharmacological
@@ -125,9 +125,9 @@ export default function PlantBasedStrategiesColorectalCancerPage() {
                 (PAHs), which are also recognized as cancer-causing compounds.
               </p>
 
-              <div className="bg-orange-50 border-l-4 border-orange-500 p-4 my-8">
-                <h3 className="text-orange-800 font-medium">Key Insight</h3>
-                <p className="text-orange-700">
+              <div className="bg-accent-light border-l-4 border-accent p-4 my-8">
+                <h3 className="text-accent-dark font-medium">Key Insight</h3>
+                <p className="text-accent">
                   Processed meats, which include ham, sausage, bacon, deli meats, and canned meat, have been strongly
                   linked to an increased risk of colorectal cancer. These meats often contain chemicals and
                   preservatives that research suggests may be carcinogenic. Even a small daily serving of processed meat
@@ -185,12 +185,12 @@ export default function PlantBasedStrategiesColorectalCancerPage() {
                 vegetables, one-quarter with whole grains, and one-quarter with plant-based protein sources.
               </p>
 
-              <div className="bg-green-50 border-l-4 border-green-500 p-4 my-8">
-                <h3 className="text-green-800 font-medium">Sample Plant-Based Meal Plan</h3>
-                <p className="text-green-700 mb-2">
+              <div className="bg-brand-lighter border-l-4 border-brand p-4 my-8">
+                <h3 className="text-brand-dark font-medium">Sample Plant-Based Meal Plan</h3>
+                <p className="text-brand mb-2">
                   Here's a simple one-day example from our recommended weekly meal plan:
                 </p>
-                <ul className="list-disc pl-5 text-green-700">
+                <ul className="list-disc pl-5 text-brand">
                   <li>
                     <strong>Breakfast:</strong> Oatmeal with berries and walnuts
                   </li>
@@ -249,8 +249,8 @@ export default function PlantBasedStrategiesColorectalCancerPage() {
 
             {/* References Section */}
             <div className="mt-12">
-              <h3 className="text-xl font-serif font-medium text-gray-900 mb-4">References</h3>
-              <ol className="list-decimal pl-5 space-y-2 text-sm text-gray-600">
+              <h3 className="text-xl font-serif font-medium text-foreground mb-4">References</h3>
+              <ol className="list-decimal pl-5 space-y-2 text-sm text-muted-foreground">
                 <li>Superfoods for Fighting Colon Cancer - Parkway East Hospital, accessed March 30, 2025</li>
                 <li>Plant-based diet is encouraged for people with cancer, Mayo Clinic, accessed March 30, 2025</li>
                 <li>
@@ -286,8 +286,8 @@ export default function PlantBasedStrategiesColorectalCancerPage() {
                 />
               </div>
               <div>
-                <p className="font-medium text-gray-900">Eric Johnson M.S.</p>
-                <p className="text-sm text-gray-500">Founder & Nutrition Specialist</p>
+                <p className="font-medium text-foreground">Eric Johnson M.S.</p>
+                <p className="text-sm text-muted-foreground">Founder & Nutrition Specialist</p>
               </div>
             </div>
           </div>

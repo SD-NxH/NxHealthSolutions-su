@@ -74,7 +74,7 @@ export default function FoodsStartingWithA() {
   return (
     <div className="flex flex-col min-h-screen">
       {/* Header Section */}
-      <section ref={headerRef} className="relative w-full py-16 bg-gradient-to-b from-green-50 to-white">
+      <section ref={headerRef} className="relative w-full py-16 bg-gradient-to-b from-brand-lighter to-background">
         <div className="container px-4 md:px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -82,14 +82,14 @@ export default function FoodsStartingWithA() {
             transition={{ duration: 0.8 }}
             className="max-w-3xl mx-auto"
           >
-            <Link href="/resources" className="inline-flex items-center text-green-600 hover:text-green-700 mb-6">
+            <Link href="/resources" className="inline-flex items-center text-brand hover:text-brand-hover mb-6">
               <ChevronLeft className="h-4 w-4 mr-1" />
               Back to Resources
             </Link>
-            <h1 className="text-4xl md:text-5xl font-serif font-light tracking-tight text-green-800 mb-4">
+            <h1 className="text-4xl md:text-5xl font-serif font-light tracking-tight text-brand-dark mb-4">
               Foods Starting With "A"
             </h1>
-            <p className="text-xl text-gray-600">
+            <p className="text-xl text-muted-foreground">
               Explore the healing properties and health benefits of these nutritious foods.
             </p>
           </motion.div>
@@ -97,7 +97,7 @@ export default function FoodsStartingWithA() {
       </section>
 
       {/* Foods List Section */}
-      <section ref={foodsRef} className="py-16 bg-white">
+      <section ref={foodsRef} className="py-16 bg-background">
         <div className="container px-4 md:px-6">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {foods.map((food, index) => (
@@ -116,11 +116,11 @@ export default function FoodsStartingWithA() {
                     <CardDescription>{food.description}</CardDescription>
                   </CardHeader>
                   <CardContent>
-                    <h3 className="font-medium text-gray-900 mb-2">Health Benefits:</h3>
+                    <h3 className="font-medium text-foreground mb-2">Health Benefits:</h3>
                     <ul className="space-y-1">
                       {food.benefits.map((benefit, i) => (
                         <li key={i} className="flex items-start">
-                          <span className="inline-block h-5 w-5 rounded-full bg-green-100 text-green-600 flex-shrink-0 mr-2 text-center text-sm">
+                          <span className="inline-block h-5 w-5 rounded-full bg-brand-light text-brand flex-shrink-0 mr-2 text-center text-sm">
                             ✓
                           </span>
                           <span>{benefit}</span>
@@ -132,20 +132,23 @@ export default function FoodsStartingWithA() {
                     {food.link ? (
                       food.isNextPage ? (
                         <Button
-                          className="w-full bg-green-600 hover:bg-green-700 text-white"
+                          className="w-full bg-brand hover:bg-brand-hover text-brand-foreground"
                           onClick={() => (window.location.href = food.link)}
                         >
                           Learn More About {food.name}
                         </Button>
                       ) : (
                         <a href={food.link} target="_blank" rel="noopener noreferrer" className="w-full">
-                          <Button className="w-full bg-green-600 hover:bg-green-700 text-white">
+                          <Button className="w-full bg-brand hover:bg-brand-hover text-brand-foreground">
                             Learn More About {food.name}
                           </Button>
                         </a>
                       )
                     ) : (
-                      <Button className="w-full bg-green-600 hover:bg-green-700 text-white opacity-70" disabled>
+                      <Button
+                        className="w-full bg-brand hover:bg-brand-hover text-brand-foreground opacity-70"
+                        disabled
+                      >
                         Coming Soon
                       </Button>
                     )}

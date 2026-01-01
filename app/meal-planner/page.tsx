@@ -492,18 +492,18 @@ export default function NxMealPlannerPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-green-50 to-white">
+    <div className="min-h-screen bg-gradient-to-br from-brand-lighter to-background">
       {/* Header */}
-      <div className="bg-white border-b border-green-100 shadow-sm">
+      <div className="bg-card border-b border-border shadow-sm">
         <div className="container mx-auto px-4 py-6">
           <div className="flex items-center justify-between">
             <div>
-              <h1 className="text-3xl font-serif font-light text-green-800">NxMeal Planner</h1>
-              <p className="text-gray-600 mt-1">Plan your weekly meals with personalized nutrition guidance</p>
+              <h1 className="text-3xl font-serif font-light text-brand-dark">NxMeal Planner</h1>
+              <p className="text-muted-foreground mt-1">Plan your weekly meals with personalized nutrition guidance</p>
             </div>
             <div className="flex items-center space-x-4">
               <Select value={selectedWeek} onValueChange={setSelectedWeek}>
-                <SelectTrigger className="w-48 border-green-200">
+                <SelectTrigger className="w-48 border-border">
                   <SelectValue placeholder="Select week" />
                 </SelectTrigger>
                 <SelectContent>
@@ -515,12 +515,12 @@ export default function NxMealPlannerPage() {
               <Button
                 onClick={exportMealPlan}
                 variant="outline"
-                className="border-green-200 text-green-700 hover:bg-green-50"
+                className="border-border text-brand hover:bg-brand-lighter bg-transparent"
               >
                 <Download className="w-4 h-4 mr-2" />
                 Export Plan
               </Button>
-              <Button className="bg-green-600 hover:bg-green-700">
+              <Button className="bg-brand hover:bg-brand-hover text-brand-foreground">
                 <ShoppingCart className="w-4 h-4 mr-2" />
                 Shopping List
               </Button>
@@ -531,31 +531,31 @@ export default function NxMealPlannerPage() {
 
       <div className="container mx-auto px-4 py-8">
         <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-6">
-          <TabsList className="grid w-full grid-cols-4 bg-green-50 border border-green-200">
+          <TabsList className="grid w-full grid-cols-4 bg-brand-lighter border border-border">
             <TabsTrigger
               value="planner"
-              className="flex items-center data-[state=active]:bg-green-600 data-[state=active]:text-white"
+              className="flex items-center data-[state=active]:bg-brand data-[state=active]:text-brand-foreground"
             >
               <Calendar className="w-4 h-4 mr-2" />
               Meal Planner
             </TabsTrigger>
             <TabsTrigger
               value="recipes"
-              className="flex items-center data-[state=active]:bg-green-600 data-[state=active]:text-white"
+              className="flex items-center data-[state=active]:bg-brand data-[state=active]:text-brand-foreground"
             >
               <ChefHat className="w-4 h-4 mr-2" />
               Recipe Library
             </TabsTrigger>
             <TabsTrigger
               value="nutrition"
-              className="flex items-center data-[state=active]:bg-green-600 data-[state=active]:text-white"
+              className="flex items-center data-[state=active]:bg-brand data-[state=active]:text-brand-foreground"
             >
               <Target className="w-4 h-4 mr-2" />
               Nutrition Goals
             </TabsTrigger>
             <TabsTrigger
               value="shopping"
-              className="flex items-center data-[state=active]:bg-green-600 data-[state=active]:text-white"
+              className="flex items-center data-[state=active]:bg-brand data-[state=active]:text-brand-foreground"
             >
               <ShoppingCart className="w-4 h-4 mr-2" />
               Shopping Lists
@@ -564,26 +564,26 @@ export default function NxMealPlannerPage() {
 
           <TabsContent value="planner" className="space-y-6">
             {/* Weekly Calendar Grid */}
-            <Card className="border-green-100 shadow-lg">
-              <CardHeader className="bg-green-50 border-b border-green-100">
-                <CardTitle className="text-green-800">Weekly Meal Plan</CardTitle>
+            <Card className="border-border shadow-lg">
+              <CardHeader className="bg-brand-lighter border-b border-border">
+                <CardTitle className="text-brand-dark">Weekly Meal Plan</CardTitle>
                 <CardDescription>Drag meals from the library below or click on meal slots to add meals</CardDescription>
               </CardHeader>
               <CardContent className="p-6">
                 <div className="overflow-x-auto">
                   <div className="grid grid-cols-8 gap-3 min-w-[900px]">
                     {/* Header Row */}
-                    <div className="font-medium text-gray-700 p-3"></div>
+                    <div className="font-medium text-foreground p-3"></div>
                     {days.map((day) => {
                       const dayNutrition = calculateDayNutrition(day)
                       return (
                         <div
                           key={day}
-                          className="font-medium text-gray-700 text-center py-3 bg-green-100 rounded-lg border border-green-200"
+                          className="font-medium text-foreground text-center py-3 bg-brand-light rounded-lg border border-border"
                         >
                           <div className="text-sm font-semibold">{day.slice(0, 3)}</div>
-                          <div className="text-xs text-green-600 mt-1">{Math.round(dayNutrition.calories)} cal</div>
-                          <div className="text-xs text-gray-500">
+                          <div className="text-xs text-brand">{Math.round(dayNutrition.calories)} cal</div>
+                          <div className="text-xs text-muted-foreground">
                             {Math.round(dayNutrition.protein)}p | {Math.round(dayNutrition.carbs)}c |{" "}
                             {Math.round(dayNutrition.fat)}f
                           </div>
@@ -594,7 +594,7 @@ export default function NxMealPlannerPage() {
                     {/* Meal Rows */}
                     {mealTypes.map((mealType) => (
                       <React.Fragment key={mealType}>
-                        <div className="font-medium text-gray-700 py-4 px-3 bg-gray-50 rounded-lg flex items-center border border-gray-200">
+                        <div className="font-medium text-foreground py-4 px-3 bg-muted rounded-lg flex items-center border border-border">
                           <div className="flex items-center">
                             {mealType === "Breakfast" && <Apple className="w-4 h-4 mr-2 text-orange-500" />}
                             {mealType === "Lunch" && <Utensils className="w-4 h-4 mr-2 text-blue-500" />}
@@ -608,7 +608,7 @@ export default function NxMealPlannerPage() {
                           return (
                             <div
                               key={`${day}-${mealType}`}
-                              className="border-2 border-dashed border-green-200 rounded-lg p-3 min-h-[120px] hover:border-green-400 transition-all duration-200 bg-white"
+                              className="border-2 border-dashed border-border rounded-lg p-3 min-h-[120px] hover:border-brand transition-all duration-200 bg-card"
                               onDrop={(e) => {
                                 e.preventDefault()
                                 if (draggedMeal) {
@@ -619,7 +619,7 @@ export default function NxMealPlannerPage() {
                               onDragOver={(e) => e.preventDefault()}
                             >
                               {meals.length === 0 ? (
-                                <div className="flex items-center justify-center h-full text-gray-400 cursor-pointer hover:text-green-500 transition-colors">
+                                <div className="flex items-center justify-center h-full text-muted-foreground cursor-pointer hover:text-brand transition-colors">
                                   <Plus className="w-6 h-6" />
                                 </div>
                               ) : (
@@ -631,7 +631,7 @@ export default function NxMealPlannerPage() {
                                         initial={{ opacity: 0, scale: 0.9 }}
                                         animate={{ opacity: 1, scale: 1 }}
                                         exit={{ opacity: 0, scale: 0.9 }}
-                                        className="bg-green-100 rounded-lg p-2 text-xs relative group hover:bg-green-200 transition-colors cursor-pointer"
+                                        className="bg-brand-light rounded-lg p-2 text-xs relative group hover:bg-brand-lighter transition-colors cursor-pointer"
                                         onClick={() => setSelectedMeal(entry.meal)}
                                       >
                                         <button
@@ -643,10 +643,10 @@ export default function NxMealPlannerPage() {
                                         >
                                           <X className="w-3 h-3" />
                                         </button>
-                                        <div className="font-medium text-green-800 truncate pr-4">
+                                        <div className="font-medium text-brand-dark truncate pr-4">
                                           {entry.meal.name}
                                         </div>
-                                        <div className="text-green-600 flex items-center justify-between">
+                                        <div className="text-brand flex items-center justify-between">
                                           <span>
                                             {Math.round((entry.meal.calories * entry.servings) / entry.meal.servings)}{" "}
                                             cal
@@ -672,24 +672,24 @@ export default function NxMealPlannerPage() {
             </Card>
 
             {/* Quick Add Meals */}
-            <Card className="border-green-100 shadow-lg">
-              <CardHeader className="bg-green-50 border-b border-green-100">
-                <CardTitle className="text-green-800">Recipe Library</CardTitle>
+            <Card className="border-border shadow-lg">
+              <CardHeader className="bg-brand-lighter border-b border-border">
+                <CardTitle className="text-brand-dark">Recipe Library</CardTitle>
                 <CardDescription>Search, filter, and drag meals to add to your plan</CardDescription>
               </CardHeader>
               <CardContent className="p-6">
                 <div className="flex flex-col lg:flex-row gap-4 mb-6">
                   <div className="flex-1 relative">
-                    <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
+                    <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
                     <Input
                       placeholder="Search meals, ingredients, or tags..."
                       value={searchTerm}
                       onChange={(e) => setSearchTerm(e.target.value)}
-                      className="pl-10 border-green-200 focus:border-green-500"
+                      className="border-border focus:border-brand"
                     />
                   </div>
                   <Select value={filterTag} onValueChange={setFilterTag}>
-                    <SelectTrigger className="w-48 border-green-200">
+                    <SelectTrigger className="w-48 border-border">
                       <SelectValue placeholder="Filter by tag" />
                     </SelectTrigger>
                     <SelectContent>
@@ -702,7 +702,7 @@ export default function NxMealPlannerPage() {
                     </SelectContent>
                   </Select>
                   <Select value={filterDifficulty} onValueChange={setFilterDifficulty}>
-                    <SelectTrigger className="w-48 border-green-200">
+                    <SelectTrigger className="w-48 border-border">
                       <SelectValue placeholder="Filter by difficulty" />
                     </SelectTrigger>
                     <SelectContent>
@@ -717,8 +717,8 @@ export default function NxMealPlannerPage() {
                     onClick={() => setShowFavoritesOnly(!showFavoritesOnly)}
                     className={
                       showFavoritesOnly
-                        ? "bg-green-600 hover:bg-green-700"
-                        : "border-green-200 text-green-700 hover:bg-green-50"
+                        ? "bg-brand hover:bg-brand-hover text-brand-foreground"
+                        : "border-border text-brand hover:bg-brand-lighter"
                     }
                   >
                     <Heart className={`w-4 h-4 mr-2 ${showFavoritesOnly ? "fill-current" : ""}`} />
@@ -736,32 +736,32 @@ export default function NxMealPlannerPage() {
                         animate={{ opacity: 1, scale: 1 }}
                         exit={{ opacity: 0, scale: 0.9 }}
                         whileHover={{ scale: 1.02 }}
-                        className="border border-green-200 rounded-lg p-4 hover:shadow-md transition-all duration-200 cursor-grab active:cursor-grabbing bg-white"
+                        className="border border-border rounded-lg p-4 hover:shadow-md transition-all duration-200 cursor-grab active:cursor-grabbing bg-card"
                         draggable
                         onDragStart={() => setDraggedMeal(meal)}
                         onDragEnd={() => setDraggedMeal(null)}
                         onClick={() => setSelectedMeal(meal)}
                       >
                         <div className="flex justify-between items-start mb-3">
-                          <h4 className="font-medium text-green-700 text-sm leading-tight">{meal.name}</h4>
+                          <h4 className="font-medium text-brand text-sm leading-tight">{meal.name}</h4>
                           <div className="flex items-center space-x-1 ml-2">
                             <button
                               onClick={(e) => {
                                 e.stopPropagation()
                                 toggleFavorite(meal.id)
                               }}
-                              className="text-gray-400 hover:text-red-500 transition-colors"
+                              className="text-muted-foreground hover:text-red-500 transition-colors"
                             >
                               <Heart className={`w-4 h-4 ${meal.isFavorite ? "fill-current text-red-500" : ""}`} />
                             </button>
-                            <div className="flex items-center text-xs text-gray-500">
+                            <div className="flex items-center text-xs text-muted-foreground">
                               <Star className="w-3 h-3 mr-1 fill-current text-yellow-400" />
                               {meal.rating}
                             </div>
                           </div>
                         </div>
 
-                        <div className="grid grid-cols-2 gap-2 text-xs text-gray-600 mb-3">
+                        <div className="grid grid-cols-2 gap-2 text-xs text-muted-foreground mb-3">
                           <div>Calories: {meal.calories}</div>
                           <div>Protein: {meal.protein}g</div>
                           <div>Prep: {meal.prepTime}m</div>
@@ -770,25 +770,25 @@ export default function NxMealPlannerPage() {
 
                         <div className="flex flex-wrap gap-1 mb-3">
                           {meal.tags.slice(0, 3).map((tag) => (
-                            <Badge key={tag} variant="secondary" className="text-xs bg-green-100 text-green-700">
+                            <Badge key={tag} variant="secondary" className="text-xs bg-brand-light text-brand">
                               {tag}
                             </Badge>
                           ))}
                           {meal.tags.length > 3 && (
-                            <Badge variant="secondary" className="text-xs bg-gray-100 text-gray-600">
+                            <Badge variant="secondary" className="text-xs bg-muted text-muted-foreground">
                               +{meal.tags.length - 3}
                             </Badge>
                           )}
                         </div>
 
                         <div className="flex items-center justify-between">
-                          <div className="flex items-center text-xs text-gray-500">
+                          <div className="flex items-center text-xs text-muted-foreground">
                             <Users className="w-3 h-3 mr-1" />
                             {meal.servings} servings
                           </div>
                           <Button
                             size="sm"
-                            className="bg-green-600 hover:bg-green-700 text-xs"
+                            className="bg-brand hover:bg-brand-hover text-brand-foreground text-xs"
                             onClick={(e) => {
                               e.stopPropagation()
                               setSelectedMeal(meal)
@@ -803,12 +803,12 @@ export default function NxMealPlannerPage() {
                 </div>
 
                 {filteredMeals.length === 0 && (
-                  <div className="text-center py-12 text-gray-500">
-                    <ChefHat className="mx-auto h-12 w-12 text-gray-400 mb-4" />
+                  <div className="text-center py-12 text-muted-foreground">
+                    <ChefHat className="mx-auto h-12 w-12 text-muted-foreground mb-4" />
                     <p>No meals found matching your criteria</p>
                     <Button
                       variant="outline"
-                      className="mt-4 border-green-200 text-green-700 hover:bg-green-50"
+                      className="mt-4 border-border text-brand hover:bg-brand-lighter bg-transparent"
                       onClick={() => {
                         setSearchTerm("")
                         setFilterTag("all")
@@ -825,33 +825,33 @@ export default function NxMealPlannerPage() {
           </TabsContent>
 
           <TabsContent value="recipes" className="space-y-6">
-            <Card className="border-green-100 shadow-lg">
-              <CardHeader className="bg-green-50 border-b border-green-100">
-                <CardTitle className="text-green-800">Recipe Collection</CardTitle>
+            <Card className="border-border shadow-lg">
+              <CardHeader className="bg-brand-lighter border-b border-border">
+                <CardTitle className="text-brand-dark">Recipe Collection</CardTitle>
                 <CardDescription>Browse and manage your complete recipe library</CardDescription>
               </CardHeader>
               <CardContent className="p-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   {mealDatabase.map((meal) => (
-                    <Card key={meal.id} className="overflow-hidden border-green-100 hover:shadow-md transition-shadow">
+                    <Card key={meal.id} className="overflow-hidden border-border hover:shadow-md transition-shadow">
                       <CardContent className="p-4">
                         <div className="flex justify-between items-start mb-3">
-                          <h3 className="font-medium text-lg text-green-800">{meal.name}</h3>
+                          <h3 className="font-medium text-lg text-brand-dark">{meal.name}</h3>
                           <div className="flex items-center space-x-2">
-                            <div className="flex items-center text-sm text-gray-500">
+                            <div className="flex items-center text-sm text-muted-foreground">
                               <Star className="w-4 h-4 mr-1 fill-current text-yellow-400" />
                               {meal.rating}
                             </div>
                             <button
                               onClick={() => toggleFavorite(meal.id)}
-                              className="text-gray-400 hover:text-red-500 transition-colors"
+                              className="text-muted-foreground hover:text-red-500 transition-colors"
                             >
                               <Heart className={`w-4 h-4 ${meal.isFavorite ? "fill-current text-red-500" : ""}`} />
                             </button>
                           </div>
                         </div>
 
-                        <div className="grid grid-cols-4 gap-2 text-sm text-gray-600 mb-3">
+                        <div className="grid grid-cols-4 gap-2 text-sm text-muted-foreground mb-3">
                           <div className="text-center">
                             <div className="font-medium">{meal.calories}</div>
                             <div className="text-xs">Calories</div>
@@ -872,7 +872,7 @@ export default function NxMealPlannerPage() {
 
                         <div className="flex flex-wrap gap-1 mb-3">
                           {meal.tags.map((tag) => (
-                            <Badge key={tag} variant="outline" className="text-xs border-green-200 text-green-700">
+                            <Badge key={tag} variant="outline" className="text-xs border-border text-brand">
                               {tag}
                             </Badge>
                           ))}
@@ -881,7 +881,7 @@ export default function NxMealPlannerPage() {
                         <div className="space-y-2">
                           <div>
                             <h4 className="font-medium text-sm mb-1">Key Ingredients:</h4>
-                            <div className="text-xs text-gray-600">
+                            <div className="text-xs text-muted-foreground">
                               {meal.ingredients.slice(0, 3).join(", ")}
                               {meal.ingredients.length > 3 && "..."}
                             </div>
@@ -889,7 +889,7 @@ export default function NxMealPlannerPage() {
                         </div>
 
                         <Button
-                          className="w-full mt-3 bg-green-600 hover:bg-green-700"
+                          className="w-full mt-3 bg-brand hover:bg-brand-hover text-brand-foreground"
                           onClick={() => setSelectedMeal(meal)}
                         >
                           View Full Recipe
@@ -904,9 +904,9 @@ export default function NxMealPlannerPage() {
 
           <TabsContent value="nutrition" className="space-y-6">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-              <Card className="border-green-100 shadow-lg">
-                <CardHeader className="bg-green-50 border-b border-green-100">
-                  <CardTitle className="text-green-800">Nutrition Goals</CardTitle>
+              <Card className="border-border shadow-lg">
+                <CardHeader className="bg-brand-lighter border-b border-border">
+                  <CardTitle className="text-brand-dark">Nutrition Goals</CardTitle>
                   <CardDescription>Set your daily nutrition targets</CardDescription>
                 </CardHeader>
                 <CardContent className="pt-6 space-y-6">
@@ -920,7 +920,7 @@ export default function NxMealPlannerPage() {
                         onChange={(e) =>
                           setNutritionGoals({ ...nutritionGoals, calories: Number.parseInt(e.target.value) })
                         }
-                        className="border-green-200 focus:border-green-500"
+                        className="border-border focus:border-brand"
                       />
                     </div>
                     <div className="space-y-2">
@@ -932,7 +932,7 @@ export default function NxMealPlannerPage() {
                         onChange={(e) =>
                           setNutritionGoals({ ...nutritionGoals, protein: Number.parseInt(e.target.value) })
                         }
-                        className="border-green-200 focus:border-green-500"
+                        className="border-border focus:border-brand"
                       />
                     </div>
                     <div className="space-y-2">
@@ -944,7 +944,7 @@ export default function NxMealPlannerPage() {
                         onChange={(e) =>
                           setNutritionGoals({ ...nutritionGoals, carbs: Number.parseInt(e.target.value) })
                         }
-                        className="border-green-200 focus:border-green-500"
+                        className="border-border focus:border-brand"
                       />
                     </div>
                     <div className="space-y-2">
@@ -954,7 +954,7 @@ export default function NxMealPlannerPage() {
                         type="number"
                         value={nutritionGoals.fat}
                         onChange={(e) => setNutritionGoals({ ...nutritionGoals, fat: Number.parseInt(e.target.value) })}
-                        className="border-green-200 focus:border-green-500"
+                        className="border-border focus:border-brand"
                       />
                     </div>
                     <div className="space-y-2">
@@ -966,18 +966,18 @@ export default function NxMealPlannerPage() {
                         onChange={(e) =>
                           setNutritionGoals({ ...nutritionGoals, fiber: Number.parseInt(e.target.value) })
                         }
-                        className="border-green-200 focus:border-green-500"
+                        className="border-border focus:border-brand"
                       />
                     </div>
                   </div>
-                  <Button className="w-full bg-green-600 hover:bg-green-700">Save Goals</Button>
+                  <Button className="w-full bg-brand hover:bg-brand-hover text-brand-foreground">Save Goals</Button>
                 </CardContent>
               </Card>
 
               {/* Weekly Nutrition Summary */}
-              <Card className="border-green-100 shadow-lg">
-                <CardHeader className="bg-green-50 border-b border-green-100">
-                  <CardTitle className="text-green-800">Weekly Progress</CardTitle>
+              <Card className="border-border shadow-lg">
+                <CardHeader className="bg-brand-lighter border-b border-border">
+                  <CardTitle className="text-brand-dark">Weekly Progress</CardTitle>
                   <CardDescription>Track your nutrition against your goals</CardDescription>
                 </CardHeader>
                 <CardContent className="pt-6">
@@ -988,20 +988,20 @@ export default function NxMealPlannerPage() {
                       const proteinProgress = (dayNutrition.protein / nutritionGoals.protein) * 100
 
                       return (
-                        <div key={day} className="p-3 bg-gray-50 rounded-lg">
+                        <div key={day} className="p-3 bg-muted rounded-lg">
                           <div className="flex justify-between items-center mb-2">
                             <span className="font-medium text-sm">{day.slice(0, 3)}</span>
-                            <span className="text-xs text-gray-500">
+                            <span className="text-xs text-muted-foreground">
                               {Math.round(dayNutrition.calories)}/{nutritionGoals.calories} cal
                             </span>
                           </div>
-                          <div className="w-full bg-gray-200 rounded-full h-2 mb-1">
+                          <div className="w-full bg-muted rounded-full h-2 mb-1">
                             <div
-                              className="bg-green-600 h-2 rounded-full transition-all duration-300"
+                              className="bg-brand h-2 rounded-full transition-all duration-300"
                               style={{ width: `${Math.min(calorieProgress, 100)}%` }}
                             ></div>
                           </div>
-                          <div className="grid grid-cols-3 gap-2 text-xs text-gray-600">
+                          <div className="grid grid-cols-3 gap-2 text-xs text-muted-foreground">
                             <span>P: {Math.round(dayNutrition.protein)}g</span>
                             <span>C: {Math.round(dayNutrition.carbs)}g</span>
                             <span>F: {Math.round(dayNutrition.fat)}g</span>
@@ -1016,30 +1016,36 @@ export default function NxMealPlannerPage() {
           </TabsContent>
 
           <TabsContent value="shopping" className="space-y-6">
-            <Card className="border-green-100 shadow-lg">
-              <CardHeader className="bg-green-50 border-b border-green-100">
-                <CardTitle className="text-green-800">Shopping Lists</CardTitle>
+            <Card className="border-border shadow-lg">
+              <CardHeader className="bg-brand-lighter border-b border-border">
+                <CardTitle className="text-brand-dark">Shopping Lists</CardTitle>
                 <CardDescription>Generated from your meal plans</CardDescription>
               </CardHeader>
               <CardContent className="p-6">
                 {mealPlan.length === 0 ? (
-                  <div className="text-center py-12 text-gray-500">
-                    <ShoppingCart className="mx-auto h-12 w-12 text-gray-400 mb-4" />
+                  <div className="text-center py-12 text-muted-foreground">
+                    <ShoppingCart className="mx-auto h-12 w-12 text-muted-foreground mb-4" />
                     <p>No meals planned yet</p>
-                    <Button className="mt-4 bg-green-600 hover:bg-green-700" onClick={() => setActiveTab("planner")}>
+                    <Button
+                      className="mt-4 bg-brand hover:bg-brand-hover text-brand-foreground"
+                      onClick={() => setActiveTab("planner")}
+                    >
                       Start Planning Meals
                     </Button>
                   </div>
                 ) : (
                   <div className="space-y-6">
                     <div className="flex justify-between items-center">
-                      <h3 className="text-lg font-medium">This Week's Shopping List</h3>
+                      <h3 className="text-lg font-medium text-brand-dark">This Week's Shopping List</h3>
                       <div className="flex space-x-2">
-                        <Button variant="outline" className="border-green-200 text-green-700 hover:bg-green-50">
+                        <Button
+                          variant="outline"
+                          className="border-border text-brand hover:bg-brand-lighter bg-transparent"
+                        >
                           <Share2 className="w-4 h-4 mr-2" />
                           Share
                         </Button>
-                        <Button className="bg-green-600 hover:bg-green-700">
+                        <Button className="bg-brand hover:bg-brand-hover text-brand-foreground">
                           <Download className="w-4 h-4 mr-2" />
                           Download PDF
                         </Button>
@@ -1048,15 +1054,15 @@ export default function NxMealPlannerPage() {
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div>
-                        <h4 className="font-medium mb-3 text-green-700">Ingredients Needed</h4>
+                        <h4 className="font-medium mb-3 text-brand-dark">Ingredients Needed</h4>
                         <div className="space-y-2 max-h-96 overflow-y-auto">
                           {generateShoppingList().map(({ ingredient, count }, index) => (
                             <div
                               key={index}
-                              className="flex justify-between items-center p-2 bg-gray-50 rounded border border-gray-200"
+                              className="flex justify-between items-center p-2 bg-muted rounded border border-border"
                             >
                               <span className="text-sm">{ingredient}</span>
-                              <Badge variant="secondary" className="bg-green-100 text-green-700">
+                              <Badge variant="secondary" className="bg-brand-light text-brand">
                                 {count}x
                               </Badge>
                             </div>
@@ -1065,12 +1071,12 @@ export default function NxMealPlannerPage() {
                       </div>
 
                       <div>
-                        <h4 className="font-medium mb-3 text-green-700">Meal Summary</h4>
+                        <h4 className="font-medium mb-3 text-brand-dark">Meal Summary</h4>
                         <div className="space-y-2 max-h-96 overflow-y-auto">
                           {mealPlan.map((entry) => (
-                            <div key={entry.id} className="p-2 bg-green-50 rounded border border-green-200">
-                              <div className="text-sm font-medium text-green-800">{entry.meal.name}</div>
-                              <div className="text-xs text-gray-600">
+                            <div key={entry.id} className="p-2 bg-brand-light rounded border border-brand">
+                              <div className="text-sm font-medium text-brand-dark">{entry.meal.name}</div>
+                              <div className="text-xs text-muted-foreground">
                                 {entry.day} - {entry.mealType} | {entry.servings} servings
                               </div>
                             </div>
@@ -1100,14 +1106,14 @@ export default function NxMealPlannerPage() {
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.9, opacity: 0 }}
-              className="bg-white rounded-xl max-w-4xl w-full max-h-[90vh] overflow-y-auto"
+              className="bg-card rounded-xl max-w-4xl w-full max-h-[90vh] overflow-y-auto"
               onClick={(e) => e.stopPropagation()}
             >
-              <div className="p-6 border-b border-gray-200 bg-green-50">
+              <div className="p-6 border-b border-border bg-brand-lighter">
                 <div className="flex justify-between items-start">
                   <div>
-                    <h2 className="text-2xl font-serif font-light text-green-800">{selectedMeal.name}</h2>
-                    <div className="flex items-center gap-4 text-sm text-gray-600 mt-2">
+                    <h2 className="text-2xl font-serif font-light text-brand-dark">{selectedMeal.name}</h2>
+                    <div className="flex items-center gap-4 text-sm text-muted-foreground mt-2">
                       <div className="flex items-center">
                         <Clock className="w-4 h-4 mr-1" />
                         {selectedMeal.prepTime} minutes
@@ -1120,14 +1126,14 @@ export default function NxMealPlannerPage() {
                         <Star className="w-4 h-4 mr-1 fill-current text-yellow-400" />
                         {selectedMeal.rating}
                       </div>
-                      <Badge variant="outline" className="border-green-200 text-green-700">
+                      <Badge variant="outline" className="border-border text-brand">
                         {selectedMeal.difficulty}
                       </Badge>
                     </div>
                   </div>
                   <button
                     onClick={() => setSelectedMeal(null)}
-                    className="text-gray-400 hover:text-gray-600 text-2xl p-1 hover:bg-gray-100 rounded-full transition-colors"
+                    className="text-muted-foreground hover:text-foreground text-2xl p-1 hover:bg-muted rounded-full transition-colors"
                   >
                     <X className="w-6 h-6" />
                   </button>
@@ -1137,34 +1143,34 @@ export default function NxMealPlannerPage() {
               <div className="p-6 space-y-6">
                 {/* Nutrition Info */}
                 <div className="grid grid-cols-5 gap-4 text-center">
-                  <div className="bg-green-50 p-4 rounded-lg border border-green-100">
-                    <div className="font-medium text-green-800 text-lg">{selectedMeal.calories}</div>
-                    <div className="text-xs text-gray-600">Calories</div>
+                  <div className="bg-brand-lighter p-4 rounded-lg border border-border">
+                    <div className="font-medium text-brand-dark text-lg">{selectedMeal.calories}</div>
+                    <div className="text-xs text-muted-foreground">Calories</div>
                   </div>
                   <div className="bg-blue-50 p-4 rounded-lg border border-blue-100">
                     <div className="font-medium text-blue-800 text-lg">{selectedMeal.protein}g</div>
-                    <div className="text-xs text-gray-600">Protein</div>
+                    <div className="text-xs text-muted-foreground">Protein</div>
                   </div>
                   <div className="bg-yellow-50 p-4 rounded-lg border border-yellow-100">
                     <div className="font-medium text-yellow-800 text-lg">{selectedMeal.carbs}g</div>
-                    <div className="text-xs text-gray-600">Carbs</div>
+                    <div className="text-xs text-muted-foreground">Carbs</div>
                   </div>
                   <div className="bg-purple-50 p-4 rounded-lg border border-purple-100">
                     <div className="font-medium text-purple-800 text-lg">{selectedMeal.fat}g</div>
-                    <div className="text-xs text-gray-600">Fat</div>
+                    <div className="text-xs text-muted-foreground">Fat</div>
                   </div>
                   <div className="bg-orange-50 p-4 rounded-lg border border-orange-100">
                     <div className="font-medium text-orange-800 text-lg">{selectedMeal.fiber}g</div>
-                    <div className="text-xs text-gray-600">Fiber</div>
+                    <div className="text-xs text-muted-foreground">Fiber</div>
                   </div>
                 </div>
 
                 {/* Tags */}
                 <div>
-                  <h3 className="font-medium mb-3 text-green-800">Tags</h3>
+                  <h3 className="font-medium mb-3 text-brand-dark">Tags</h3>
                   <div className="flex flex-wrap gap-2">
                     {selectedMeal.tags.map((tag) => (
-                      <Badge key={tag} variant="outline" className="border-green-200 text-green-700">
+                      <Badge key={tag} variant="outline" className="border-border text-brand">
                         {tag}
                       </Badge>
                     ))}
@@ -1174,11 +1180,11 @@ export default function NxMealPlannerPage() {
                 <div className="grid md:grid-cols-2 gap-6">
                   {/* Ingredients */}
                   <div>
-                    <h3 className="font-medium mb-3 text-green-800">Ingredients</h3>
+                    <h3 className="font-medium mb-3 text-brand-dark">Ingredients</h3>
                     <ul className="space-y-2">
                       {selectedMeal.ingredients.map((ingredient, index) => (
-                        <li key={index} className="text-sm text-gray-600 flex items-start">
-                          <span className="w-2 h-2 bg-green-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                        <li key={index} className="text-sm text-muted-foreground flex items-start">
+                          <span className="w-2 h-2 bg-brand rounded-full mt-2 mr-3 flex-shrink-0"></span>
                           {ingredient}
                         </li>
                       ))}
@@ -1187,11 +1193,11 @@ export default function NxMealPlannerPage() {
 
                   {/* Instructions */}
                   <div>
-                    <h3 className="font-medium mb-3 text-green-800">Instructions</h3>
+                    <h3 className="font-medium mb-3 text-brand-dark">Instructions</h3>
                     <ol className="space-y-3">
                       {selectedMeal.instructions.map((instruction, index) => (
-                        <li key={index} className="text-sm text-gray-600 flex">
-                          <span className="font-medium text-green-600 mr-3 flex-shrink-0 w-6 h-6 bg-green-100 rounded-full flex items-center justify-center text-xs">
+                        <li key={index} className="text-sm text-muted-foreground flex">
+                          <span className="font-medium text-brand mr-3 flex-shrink-0 w-6 h-6 bg-brand-light rounded-full flex items-center justify-center text-xs">
                             {index + 1}
                           </span>
                           <span>{instruction}</span>
@@ -1202,11 +1208,11 @@ export default function NxMealPlannerPage() {
                 </div>
 
                 {/* Add to Plan Section */}
-                <div className="border-t pt-6 bg-gray-50 -mx-6 px-6 -mb-6 pb-6">
-                  <h3 className="font-medium mb-4 text-green-800">Add to Meal Plan</h3>
+                <div className="border-t pt-6 bg-muted -mx-6 px-6 -mb-6 pb-6">
+                  <h3 className="font-medium mb-4 text-brand-dark">Add to Meal Plan</h3>
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                     <Select>
-                      <SelectTrigger className="border-green-200">
+                      <SelectTrigger className="border-border">
                         <SelectValue placeholder="Select day" />
                       </SelectTrigger>
                       <SelectContent>
@@ -1218,7 +1224,7 @@ export default function NxMealPlannerPage() {
                       </SelectContent>
                     </Select>
                     <Select>
-                      <SelectTrigger className="border-green-200">
+                      <SelectTrigger className="border-border">
                         <SelectValue placeholder="Select meal" />
                       </SelectTrigger>
                       <SelectContent>
@@ -1229,7 +1235,7 @@ export default function NxMealPlannerPage() {
                         ))}
                       </SelectContent>
                     </Select>
-                    <Button className="bg-green-600 hover:bg-green-700">
+                    <Button className="bg-brand hover:bg-brand-hover text-brand-foreground">
                       <Plus className="w-4 h-4 mr-2" />
                       Add to Plan
                     </Button>

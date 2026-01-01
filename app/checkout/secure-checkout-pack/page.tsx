@@ -47,7 +47,7 @@ export default function SecureCheckoutPack() {
   return (
     <div className="flex flex-col min-h-screen">
       {/* Header Section */}
-      <section className="relative w-full py-12 bg-gradient-to-b from-green-50 to-white">
+      <section className="relative w-full py-12 bg-gradient-to-b from-brand-lighter to-background">
         <div className="container px-4 md:px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -55,20 +55,20 @@ export default function SecureCheckoutPack() {
             transition={{ duration: 0.8 }}
             className="max-w-3xl mx-auto"
           >
-            <Link href="/services" className="inline-flex items-center text-green-600 hover:text-green-700 mb-6">
+            <Link href="/services" className="inline-flex items-center text-brand hover:text-brand-hover mb-6">
               <ArrowLeft className="h-4 w-4 mr-1" />
               Back to Services
             </Link>
-            <h1 className="text-3xl md:text-4xl font-serif font-light tracking-tight text-gray-900 mb-4">
+            <h1 className="text-3xl md:text-4xl font-serif font-light tracking-tight text-brand-foreground mb-4">
               Secure Checkout Pack
             </h1>
-            <p className="text-gray-600">Complete your payment to access your secure checkout pack.</p>
+            <p className="text-muted-foreground">Complete your payment to access your secure checkout pack.</p>
           </motion.div>
         </div>
       </section>
 
       {/* Checkout Content */}
-      <section className="py-12 bg-white flex-grow">
+      <section className="py-12 bg-background flex-grow">
         <div className="container px-4 md:px-6">
           <div className="grid lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
             {/* Left Column - Payment Form */}
@@ -80,19 +80,19 @@ export default function SecureCheckoutPack() {
                 </CardHeader>
                 <CardContent>
                   {error ? (
-                    <div className="text-center py-8 bg-yellow-50 rounded-lg">
-                      <AlertCircle className="h-12 w-12 text-yellow-500 mx-auto mb-4" />
+                    <div className="text-center py-8 bg-accent/10 rounded-lg">
+                      <AlertCircle className="h-12 w-12 text-accent mx-auto mb-4" />
                       {error === "popup-blocked" ? (
                         <>
-                          <h3 className="text-lg font-medium text-yellow-800 mb-2">Popup Blocked</h3>
-                          <p className="text-yellow-700 mb-4">
+                          <h3 className="text-lg font-medium text-accent-dark mb-2">Popup Blocked</h3>
+                          <p className="text-accent-dark mb-4">
                             Your browser blocked the checkout popup. Please click the link below to proceed:
                           </p>
                           <a
                             href="https://buy.stripe.com/7sI9AFbPOfR15mU00F"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-flex items-center px-6 py-3 bg-green-600 hover:bg-green-700 text-white rounded-lg font-medium"
+                            className="inline-flex items-center px-6 py-3 bg-brand hover:bg-brand-hover text-brand-foreground rounded-lg font-medium"
                           >
                             <CreditCard className="mr-2 h-5 w-5" />
                             Open Secure Checkout
@@ -100,8 +100,8 @@ export default function SecureCheckoutPack() {
                         </>
                       ) : (
                         <>
-                          <h3 className="text-lg font-medium text-red-800 mb-2">Payment Error</h3>
-                          <p className="text-red-600 mb-4">{error}</p>
+                          <h3 className="text-lg font-medium text-destructive mb-2">Payment Error</h3>
+                          <p className="text-destructive mb-4">{error}</p>
                           <Button onClick={() => setError(null)} variant="outline" className="mx-auto">
                             Try Again
                           </Button>
@@ -112,7 +112,7 @@ export default function SecureCheckoutPack() {
                     <div className="flex flex-col items-center justify-center py-8">
                       <div className="mb-8 text-center">
                         <h3 className="text-xl font-medium mb-4">Ready to complete your purchase?</h3>
-                        <p className="text-gray-600 max-w-md mx-auto">
+                        <p className="text-muted-foreground max-w-md mx-auto">
                           Click the button below to proceed to our secure checkout. You'll be able to pay using credit
                           card, debit card, or other payment methods.
                         </p>
@@ -120,11 +120,11 @@ export default function SecureCheckoutPack() {
                       <Button
                         onClick={handleCheckout}
                         disabled={isLoading}
-                        className="w-full max-w-md bg-green-600 hover:bg-green-700 text-white py-6 text-lg rounded-lg flex items-center justify-center"
+                        className="w-full max-w-md bg-brand hover:bg-brand-hover text-brand-foreground py-6 text-lg rounded-lg flex items-center justify-center"
                       >
                         {isLoading ? (
                           <span className="flex items-center justify-center">
-                            <span className="animate-spin mr-2 h-5 w-5 border-b-2 border-white rounded-full"></span>
+                            <span className="animate-spin mr-2 h-5 w-5 border-b-2 border-brand-foreground rounded-full"></span>
                             Opening checkout...
                           </span>
                         ) : (
@@ -136,13 +136,13 @@ export default function SecureCheckoutPack() {
                       </Button>
 
                       {/* Fallback link */}
-                      <p className="text-sm text-gray-500 mt-4 text-center">
+                      <p className="text-sm text-muted-foreground mt-4 text-center">
                         Having trouble?
                         <a
                           href="https://buy.stripe.com/7sI9AFbPOfR15mU00F"
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="text-green-600 hover:underline ml-1"
+                          className="text-brand hover:underline ml-1"
                         >
                           Click here to open checkout directly
                         </a>
@@ -171,15 +171,15 @@ export default function SecureCheckoutPack() {
 
                       <div className="flex justify-between text-lg font-medium">
                         <span>Total</span>
-                        <span className="text-green-600">${price.toFixed(2)}</span>
+                        <span className="text-brand">${price.toFixed(2)}</span>
                       </div>
 
-                      <div className="bg-green-50 p-4 rounded-lg mt-4">
+                      <div className="bg-brand-lighter p-4 rounded-lg mt-4">
                         <div className="flex items-start">
-                          <Check className="h-5 w-5 text-green-600 mr-2 mt-0.5 flex-shrink-0" />
+                          <Check className="h-5 w-5 text-brand mr-2 mt-0.5 flex-shrink-0" />
                           <div>
                             <p className="text-sm text-gray-700 font-medium">What's included:</p>
-                            <ul className="text-sm text-gray-600 mt-2 space-y-1">
+                            <ul className="text-sm text-muted-foreground mt-2 space-y-1">
                               <li>• Secure payment processing</li>
                               <li>• Premium checkout experience</li>
                               <li>• Enhanced security features</li>
@@ -192,10 +192,10 @@ export default function SecureCheckoutPack() {
                     </div>
                   </CardContent>
                   <CardFooter>
-                    <div className="w-full text-center text-sm text-gray-500">
+                    <div className="w-full text-center text-sm text-muted-foreground">
                       <p>
                         Need help?{" "}
-                        <Link href="/contact" className="text-green-600 hover:underline">
+                        <Link href="/contact" className="text-brand hover:underline">
                           Contact us
                         </Link>
                       </p>

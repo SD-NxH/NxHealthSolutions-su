@@ -34,7 +34,7 @@ export default function CartPage() {
   return (
     <div className="flex flex-col min-h-screen">
       {/* Header Section */}
-      <section ref={headerRef} className="relative w-full py-12 bg-gradient-to-b from-green-50 to-white">
+      <section ref={headerRef} className="relative w-full py-12 bg-gradient-to-b from-brand-lighter to-background">
         <div className="container px-4 md:px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -42,7 +42,7 @@ export default function CartPage() {
             transition={{ duration: 0.8 }}
             className="max-w-3xl mx-auto"
           >
-            <Link href="/shop" className="inline-flex items-center text-green-600 hover:text-green-700 mb-6">
+            <Link href="/shop" className="inline-flex items-center text-brand hover:text-brand-hover mb-6">
               <ArrowLeft className="h-4 w-4 mr-1" />
               Continue Shopping
             </Link>
@@ -57,7 +57,7 @@ export default function CartPage() {
       </section>
 
       {/* Cart Content */}
-      <section ref={cartRef} className="py-12 bg-white flex-grow">
+      <section ref={cartRef} className="py-12 bg-background flex-grow">
         <div className="container px-4 md:px-6">
           {items.length === 0 ? (
             <motion.div
@@ -73,7 +73,7 @@ export default function CartPage() {
                 options.
               </p>
               <Link href="/shop">
-                <Button className="bg-green-600 hover:bg-green-700 text-white rounded-full px-8 py-6 text-lg">
+                <Button className="bg-brand hover:bg-brand-hover text-brand-foreground rounded-full px-8 py-6 text-lg">
                   Browse Our Menu
                 </Button>
               </Link>
@@ -120,7 +120,7 @@ export default function CartPage() {
                           <div className="flex-1">
                             <div className="flex flex-col sm:flex-row sm:justify-between">
                               <h3 className="font-medium text-lg text-gray-900">{item.name}</h3>
-                              <p className="text-green-600 font-medium mt-1 sm:mt-0">
+                              <p className="text-brand font-medium mt-1 sm:mt-0">
                                 ${(item.price * item.quantity).toFixed(2)}
                               </p>
                             </div>
@@ -191,13 +191,13 @@ export default function CartPage() {
 
                         <div className="flex justify-between text-lg font-medium">
                           <span>Total</span>
-                          <span className="text-green-600">${total.toFixed(2)}</span>
+                          <span className="text-brand">${total.toFixed(2)}</span>
                         </div>
                       </div>
 
                       <div className="mt-8 space-y-4">
                         <Link href="/checkout">
-                          <Button className="w-full bg-green-600 hover:bg-green-700 text-white rounded-full py-6">
+                          <Button className="w-full bg-brand hover:bg-brand-hover text-brand-foreground rounded-full py-6">
                             Proceed to Checkout
                           </Button>
                         </Link>
@@ -205,15 +205,15 @@ export default function CartPage() {
                         <Link href="/shop">
                           <Button
                             variant="outline"
-                            className="w-full border-green-600 text-green-600 hover:bg-green-50 rounded-full"
+                            className="w-full border-brand text-brand hover:bg-brand-light rounded-full bg-transparent"
                           >
                             Continue Shopping
                           </Button>
                         </Link>
                       </div>
 
-                      <div className="mt-6 bg-green-50 p-4 rounded-lg">
-                        <p className="text-sm text-gray-700">
+                      <div className="mt-6 bg-brand-lighter p-4 rounded-lg">
+                        <p className="text-sm text-foreground">
                           <span className="font-medium">Free shipping</span> on orders over $50
                         </p>
                       </div>

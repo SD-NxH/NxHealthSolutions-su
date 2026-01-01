@@ -70,7 +70,7 @@ export default function BananaBuckwheatMuffinsPage() {
   ]
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-background">
       {/* Hero Section */}
       <section className="relative">
         <div className="relative h-[400px] md:h-[500px] w-full">
@@ -109,11 +109,11 @@ export default function BananaBuckwheatMuffinsPage() {
       </section>
 
       {/* Breadcrumb */}
-      <div className="bg-gray-50 py-4 border-b">
+      <div className="bg-muted/50 py-4 border-b">
         <div className="container mx-auto px-4 md:px-6">
           <Link
             href="/resources/articles"
-            className="text-green-600 hover:text-green-700 flex items-center text-sm font-medium"
+            className="text-brand hover:text-brand-hover flex items-center text-sm font-medium"
           >
             <ArrowLeft className="h-4 w-4 mr-2" />
             Back to Articles
@@ -152,7 +152,7 @@ export default function BananaBuckwheatMuffinsPage() {
                   {nutritionFacts.map((fact, index) => (
                     <div key={index} className="flex justify-between">
                       <span className="text-gray-600">{fact.label}</span>
-                      <span className="font-medium text-green-600">{fact.value}</span>
+                      <span className="font-medium text-brand">{fact.value}</span>
                     </div>
                   ))}
                 </div>
@@ -165,13 +165,13 @@ export default function BananaBuckwheatMuffinsPage() {
           {/* Equipment Section */}
           <div className="mb-8">
             <h2 className="text-2xl font-serif font-semibold text-gray-900 mb-6">Equipment Needed</h2>
-            <Card className="bg-blue-50 border-blue-200">
+            <Card className="bg-secondary/20 border-secondary">
               <CardContent className="p-6">
                 <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
                   {equipment.map((item, index) => (
                     <div key={index} className="flex items-center">
-                      <span className="inline-block w-2 h-2 bg-blue-500 rounded-full mr-2"></span>
-                      <span className="text-blue-800 text-sm">{item}</span>
+                      <span className="inline-block w-2 h-2 bg-secondary rounded-full mr-2"></span>
+                      <span className="text-secondary-foreground text-sm">{item}</span>
                     </div>
                   ))}
                 </div>
@@ -189,7 +189,7 @@ export default function BananaBuckwheatMuffinsPage() {
                   <ul className="space-y-3">
                     {ingredients.map((ingredient, index) => (
                       <li key={index} className="flex items-start">
-                        <span className="inline-block w-2 h-2 bg-green-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                        <span className="inline-block w-2 h-2 bg-brand rounded-full mt-2 mr-3 flex-shrink-0"></span>
                         <span className="text-gray-700">{ingredient}</span>
                       </li>
                     ))}
@@ -206,7 +206,7 @@ export default function BananaBuckwheatMuffinsPage() {
                   <ol className="space-y-4">
                     {instructions.map((instruction, index) => (
                       <li key={index} className="flex items-start">
-                        <span className="inline-flex items-center justify-center w-6 h-6 bg-green-100 text-green-600 rounded-full text-sm font-semibold mr-3 flex-shrink-0 mt-0.5">
+                        <span className="inline-flex items-center justify-center w-6 h-6 bg-brand-lighter text-brand rounded-full text-sm font-semibold mr-3 flex-shrink-0 mt-0.5">
                           {index + 1}
                         </span>
                         <span className="text-gray-700 leading-relaxed">{instruction}</span>
@@ -221,13 +221,13 @@ export default function BananaBuckwheatMuffinsPage() {
           {/* Tips Section */}
           <div className="mt-12">
             <h2 className="text-2xl font-serif font-semibold text-gray-900 mb-6">Tips for Success</h2>
-            <Card className="bg-green-50 border-green-200">
+            <Card className="bg-brand-lighter border-brand-light">
               <CardContent className="p-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   {tips.map((tip, index) => (
                     <div key={index}>
-                      <h3 className="font-semibold text-green-800 mb-2">{tip.title}</h3>
-                      <p className="text-green-700 text-sm">{tip.description}</p>
+                      <h3 className="font-semibold text-brand-dark mb-2">{tip.title}</h3>
+                      <p className="text-brand-dark/80 text-sm">{tip.description}</p>
                     </div>
                   ))}
                 </div>
@@ -243,10 +243,10 @@ export default function BananaBuckwheatMuffinsPage() {
               ones. The combination of wholesome ingredients makes them both nutritious and delicious!
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button asChild className="bg-green-600 hover:bg-green-700">
+              <Button asChild className="bg-brand hover:bg-brand-hover">
                 <Link href="/resources/articles">Explore More Recipes</Link>
               </Button>
-              <Button variant="outline" asChild className="border-green-600 text-green-600">
+              <Button variant="outline" asChild className="border-brand text-brand bg-transparent">
                 <Link href="/resources/meal-planning">Plan Your Meals</Link>
               </Button>
             </div>

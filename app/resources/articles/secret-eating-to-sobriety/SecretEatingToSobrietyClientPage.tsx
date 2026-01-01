@@ -9,14 +9,11 @@ import { Separator } from "@/components/ui/separator"
 
 export default function SecretEatingToSobrietyClientPage() {
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-muted">
       {/* Header */}
-      <div className="bg-white border-b">
+      <div className="bg-background border-b border-border">
         <div className="container mx-auto px-4 md:px-6 py-4">
-          <Link
-            href="/resources/articles"
-            className="inline-flex items-center text-green-600 hover:text-green-700 mb-4"
-          >
+          <Link href="/resources/articles" className="inline-flex items-center text-brand hover:text-brand-hover mb-4">
             <ArrowLeft className="mr-2 h-4 w-4" />
             Back to Articles
           </Link>
@@ -24,10 +21,10 @@ export default function SecretEatingToSobrietyClientPage() {
       </div>
 
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-green-700 to-green-800 text-white py-16 md:py-24">
+      <section className="bg-gradient-to-br from-brand-dark to-brand text-white py-16 md:py-24">
         <div className="container mx-auto px-4 md:px-6">
           <div className="max-w-4xl mx-auto">
-            <div className="flex items-center gap-2 text-green-200 mb-4">
+            <div className="flex items-center gap-2 text-brand-lighter mb-4">
               <span className="text-sm font-semibold uppercase tracking-wider">Wellness</span>
               <span>•</span>
               <span className="text-sm">8 min read</span>
@@ -35,10 +32,10 @@ export default function SecretEatingToSobrietyClientPage() {
             <h1 className="text-3xl md:text-5xl font-serif font-light mb-6 leading-tight">
               From Secret Eating to Sobriety: One Woman's Journey to Lasting Health
             </h1>
-            <p className="text-lg md:text-xl text-green-100 mb-8 leading-relaxed">
+            <p className="text-lg md:text-xl text-brand-lighter mb-8 leading-relaxed">
               A powerful story of transformation from addiction and disordered eating to lasting health and sobriety.
             </p>
-            <div className="flex items-center gap-6 text-green-200">
+            <div className="flex items-center gap-6 text-brand-lighter">
               <div className="flex items-center gap-2">
                 <Calendar className="h-4 w-4" />
                 <span className="text-sm">May 27, 2025</span>
@@ -54,12 +51,12 @@ export default function SecretEatingToSobrietyClientPage() {
               <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
                 <div className="flex-1">
                   <h3 className="text-lg font-semibold text-white mb-2">🎧 Listen to the Full Story</h3>
-                  <p className="text-green-100 text-sm">
+                  <p className="text-brand-lighter text-sm">
                     Hear this powerful journey in the guest's own words on our podcast.
                   </p>
                 </div>
                 <div className="flex flex-col sm:flex-row gap-3">
-                  <Button asChild className="bg-green-500 hover:bg-green-600 text-white border-0">
+                  <Button asChild className="bg-brand hover:bg-brand-hover text-brand-foreground border-0">
                     <a
                       href="https://open.spotify.com/episode/0U81StuxRDj6y9lNen4NQT?si=IUok-FFVSTG20pooinPgdg"
                       target="_blank"
@@ -74,7 +71,7 @@ export default function SecretEatingToSobrietyClientPage() {
                   </Button>
                   <Button
                     variant="outline"
-                    className="border-white/30 text-white hover:bg-white/10"
+                    className="border-white/30 text-white hover:bg-white/10 bg-transparent"
                     onClick={() => {
                       const iframe = document.getElementById("spotify-embed") as HTMLIFrameElement
                       if (iframe) {
@@ -121,8 +118,8 @@ export default function SecretEatingToSobrietyClientPage() {
                 />
               </div>
 
-              <div className="text-gray-700 leading-relaxed space-y-6">
-                <p className="text-xl text-gray-600 font-light leading-relaxed">
+              <div className="text-muted-foreground leading-relaxed space-y-6">
+                <p className="text-xl text-muted-foreground font-light leading-relaxed">
                   Growing up in New York, a woman (who chose to remain anonymous for this article) faced a lifelong
                   battle with her weight, cycling through "every diet imaginable." This struggle, intertwined with a
                   secret eating habit developed from a young age, laid a challenging foundation. Her journey further
@@ -137,7 +134,7 @@ export default function SecretEatingToSobrietyClientPage() {
                   and life, culminating in job loss and stealing.
                 </p>
 
-                <h2 className="text-2xl md:text-3xl font-serif font-medium text-gray-900 mt-12 mb-6">
+                <h2 className="text-2xl md:text-3xl font-serif font-medium text-foreground mt-12 mb-6">
                   The "Aha!" Moment and a New Beginning
                 </h2>
 
@@ -150,16 +147,16 @@ export default function SecretEatingToSobrietyClientPage() {
                   this April, with ten years of sobriety approaching in September.
                 </p>
 
-                <Card className="my-8 bg-green-50 border-green-200">
+                <Card className="my-8 bg-brand-lighter border-brand/30">
                   <CardContent className="p-6">
-                    <blockquote className="text-lg italic text-green-800">
+                    <blockquote className="text-lg italic text-brand-dark">
                       "Something clicked in my head. I realized the depth of my problem and the necessity of genuine
                       sobriety."
                     </blockquote>
                   </CardContent>
                 </Card>
 
-                <h2 className="text-2xl md:text-3xl font-serif font-medium text-gray-900 mt-12 mb-6">
+                <h2 className="text-2xl md:text-3xl font-serif font-medium text-foreground mt-12 mb-6">
                   Weight Loss: A Long-Term Commitment
                 </h2>
 
@@ -195,9 +192,9 @@ export default function SecretEatingToSobrietyClientPage() {
                   limiting bread, and making conscious choices, including preparing her own meals.
                 </p>
 
-                <div className="bg-gray-100 p-6 rounded-lg my-8">
-                  <h3 className="text-xl font-semibold text-gray-900 mb-4">Her Current Wellness Routine</h3>
-                  <ul className="space-y-2 text-gray-700">
+                <div className="bg-muted p-6 rounded-lg my-8">
+                  <h3 className="text-xl font-semibold text-foreground mb-4">Her Current Wellness Routine</h3>
+                  <ul className="space-y-2 text-muted-foreground">
                     <li>• 4.5 miles on treadmill (Saturday & Sunday)</li>
                     <li>• Daily abdominal crunches</li>
                     <li>• 30 minutes of chair aerobics daily</li>
@@ -207,7 +204,7 @@ export default function SecretEatingToSobrietyClientPage() {
                   </ul>
                 </div>
 
-                <h2 className="text-2xl md:text-3xl font-serif font-medium text-gray-900 mt-12 mb-6">
+                <h2 className="text-2xl md:text-3xl font-serif font-medium text-foreground mt-12 mb-6">
                   Mind, Movement, Food, and Collaboration
                 </h2>
 
@@ -224,9 +221,9 @@ export default function SecretEatingToSobrietyClientPage() {
                   Weight Watchers provides.
                 </p>
 
-                <Card className="my-8 bg-blue-50 border-blue-200">
+                <Card className="my-8 bg-primary/10 border-primary/30">
                   <CardContent className="p-6">
-                    <blockquote className="text-lg italic text-blue-800">
+                    <blockquote className="text-lg italic text-primary">
                       "If you truly want to keep the weight off, you have to realize that it's a lifelong journey."
                     </blockquote>
                   </CardContent>
@@ -241,12 +238,12 @@ export default function SecretEatingToSobrietyClientPage() {
 
                 <Separator className="my-12" />
 
-                <div className="bg-green-50 p-8 rounded-lg">
-                  <h3 className="text-xl font-semibold text-gray-900 mb-4">Key Takeaways from This Journey</h3>
+                <div className="bg-brand-lighter p-8 rounded-lg">
+                  <h3 className="text-xl font-semibold text-foreground mb-4">Key Takeaways from This Journey</h3>
                   <div className="grid md:grid-cols-2 gap-6">
                     <div>
-                      <h4 className="font-semibold text-green-800 mb-2">Recovery Principles</h4>
-                      <ul className="space-y-1 text-gray-700 text-sm">
+                      <h4 className="font-semibold text-brand-dark mb-2">Recovery Principles</h4>
+                      <ul className="space-y-1 text-muted-foreground text-sm">
                         <li>• Genuine commitment to change</li>
                         <li>• Community support is essential</li>
                         <li>• Professional help when needed</li>
@@ -254,8 +251,8 @@ export default function SecretEatingToSobrietyClientPage() {
                       </ul>
                     </div>
                     <div>
-                      <h4 className="font-semibold text-green-800 mb-2">Wellness Approach</h4>
-                      <ul className="space-y-1 text-gray-700 text-sm">
+                      <h4 className="font-semibold text-brand-dark mb-2">Wellness Approach</h4>
+                      <ul className="space-y-1 text-muted-foreground text-sm">
                         <li>• Mindful eating over quick fixes</li>
                         <li>• Consistent exercise routine</li>
                         <li>• Meal preparation and planning</li>
@@ -271,21 +268,21 @@ export default function SecretEatingToSobrietyClientPage() {
       </article>
 
       {/* Related Articles */}
-      <section className="py-12 bg-white border-t">
+      <section className="py-12 bg-background border-t border-border">
         <div className="container mx-auto px-4 md:px-6">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-2xl font-serif font-medium text-gray-900 mb-8">Related Articles</h2>
+            <h2 className="text-2xl font-serif font-medium text-foreground mb-8">Related Articles</h2>
             <div className="grid md:grid-cols-2 gap-6">
               <Card className="hover:shadow-md transition-shadow">
                 <CardContent className="p-6">
-                  <span className="text-xs font-semibold text-green-600 uppercase tracking-wider">Wellness</span>
-                  <h3 className="text-lg font-serif font-medium text-gray-900 mt-2 mb-3">
+                  <span className="text-xs font-semibold text-brand uppercase tracking-wider">Wellness</span>
+                  <h3 className="text-lg font-serif font-medium text-foreground mt-2 mb-3">
                     Mindfulness Practices for Daily Wellness
                   </h3>
-                  <p className="text-gray-600 text-sm mb-4">
+                  <p className="text-muted-foreground text-sm mb-4">
                     Simple mindfulness techniques you can incorporate into your daily routine for better mental health.
                   </p>
-                  <Link href="/resources/articles/mindfulness-practice" className="text-green-600 font-medium text-sm">
+                  <Link href="/resources/articles/mindfulness-practice" className="text-brand font-medium text-sm">
                     Read Article →
                   </Link>
                 </CardContent>
@@ -293,16 +290,16 @@ export default function SecretEatingToSobrietyClientPage() {
 
               <Card className="hover:shadow-md transition-shadow">
                 <CardContent className="p-6">
-                  <span className="text-xs font-semibold text-green-600 uppercase tracking-wider">Health</span>
-                  <h3 className="text-lg font-serif font-medium text-gray-900 mt-2 mb-3">
+                  <span className="text-xs font-semibold text-brand uppercase tracking-wider">Health</span>
+                  <h3 className="text-lg font-serif font-medium text-foreground mt-2 mb-3">
                     Understanding Your Caloric Needs
                   </h3>
-                  <p className="text-gray-600 text-sm mb-4">
+                  <p className="text-muted-foreground text-sm mb-4">
                     Find out how to calculate your daily caloric needs and create a balanced nutrition plan.
                   </p>
                   <Link
                     href="/resources/articles/understanding-caloric-needs"
-                    className="text-green-600 font-medium text-sm"
+                    className="text-brand font-medium text-sm"
                   >
                     Read Article →
                   </Link>
@@ -314,20 +311,20 @@ export default function SecretEatingToSobrietyClientPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-12 bg-green-50">
+      <section className="py-12 bg-brand-lighter">
         <div className="container mx-auto px-4 md:px-6">
           <div className="max-w-2xl mx-auto text-center">
-            <h2 className="text-2xl font-serif font-medium text-gray-900 mb-4">
+            <h2 className="text-2xl font-serif font-medium text-foreground mb-4">
               Need Support on Your Wellness Journey?
             </h2>
-            <p className="text-gray-600 mb-6">
+            <p className="text-muted-foreground mb-6">
               Our team of nutrition and wellness experts is here to help you create a sustainable path to health.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button asChild className="bg-green-600 hover:bg-green-700">
+              <Button asChild className="bg-brand hover:bg-brand-hover">
                 <Link href="/services">Explore Our Services</Link>
               </Button>
-              <Button variant="outline" asChild className="border-green-600 text-green-600">
+              <Button variant="outline" asChild className="border-brand text-brand bg-transparent">
                 <Link href="/contact">Get in Touch</Link>
               </Button>
             </div>

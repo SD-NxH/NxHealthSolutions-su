@@ -45,7 +45,7 @@ export default function PowerUpWithPlantsPage() {
   return (
     <div className="flex flex-col min-h-screen">
       {/* Header Section */}
-      <section ref={headerRef} className="relative w-full py-12 bg-gradient-to-b from-green-50 to-white">
+      <section ref={headerRef} className="relative w-full py-12 bg-gradient-to-b from-brand-lighter to-background">
         <div className="container px-4 md:px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -53,12 +53,12 @@ export default function PowerUpWithPlantsPage() {
             transition={{ duration: 0.8 }}
             className="max-w-3xl mx-auto"
           >
-            <Link href="/resources" className="inline-flex items-center text-green-600 hover:text-green-700 mb-6">
+            <Link href="/resources" className="inline-flex items-center text-brand hover:text-brand-hover mb-6">
               <ChevronLeft className="h-4 w-4 mr-1" />
               Back to Resources
             </Link>
-            <div className="flex items-center gap-2 text-sm text-gray-500 mb-4">
-              <span className="bg-green-100 text-green-700 px-3 py-1 rounded-full">Nutrition</span>
+            <div className="flex items-center gap-2 text-sm text-muted-foreground mb-4">
+              <span className="bg-brand-lighter text-brand-dark px-3 py-1 rounded-full">Nutrition</span>
               <span className="flex items-center">
                 <Calendar className="h-4 w-4 mr-1" /> {currentDate}
               </span>
@@ -66,10 +66,10 @@ export default function PowerUpWithPlantsPage() {
                 <Clock className="h-4 w-4 mr-1" /> 4 min read
               </span>
             </div>
-            <h1 className="text-3xl md:text-4xl font-serif font-light tracking-tight text-gray-900 mb-4">
+            <h1 className="text-3xl md:text-4xl font-serif font-light tracking-tight text-foreground mb-4">
               Power Up with Plants: Fueling Your Health and Energy
             </h1>
-            <p className="text-gray-600 mb-4">
+            <p className="text-muted-foreground mb-4">
               Discover the remarkable benefits of incorporating more plant-based foods into your daily diet
             </p>
             <div className="relative h-64 md:h-80 w-full rounded-xl overflow-hidden mb-6">
@@ -85,7 +85,7 @@ export default function PowerUpWithPlantsPage() {
       </section>
 
       {/* Article Content Section */}
-      <section ref={contentRef} className="py-12 bg-white">
+      <section ref={contentRef} className="py-12 bg-background">
         <div className="container px-4 md:px-6">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
             <motion.div
@@ -94,15 +94,17 @@ export default function PowerUpWithPlantsPage() {
               transition={{ duration: 0.8 }}
               className="lg:col-span-2"
             >
-              <div className="prose prose-green max-w-none">
-                <p className="mb-6 text-gray-700 leading-relaxed">
+              <div className="prose prose-brand max-w-none">
+                <p className="mb-6 text-muted-foreground leading-relaxed">
                   In recent years, a growing body of research highlights the remarkable benefits of incorporating more
                   plant-based foods into our daily diets. From boosting energy levels to enhancing overall health, the
                   power of plants is becoming increasingly clear.
                 </p>
 
-                <h2 className="text-2xl font-serif font-light text-gray-900 mt-8 mb-4">Impact on Developing Brains</h2>
-                <p className="mb-6 text-gray-700 leading-relaxed">
+                <h2 className="text-2xl font-serif font-light text-foreground mt-8 mb-4">
+                  Impact on Developing Brains
+                </h2>
+                <p className="mb-6 text-muted-foreground leading-relaxed">
                   One significant area of impact is the developing brains of children and adolescents. Studies indicate
                   that diets high in ultra-processed foods (UPFs), which often displace nutrient-rich plant-based
                   options, can have detrimental effects. UPFs, characterized by their extensive industrial processing
@@ -111,10 +113,10 @@ export default function PowerUpWithPlantsPage() {
                   energy-dense yet nutrient-poor, lacking essential vitamins, minerals, antioxidants, and fiber.
                 </p>
 
-                <h2 className="text-2xl font-serif font-light text-gray-900 mt-8 mb-4">
+                <h2 className="text-2xl font-serif font-light text-foreground mt-8 mb-4">
                   Nutrient Density of Plant Foods
                 </h2>
-                <p className="mb-6 text-gray-700 leading-relaxed">
+                <p className="mb-6 text-muted-foreground leading-relaxed">
                   Conversely, plant-based foods are packed with these vital nutrients. Fruits, vegetables, whole grains,
                   legumes, nuts, and seeds provide sustained energy release thanks to their complex carbohydrates and
                   fiber. The antioxidants found abundantly in plant foods help protect our cells from damage,
@@ -123,10 +125,10 @@ export default function PowerUpWithPlantsPage() {
                   cognitive function.
                 </p>
 
-                <h2 className="text-2xl font-serif font-light text-gray-900 mt-8 mb-4">
+                <h2 className="text-2xl font-serif font-light text-foreground mt-8 mb-4">
                   Food and the Brain's Reward System
                 </h2>
-                <p className="mb-6 text-gray-700 leading-relaxed">
+                <p className="mb-6 text-muted-foreground leading-relaxed">
                   Even when considering the complex relationship between food and the brain's reward system,
                   understanding the role of whole, plant-based foods is key. While sugary, ultra-processed items can
                   trigger immediate pleasure responses, these are often followed by energy crashes and contribute to
@@ -135,25 +137,25 @@ export default function PowerUpWithPlantsPage() {
                   for both the body and the brain.
                 </p>
 
-                <h2 className="text-2xl font-serif font-light text-gray-900 mt-8 mb-4">
+                <h2 className="text-2xl font-serif font-light text-foreground mt-8 mb-4">
                   Simple Steps to Incorporate More Plants
                 </h2>
-                <p className="mb-6 text-gray-700 leading-relaxed">
+                <p className="mb-6 text-muted-foreground leading-relaxed">
                   Making simple swaps, like choosing whole fruits over sugary snacks or adding legumes to meals for
                   extra protein and fiber, can be a powerful step towards improved health and sustained energy.
                   Embracing a more plant-centered approach to eating offers a delicious and effective way to power up
                   your life.
                 </p>
 
-                <div className="bg-gray-50 p-6 rounded-lg mt-8 mb-6">
-                  <h3 className="text-xl font-medium text-gray-900 mb-3">Sources</h3>
-                  <ol className="list-decimal pl-5 space-y-2 text-sm text-gray-700">
+                <div className="bg-muted p-6 rounded-lg mt-8 mb-6">
+                  <h3 className="text-xl font-medium text-foreground mb-3">Sources</h3>
+                  <ol className="list-decimal pl-5 space-y-2 text-sm text-muted-foreground">
                     <li>
                       <a
                         href="https://www.bhf.org.uk/informationsupport/heart-matters-magazine/news/behind-the-headlines/ultra-processed-foods"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-green-600 hover:underline"
+                        className="text-brand hover:underline"
                       >
                         British Heart Foundation: Ultra-processed foods
                       </a>
@@ -163,7 +165,7 @@ export default function PowerUpWithPlantsPage() {
                         href="https://pmc.ncbi.nlm.nih.gov/articles/PMC8210981/"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-green-600 hover:underline"
+                        className="text-brand hover:underline"
                       >
                         PMC: Food reward system and nutritional impact on brain function
                       </a>
@@ -171,11 +173,11 @@ export default function PowerUpWithPlantsPage() {
                   </ol>
                 </div>
 
-                <div className="flex items-center justify-between mt-12 pt-6 border-t border-gray-200">
-                  <p className="text-gray-600">Share this article:</p>
+                <div className="flex items-center justify-between mt-12 pt-6 border-t border-muted-foreground">
+                  <p className="text-muted-foreground">Share this article:</p>
                   <div className="flex gap-4">
                     <Button variant="ghost" size="icon" className="rounded-full h-10 w-10">
-                      <Share2 className="h-5 w-5 text-gray-600" />
+                      <Share2 className="h-5 w-5 text-muted-foreground" />
                       <span className="sr-only">Share</span>
                     </Button>
                   </div>
@@ -185,49 +187,49 @@ export default function PowerUpWithPlantsPage() {
 
             <div className="lg:col-span-1">
               <div className="sticky top-24">
-                <Card className="bg-green-50 border-0 mb-8">
+                <Card className="bg-brand-lighter border-0 mb-8">
                   <div className="p-6">
-                    <h3 className="text-xl font-medium text-gray-900 mb-4">NxHealth Insight</h3>
-                    <p className="text-gray-700 mb-6">
+                    <h3 className="text-xl font-medium text-foreground mb-4">NxHealth Insight</h3>
+                    <p className="text-muted-foreground mb-6">
                       Our nutrition experts recommend starting with small changes - try adding one extra serving of
                       vegetables to your meals each day, or designating one day a week as "plant-based day."
                     </p>
-                    <Button className="w-full bg-green-600 hover:bg-green-700 text-white rounded-full">
+                    <Button className="w-full bg-brand hover:bg-brand-hover text-brand-foreground rounded-full">
                       Get Personalized Advice
                     </Button>
                   </div>
                 </Card>
 
-                <div className="bg-gray-50 rounded-xl p-6">
-                  <h3 className="text-xl font-medium text-gray-900 mb-4">Related Topics</h3>
+                <div className="bg-muted rounded-xl p-6">
+                  <h3 className="text-xl font-medium text-foreground mb-4">Related Topics</h3>
                   <div className="flex flex-wrap gap-2">
                     <Link
                       href="/resources/search?q=plant-based"
-                      className="bg-white px-3 py-1 rounded-full text-sm text-gray-700 hover:bg-green-100 hover:text-green-700 transition-colors"
+                      className="bg-background px-3 py-1 rounded-full text-sm text-foreground hover:bg-brand-light hover:text-brand-dark transition-colors"
                     >
                       Plant-Based
                     </Link>
                     <Link
                       href="/resources/search?q=nutrition"
-                      className="bg-white px-3 py-1 rounded-full text-sm text-gray-700 hover:bg-green-100 hover:text-green-700 transition-colors"
+                      className="bg-background px-3 py-1 rounded-full text-sm text-foreground hover:bg-brand-light hover:text-brand-dark transition-colors"
                     >
                       Nutrition
                     </Link>
                     <Link
                       href="/resources/search?q=energy"
-                      className="bg-white px-3 py-1 rounded-full text-sm text-gray-700 hover:bg-green-100 hover:text-green-700 transition-colors"
+                      className="bg-background px-3 py-1 rounded-full text-sm text-foreground hover:bg-brand-light hover:text-brand-dark transition-colors"
                     >
                       Energy
                     </Link>
                     <Link
                       href="/resources/search?q=brain+health"
-                      className="bg-white px-3 py-1 rounded-full text-sm text-gray-700 hover:bg-green-100 hover:text-green-700 transition-colors"
+                      className="bg-background px-3 py-1 rounded-full text-sm text-foreground hover:bg-brand-light hover:text-brand-dark transition-colors"
                     >
                       Brain Health
                     </Link>
                     <Link
                       href="/resources/search?q=whole+foods"
-                      className="bg-white px-3 py-1 rounded-full text-sm text-gray-700 hover:bg-green-100 hover:text-green-700 transition-colors"
+                      className="bg-background px-3 py-1 rounded-full text-sm text-foreground hover:bg-brand-light hover:text-brand-dark transition-colors"
                     >
                       Whole Foods
                     </Link>
@@ -240,7 +242,7 @@ export default function PowerUpWithPlantsPage() {
       </section>
 
       {/* Related Articles Section */}
-      <section ref={relatedRef} className="py-12 bg-gray-50">
+      <section ref={relatedRef} className="py-12 bg-muted">
         <div className="container px-4 md:px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -248,7 +250,7 @@ export default function PowerUpWithPlantsPage() {
             transition={{ duration: 0.8 }}
             className="max-w-5xl mx-auto"
           >
-            <h2 className="text-2xl md:text-3xl font-serif font-light text-gray-900 mb-8">Related Articles</h2>
+            <h2 className="text-2xl md:text-3xl font-serif font-light text-foreground mb-8">Related Articles</h2>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {relatedArticles.map((article, index) => (
@@ -267,7 +269,7 @@ export default function PowerUpWithPlantsPage() {
                         className="object-cover transition-transform duration-300 group-hover:scale-105"
                       />
                     </div>
-                    <h3 className="text-lg font-medium text-gray-900 group-hover:text-green-700 transition-colors">
+                    <h3 className="text-lg font-medium text-foreground group-hover:text-brand-dark transition-colors">
                       {article.title}
                     </h3>
                   </Link>
@@ -276,7 +278,7 @@ export default function PowerUpWithPlantsPage() {
             </div>
 
             <div className="text-center mt-12">
-              <Button className="bg-green-600 hover:bg-green-700 text-white rounded-full px-8">
+              <Button className="bg-brand hover:bg-brand-hover text-brand-foreground rounded-full px-8">
                 <Link href="/resources">Explore More Health Resources</Link>
               </Button>
             </div>

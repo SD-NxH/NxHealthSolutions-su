@@ -113,13 +113,16 @@ export default function GetStartedPage() {
   return (
     <div className="flex flex-col min-h-screen">
       {/* Header Section */}
-      <section ref={headerRef} className="relative w-full py-16 md:py-24 bg-gradient-to-b from-green-50 to-white">
+      <section
+        ref={headerRef}
+        className="relative w-full py-16 md:py-24 bg-gradient-to-b from-brand-lighter to-background"
+      >
         <div className="container px-4 md:px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="max-w-3xl mx-auto text-center"
+            className="max-w-4xl mx-auto text-center"
           >
             <div className="flex justify-center mb-6">
               <Image
@@ -130,10 +133,10 @@ export default function GetStartedPage() {
                 className="object-contain"
               />
             </div>
-            <h1 className="text-4xl md:text-5xl font-serif font-light tracking-tight text-green-800 mb-4">
+            <h1 className="text-4xl md:text-5xl font-serif font-light tracking-tight text-brand mb-4">
               Get Started with NxHealth
             </h1>
-            <p className="text-xl text-gray-600 mb-8">
+            <p className="text-xl text-muted-foreground mb-8">
               Complete this health assessment to help us understand your needs and create a personalized plan for you.
             </p>
 
@@ -144,25 +147,25 @@ export default function GetStartedPage() {
                   {Array.from({ length: totalSteps }).map((_, index) => (
                     <div
                       key={index}
-                      className={`w-8 h-8 rounded-full flex items-center justify-center ${
+                      className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-medium transition-all duration-300 ${
                         step > index + 1
-                          ? "bg-green-600 text-white"
+                          ? "bg-brand text-brand-foreground"
                           : step === index + 1
-                            ? "bg-green-100 text-green-600 border-2 border-green-600"
-                            : "bg-gray-100 text-gray-400"
+                            ? "bg-brand-light text-brand border-2 border-brand"
+                            : "bg-muted text-muted-foreground"
                       }`}
                     >
                       {index + 1}
                     </div>
                   ))}
                 </div>
-                <div className="w-full bg-gray-200 h-2 rounded-full">
+                <div className="w-full bg-muted h-2 rounded-full">
                   <div
-                    className="bg-green-600 h-2 rounded-full transition-all duration-300"
+                    className="bg-brand h-2 rounded-full transition-all duration-300"
                     style={{ width: `${(step / totalSteps) * 100}%` }}
                   ></div>
                 </div>
-                <div className="mt-2 text-sm text-gray-500">
+                <div className="mt-2 text-sm text-muted-foreground">
                   Step {step} of {totalSteps}
                 </div>
               </div>
@@ -172,7 +175,7 @@ export default function GetStartedPage() {
       </section>
 
       {/* Form Section */}
-      <section ref={formRef} className="py-12 bg-white flex-grow">
+      <section ref={formRef} className="py-12 bg-background flex-grow">
         <div className="container px-4 md:px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -184,10 +187,10 @@ export default function GetStartedPage() {
               <CardContent className="p-6 md:p-8">
                 {submitted ? (
                   <div className="py-8 text-center">
-                    <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <div className="w-20 h-20 bg-brand-light rounded-full flex items-center justify-center mx-auto mb-6">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
-                        className="h-10 w-10 text-green-600"
+                        className="h-10 w-10 text-brand"
                         fill="none"
                         viewBox="0 0 24 24"
                         stroke="currentColor"
@@ -195,21 +198,21 @@ export default function GetStartedPage() {
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                       </svg>
                     </div>
-                    <h2 className="text-2xl font-serif font-light text-gray-900 mb-4">
+                    <h2 className="text-2xl font-serif font-light text-foreground mb-4">
                       Thank You for Your Submission!
                     </h2>
-                    <p className="text-gray-600 mb-8 max-w-md mx-auto">
+                    <p className="text-muted-foreground mb-8 max-w-md mx-auto">
                       We've received your health assessment. Our team will review your information and contact you
                       within 24-48 hours to discuss your personalized health plan.
                     </p>
                     <div className="space-y-4">
                       <Link href="/">
-                        <Button className="bg-green-600 hover:bg-green-700 text-white rounded-full px-8">
+                        <Button className="bg-brand hover:bg-brand-hover text-brand-foreground rounded-full px-8">
                           Return to Homepage
                         </Button>
                       </Link>
                       <div>
-                        <Link href="/resources" className="text-green-600 hover:underline block mt-4">
+                        <Link href="/resources" className="text-brand hover:underline block mt-4">
                           Explore our health resources while you wait
                         </Link>
                       </div>
@@ -253,8 +256,10 @@ export default function GetStartedPage() {
                     {step === 1 && (
                       <div className="space-y-6">
                         <div>
-                          <h2 className="text-2xl font-serif font-light text-gray-900 mb-2">Personal Information</h2>
-                          <p className="text-gray-600 mb-6">Please provide your basic information to get started.</p>
+                          <h2 className="text-2xl font-serif font-light text-foreground mb-2">Personal Information</h2>
+                          <p className="text-muted-foreground mb-6">
+                            Please provide your basic information to get started.
+                          </p>
                         </div>
 
                         <div className="space-y-4">
@@ -350,7 +355,7 @@ export default function GetStartedPage() {
                           <Button
                             type="button"
                             onClick={nextStep}
-                            className="bg-green-600 hover:bg-green-700 text-white rounded-full px-8"
+                            className="bg-brand hover:bg-brand-hover text-brand-foreground rounded-full px-8"
                           >
                             Next
                           </Button>
@@ -362,8 +367,8 @@ export default function GetStartedPage() {
                     {step === 2 && (
                       <div className="space-y-6">
                         <div>
-                          <h2 className="text-2xl font-serif font-light text-gray-900 mb-2">Health Information</h2>
-                          <p className="text-gray-600 mb-6">Tell us about your current health status.</p>
+                          <h2 className="text-2xl font-serif font-light text-foreground mb-2">Health Information</h2>
+                          <p className="text-muted-foreground mb-6">Tell us about your current health status.</p>
                         </div>
 
                         <div className="space-y-4">
@@ -501,14 +506,14 @@ export default function GetStartedPage() {
                             type="button"
                             variant="outline"
                             onClick={prevStep}
-                            className="border-green-600 text-green-600 hover:bg-green-50 rounded-full px-6"
+                            className="border-brand text-brand hover:bg-brand-light rounded-full px-6 bg-transparent"
                           >
                             Previous
                           </Button>
                           <Button
                             type="button"
                             onClick={nextStep}
-                            className="bg-green-600 hover:bg-green-700 text-white rounded-full px-8"
+                            className="bg-brand hover:bg-brand-hover text-brand-foreground rounded-full px-8"
                           >
                             Next
                           </Button>
@@ -520,8 +525,8 @@ export default function GetStartedPage() {
                     {step === 3 && (
                       <div className="space-y-6">
                         <div>
-                          <h2 className="text-2xl font-serif font-light text-gray-900 mb-2">Lifestyle Information</h2>
-                          <p className="text-gray-600 mb-6">Tell us about your daily habits and lifestyle.</p>
+                          <h2 className="text-2xl font-serif font-light text-foreground mb-2">Lifestyle Information</h2>
+                          <p className="text-muted-foreground mb-6">Tell us about your daily habits and lifestyle.</p>
                         </div>
 
                         <div className="space-y-4">
@@ -663,14 +668,14 @@ export default function GetStartedPage() {
                             type="button"
                             variant="outline"
                             onClick={prevStep}
-                            className="border-green-600 text-green-600 hover:bg-green-50 rounded-full px-6"
+                            className="border-brand text-brand hover:bg-brand-light rounded-full px-6 bg-transparent"
                           >
                             Previous
                           </Button>
                           <Button
                             type="button"
                             onClick={nextStep}
-                            className="bg-green-600 hover:bg-green-700 text-white rounded-full px-8"
+                            className="bg-brand hover:bg-brand-hover text-brand-foreground rounded-full px-8"
                           >
                             Next
                           </Button>
@@ -682,10 +687,10 @@ export default function GetStartedPage() {
                     {step === 4 && (
                       <div className="space-y-6">
                         <div>
-                          <h2 className="text-2xl font-serif font-light text-gray-900 mb-2">
+                          <h2 className="text-2xl font-serif font-light text-foreground mb-2">
                             Goals & Additional Information
                           </h2>
-                          <p className="text-gray-600 mb-6">
+                          <p className="text-muted-foreground mb-6">
                             Tell us about your health goals and any additional information.
                           </p>
                         </div>
@@ -838,10 +843,10 @@ export default function GetStartedPage() {
                           </div>
 
                           <div className="pt-4">
-                            <div className="bg-green-50 p-4 rounded-lg mb-6">
-                              <p className="text-sm text-gray-700">
+                            <div className="bg-brand-lighter p-4 rounded-lg mb-6">
+                              <p className="text-sm text-foreground">
                                 By submitting this form, you agree to our{" "}
-                                <Link href="/privacy" className="text-green-600 hover:underline">
+                                <Link href="/privacy" className="text-brand hover:underline">
                                   Privacy Policy
                                 </Link>{" "}
                                 and consent to being contacted by NxHealth Solutions regarding your health assessment
@@ -856,19 +861,19 @@ export default function GetStartedPage() {
                             type="button"
                             variant="outline"
                             onClick={prevStep}
-                            className="border-green-600 text-green-600 hover:bg-green-50 rounded-full px-6"
+                            className="border-brand text-brand hover:bg-brand-light rounded-full px-6 bg-transparent"
                           >
                             Previous
                           </Button>
                           <Button
                             type="submit"
                             disabled={isSubmitting}
-                            className="bg-green-600 hover:bg-green-700 text-white rounded-full px-8"
+                            className="bg-brand hover:bg-brand-hover text-brand-foreground rounded-full px-8"
                           >
                             {isSubmitting ? (
                               <span className="flex items-center">
                                 <svg
-                                  className="animate-spin -ml-1 mr-2 h-4 w-4 text-white"
+                                  className="animate-spin -ml-1 mr-2 h-4 w-4 text-brand-foreground"
                                   xmlns="http://www.w3.org/2000/svg"
                                   fill="none"
                                   viewBox="0 0 24 24"

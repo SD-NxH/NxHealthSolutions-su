@@ -47,7 +47,7 @@ export default function CalorieCounterPage() {
         </p>
 
         <div className="grid md:grid-cols-3 gap-6 my-8">
-          <div className="bg-green-50 p-6 rounded-lg">
+          <div className="bg-brand-lighter p-6 rounded-lg">
             <h4 className="font-semibold text-lg mb-2">Protein</h4>
             <p className="text-sm">
               Essential for muscle repair and growth. Each gram provides 4 calories. Good protein-packed plant-based
@@ -55,7 +55,7 @@ export default function CalorieCounterPage() {
             </p>
           </div>
 
-          <div className="bg-green-50 p-6 rounded-lg">
+          <div className="bg-brand-lighter p-6 rounded-lg">
             <h4 className="font-semibold text-lg mb-2">Carbohydrates</h4>
             <p className="text-sm">
               Your body's primary energy source. Each gram provides 4 calories. Focus on complex carbs from whole
@@ -63,7 +63,7 @@ export default function CalorieCounterPage() {
             </p>
           </div>
 
-          <div className="bg-green-50 p-6 rounded-lg">
+          <div className="bg-brand-lighter p-6 rounded-lg">
             <h4 className="font-semibold text-lg mb-2">Fats</h4>
             <p className="text-sm">
               Essential for hormone production and nutrient absorption. Each gram provides 9 calories. Prioritize
@@ -101,7 +101,7 @@ export default function CalorieCounterPage() {
           Consider using a food diary or nutrition tracking app to monitor your intake.
         </p>
 
-        <div className="bg-green-50 p-6 rounded-lg mt-8">
+        <div className="bg-brand-lighter p-6 rounded-lg mt-8">
           <h3 className="text-xl font-semibold mb-3">Important Note</h3>
           <p>
             These calculators provide estimates only. Individual needs may vary based on factors not accounted for in

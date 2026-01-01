@@ -9,6 +9,7 @@ import { motion, useScroll, useTransform, useInView } from "framer-motion"
 import { useMobile } from "@/hooks/use-mobile"
 import { useRouter } from "next/navigation"
 import { cn } from "@/lib/utils"
+import { NewsletterForm } from "@/components/newsletter-form"
 
 function getRandomUrl() {
   const urls = ["/resources", "/about", "/shop", "/resources/foods/apple", "/resources/foods/dates"]
@@ -50,7 +51,7 @@ export default function Home() {
       {/* Hero Section */}
       <motion.section
         ref={heroRef}
-        className="relative w-full h-[90vh] flex items-center justify-center overflow-hidden bg-gradient-to-b from-green-50 to-white"
+        className="relative w-full h-[90vh] flex items-center justify-center overflow-hidden bg-gradient-to-b from-brand-lighter to-background"
         style={{
           opacity: heroOpacity,
           scale: heroScale,
@@ -66,8 +67,8 @@ export default function Home() {
               className="relative w-32 h-32 sm:w-40 sm:h-40 md:w-56 md:h-56"
             >
               <Link href="/resources" className="p-4">
-                <div className="absolute inset-0 bg-green-100/30 backdrop-blur-md rounded-full transform -rotate-6 scale-110"></div>
-                <div className="relative w-full h-full rounded-full overflow-hidden shadow-xl border-4 border-white/30 backdrop-filter backdrop-blur-sm">
+                <div className="absolute inset-0 bg-brand-light/30 backdrop-blur-md rounded-full transform -rotate-6 scale-110"></div>
+                <div className="relative w-full h-full rounded-full overflow-hidden shadow-xl border-4 border-background/30 backdrop-filter backdrop-blur-sm">
                   <Image
                     src="/nxlogo-alt-2.png"
                     alt="NxHealth Logo"
@@ -76,14 +77,14 @@ export default function Home() {
                     priority
                   />
                 </div>
-                <div className="absolute -inset-4 bg-green-200/20 rounded-full blur-xl -z-10 animate-pulse"></div>
+                <div className="absolute -inset-4 bg-brand-light/20 rounded-full blur-xl -z-10 animate-pulse"></div>
               </Link>
             </motion.div>
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
-              className="text-4xl sm:text-5xl md:text-7xl font-serif font-light tracking-tight text-green-800"
+              className="text-4xl sm:text-5xl md:text-7xl font-serif tracking-tight font-semibold text-foreground"
             >
               Better Health.
               <br />
@@ -106,7 +107,7 @@ export default function Home() {
             >
               <Button
                 className={cn(
-                  "bg-green-600 hover:bg-green-700 text-white rounded-full px-6 sm:px-8 py-5 sm:py-6 text-base sm:text-lg",
+                  "bg-brand hover:bg-brand-hover text-brand-foreground rounded-full px-6 sm:px-8 py-5 sm:py-6 text-base sm:text-lg",
                   "transition-transform transform hover:scale-105",
                 )}
                 onClick={handleExploreClick}
@@ -120,7 +121,7 @@ export default function Home() {
       </motion.section>
 
       {/* Featured Articles Section */}
-      <section ref={featuredRef} className="py-20 bg-white">
+      <section ref={featuredRef} className="py-20 bg-background">
         <div className="container px-4 md:px-6 mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
@@ -140,7 +141,7 @@ export default function Home() {
               initial={{ opacity: 0, y: 40 }}
               animate={isFeaturedInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.8, delay: 0.1 }}
-              className="bg-white rounded-xl overflow-hidden shadow-md transition-all duration-300 hover:shadow-lg"
+              className="bg-card rounded-xl overflow-hidden shadow-md transition-all duration-300 hover:shadow-lg"
             >
               <div className="relative h-48 w-full">
                 <Image
@@ -151,7 +152,7 @@ export default function Home() {
                 />
               </div>
               <div className="p-6">
-                <span className="text-xs font-semibold text-green-600 uppercase tracking-wider">Nutrition</span>
+                <span className="text-xs font-semibold text-brand uppercase tracking-wider">Nutrition</span>
                 <h3 className="text-xl font-serif font-medium text-gray-900 mt-2 mb-3">
                   The Power of Plant-Based Eating
                 </h3>
@@ -161,7 +162,7 @@ export default function Home() {
                 </p>
                 <Link
                   href="/resources/articles/power-up-with-plants"
-                  className="inline-flex items-center text-green-600 font-medium"
+                  className="inline-flex items-center text-brand hover:bg-brand-lighter font-medium"
                 >
                   Read More <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
@@ -173,7 +174,7 @@ export default function Home() {
               initial={{ opacity: 0, y: 40 }}
               animate={isFeaturedInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="bg-white rounded-xl overflow-hidden shadow-md transition-all duration-300 hover:shadow-lg"
+              className="bg-card rounded-xl overflow-hidden shadow-md transition-all duration-300 hover:shadow-lg"
             >
               <div className="relative h-48 w-full">
                 <Image
@@ -184,7 +185,7 @@ export default function Home() {
                 />
               </div>
               <div className="p-6">
-                <span className="text-xs font-semibold text-green-600 uppercase tracking-wider">Wellness</span>
+                <span className="text-xs font-semibold text-brand uppercase tracking-wider">Wellness</span>
                 <h3 className="text-xl font-serif font-medium text-gray-900 mt-2 mb-3">
                   Dark Chocolate: A Healthy Indulgence
                 </h3>
@@ -194,7 +195,7 @@ export default function Home() {
                 </p>
                 <Link
                   href="/resources/foods/dark-chocolate"
-                  className="inline-flex items-center text-green-600 font-medium"
+                  className="inline-flex items-center text-brand hover:bg-brand-lighter font-medium"
                 >
                   Read More <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
@@ -206,7 +207,7 @@ export default function Home() {
               initial={{ opacity: 0, y: 40 }}
               animate={isFeaturedInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.8, delay: 0.3 }}
-              className="bg-white rounded-xl overflow-hidden shadow-md transition-all duration-300 hover:shadow-lg"
+              className="bg-card rounded-xl overflow-hidden shadow-md transition-all duration-300 hover:shadow-lg"
             >
               <div className="relative h-48 w-full">
                 <Image
@@ -217,7 +218,7 @@ export default function Home() {
                 />
               </div>
               <div className="p-6">
-                <span className="text-xs font-semibold text-green-600 uppercase tracking-wider">Health</span>
+                <span className="text-xs font-semibold text-brand uppercase tracking-wider">Health</span>
                 <h3 className="text-xl font-serif font-medium text-gray-900 mt-2 mb-3">
                   Understanding Your Caloric Needs
                 </h3>
@@ -227,7 +228,7 @@ export default function Home() {
                 </p>
                 <Link
                   href="/resources/articles/understanding-caloric-needs"
-                  className="inline-flex items-center text-green-600 font-medium"
+                  className="inline-flex items-center text-brand hover:bg-brand-lighter font-medium"
                 >
                   Read More <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
@@ -238,7 +239,7 @@ export default function Home() {
           <div className="text-center mt-12">
             <Button
               variant="outline"
-              className="border-green-600 text-green-600 hover:bg-green-50 rounded-full btn-articles bg-transparent"
+              className="border-brand text-brand hover:bg-brand-lighter rounded-full btn-articles bg-transparent"
               article="true"
             >
               View All Articles
@@ -248,7 +249,7 @@ export default function Home() {
       </section>
 
       {/* Services Section */}
-      <section ref={servicesRef} className="py-20 bg-green-50">
+      <section ref={servicesRef} className="py-20 bg-brand-lighter">
         <div className="container px-4 md:px-6 mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
@@ -269,15 +270,15 @@ export default function Home() {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="flex flex-col items-center text-center p-6 rounded-xl transition-all duration-300 hover:shadow-lg"
             >
-              <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mb-6">
-                <Leaf className="w-10 h-10 text-green-600" />
+              <div className="w-20 h-20 bg-brand-light rounded-full flex items-center justify-center mb-6">
+                <Leaf className="w-10 h-10 text-brand" />
               </div>
               <h3 className="text-2xl font-serif font-medium text-gray-900 mb-3">Health & Wellness</h3>
               <p className="text-gray-600">
                 Holistic approaches to improve your overall health and wellbeing through personalized wellness plans.
               </p>
               {/* For the Health & Wellness service */}
-              <Link href="/health-wellness" className="mt-6 inline-flex items-center text-green-600 font-medium">
+              <Link href="/health-wellness" className="mt-6 inline-flex items-center text-brand font-medium">
                 Explore <ChevronRight className="ml-1 w-4 h-4" />
               </Link>
             </motion.div>
@@ -288,15 +289,15 @@ export default function Home() {
               transition={{ duration: 0.8, delay: 0.4 }}
               className="flex flex-col items-center text-center p-6 rounded-xl transition-all duration-300 hover:shadow-lg"
             >
-              <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mb-6">
-                <ClipboardList className="w-10 h-10 text-green-600" />
+              <div className="w-20 h-20 bg-brand-light rounded-full flex items-center justify-center mb-6">
+                <ClipboardList className="w-10 h-10 text-brand" />
               </div>
               <h3 className="text-2xl font-serif font-medium text-gray-900 mb-3">Diet Coaching</h3>
               <p className="text-gray-600">
                 Expert guidance on nutrition and dietary habits to help you achieve your health goals.
               </p>
               {/* For the Diet Counseling service */}
-              <Link href="/services/diet-coaching" className="mt-6 inline-flex items-center text-green-600 font-medium">
+              <Link href="/services/diet-coaching" className="mt-6 inline-flex items-center text-brand font-medium">
                 Explore <ChevronRight className="ml-1 w-4 h-4" />
               </Link>
             </motion.div>
@@ -307,15 +308,15 @@ export default function Home() {
               transition={{ duration: 0.8, delay: 0.6 }}
               className="flex flex-col items-center text-center p-6 rounded-xl transition-all duration-300 hover:shadow-lg"
             >
-              <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mb-6">
-                <Apple className="w-10 h-10 text-green-600" />
+              <div className="w-20 h-20 bg-brand-light rounded-full flex items-center justify-center mb-6">
+                <Apple className="w-10 h-10 text-brand" />
               </div>
               <h3 className="text-2xl font-serif font-medium text-gray-900 mb-3">Nutrition Planning</h3>
               <p className="text-gray-600">
                 Personalized nutrition recommendations based on your unique health profile and goals.
               </p>
               {/* For the Nutrition Advice service */}
-              <Link href="/get-started" className="mt-6 inline-flex items-center text-green-600 font-medium">
+              <Link href="/get-started" className="mt-6 inline-flex items-center text-brand font-medium">
                 Get Started <ChevronRight className="ml-1 w-4 h-4" />
               </Link>
             </motion.div>
@@ -324,7 +325,7 @@ export default function Home() {
       </section>
 
       {/* About Section */}
-      <section ref={aboutRef} className="py-20 bg-white">
+      <section ref={aboutRef} className="py-20 bg-background">
         <div className="container px-4 md:px-6 mx-auto">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <motion.div
@@ -342,7 +343,7 @@ export default function Home() {
                 journey.
               </p>
               <Button
-                className="bg-green-600 hover:bg-green-700 text-white rounded-full px-8 py-6 text-lg btn-about"
+                className="bg-brand hover:bg-brand-hover text-brand-foreground rounded-full px-8 py-6 text-lg btn-about"
                 href="/about"
               >
                 About Us
@@ -373,38 +374,22 @@ export default function Home() {
             initial={{ opacity: 0, y: 40 }}
             animate={isAboutInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="mt-16 bg-gradient-to-r from-green-50 to-blue-50 rounded-2xl p-8 text-center max-w-2xl mx-auto"
+            className="mt-16 bg-gradient-to-r from-brand-lighter to-blue-50 rounded-2xl p-8 text-center max-w-2xl mx-auto"
+            id="newsletter-success"
           >
             <h3 className="text-2xl font-serif font-medium text-gray-900 mb-3">Stay In The Know About NxHealth</h3>
-            <p className="text-gray-600 mb-6">
+            <p className="text-gray-600 mb-6" id="newsletter-section-description">
               Get exclusive health insights, wellness tips, and be the first to know about our latest resources and
               special offers.
             </p>
-            <form
-              action="https://formsubmit.co/nxhealthsolutions@gmail.com"
-              method="POST"
-              className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto"
-            >
-              <input
-                type="email"
-                name="email"
-                placeholder="Enter your email address"
-                required
-                className="flex-1 px-4 py-3 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
-              />
-              <Button
-                type="submit"
-                className="bg-green-600 hover:bg-green-700 text-white rounded-full px-6 py-3 whitespace-nowrap"
-              >
-                Subscribe
-              </Button>
-            </form>
+            {/* Newsletter Form */}
+            <NewsletterForm />
           </motion.div>
         </div>
       </section>
 
       {/* CTA Section */}
-      <section ref={ctaRef} className="py-20 bg-green-800 text-white">
+      <section ref={ctaRef} className="py-20 bg-brand-dark text-white">
         <div className="container px-4 md:px-6 mx-auto text-center">
           <motion.h2
             initial={{ opacity: 0, y: 40 }}
@@ -418,7 +403,7 @@ export default function Home() {
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-xl text-green-100 max-w-2xl mx-auto mb-10"
+            className="text-xl text-brand-light max-w-2xl mx-auto mb-10"
           >
             Take the first step toward a healthier lifestyle with our personalized health solutions.
           </motion.p>
@@ -429,7 +414,7 @@ export default function Home() {
             className="flex flex-col sm:flex-row gap-4 justify-center"
           >
             <Button
-              className="bg-white text-green-800 hover:bg-green-100 rounded-full px-8 py-6 text-lg btn-get-started"
+              className="bg-background text-brand hover:bg-brand-lighter rounded-full px-8 py-6 text-lg btn-get-started"
               href="/get-started"
             >
               Get Started Today
@@ -437,7 +422,7 @@ export default function Home() {
             <Link href="/contact">
               <Button
                 variant="outline"
-                className="border-white text-white hover:bg-green-700 rounded-full px-8 py-6 text-lg bg-transparent"
+                className="border-white text-white hover:bg-brand-hover rounded-full px-8 py-6 text-lg bg-transparent"
               >
                 Contact Us
               </Button>

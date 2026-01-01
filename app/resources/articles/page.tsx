@@ -329,8 +329,8 @@ export default function ArticlesPage() {
                     <Card className="group h-full overflow-hidden hover:shadow-xl transition-all duration-300 border-border hover:border-primary">
                       <div className="relative h-56 md:h-64 w-full overflow-hidden">
                         {article.id === "understanding-breast-cancer" ? (
-                          <div className="h-full w-full bg-gradient-to-br from-pink-400 to-pink-600 flex items-center justify-center">
-                            <span className="text-white text-xl font-bold">Breast Cancer Awareness</span>
+                          <div className="h-full w-full bg-gradient-to-br from-accent to-accent/80 flex items-center justify-center">
+                            <span className="text-accent-foreground text-xl font-bold">Breast Cancer Awareness</span>
                           </div>
                         ) : (
                           <Image
@@ -427,8 +427,8 @@ export default function ArticlesPage() {
                       <Card className="group h-full hover:shadow-lg transition-all duration-300 border-border hover:border-primary">
                         <div className="relative h-48 w-full overflow-hidden">
                           {article.id === "understanding-breast-cancer" ? (
-                            <div className="h-full w-full bg-gradient-to-br from-pink-400 to-pink-600 flex items-center justify-center">
-                              <span className="text-white text-lg font-bold">Breast Cancer Awareness</span>
+                            <div className="h-full w-full bg-gradient-to-br from-accent to-accent/80 flex items-center justify-center">
+                              <span className="text-accent-foreground text-lg font-bold">Breast Cancer Awareness</span>
                             </div>
                           ) : (
                             <Image

@@ -35,7 +35,10 @@ export default function ServicesPage() {
   return (
     <div className="flex flex-col min-h-screen">
       {/* Hero Section */}
-      <section ref={headerRef} className="relative w-full py-16 md:py-24 bg-gradient-to-b from-green-50 to-white">
+      <section
+        ref={headerRef}
+        className="relative w-full py-16 md:py-24 bg-gradient-to-b from-brand-lighter to-background"
+      >
         <div className="container px-4 md:px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -43,10 +46,10 @@ export default function ServicesPage() {
             transition={{ duration: 0.8 }}
             className="max-w-3xl mx-auto text-center"
           >
-            <h1 className="text-4xl md:text-5xl font-serif font-light tracking-tight text-green-800 mb-4">
+            <h1 className="text-4xl md:text-5xl font-serif font-light tracking-tight text-brand-dark mb-4">
               Our Services
             </h1>
-            <p className="text-xl text-gray-600 mb-8">
+            <p className="text-xl text-muted-foreground mb-8">
               Comprehensive health and wellness solutions tailored to your individual needs
             </p>
           </motion.div>
@@ -54,7 +57,7 @@ export default function ServicesPage() {
       </section>
 
       {/* Main Services Section */}
-      <section ref={mainServicesRef} className="py-16 bg-green-50" id="core-services">
+      <section ref={mainServicesRef} className="py-16 bg-brand-lighter" id="core-services">
         <div className="container px-4 md:px-6">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
@@ -62,8 +65,8 @@ export default function ServicesPage() {
             transition={{ duration: 0.8 }}
             className="text-center mb-12"
           >
-            <h2 className="text-3xl md:text-4xl font-serif font-light text-gray-900 mb-4">Core Services</h2>
-            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+            <h2 className="text-3xl md:text-4xl font-serif font-light text-foreground mb-4">Core Services</h2>
+            <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
               Choose the consultation format that works best for you and your health journey
             </p>
           </motion.div>
@@ -87,12 +90,14 @@ export default function ServicesPage() {
                 />
               </div>
               <div className="p-6 text-center">
-                <h3 className="text-2xl font-serif font-medium text-gray-900 mb-3">Consultation</h3>
-                <p className="text-gray-600 mb-6">
+                <h3 className="text-2xl font-serif font-medium text-foreground mb-3">Consultation</h3>
+                <p className="text-muted-foreground mb-6">
                   In this consultation, we will figure out your why and form a plan for moving forward. Meet with our
                   health experts face-to-face for personalized guidance.
                 </p>
-                <Button className="w-full bg-green-600 hover:bg-green-700 text-white rounded-full">Schedule</Button>
+                <Button className="w-full bg-brand hover:bg-brand-hover text-brand-foreground rounded-full">
+                  Schedule
+                </Button>
               </div>
             </motion.div>
 
@@ -114,13 +119,13 @@ export default function ServicesPage() {
                 />
               </div>
               <div className="p-6 text-center">
-                <h3 className="text-2xl font-serif font-medium text-gray-900 mb-3">Online Consultation</h3>
-                <p className="text-gray-600 mb-6">
+                <h3 className="text-2xl font-serif font-medium text-foreground mb-3">Online Consultation</h3>
+                <p className="text-muted-foreground mb-6">
                   This is completely online (asynchronous)! Fill out the form in its entirety to help us figure out your
                   why and create a plan just for you moving forward.
                 </p>
                 <Link href="/checkout/online-consultation">
-                  <Button className="w-full bg-green-600 hover:bg-green-700 text-white rounded-full">
+                  <Button className="w-full bg-brand hover:bg-brand-hover text-brand-foreground rounded-full">
                     Pay & Schedule
                   </Button>
                 </Link>
@@ -145,12 +150,14 @@ export default function ServicesPage() {
                 />
               </div>
               <div className="p-6 text-center">
-                <h3 className="text-2xl font-serif font-medium text-gray-900 mb-3">Standard Solutions Session</h3>
-                <p className="text-gray-600 mb-6">
+                <h3 className="text-2xl font-serif font-medium text-foreground mb-3">Standard Solutions Session</h3>
+                <p className="text-muted-foreground mb-6">
                   This is a standard Health Solution session. These sessions will be composed of services comparable to
                   health & nutrition counseling or therapy, symptom alleviation, lifestyle change planning.
                 </p>
-                <Button className="w-full bg-green-600 hover:bg-green-700 text-white rounded-full">Schedule</Button>
+                <Button className="w-full bg-brand hover:bg-brand-hover text-brand-foreground rounded-full">
+                  Schedule
+                </Button>
               </div>
             </motion.div>
           </div>
@@ -158,7 +165,7 @@ export default function ServicesPage() {
       </section>
 
       {/* 2 Week Habit Forming Program Section */}
-      <section ref={habitProgramRef} className="py-16 bg-gradient-to-r from-green-100 to-blue-50">
+      <section ref={habitProgramRef} className="py-16 bg-gradient-to-r from-brand-lighter to-blue-50">
         <div className="container px-4 md:px-6">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
@@ -166,67 +173,67 @@ export default function ServicesPage() {
             transition={{ duration: 0.8 }}
             className="max-w-5xl mx-auto"
           >
-            <div className="bg-white rounded-2xl overflow-hidden shadow-xl">
+            <div className="bg-card rounded-2xl overflow-hidden shadow-xl">
               <div className="md:flex">
-                <div className="md:w-2/5 bg-gradient-to-br from-green-600 to-green-800 text-white p-8 flex flex-col justify-center">
+                <div className="md:w-2/5 bg-gradient-to-br from-brand to-brand-dark text-brand-foreground p-8 flex flex-col justify-center">
                   <h2 className="text-3xl md:text-4xl font-serif font-light mb-4">2 Week Habit Forming Program</h2>
                   <h3 className="text-xl md:text-2xl font-medium mb-6">Food Freedom Fast Track</h3>
-                  <p className="text-green-50 mb-8">
+                  <p className="text-brand-light mb-8">
                     An immersive and supportive 14-day journey to break the cycle of food addiction through education,
                     daily guidance, and community support.
                   </p>
                   <div className="hidden md:block">
                     <Link href="/services/freedom-from-food">
-                      <Button className="bg-white text-green-700 hover:bg-green-50 rounded-full px-8 py-6">
+                      <Button className="bg-background text-brand hover:bg-brand-lighter rounded-full px-8 py-6">
                         Learn More
                       </Button>
                     </Link>
                   </div>
                 </div>
                 <div className="md:w-3/5 p-8">
-                  <h4 className="text-xl font-medium text-gray-900 mb-4">Program Highlights:</h4>
+                  <h4 className="text-xl font-medium text-foreground mb-4">Program Highlights:</h4>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
                     <div className="flex items-start">
-                      <Calendar className="h-5 w-5 text-green-600 mt-0.5 mr-2 flex-shrink-0" />
-                      <p className="text-gray-700">Daily live or pre-recorded sessions (14 days)</p>
+                      <Calendar className="h-5 w-5 text-brand mt-0.5 mr-2 flex-shrink-0" />
+                      <p className="text-muted-foreground">Daily live or pre-recorded sessions (14 days)</p>
                     </div>
                     <div className="flex items-start">
-                      <BookOpen className="h-5 w-5 text-green-600 mt-0.5 mr-2 flex-shrink-0" />
-                      <p className="text-gray-700">Comprehensive digital workbook</p>
+                      <BookOpen className="h-5 w-5 text-brand mt-0.5 mr-2 flex-shrink-0" />
+                      <p className="text-muted-foreground">Comprehensive digital workbook</p>
                     </div>
                     <div className="flex items-start">
-                      <MessageCircle className="h-5 w-5 text-green-600 mt-0.5 mr-2 flex-shrink-0" />
-                      <p className="text-gray-700">Daily email support and motivation</p>
+                      <MessageCircle className="h-5 w-5 text-brand mt-0.5 mr-2 flex-shrink-0" />
+                      <p className="text-muted-foreground">Daily email support and motivation</p>
                     </div>
                     <div className="flex items-start">
-                      <Users className="h-5 w-5 text-green-600 mt-0.5 mr-2 flex-shrink-0" />
-                      <p className="text-gray-700">Private online community support</p>
+                      <Users className="h-5 w-5 text-brand mt-0.5 mr-2 flex-shrink-0" />
+                      <p className="text-muted-foreground">Private online community support</p>
                     </div>
                   </div>
 
-                  <h4 className="text-xl font-medium text-gray-900 mb-4">What You'll Learn:</h4>
+                  <h4 className="text-xl font-medium text-foreground mb-4">What You'll Learn:</h4>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-6">
                     <div className="flex items-start">
-                      <CheckCircle className="h-5 w-5 text-green-600 mt-0.5 mr-2 flex-shrink-0" />
-                      <p className="text-gray-700">Identify and manage food triggers</p>
+                      <CheckCircle className="h-5 w-5 text-brand mt-0.5 mr-2 flex-shrink-0" />
+                      <p className="text-muted-foreground">Identify and manage food triggers</p>
                     </div>
                     <div className="flex items-start">
-                      <CheckCircle className="h-5 w-5 text-green-600 mt-0.5 mr-2 flex-shrink-0" />
-                      <p className="text-gray-700">Break the physical cycle of addiction</p>
+                      <CheckCircle className="h-5 w-5 text-brand mt-0.5 mr-2 flex-shrink-0" />
+                      <p className="text-muted-foreground">Break the physical cycle of addiction</p>
                     </div>
                     <div className="flex items-start">
-                      <CheckCircle className="h-5 w-5 text-green-600 mt-0.5 mr-2 flex-shrink-0" />
-                      <p className="text-gray-700">Develop sustainable eating habits</p>
+                      <CheckCircle className="h-5 w-5 text-brand mt-0.5 mr-2 flex-shrink-0" />
+                      <p className="text-muted-foreground">Develop sustainable eating habits</p>
                     </div>
                     <div className="flex items-start">
-                      <CheckCircle className="h-5 w-5 text-green-600 mt-0.5 mr-2 flex-shrink-0" />
-                      <p className="text-gray-700">Create a long-term vision for success</p>
+                      <CheckCircle className="h-5 w-5 text-brand mt-0.5 mr-2 flex-shrink-0" />
+                      <p className="text-muted-foreground">Create a long-term vision for success</p>
                     </div>
                   </div>
 
                   <div className="md:hidden mt-6">
                     <Link href="/services/freedom-from-food">
-                      <Button className="w-full bg-green-600 hover:bg-green-700 text-white rounded-full">
+                      <Button className="w-full bg-brand hover:bg-brand-hover text-brand-foreground rounded-full">
                         Learn More
                       </Button>
                     </Link>
@@ -239,7 +246,7 @@ export default function ServicesPage() {
       </section>
 
       {/* Personalized Meal and Grocery Planning Section */}
-      <section className="py-16 bg-white">
+      <section className="py-16 bg-background">
         <div className="container px-4 md:px-6">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
@@ -248,19 +255,19 @@ export default function ServicesPage() {
             className="max-w-4xl mx-auto"
           >
             <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-serif font-light text-gray-900 mb-4">
+              <h2 className="text-3xl md:text-4xl font-serif font-light text-foreground mb-4">
                 Personalized Meal & Grocery Planning
               </h2>
-              <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+              <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
                 Get customized meal plans and grocery lists tailored specifically to your dietary needs, preferences,
                 and health goals.
               </p>
             </div>
 
-            <div className="bg-green-50 rounded-2xl p-8">
+            <div className="bg-brand-lighter rounded-2xl p-8">
               <div className="text-center mb-8">
-                <h3 className="text-2xl font-medium text-gray-900 mb-4">Start Your Personalized Plan</h3>
-                <p className="text-gray-600 mb-6">
+                <h3 className="text-2xl font-medium text-foreground mb-4">Start Your Personalized Plan</h3>
+                <p className="text-muted-foreground mb-6">
                   Fill out our comprehensive form to receive meal plans and grocery lists designed just for you.
                 </p>
               </div>
@@ -284,7 +291,7 @@ export default function ServicesPage() {
       </section>
 
       {/* Specialized Services Section */}
-      <section ref={specializedServicesRef} className="py-16 bg-white" id="specialized-services">
+      <section ref={specializedServicesRef} className="py-16 bg-background" id="specialized-services">
         <div className="container px-4 md:px-6">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
@@ -292,8 +299,8 @@ export default function ServicesPage() {
             transition={{ duration: 0.8 }}
             className="text-center mb-12"
           >
-            <h2 className="text-3xl md:text-4xl font-serif font-light text-gray-900 mb-4">Specialized Services</h2>
-            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+            <h2 className="text-3xl md:text-4xl font-serif font-light text-foreground mb-4">Specialized Services</h2>
+            <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
               Targeted solutions for specific health and wellness needs
             </p>
           </motion.div>
@@ -304,41 +311,41 @@ export default function ServicesPage() {
               initial={{ opacity: 0, y: 40 }}
               animate={isSpecializedServicesInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.8, delay: 0.1 }}
-              className="bg-green-50 rounded-xl p-6"
+              className="bg-brand-lighter rounded-xl p-6"
             >
-              <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mb-6 mx-auto">
-                <Leaf className="h-8 w-8 text-green-600" />
+              <div className="w-16 h-16 bg-brand-light rounded-full flex items-center justify-center mb-6 mx-auto">
+                <Leaf className="h-8 w-8 text-brand" />
               </div>
-              <h3 className="text-xl font-medium text-gray-900 mb-3 text-center">Nutrition Planning</h3>
-              <p className="text-gray-600 mb-4 text-center">
+              <h3 className="text-xl font-medium text-foreground mb-3 text-center">Nutrition Planning</h3>
+              <p className="text-muted-foreground mb-4 text-center">
                 Personalized nutrition plans based on your unique health profile, dietary preferences, and wellness
                 goals.
               </p>
               <ul className="space-y-2 mb-6">
                 <li className="flex items-start">
-                  <span className="inline-block h-5 w-5 rounded-full bg-green-100 text-green-600 flex-shrink-0 mr-2 text-center text-sm">
+                  <span className="inline-block h-5 w-5 rounded-full bg-brand-light text-brand flex-shrink-0 mr-2 text-center text-sm">
                     ✓
                   </span>
-                  <span className="text-gray-600">Customized meal plans</span>
+                  <span className="text-muted-foreground">Customized meal plans</span>
                 </li>
                 <li className="flex items-start">
-                  <span className="inline-block h-5 w-5 rounded-full bg-green-100 text-green-600 flex-shrink-0 mr-2 text-center text-sm">
+                  <span className="inline-block h-5 w-5 rounded-full bg-brand-light text-brand flex-shrink-0 mr-2 text-center text-sm">
                     ✓
                   </span>
-                  <span className="text-gray-600">Food as medicine approach</span>
+                  <span className="text-muted-foreground">Food as medicine approach</span>
                 </li>
                 <li className="flex items-start">
-                  <span className="inline-block h-5 w-5 rounded-full bg-green-100 text-green-600 flex-shrink-0 mr-2 text-center text-sm">
+                  <span className="inline-block h-5 w-5 rounded-full bg-brand-light text-brand flex-shrink-0 mr-2 text-center text-sm">
                     ✓
                   </span>
-                  <span className="text-gray-600">Dietary guidance for specific conditions</span>
+                  <span className="text-muted-foreground">Dietary guidance for specific conditions</span>
                 </li>
               </ul>
               <div className="text-center">
                 <Link href="/services/nutrition-planning">
                   <Button
                     variant="outline"
-                    className="border-green-600 text-green-600 hover:bg-green-50 rounded-full bg-transparent"
+                    className="border-brand text-brand hover:bg-brand-lighter rounded-full bg-transparent"
                   >
                     Purchase
                   </Button>
@@ -351,9 +358,9 @@ export default function ServicesPage() {
               initial={{ opacity: 0, y: 40 }}
               animate={isSpecializedServicesInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="bg-green-50 rounded-xl p-6"
+              className="bg-brand-lighter rounded-xl p-6"
             >
-              <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mb-6 mx-auto">
+              <div className="w-16 h-16 bg-brand-light rounded-full flex items-center justify-center mb-6 mx-auto">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="24"
@@ -364,42 +371,42 @@ export default function ServicesPage() {
                   strokeWidth="2"
                   strokeLinecap="round"
                   strokeLinejoin="round"
-                  className="h-8 w-8 text-green-600"
+                  className="h-8 w-8 text-brand"
                 >
                   <path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2" />
                   <path d="M7 2v20" />
                   <path d="M21 15V2v0a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7" />
                 </svg>
               </div>
-              <h3 className="text-xl font-medium text-gray-900 mb-3 text-center">The Ultimate Food Guide</h3>
-              <p className="text-gray-600 mb-4 text-center">
+              <h3 className="text-xl font-medium text-foreground mb-3 text-center">The Ultimate Food Guide</h3>
+              <p className="text-muted-foreground mb-4 text-center">
                 Personalized meal plans based on your preferences with grocery lists and delicious recipes.
               </p>
               <ul className="space-y-2 mb-6">
                 <li className="flex items-start">
-                  <span className="inline-block h-5 w-5 rounded-full bg-green-100 text-green-600 flex-shrink-0 mr-2 text-center text-sm">
+                  <span className="inline-block h-5 w-5 rounded-full bg-brand-light text-brand flex-shrink-0 mr-2 text-center text-sm">
                     ✓
                   </span>
-                  <span className="text-gray-600">3-day customized meal plans</span>
+                  <span className="text-muted-foreground">3-day customized meal plans</span>
                 </li>
                 <li className="flex items-start">
-                  <span className="inline-block h-5 w-5 rounded-full bg-green-100 text-green-600 flex-shrink-0 mr-2 text-center text-sm">
+                  <span className="inline-block h-5 w-5 rounded-full bg-brand-light text-brand flex-shrink-0 mr-2 text-center text-sm">
                     ✓
                   </span>
-                  <span className="text-gray-600">Complete grocery shopping lists</span>
+                  <span className="text-muted-foreground">Complete grocery shopping lists</span>
                 </li>
                 <li className="flex items-start">
-                  <span className="inline-block h-5 w-5 rounded-full bg-green-100 text-green-600 flex-shrink-0 mr-2 text-center text-sm">
+                  <span className="inline-block h-5 w-5 rounded-full bg-brand-light text-brand flex-shrink-0 mr-2 text-center text-sm">
                     ✓
                   </span>
-                  <span className="text-gray-600">Easy-to-follow recipes with instructions</span>
+                  <span className="text-muted-foreground">Easy-to-follow recipes with instructions</span>
                 </li>
               </ul>
               <div className="text-center">
                 <Link href="/get-started">
                   <Button
                     variant="outline"
-                    className="border-green-600 text-green-600 hover:bg-green-50 rounded-full bg-transparent"
+                    className="border-brand text-brand hover:bg-brand-lighter rounded-full bg-transparent"
                   >
                     Purchase
                   </Button>
@@ -412,41 +419,41 @@ export default function ServicesPage() {
               initial={{ opacity: 0, y: 40 }}
               animate={isSpecializedServicesInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.8, delay: 0.3 }}
-              className="bg-green-50 rounded-xl p-6"
+              className="bg-brand-lighter rounded-xl p-6"
             >
-              <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mb-6 mx-auto">
-                <HeartPulse className="h-8 w-8 text-green-600" />
+              <div className="w-16 h-16 bg-brand-light rounded-full flex items-center justify-center mb-6 mx-auto">
+                <HeartPulse className="h-8 w-8 text-brand" />
               </div>
-              <h3 className="text-xl font-medium text-gray-900 mb-3 text-center">Wellness Coaching</h3>
-              <p className="text-gray-600 mb-4 text-center">
+              <h3 className="text-xl font-medium text-foreground mb-3 text-center">Wellness Coaching</h3>
+              <p className="text-muted-foreground mb-4 text-center">
                 Ongoing support and guidance to help you develop sustainable health habits and achieve your wellness
                 goals.
               </p>
               <ul className="space-y-2 mb-6">
                 <li className="flex items-start">
-                  <span className="inline-block h-5 w-5 rounded-full bg-green-100 text-green-600 flex-shrink-0 mr-2 text-center text-sm">
+                  <span className="inline-block h-5 w-5 rounded-full bg-brand-light text-brand flex-shrink-0 mr-2 text-center text-sm">
                     ✓
                   </span>
-                  <span className="text-gray-600">Regular check-ins and accountability</span>
+                  <span className="text-muted-foreground">Regular check-ins and accountability</span>
                 </li>
                 <li className="flex items-start">
-                  <span className="inline-block h-5 w-5 rounded-full bg-green-100 text-green-600 flex-shrink-0 mr-2 text-center text-sm">
+                  <span className="inline-block h-5 w-5 rounded-full bg-brand-light text-brand flex-shrink-0 mr-2 text-center text-sm">
                     ✓
                   </span>
-                  <span className="text-gray-600">Lifestyle modification strategies</span>
+                  <span className="text-muted-foreground">Lifestyle modification strategies</span>
                 </li>
                 <li className="flex items-start">
-                  <span className="inline-block h-5 w-5 rounded-full bg-green-100 text-green-600 flex-shrink-0 mr-2 text-center text-sm">
+                  <span className="inline-block h-5 w-5 rounded-full bg-brand-light text-brand flex-shrink-0 mr-2 text-center text-sm">
                     ✓
                   </span>
-                  <span className="text-gray-600">Progress tracking and adjustments</span>
+                  <span className="text-muted-foreground">Progress tracking and adjustments</span>
                 </li>
               </ul>
               <div className="text-center">
                 <Link href="/get-started">
                   <Button
                     variant="outline"
-                    className="border-green-600 text-green-600 hover:bg-green-50 rounded-full bg-transparent"
+                    className="border-brand text-brand hover:bg-brand-lighter rounded-full bg-transparent"
                   >
                     Purchase
                   </Button>
@@ -459,40 +466,40 @@ export default function ServicesPage() {
               initial={{ opacity: 0, y: 40 }}
               animate={isSpecializedServicesInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.8, delay: 0.4 }}
-              className="bg-green-50 rounded-xl p-6"
+              className="bg-brand-lighter rounded-xl p-6"
             >
-              <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mb-6 mx-auto">
-                <Users className="h-8 w-8 text-green-600" />
+              <div className="w-16 h-16 bg-brand-light rounded-full flex items-center justify-center mb-6 mx-auto">
+                <Users className="h-8 w-8 text-brand" />
               </div>
-              <h3 className="text-xl font-medium text-gray-900 mb-3 text-center">Group Programs</h3>
-              <p className="text-gray-600 mb-4 text-center">
+              <h3 className="text-xl font-medium text-foreground mb-3 text-center">Group Programs</h3>
+              <p className="text-muted-foreground mb-4 text-center">
                 Join a supportive community of individuals with similar health goals for shared learning and motivation.
               </p>
               <ul className="space-y-2 mb-6">
                 <li className="flex items-start">
-                  <span className="inline-block h-5 w-5 rounded-full bg-green-100 text-green-600 flex-shrink-0 mr-2 text-center text-sm">
+                  <span className="inline-block h-5 w-5 rounded-full bg-brand-light text-brand flex-shrink-0 mr-2 text-center text-sm">
                     ✓
                   </span>
-                  <span className="text-gray-600">Weekly group sessions</span>
+                  <span className="text-muted-foreground">Weekly group sessions</span>
                 </li>
                 <li className="flex items-start">
-                  <span className="inline-block h-5 w-5 rounded-full bg-green-100 text-green-600 flex-shrink-0 mr-2 text-center text-sm">
+                  <span className="inline-block h-5 w-5 rounded-full bg-brand-light text-brand flex-shrink-0 mr-2 text-center text-sm">
                     ✓
                   </span>
-                  <span className="text-gray-600">Peer support and accountability</span>
+                  <span className="text-muted-foreground">Peer support and accountability</span>
                 </li>
                 <li className="flex items-start">
-                  <span className="inline-block h-5 w-5 rounded-full bg-green-100 text-green-600 flex-shrink-0 mr-2 text-center text-sm">
+                  <span className="inline-block h-5 w-5 rounded-full bg-brand-light text-brand flex-shrink-0 mr-2 text-center text-sm">
                     ✓
                   </span>
-                  <span className="text-gray-600">Shared resources and experiences</span>
+                  <span className="text-muted-foreground">Shared resources and experiences</span>
                 </li>
               </ul>
               <div className="text-center">
                 <Link href="/get-started">
                   <Button
                     variant="outline"
-                    className="border-green-600 text-green-600 hover:bg-green-50 rounded-full bg-transparent"
+                    className="border-brand text-brand hover:bg-brand-lighter rounded-full bg-transparent"
                   >
                     Purchase
                   </Button>
@@ -504,7 +511,7 @@ export default function ServicesPage() {
       </section>
 
       {/* Virtual Health Assessments */}
-      <section ref={specializedServicesRef} className="py-16 bg-white" id="specialized-services">
+      <section ref={specializedServicesRef} className="py-16 bg-background" id="specialized-services">
         <div className="container px-4 md:px-6">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
@@ -512,10 +519,10 @@ export default function ServicesPage() {
             transition={{ duration: 0.8 }}
             className="text-center mb-12"
           >
-            <h2 className="text-3xl md:text-4xl font-serif font-light text-gray-900 mb-4">
+            <h2 className="text-3xl md:text-4xl font-serif font-light text-foreground mb-4">
               Virtual Health Assessments
             </h2>
-            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+            <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
               Evaluate and gain insights to improve your overall wellness with specialized testing and analysis.
             </p>
           </motion.div>
@@ -525,40 +532,40 @@ export default function ServicesPage() {
               initial={{ opacity: 0, y: 40 }}
               animate={isSpecializedServicesInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.8, delay: 0.1 }}
-              className="bg-green-50 rounded-xl p-6"
+              className="bg-brand-lighter rounded-xl p-6"
             >
-              <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mb-6 mx-auto">
-                <Leaf className="h-8 w-8 text-green-600" />
+              <div className="w-16 h-16 bg-brand-light rounded-full flex items-center justify-center mb-6 mx-auto">
+                <Leaf className="h-8 w-8 text-brand" />
               </div>
-              <h3 className="text-xl font-medium text-gray-900 mb-3 text-center">Virtual Health Assessments</h3>
-              <p className="text-gray-600 mb-4 text-center">
+              <h3 className="text-xl font-medium text-foreground mb-3 text-center">Virtual Health Assessments</h3>
+              <p className="text-muted-foreground mb-4 text-center">
                 Understand your health better through virtual assessments.
               </p>
               <ul className="space-y-2 mb-6">
                 <li className="flex items-start">
-                  <span className="inline-block h-5 w-5 rounded-full bg-green-100 text-green-600 flex-shrink-0 mr-2 text-center text-sm">
+                  <span className="inline-block h-5 w-5 rounded-full bg-brand-light text-brand flex-shrink-0 mr-2 text-center text-sm">
                     ✓
                   </span>
-                  <span className="text-gray-600">Comprehensive Health Review</span>
+                  <span className="text-muted-foreground">Comprehensive Health Review</span>
                 </li>
                 <li className="flex items-start">
-                  <span className="inline-block h-5 w-5 rounded-full bg-green-100 text-green-600 flex-shrink-0 mr-2 text-center text-sm">
+                  <span className="inline-block h-5 w-5 rounded-full bg-brand-light text-brand flex-shrink-0 mr-2 text-center text-sm">
                     ✓
                   </span>
-                  <span className="text-gray-600">Personalized Action Plan</span>
+                  <span className="text-muted-foreground">Personalized Action Plan</span>
                 </li>
                 <li className="flex items-start">
-                  <span className="inline-block h-5 w-5 rounded-full bg-green-100 text-green-600 flex-shrink-0 mr-2 text-center text-sm">
+                  <span className="inline-block h-5 w-5 rounded-full bg-brand-light text-brand flex-shrink-0 mr-2 text-center text-sm">
                     ✓
                   </span>
-                  <span className="text-gray-600">Insights for Enhanced Wellbeing</span>
+                  <span className="text-muted-foreground">Insights for Enhanced Wellbeing</span>
                 </li>
               </ul>
               <div className="text-center">
                 <Link href="/get-started">
                   <Button
                     variant="outline"
-                    className="border-green-600 text-green-600 hover:bg-green-50 rounded-full bg-transparent"
+                    className="border-brand text-brand hover:bg-brand-lighter rounded-full bg-transparent"
                   >
                     Get Started
                   </Button>
@@ -571,9 +578,9 @@ export default function ServicesPage() {
               initial={{ opacity: 0, y: 40 }}
               animate={isSpecializedServicesInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="bg-green-50 rounded-xl p-6"
+              className="bg-brand-lighter rounded-xl p-6"
             >
-              <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mb-6 mx-auto">
+              <div className="w-16 h-16 bg-brand-light rounded-full flex items-center justify-center mb-6 mx-auto">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="24"
@@ -584,42 +591,42 @@ export default function ServicesPage() {
                   strokeWidth="2"
                   strokeLinecap="round"
                   strokeLinejoin="round"
-                  className="h-8 w-8 text-green-600"
+                  className="h-8 w-8 text-brand"
                 >
                   <path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2" />
                   <path d="M7 2v20" />
                   <path d="M21 15V2v0a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7" />
                 </svg>
               </div>
-              <h3 className="text-xl font-medium text-gray-900 mb-3 text-center">Follow-up Sessions</h3>
-              <p className="text-gray-600 mb-4 text-center">
+              <h3 className="text-xl font-medium text-foreground mb-3 text-center">Follow-up Sessions</h3>
+              <p className="text-muted-foreground mb-4 text-center">
                 Review your progress and stay on track with additional coaching sessions and support.
               </p>
               <ul className="space-y-2 mb-6">
                 <li className="flex items-start">
-                  <span className="inline-block h-5 w-5 rounded-full bg-green-100 text-green-600 flex-shrink-0 mr-2 text-center text-sm">
+                  <span className="inline-block h-5 w-5 rounded-full bg-brand-light text-brand flex-shrink-0 mr-2 text-center text-sm">
                     ✓
                   </span>
-                  <span className="text-gray-600">Customized meal plans</span>
+                  <span className="text-muted-foreground">Customized meal plans</span>
                 </li>
                 <li className="flex items-start">
-                  <span className="inline-block h-5 w-5 rounded-full bg-green-100 text-green-600 flex-shrink-0 mr-2 text-center text-sm">
+                  <span className="inline-block h-5 w-5 rounded-full bg-brand-light text-brand flex-shrink-0 mr-2 text-center text-sm">
                     ✓
                   </span>
-                  <span className="text-gray-600">Food as medicine approach</span>
+                  <span className="text-muted-foreground">Food as medicine approach</span>
                 </li>
                 <li className="flex items-start">
-                  <span className="inline-block h-5 w-5 rounded-full bg-green-100 text-green-600 flex-shrink-0 mr-2 text-center text-sm">
+                  <span className="inline-block h-5 w-5 rounded-full bg-brand-light text-brand flex-shrink-0 mr-2 text-center text-sm">
                     ✓
                   </span>
-                  <span className="text-gray-600">Dietary guidance for specific conditions</span>
+                  <span className="text-muted-foreground">Dietary guidance for specific conditions</span>
                 </li>
               </ul>
               <div className="text-center">
                 <Link href="/get-started">
                   <Button
                     variant="outline"
-                    className="border-green-600 text-green-600 hover:bg-green-50 rounded-full bg-transparent"
+                    className="border-brand text-brand hover:bg-brand-lighter rounded-full bg-transparent"
                   >
                     Get Started
                   </Button>
@@ -632,40 +639,40 @@ export default function ServicesPage() {
               initial={{ opacity: 0, y: 40 }}
               animate={isSpecializedServicesInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.8, delay: 0.3 }}
-              className="bg-green-50 rounded-xl p-6"
+              className="bg-brand-lighter rounded-xl p-6"
             >
-              <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mb-6 mx-auto">
-                <HeartPulse className="h-8 w-8 text-green-600" />
+              <div className="w-16 h-16 bg-brand-light rounded-full flex items-center justify-center mb-6 mx-auto">
+                <HeartPulse className="h-8 w-8 text-brand" />
               </div>
-              <h3 className="text-xl font-medium text-gray-900 mb-3 text-center">Stress Management</h3>
-              <p className="text-gray-600 mb-4 text-center">
+              <h3 className="text-xl font-medium text-foreground mb-3 text-center">Stress Management</h3>
+              <p className="text-muted-foreground mb-4 text-center">
                 Learn the necessary methods and lifestyle changes to manage and reduce stress.
               </p>
               <ul className="space-y-2 mb-6">
                 <li className="flex items-start">
-                  <span className="inline-block h-5 w-5 rounded-full bg-green-100 text-green-600 flex-shrink-0 mr-2 text-center text-sm">
+                  <span className="inline-block h-5 w-5 rounded-full bg-brand-light text-brand flex-shrink-0 mr-2 text-center text-sm">
                     ✓
                   </span>
-                  <span className="text-gray-600">Stress Reduction Techniques</span>
+                  <span className="text-muted-foreground">Stress Reduction Techniques</span>
                 </li>
                 <li className="flex items-start">
-                  <span className="inline-block h-5 w-5 rounded-full bg-green-100 text-green-600 flex-shrink-0 mr-2 text-center text-sm">
+                  <span className="inline-block h-5 w-5 rounded-full bg-brand-light text-brand flex-shrink-0 mr-2 text-center text-sm">
                     ✓
                   </span>
-                  <span className="text-gray-600">Nutritional Therapy</span>
+                  <span className="text-muted-foreground">Nutritional Therapy</span>
                 </li>
                 <li className="flex items-start">
-                  <span className="inline-block h-5 w-5 rounded-full bg-green-100 text-green-600 flex-shrink-0 mr-2 text-center text-sm">
+                  <span className="inline-block h-5 w-5 rounded-full bg-brand-light text-brand flex-shrink-0 mr-2 text-center text-sm">
                     ✓
                   </span>
-                  <span className="text-gray-600">Lifestyle Guidance</span>
+                  <span className="text-muted-foreground">Lifestyle Guidance</span>
                 </li>
               </ul>
               <div className="text-center">
                 <Link href="/get-started">
                   <Button
                     variant="outline"
-                    className="border-green-600 text-green-600 hover:bg-green-50 rounded-full bg-transparent"
+                    className="border-brand text-brand hover:bg-brand-lighter rounded-full bg-transparent"
                   >
                     Get Started
                   </Button>
@@ -677,7 +684,7 @@ export default function ServicesPage() {
       </section>
 
       {/* Pricing Section */}
-      <section ref={pricingRef} className="py-16 bg-green-50">
+      <section ref={pricingRef} className="py-16 bg-brand-lighter">
         <div className="container px-4 md:px-6">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
@@ -685,8 +692,8 @@ export default function ServicesPage() {
             transition={{ duration: 0.8 }}
             className="text-center mb-12"
           >
-            <h2 className="text-3xl md:text-4xl font-serif font-light text-gray-900 mb-4">Service Packages</h2>
-            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+            <h2 className="text-3xl md:text-4xl font-serif font-light text-foreground mb-4">Service Packages</h2>
+            <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
               Choose the package that best fits your health needs and goals
             </p>
           </motion.div>
@@ -700,49 +707,49 @@ export default function ServicesPage() {
               className="bg-white rounded-xl overflow-hidden shadow-md"
             >
               <div className="p-6 text-center">
-                <h3 className="text-2xl font-serif font-medium text-gray-900 mb-2">Basic Package</h3>
-                <p className="text-gray-600 mb-6">Perfect for those just starting their health journey</p>
+                <h3 className="text-2xl font-serif font-medium text-foreground mb-2">Basic Package</h3>
+                <p className="text-muted-foreground mb-6">Perfect for those just starting their health journey</p>
                 <ul className="space-y-3 text-left mb-8">
                   <li className="flex items-start">
-                    <span className="inline-block h-5 w-5 rounded-full bg-green-100 text-green-600 flex-shrink-0 mr-2 text-center text-sm">
+                    <span className="inline-block h-5 w-5 rounded-full bg-brand-light text-brand flex-shrink-0 mr-2 text-center text-sm">
                       ✓
                     </span>
-                    <span className="text-gray-600">
+                    <span className="text-muted-foreground">
                       The 3-month program guides teams of 2-5 through weekly coaching sessions to achieve their shared
                       health goals.
                     </span>
                   </li>
                   <li className="flex items-start">
-                    <span className="inline-block h-5 w-5 rounded-full bg-green-100 text-green-600 flex-shrink-0 mr-2 text-center text-sm">
+                    <span className="inline-block h-5 w-5 rounded-full bg-brand-light text-brand flex-shrink-0 mr-2 text-center text-sm">
                       ✓
                     </span>
-                    <span className="text-gray-600">
+                    <span className="text-muted-foreground">
                       Teams benefit from personalized strategies, expert guidance, and powerful peer accountability.
                     </span>
                   </li>
                   <li className="flex items-start">
-                    <span className="inline-block h-5 w-5 rounded-full bg-green-100 text-green-600 flex-shrink-0 mr-2 text-center text-sm">
+                    <span className="inline-block h-5 w-5 rounded-full bg-brand-light text-brand flex-shrink-0 mr-2 text-center text-sm">
                       ✓
                     </span>
-                    <span className="text-gray-600">
+                    <span className="text-muted-foreground">
                       We empower your group to build sustainable habits, enhance resilience, and optimize collective
                       well-being.
                     </span>
                   </li>
                   <li className="flex items-start">
-                    <span className="inline-block h-5 w-5 rounded-full bg-green-100 text-green-600 flex-shrink-0 mr-2 text-center text-sm">
+                    <span className="inline-block h-5 w-5 rounded-full bg-brand-light text-brand flex-shrink-0 mr-2 text-center text-sm">
                       ✓
                     </span>
-                    <span className="text-gray-600">
+                    <span className="text-muted-foreground">
                       Together, you'll experience transformative shifts in energy, digestion, and overall vitality for
                       lasting results.
                     </span>
                   </li>
                   <li className="flex items-start">
-                    <span className="inline-block h-5 w-5 rounded-full bg-green-100 text-green-600 flex-shrink-0 mr-2 text-center text-sm">
+                    <span className="inline-block h-5 w-5 rounded-full bg-brand-light text-brand flex-shrink-0 mr-2 text-center text-sm">
                       ✓
                     </span>
-                    <span className="text-gray-600">Access to our NxHealth Support Community</span>
+                    <span className="text-muted-foreground">Access to our NxHealth Support Community</span>
                   </li>
                 </ul>
               </div>
@@ -753,56 +760,56 @@ export default function ServicesPage() {
               initial={{ opacity: 0, y: 40 }}
               animate={isPricingInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="bg-white rounded-xl overflow-hidden shadow-md border-2 border-green-600 transform md:scale-105"
+              className="bg-white rounded-xl overflow-hidden shadow-md border-2 border-brand transform md:scale-105"
             >
-              <div className="bg-green-600 text-white py-2 text-center text-sm font-medium">MOST POPULAR</div>
+              <div className="bg-brand text-brand-foreground py-2 text-center text-sm font-medium">MOST POPULAR</div>
               <div className="p-6 text-center">
-                <h3 className="text-2xl font-serif font-medium text-gray-900 mb-2">Premium Package</h3>
-                <p className="text-gray-600 mb-6">Comprehensive support for significant health improvements</p>
+                <h3 className="text-2xl font-serif font-medium text-foreground mb-2">Premium Package</h3>
+                <p className="text-muted-foreground mb-6">Comprehensive support for significant health improvements</p>
                 <ul className="space-y-3 text-left mb-8">
                   <li className="flex items-start">
-                    <span className="inline-block h-5 w-5 rounded-full bg-green-100 text-green-600 flex-shrink-0 mr-2 text-center text-sm">
+                    <span className="inline-block h-5 w-5 rounded-full bg-brand-light text-brand flex-shrink-0 mr-2 text-center text-sm">
                       ✓
                     </span>
-                    <span className="text-gray-600">
+                    <span className="text-muted-foreground">
                       6-month program takes you through deep, lasting health transformation.
                     </span>
                   </li>
                   <li className="flex items-start">
-                    <span className="inline-block h-5 w-5 rounded-full bg-green-100 text-green-600 flex-shrink-0 mr-2 text-center text-sm">
+                    <span className="inline-block h-5 w-5 rounded-full bg-brand-light text-brand flex-shrink-0 mr-2 text-center text-sm">
                       ✓
                     </span>
-                    <span className="text-gray-600">
+                    <span className="text-muted-foreground">
                       Consistent, weekly expert guidance for their unique health goals.
                     </span>
                   </li>
                   <li className="flex items-start">
-                    <span className="inline-block h-5 w-5 rounded-full bg-green-100 text-green-600 flex-shrink-0 mr-2 text-center text-sm">
+                    <span className="inline-block h-5 w-5 rounded-full bg-brand-light text-brand flex-shrink-0 mr-2 text-center text-sm">
                       ✓
                     </span>
-                    <span className="text-gray-600">
+                    <span className="text-muted-foreground">
                       Cultivate profound healing, optimize vitality, and master sustainable wellness together.
                     </span>
                   </li>
                   <li className="flex items-start">
-                    <span className="inline-block h-5 w-5 rounded-full bg-green-100 text-green-600 flex-shrink-0 mr-2 text-center text-sm">
+                    <span className="inline-block h-5 w-5 rounded-full bg-brand-light text-brand flex-shrink-0 mr-2 text-center text-sm">
                       ✓
                     </span>
-                    <span className="text-gray-600">
+                    <span className="text-muted-foreground">
                       Access premium coaching with an accessible monthly investment, amplified by team power.
                     </span>
                   </li>
                   <li className="flex items-start">
-                    <span className="inline-block h-5 w-5 rounded-full bg-green-100 text-green-600 flex-shrink-0 mr-2 text-center text-sm">
+                    <span className="inline-block h-5 w-5 rounded-full bg-brand-light text-brand flex-shrink-0 mr-2 text-center text-sm">
                       ✓
                     </span>
-                    <span className="text-gray-600">Email support between sessions</span>
+                    <span className="text-muted-foreground">Email support between sessions</span>
                   </li>
                   <li className="flex items-start">
-                    <span className="inline-block h-5 w-5 rounded-full bg-green-100 text-green-600 flex-shrink-0 mr-2 text-center text-sm">
+                    <span className="inline-block h-5 w-5 rounded-full bg-brand-light text-brand flex-shrink-0 mr-2 text-center text-sm">
                       ✓
                     </span>
-                    <span className="text-gray-600">Access to our NxHealth Support Community</span>
+                    <span className="text-muted-foreground">Access to our NxHealth Support Community</span>
                   </li>
                 </ul>
               </div>
@@ -816,9 +823,9 @@ export default function ServicesPage() {
               className="bg-white rounded-xl overflow-hidden shadow-md"
             >
               <div className="p-6 text-center">
-                <h3 className="text-2xl font-serif font-medium text-gray-900 mb-2">Ultimate Package</h3>
-                <p className="text-gray-600 mb-6">Complete health transformation with ongoing support</p>
-                <p className="text-gray-600 mb-8">
+                <h3 className="text-2xl font-serif font-medium text-foreground mb-2">Ultimate Package</h3>
+                <p className="text-muted-foreground mb-6">Complete health transformation with ongoing support</p>
+                <p className="text-muted-foreground mb-8">
                   This program helps you make big, lasting changes to your whole life. You will get constant help from
                   experts on your health, your mind, and how you perform, so your new habits really stick.
                 </p>
@@ -829,7 +836,7 @@ export default function ServicesPage() {
       </section>
 
       {/* FAQ Section */}
-      <section ref={faqRef} className="py-16 bg-white">
+      <section ref={faqRef} className="py-16 bg-background">
         <div className="container px-4 md:px-6">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
@@ -837,10 +844,10 @@ export default function ServicesPage() {
             transition={{ duration: 0.8 }}
             className="text-center mb-12"
           >
-            <h2 className="text-3xl md:text-4xl font-serif font-light text-gray-900 mb-4">
+            <h2 className="text-3xl md:text-4xl font-serif font-light text-foreground mb-4">
               Frequently Asked Questions
             </h2>
-            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+            <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
               Find answers to common questions about our services
             </p>
           </motion.div>
@@ -854,10 +861,10 @@ export default function ServicesPage() {
             >
               <Card>
                 <CardContent className="p-6">
-                  <h3 className="text-xl font-medium text-gray-900 mb-2">
+                  <h3 className="text-xl font-medium text-foreground mb-2">
                     How do I know which service is right for me?
                   </h3>
-                  <p className="text-gray-600">
+                  <p className="text-muted-foreground">
                     We recommend starting with an initial consultation (either in-person or online) where we can assess
                     your specific needs and goals. Based on this assessment, we'll recommend the most appropriate
                     services for your situation. You can also contact us directly to discuss your needs before booking.
@@ -874,8 +881,8 @@ export default function ServicesPage() {
             >
               <Card>
                 <CardContent className="p-6">
-                  <h3 className="text-xl font-medium text-gray-900 mb-2">How long does it take to see results?</h3>
-                  <p className="text-gray-600">
+                  <h3 className="text-xl font-medium text-foreground mb-2">How long does it take to see results?</h3>
+                  <p className="text-muted-foreground">
                     Results vary depending on individual circumstances, goals, and commitment level. Some clients notice
                     improvements in energy and well-being within a few weeks, while more significant health
                     transformations may take several months. During your consultation, we'll discuss realistic
@@ -893,8 +900,8 @@ export default function ServicesPage() {
             >
               <Card>
                 <CardContent className="p-6">
-                  <h3 className="text-xl font-medium text-gray-900 mb-2">Do you accept insurance?</h3>
-                  <p className="text-gray-600">
+                  <h3 className="text-xl font-medium text-foreground mb-2">Do you accept insurance?</h3>
+                  <p className="text-muted-foreground">
                     We do not directly bill insurance companies, but we can provide you with detailed receipts that you
                     may submit to your insurance provider for potential reimbursement. We recommend checking with your
                     insurance company about coverage for nutrition and wellness services before booking.
@@ -911,10 +918,10 @@ export default function ServicesPage() {
             >
               <Card>
                 <CardContent className="p-6">
-                  <h3 className="text-xl font-medium text-gray-900 mb-2">
+                  <h3 className="text-xl font-medium text-foreground mb-2">
                     What happens if I need to cancel or reschedule?
                   </h3>
-                  <p className="text-gray-600">
+                  <p className="text-muted-foreground">
                     We understand that schedules can change. We request at least 24 hours' notice for cancellations or
                     rescheduling to avoid a cancellation fee. You can easily reschedule through our online booking
                     system or by contacting our office directly.
@@ -930,10 +937,10 @@ export default function ServicesPage() {
             >
               <Card>
                 <CardContent className="p-6">
-                  <h3 className="text-xl font-medium text-gray-900 mb-2">
+                  <h3 className="text-xl font-medium text-foreground mb-2">
                     Do you offer virtual services for clients who don't live locally?
                   </h3>
-                  <p className="text-gray-600">
+                  <p className="text-muted-foreground">
                     Yes! Many of our services are available virtually, including consultations, health assessments,
                     nutrition planning, and wellness coaching. Our online platform makes it easy to connect with our
                     health professionals from anywhere in the world.
@@ -946,7 +953,7 @@ export default function ServicesPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 bg-green-800 text-white">
+      <section className="py-16 bg-brand-dark text-brand-foreground">
         <div className="container px-4 md:px-6 mx-auto text-center">
           <motion.h2
             initial={{ opacity: 0, y: 40 }}
@@ -960,7 +967,7 @@ export default function ServicesPage() {
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-xl text-green-100 max-w-2xl mx-auto mb-10"
+            className="text-xl text-brand-light max-w-2xl mx-auto mb-10"
           >
             Take the first step toward a healthier lifestyle with our personalized health solutions.
           </motion.p>
@@ -971,14 +978,14 @@ export default function ServicesPage() {
             className="flex flex-col sm:flex-row gap-4 justify-center"
           >
             <Link href="/get-started">
-              <Button className="bg-white text-green-800 hover:bg-green-100 rounded-full px-8 py-6 text-lg">
+              <Button className="bg-background text-brand hover:bg-brand-lighter rounded-full px-8 py-6 text-lg">
                 Get Started Today
               </Button>
             </Link>
             <Link href="/contact">
               <Button
                 variant="outline"
-                className="border-white text-white hover:bg-green-700 rounded-full px-8 py-6 text-lg bg-transparent"
+                className="border-background text-background hover:bg-brand-dark rounded-full px-8 py-6 text-lg bg-transparent"
               >
                 Contact Us
               </Button>

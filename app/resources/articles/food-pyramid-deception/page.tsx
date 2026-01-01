@@ -7,19 +7,19 @@ import { Separator } from "@/components/ui/separator"
 import { ScrollProgress } from "@/components/scroll-progress"
 import { ScrollToTop } from "@/components/scroll-to-top"
 
-export default function FoodPyramidDeceptionArticle() {
+export default function FoodPyramidDeceptionPage() {
   return (
     <>
       <ScrollProgress />
       <ScrollToTop />
       <main className="min-h-screen bg-white">
         {/* Hero Section */}
-        <section className="bg-gradient-to-b from-amber-700 to-amber-900 text-white py-16 md:py-24">
+        <section className="bg-gradient-to-b from-accent to-accent-dark text-white py-16 md:py-24">
           <div className="container mx-auto px-4 md:px-6">
             <div className="max-w-4xl mx-auto">
               <Link
                 href="/resources/articles"
-                className="inline-flex items-center text-amber-200 hover:text-white mb-6 transition-colors"
+                className="inline-flex items-center text-accent-foreground/80 hover:text-white mb-6 transition-colors"
               >
                 <ArrowLeft className="mr-2 h-4 w-4" />
                 Back to Articles
@@ -27,7 +27,7 @@ export default function FoodPyramidDeceptionArticle() {
               <h1 className="text-3xl md:text-5xl font-serif font-bold mb-6">
                 The Food Pyramid Deception: It's Time to Reclaim Control of Your Plate
               </h1>
-              <div className="flex flex-wrap items-center text-amber-100 mb-8 gap-4">
+              <div className="flex flex-wrap items-center text-white mb-8 gap-4">
                 <div className="flex items-center">
                   <Calendar className="h-4 w-4 mr-1" />
                   <span className="text-sm">May 15, 2025</span>
@@ -43,7 +43,7 @@ export default function FoodPyramidDeceptionArticle() {
                 <Button
                   variant="outline"
                   size="sm"
-                  className="ml-auto border-amber-200 text-amber-100 hover:bg-amber-800 hover:text-white"
+                  className="ml-auto border-accent-foreground/50 text-white hover:bg-accent-dark hover:text-white bg-transparent"
                 >
                   <Share2 className="h-4 w-4 mr-2" />
                   Share
@@ -87,8 +87,8 @@ export default function FoodPyramidDeceptionArticle() {
                 dairy are increasingly being recognized. Is it truly a foundational food group for everyone?
               </p>
 
-              <div className="bg-amber-50 border-l-4 border-amber-500 p-4 my-8">
-                <p className="italic text-amber-800">
+              <div className="bg-accent-dark/50 border-l-4 border-accent-foreground p-4 my-8">
+                <p className="italic text-accent-foreground">
                   "Even small, 'moderate' amounts of unhealthy substances, consumed consistently over time, can have
                   detrimental effects on our bodies."
                 </p>
@@ -120,55 +120,55 @@ export default function FoodPyramidDeceptionArticle() {
               <h2>Beyond the Pyramid: Embracing True Nourishment</h2>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 my-8">
-                <Card className="bg-green-50 border-green-200">
+                <Card className="bg-brand-lighter border-brand">
                   <CardContent className="p-6">
-                    <h3 className="text-lg font-bold text-green-800 mb-4">What to Embrace</h3>
+                    <h3 className="text-lg font-bold text-brand-dark mb-4">What to Embrace</h3>
                     <ul className="space-y-2">
                       <li className="flex items-start">
-                        <span className="text-green-600 mr-2">✓</span>
+                        <span className="text-brand mr-2">✓</span>
                         <span>Vibrant Vegetables: Packed with essential vitamins, minerals, and antioxidants</span>
                       </li>
                       <li className="flex items-start">
-                        <span className="text-green-600 mr-2">✓</span>
+                        <span className="text-brand mr-2">✓</span>
                         <span>Nutritious Fruits: Offering natural sweetness and vital nutrients</span>
                       </li>
                       <li className="flex items-start">
-                        <span className="text-green-600 mr-2">✓</span>
+                        <span className="text-brand mr-2">✓</span>
                         <span>Wholesome Whole Grains: Providing sustained energy and fiber</span>
                       </li>
                       <li className="flex items-start">
-                        <span className="text-green-600 mr-2">✓</span>
+                        <span className="text-brand mr-2">✓</span>
                         <span>Protein-Rich Legumes: A fantastic source of plant-based protein and fiber</span>
                       </li>
                       <li className="flex items-start">
-                        <span className="text-green-600 mr-2">✓</span>
+                        <span className="text-brand mr-2">✓</span>
                         <span>Healthy Fats from Nuts and Seeds: Essential for brain health</span>
                       </li>
                     </ul>
                   </CardContent>
                 </Card>
-                <Card className="bg-red-50 border-red-200">
+                <Card className="bg-destructive/10 border-destructive/20">
                   <CardContent className="p-6">
-                    <h3 className="text-lg font-bold text-red-800 mb-4">What to Limit</h3>
+                    <h3 className="text-lg font-bold text-destructive mb-4">What to Limit</h3>
                     <ul className="space-y-2">
                       <li className="flex items-start">
-                        <span className="text-red-600 mr-2">✗</span>
+                        <span className="text-destructive mr-2">✗</span>
                         <span>Processed Foods: Often high in unhealthy additives and preservatives</span>
                       </li>
                       <li className="flex items-start">
-                        <span className="text-red-600 mr-2">✗</span>
+                        <span className="text-destructive mr-2">✗</span>
                         <span>Refined Sugars: Can lead to energy crashes and inflammation</span>
                       </li>
                       <li className="flex items-start">
-                        <span className="text-red-600 mr-2">✗</span>
+                        <span className="text-destructive mr-2">✗</span>
                         <span>Seed Oils: May contribute to inflammation when consumed in excess</span>
                       </li>
                       <li className="flex items-start">
-                        <span className="text-red-600 mr-2">✗</span>
+                        <span className="text-destructive mr-2">✗</span>
                         <span>Excessive Dairy: Not essential for everyone and may cause issues for many</span>
                       </li>
                       <li className="flex items-start">
-                        <span className="text-red-600 mr-2">✗</span>
+                        <span className="text-destructive mr-2">✗</span>
                         <span>Ultra-Processed Foods: Designed for addiction, not nutrition</span>
                       </li>
                     </ul>
@@ -209,9 +209,9 @@ export default function FoodPyramidDeceptionArticle() {
                 <li>Having Fun with Healthy Eating: Discovering the deliciousness and variety of whole foods.</li>
               </ul>
 
-              <div className="bg-gray-100 p-6 rounded-lg my-8">
-                <h3 className="text-xl font-bold text-gray-900 mb-4">Did You Know?</h3>
-                <p className="text-gray-700">
+              <div className="bg-muted p-6 rounded-lg my-8">
+                <h3 className="text-xl font-bold text-foreground mb-4">Did You Know?</h3>
+                <p className="text-muted-foreground">
                   Certain food ingredients and products that are legally sold in America are banned in other countries
                   due to their known health risks. This stark comparison underscores the need for greater awareness and
                   critical evaluation of our food system.
@@ -230,12 +230,12 @@ export default function FoodPyramidDeceptionArticle() {
                 whole, nutrient-dense foods, we can reclaim control of our plates and, by extension, our health.
               </p>
 
-              <div className="bg-amber-100 p-6 rounded-lg my-8">
-                <h3 className="text-xl font-bold text-amber-900 mb-4">Take Action Today</h3>
-                <p className="text-amber-800 mb-4">
+              <div className="bg-accent-light p-6 rounded-lg my-8">
+                <h3 className="text-xl font-bold text-accent-dark mb-4">Take Action Today</h3>
+                <p className="text-accent-dark mb-4">
                   Start your journey toward nutritional sovereignty with these simple steps:
                 </p>
-                <ol className="list-decimal pl-5 space-y-2 text-amber-800">
+                <ol className="list-decimal pl-5 space-y-2 text-accent-dark">
                   <li>Audit your pantry and refrigerator, identifying processed foods to gradually replace</li>
                   <li>Create a meal plan focused on whole foods, incorporating a rainbow of fruits and vegetables</li>
                   <li>Learn to read and understand food labels, paying special attention to added sugars and oils</li>
@@ -272,8 +272,8 @@ export default function FoodPyramidDeceptionArticle() {
                 </div>
                 <div>
                   <h3 className="text-lg font-bold">Eric Johnson M.S.</h3>
-                  <p className="text-sm text-amber-700 mb-1">Founder & Nutrition Specialist</p>
-                  <p className="text-gray-600">
+                  <p className="text-sm text-accent-dark mb-1">Founder & Nutrition Specialist</p>
+                  <p className="text-muted-foreground">
                     A nutritionist and food scientist with a background in exercise and health science. Eric created
                     NxHealth to help improve quality of life through targeted health solutions, believing that our
                     health is our true wealth.
@@ -357,19 +357,22 @@ export default function FoodPyramidDeceptionArticle() {
         </section>
 
         {/* Call to Action */}
-        <section className="py-12 bg-amber-50">
+        <section className="py-12 bg-accent-light">
           <div className="container mx-auto px-4 md:px-6">
             <div className="max-w-3xl mx-auto text-center">
-              <h2 className="text-2xl md:text-3xl font-serif font-bold text-amber-900 mb-4">
+              <h2 className="text-2xl md:text-3xl font-serif font-bold text-accent-dark mb-4">
                 Ready to Transform Your Relationship with Food?
               </h2>
-              <p className="text-amber-800 mb-8">
+              <p className="text-accent-dark mb-8">
                 Book a consultation with our nutrition experts to create a personalized plan that works for your unique
                 needs and lifestyle.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button className="bg-amber-600 hover:bg-amber-700 text-white">Book a Consultation</Button>
-                <Button variant="outline" className="border-amber-600 text-amber-700 hover:bg-amber-100">
+                <Button className="bg-accent hover:bg-accent-dark text-accent-foreground">Book a Consultation</Button>
+                <Button
+                  variant="outline"
+                  className="border-accent text-accent-dark hover:bg-accent-light bg-transparent"
+                >
                   Explore Our Services
                 </Button>
               </div>

@@ -25,7 +25,7 @@ export default function AboutPage() {
   return (
     <div className="flex flex-col min-h-screen">
       {/* Hero Section */}
-      <section className="relative w-full py-16 md:py-24 bg-gradient-to-b from-green-50 to-white">
+      <section className="relative w-full py-16 md:py-24 bg-gradient-to-b from-brand-lighter to-background">
         <div className="container px-4 md:px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -33,7 +33,7 @@ export default function AboutPage() {
             transition={{ duration: 0.8 }}
             className="max-w-3xl mx-auto text-center"
           >
-            <h1 className="text-4xl md:text-5xl font-serif font-light tracking-tight text-green-800 mb-4">
+            <h1 className="text-4xl md:text-5xl font-serif font-light tracking-tight text-brand-dark mb-4">
               About NxHealth Solutions
             </h1>
             <p className="text-xl text-gray-600 mb-8">
@@ -51,7 +51,7 @@ export default function AboutPage() {
               initial={{ opacity: 0, x: -40 }}
               animate={isStoryInView ? { opacity: 1, x: 0 } : {}}
               transition={{ duration: 0.8 }}
-              className="relative h-[400px] rounded-2xl overflow-hidden order-2 md:order-1 flex items-center justify-center bg-green-50"
+              className="relative h-[400px] rounded-2xl overflow-hidden order-2 md:order-1 flex items-center justify-center bg-brand-lighter"
             >
               <Image
                 src="/NxLogo-ALT-2.png"
@@ -87,7 +87,7 @@ export default function AboutPage() {
       </section>
 
       {/* Video Section */}
-      <section className="py-16 bg-green-50">
+      <section className="py-16 bg-brand-lighter">
         <div className="container px-4 md:px-6">
           <div className="max-w-3xl mx-auto text-center mb-8">
             <h2 className="text-3xl md:text-4xl font-serif font-light text-gray-900 mb-6">Our Mission in Action</h2>
@@ -111,7 +111,7 @@ export default function AboutPage() {
       </section>
 
       {/* Our Values Section */}
-      <section ref={valuesRef} className="py-16 bg-green-50">
+      <section ref={valuesRef} className="py-16 bg-brand-lighter">
         <div className="container px-4 md:px-6">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
@@ -130,10 +130,10 @@ export default function AboutPage() {
               initial={{ opacity: 0, y: 40 }}
               animate={isValuesInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.8, delay: 0.1 }}
-              className="bg-white p-6 rounded-xl shadow-sm flex flex-col items-center text-center"
+              className="bg-card p-6 rounded-xl shadow-sm flex flex-col items-center text-center"
             >
-              <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mb-4">
-                <Heart className="w-8 h-8 text-green-600" />
+              <div className="w-16 h-16 bg-brand-light rounded-full flex items-center justify-center mb-4">
+                <Heart className="w-8 h-8 text-brand" />
               </div>
               <h3 className="text-xl font-medium text-gray-900 mb-3">Compassion</h3>
               <p className="text-gray-600">
@@ -146,10 +146,10 @@ export default function AboutPage() {
               initial={{ opacity: 0, y: 40 }}
               animate={isValuesInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="bg-white p-6 rounded-xl shadow-sm flex flex-col items-center text-center"
+              className="bg-card p-6 rounded-xl shadow-sm flex flex-col items-center text-center"
             >
-              <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mb-4">
-                <CheckCircle className="w-8 h-8 text-green-600" />
+              <div className="w-16 h-16 bg-brand-light rounded-full flex items-center justify-center mb-4">
+                <CheckCircle className="w-8 h-8 text-brand" />
               </div>
               <h3 className="text-xl font-medium text-gray-900 mb-3">Integrity</h3>
               <p className="text-gray-600">
@@ -161,10 +161,10 @@ export default function AboutPage() {
               initial={{ opacity: 0, y: 40 }}
               animate={isValuesInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.8, delay: 0.3 }}
-              className="bg-white p-6 rounded-xl shadow-sm flex flex-col items-center text-center"
+              className="bg-card p-6 rounded-xl shadow-sm flex flex-col items-center text-center"
             >
-              <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mb-4">
-                <Award className="w-8 h-8 text-green-600" />
+              <div className="w-16 h-16 bg-brand-light rounded-full flex items-center justify-center mb-4">
+                <Award className="w-8 h-8 text-brand" />
               </div>
               <h3 className="text-xl font-medium text-gray-900 mb-3">Excellence</h3>
               <p className="text-gray-600">
@@ -176,10 +176,10 @@ export default function AboutPage() {
               initial={{ opacity: 0, y: 40 }}
               animate={isValuesInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.8, delay: 0.4 }}
-              className="bg-white p-6 rounded-xl shadow-sm flex flex-col items-center text-center"
+              className="bg-card p-6 rounded-xl shadow-sm flex flex-col items-center text-center"
             >
-              <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mb-4">
-                <Users className="w-8 h-8 text-green-600" />
+              <div className="w-16 h-16 bg-brand-light rounded-full flex items-center justify-center mb-4">
+                <Users className="w-8 h-8 text-brand" />
               </div>
               <h3 className="text-xl font-medium text-gray-900 mb-3">Community</h3>
               <p className="text-gray-600">
@@ -191,7 +191,7 @@ export default function AboutPage() {
       </section>
 
       {/* Our Approach Section */}
-      <section ref={approachRef} className="py-16 bg-white">
+      <section ref={approachRef} className="py-16 bg-background">
         <div className="container px-4 md:px-6">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
@@ -207,8 +207,8 @@ export default function AboutPage() {
 
             <div className="space-y-8">
               <div className="flex flex-col md:flex-row gap-6">
-                <div className="flex-shrink-0 w-12 h-12 bg-green-100 rounded-full flex items-center justify-center">
-                  <span className="text-xl font-bold text-green-600">1</span>
+                <div className="flex-shrink-0 w-12 h-12 bg-brand-light rounded-full flex items-center justify-center">
+                  <span className="text-xl font-bold text-brand">1</span>
                 </div>
                 <div>
                   <h3 className="text-xl font-medium text-gray-900 mb-2">Personalized Assessment</h3>
@@ -220,8 +220,8 @@ export default function AboutPage() {
               </div>
 
               <div className="flex flex-col md:flex-row gap-6">
-                <div className="flex-shrink-0 w-12 h-12 bg-green-100 rounded-full flex items-center justify-center">
-                  <span className="text-xl font-bold text-green-600">2</span>
+                <div className="flex-shrink-0 w-12 h-12 bg-brand-light rounded-full flex items-center justify-center">
+                  <span className="text-xl font-bold text-brand">2</span>
                 </div>
                 <div>
                   <h3 className="text-xl font-medium text-gray-900 mb-2">Customized Solutions</h3>
@@ -233,8 +233,8 @@ export default function AboutPage() {
               </div>
 
               <div className="flex flex-col md:flex-row gap-6">
-                <div className="flex-shrink-0 w-12 h-12 bg-green-100 rounded-full flex items-center justify-center">
-                  <span className="text-xl font-bold text-green-600">3</span>
+                <div className="flex-shrink-0 w-12 h-12 bg-brand-light rounded-full flex items-center justify-center">
+                  <span className="text-xl font-bold text-brand">3</span>
                 </div>
                 <div>
                   <h3 className="text-xl font-medium text-gray-900 mb-2">Ongoing Support</h3>
@@ -246,8 +246,8 @@ export default function AboutPage() {
               </div>
 
               <div className="flex flex-col md:flex-row gap-6">
-                <div className="flex-shrink-0 w-12 h-12 bg-green-100 rounded-full flex items-center justify-center">
-                  <span className="text-xl font-bold text-green-600">4</span>
+                <div className="flex-shrink-0 w-12 h-12 bg-brand-light rounded-full flex items-center justify-center">
+                  <span className="text-xl font-bold text-brand">4</span>
                 </div>
                 <div>
                   <h3 className="text-xl font-medium text-gray-900 mb-2">Measurable Results</h3>
@@ -263,7 +263,7 @@ export default function AboutPage() {
       </section>
 
       {/* Team Section */}
-      <section ref={teamRef} className="py-16 bg-green-50">
+      <section ref={teamRef} className="py-16 bg-brand-lighter">
         <div className="container px-4 md:px-6">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
@@ -276,38 +276,44 @@ export default function AboutPage() {
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 justify-items-center">
-            <motion.div
-              initial={{ opacity: 0, y: 40 }}
-              animate={isTeamInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.8, delay: 0.1 }}
-              className="bg-white rounded-xl overflow-hidden shadow-sm max-w-sm"
+            <Link
+              href="/about/eric-johnson"
+              className="block group focus:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 rounded-xl"
             >
-              <div className="relative h-80 w-full overflow-hidden">
-                <Image
-                  src="/ej-profile-photo.jpg"
-                  alt="Eric Johnson, Founder of NxHealth Solutions"
-                  fill
-                  className="object-cover"
-                  priority
-                />
-              </div>
-              <div className="p-6 text-center">
-                <h3 className="text-xl font-medium text-gray-900 mb-1">Eric Johnson M.S.</h3>
-                <p className="text-green-600 mb-3">Founder & Nutrition Specialist</p>
-                <p className="text-gray-600 text-sm">
-                  Welcome! I'm Eric Johnson, a nutritionist and food scientist with a background in exercise and health
-                  science. I created NxHealth to help improve quality of life through targeted health solutions. Our
-                  health is our true wealth, and the food we consume, along with our daily habits, can create conditions
-                  for our bodies to heal and thrive.
-                </p>
-              </div>
-            </motion.div>
+              <motion.div
+                initial={{ opacity: 0, y: 40 }}
+                animate={isTeamInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.8, delay: 0.1 }}
+                className="bg-card rounded-xl overflow-hidden shadow-sm max-w-sm cursor-pointer transition-all duration-300 group-hover:shadow-lg group-hover:ring-2 group-hover:ring-brand/30 group-hover:-translate-y-1"
+              >
+                <div className="relative h-80 w-full overflow-hidden">
+                  <Image
+                    src="/ej-profile-photo.jpg"
+                    alt="Eric Johnson, Founder of NxHealth Solutions"
+                    fill
+                    className="object-cover transition-transform duration-300 group-hover:scale-105"
+                    priority
+                  />
+                </div>
+                <div className="p-6 text-center">
+                  <h3 className="text-xl font-medium text-foreground mb-1">Eric Johnson M.S.</h3>
+                  <p className="text-brand mb-3">Founder & CEO</p>
+                  <p className="text-muted-foreground text-sm">
+                    Welcome! I'm Eric Johnson, a nutritionist and food scientist with a background in exercise and
+                    health science. I created NxHealth to help improve quality of life through targeted health
+                    solutions. Our health is our true wealth, and the food we consume, along with our daily habits, can
+                    create conditions for our bodies to heal and thrive.
+                  </p>
+                </div>
+              </motion.div>
+            </Link>
+            {/* End Eric Johnson tile */}
 
             <motion.div
               initial={{ opacity: 0, y: 40 }}
               animate={isTeamInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="bg-white rounded-xl overflow-hidden shadow-sm max-w-sm"
+              className="bg-card rounded-xl overflow-hidden shadow-sm max-w-sm"
             >
               <div className="relative h-80 w-full overflow-hidden">
                 <Image
@@ -320,7 +326,7 @@ export default function AboutPage() {
               </div>
               <div className="p-6 text-center">
                 <h3 className="text-xl font-medium text-gray-900 mb-1">Jasmine M. Johnson</h3>
-                <p className="text-green-600 mb-3">Holistic Health Practitioner</p>
+                <p className="text-brand mb-3">Holistic Health Practitioner</p>
                 <p className="text-gray-600 text-sm">
                   Jasmine is a certified Holistic Health Practitioner, born and raised in Elizabeth City, North
                   Carolina. A proud graduate of North Carolina Central University with a degree in Criminal Justice,
@@ -334,7 +340,7 @@ export default function AboutPage() {
               initial={{ opacity: 0, y: 40 }}
               animate={isTeamInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.8, delay: 0.3 }}
-              className="bg-white rounded-xl overflow-hidden shadow-sm max-w-sm"
+              className="bg-card rounded-xl overflow-hidden shadow-sm max-w-sm"
             >
               <div className="relative h-80 w-full overflow-hidden">
                 <Image
@@ -348,7 +354,7 @@ export default function AboutPage() {
               <div className="p-6 text-center">
                 <h3 className="text-xl font-medium text-gray-900 mb-1">Lena Harris</h3>
                 <p className="mb-1 text-gray-600">"The Light"</p>
-                <p className="text-green-600 mb-3">Health Coach</p>
+                <p className="text-brand mb-3">Health Coach</p>
                 <p className="text-gray-600 text-sm">
                   Originally from Newburgh, NY, and currently living in Tampa, FL-I faced a life-altering diagnosis of
                   congestive heart failure—and completely reversed it in just 60 days using an all-fruit diet. My
@@ -363,7 +369,7 @@ export default function AboutPage() {
               initial={{ opacity: 0, y: 40 }}
               animate={isTeamInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.8, delay: 0.4 }}
-              className="bg-white rounded-xl overflow-hidden shadow-sm max-w-sm"
+              className="bg-card rounded-xl overflow-hidden shadow-sm max-w-sm"
             >
               <div className="relative h-80 w-full overflow-hidden">
                 <Image
@@ -376,7 +382,7 @@ export default function AboutPage() {
               </div>
               <div className="p-6 text-center">
                 <h3 className="text-xl font-medium text-gray-900 mb-1">Marquezz Leday</h3>
-                <p className="text-green-600 mb-3">Master Herbalist</p>
+                <p className="text-brand mb-3">Master Herbalist</p>
                 <p className="text-gray-600 text-sm">
                   Shalom…I'm Marquezz Leday, certified Master Herbalist, I study nutrition, Cell biology and how to heal
                   the body on a cellular level! Our bodies are designed by God to heal itself given the necessary
@@ -390,7 +396,7 @@ export default function AboutPage() {
               initial={{ opacity: 0, y: 40 }}
               animate={isTeamInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.8, delay: 0.5 }}
-              className="bg-white rounded-xl overflow-hidden shadow-sm max-w-sm"
+              className="bg-card rounded-xl overflow-hidden shadow-sm max-w-sm"
             >
               <div className="relative h-80 w-full overflow-hidden">
                 <Image
@@ -403,7 +409,7 @@ export default function AboutPage() {
               </div>
               <div className="p-6 text-center">
                 <h3 className="text-xl font-medium text-gray-900 mb-1">Cintya Campos M.S.</h3>
-                <p className="text-green-600 mb-3">Nutritious Meals Specialist </p>
+                <p className="text-brand mb-3">Nutritious Meals Specialist </p>
                 <p className="text-gray-600 text-sm">
                   With over a decade of experience in the food industry, Cintya Campos has dedicated her career to
                   creating delicious and nutritious meals. Inspired by her son, who is a dedicated army servicemember
@@ -439,7 +445,7 @@ export default function AboutPage() {
               initial={{ opacity: 0, y: 40 }}
               animate={isTestimonialsInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.8, delay: 0.1 }}
-              className="bg-green-50 p-8 rounded-xl"
+              className="bg-brand-lighter p-8 rounded-xl"
             >
               <p className="text-gray-600 italic mb-6">
                 "Working with NxHealth Solutions has been life-changing. Their personalized approach helped me address
@@ -447,7 +453,7 @@ export default function AboutPage() {
                 been in years."
               </p>
               <div className="flex items-center">
-                <div className="w-12 h-12 bg-green-200 rounded-full mr-4"></div>
+                <div className="w-12 h-12 bg-brand-light rounded-full mr-4"></div>
                 <div>
                   <p className="font-medium text-gray-900">Rebecca T.</p>
                   <p className="text-sm text-gray-500">Client since 2020</p>
@@ -459,14 +465,14 @@ export default function AboutPage() {
               initial={{ opacity: 0, y: 40 }}
               animate={isTestimonialsInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="bg-green-50 p-8 rounded-xl"
+              className="bg-brand-lighter p-8 rounded-xl"
             >
               <p className="text-gray-600 italic mb-6">
                 "The nutrition plan I received from NxHealth Solutions was exactly what I needed. It was practical, easy
                 to follow, and most importantly, it worked! I've lost weight, gained energy, and feel better overall."
               </p>
               <div className="flex items-center">
-                <div className="w-12 h-12 bg-green-200 rounded-full mr-4"></div>
+                <div className="w-12 h-12 bg-brand-light rounded-full mr-4"></div>
                 <div>
                   <p className="font-medium text-gray-900">David M.</p>
                   <p className="text-sm text-gray-500">Client since 2021</p>
@@ -478,7 +484,7 @@ export default function AboutPage() {
       </section>
 
       {/* CTA Section */}
-      <section ref={ctaRef} className="py-16 bg-green-800 text-white">
+      <section ref={ctaRef} className="py-16 bg-brand-dark text-white">
         <div className="container px-4 md:px-6 mx-auto text-center">
           <motion.h2
             initial={{ opacity: 0, y: 40 }}
@@ -492,7 +498,7 @@ export default function AboutPage() {
             initial={{ opacity: 0, y: 40 }}
             animate={isCtaInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-xl text-green-100 max-w-2xl mx-auto mb-10"
+            className="text-xl text-brand-light max-w-2xl mx-auto mb-10"
           >
             Contact us today to learn how we can help you achieve your health and wellness goals.
           </motion.p>
@@ -502,11 +508,11 @@ export default function AboutPage() {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="flex flex-col sm:flex-row gap-4 justify-center"
           >
-            <Button className="bg-white text-green-800 hover:bg-green-100 rounded-full px-8 py-6 text-lg">
+            <Button className="bg-background text-brand hover:bg-brand-lighter rounded-full px-8 py-6 text-lg">
               Contact Us
             </Button>
             <Link href="/services">
-              <Button className="bg-white text-green-800 hover:bg-green-100 rounded-full px-8 py-6 text-lg">
+              <Button className="bg-background text-brand hover:bg-brand-lighter rounded-full px-8 py-6 text-lg">
                 Explore Our Services
               </Button>
             </Link>

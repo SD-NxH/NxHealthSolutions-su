@@ -53,10 +53,14 @@ export interface ButtonProps
   asChild?: boolean
   href?: string
   article?: string // Added article attribute for navigation to articles page
+  prvebook1?: string // Added prvebook1 attribute for YouTube video link
 }
 
 const Button = React.forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonProps>(
-  ({ className, variant, size, asChild = false, href, children = "Get Started", article, ...props }, ref) => {
+  (
+    { className, variant, size, asChild = false, href, children = "Get Started", article, prvebook1, ...props },
+    ref,
+  ) => {
     const [showPopup, setShowPopup] = React.useState(false)
 
     // Check if this button should be hidden
@@ -82,6 +86,21 @@ const Button = React.forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonPro
         <a
           href="/transform-your-life-30-days.pdf"
           download="Transform-Your-Life-30-Days-NxHealth.pdf"
+          className={cn(buttonVariants({ variant, size, className }), "!transition-none !duration-0")}
+          ref={ref as React.Ref<HTMLAnchorElement>}
+          {...(props as React.AnchorHTMLAttributes<HTMLAnchorElement>)}
+        >
+          {children}
+        </a>
+      )
+    }
+
+    if (prvebook1) {
+      return (
+        <a
+          href="https://youtu.be/BCqgo-HC0cs?si=SKtMIg65EiW6pQ9I"
+          target="_blank"
+          rel="noopener noreferrer"
           className={cn(buttonVariants({ variant, size, className }), "!transition-none !duration-0")}
           ref={ref as React.Ref<HTMLAnchorElement>}
           {...(props as React.AnchorHTMLAttributes<HTMLAnchorElement>)}

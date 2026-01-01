@@ -16,6 +16,7 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Slider } from "@/components/ui/slider"
 import jsPDF from "jspdf"
+import { YoutubeMediaHub } from "@/components/youtube-media-hub"
 
 // Define the article interface
 interface Article {
@@ -471,7 +472,10 @@ export default function ResourcesPage() {
   return (
     <div className="flex flex-col min-h-screen">
       {/* Hero Section */}
-      <section ref={heroRef} className="relative w-full py-16 md:py-24 bg-gradient-to-b from-green-50 to-white">
+      <section
+        ref={heroRef}
+        className="relative w-full py-16 md:py-24 bg-gradient-to-b from-brand-lighter to-background"
+      >
         <div className="container px-4 md:px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -479,10 +483,10 @@ export default function ResourcesPage() {
             transition={{ duration: 0.8 }}
             className="max-w-3xl mx-auto text-center"
           >
-            <h1 className="text-4xl md:text-5xl font-serif font-light tracking-tight text-green-800 mb-4">
+            <h1 className="text-4xl md:text-5xl font-serif font-light tracking-tight text-brand-dark mb-4">
               NxHealth Resources
             </h1>
-            <p className="text-xl text-gray-600 mb-8">
+            <p className="text-xl text-muted-foreground mb-8">
               Discover our collection of health resources, food as medicine guides, and holistic health solutions.
             </p>
 
@@ -490,20 +494,20 @@ export default function ResourcesPage() {
               <Input
                 type="text"
                 placeholder="Find Your Solution..."
-                className="pl-10 pr-4 py-6 rounded-full border-green-200 focus:border-green-500 focus:ring-green-500"
+                className="pl-10 pr-4 py-6 rounded-full border-border focus:border-brand focus:ring-brand"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
               />
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-5 w-5" />
               <Button
                 type="submit"
-                className="absolute right-1 top-1/2 transform -translate-y-1/2 rounded-full bg-green-600 hover:bg-green-700 h-10 w-10 p-0"
+                className="absolute right-1 top-1/2 transform -translate-y-1/2 rounded-full bg-brand hover:bg-brand-hover h-10 w-10 p-0"
               >
                 <Search className="h-5 w-5" />
                 <span className="sr-only">Search</span>
               </Button>
             </form>
-            <p className="text-sm text-gray-500 mt-3">
+            <p className="text-sm text-muted-foreground mt-3">
               Search for health topics, nutrition information, wellness tips, and more
             </p>
           </motion.div>
@@ -511,7 +515,7 @@ export default function ResourcesPage() {
       </section>
 
       {/* A-Z Food List Section */}
-      <section ref={azListRef} className="py-16 bg-white">
+      <section ref={azListRef} className="py-16 bg-background">
         <div className="container px-4 md:px-6">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
@@ -519,12 +523,12 @@ export default function ResourcesPage() {
             transition={{ duration: 0.8 }}
             className="max-w-4xl mx-auto text-center mb-12"
           >
-            <h2 className="text-3xl md:text-4xl font-serif font-light text-gray-900 mb-6">Health Solutions</h2>
-            <p className="text-lg text-gray-600 mb-8">
+            <h2 className="text-3xl md:text-4xl font-serif font-light text-brand-dark mb-6">Health Solutions</h2>
+            <p className="text-lg text-muted-foreground mb-8">
               Explore our comprehensive A-Z guide of foods and their healing properties. Discover how different foods
               can be used to support your health journey.
             </p>
-            <div className="bg-green-50 p-4 rounded-lg text-sm text-gray-600 mb-8">
+            <div className="bg-brand-lighter p-4 rounded-lg text-sm text-muted-foreground mb-8">
               <p>
                 <strong>Note:</strong> Our A-Z food guide is still under construction. Browse through available letters
                 to discover the healing properties of various foods.
@@ -549,10 +553,12 @@ export default function ResourcesPage() {
                         ? "/resources/e"
                         : letter === "D"
                           ? "/resources/d"
-                          : getLetterHref(letter)
+                          : letter === "F"
+                            ? "/resources/f"
+                            : getLetterHref(letter)
                   }
-                  className="flex items-center justify-center h-12 w-12 rounded-full font-medium text-lg transition-all duration-300 bg-green-600 text-white hover:bg-green-700"
-                  target={letter === "E" ? undefined : letter >= "F" ? "_blank" : undefined}
+                  className="flex items-center justify-center h-12 w-12 rounded-full font-medium text-lg transition-all duration-300 bg-brand text-white hover:bg-brand-hover"
+                  target={letter === "E" || letter === "F" ? undefined : letter >= "G" ? "_blank" : undefined}
                 >
                   {letter}
                 </Link>
@@ -563,7 +569,7 @@ export default function ResourcesPage() {
       </section>
 
       {/* Start Here Section */}
-      <section ref={startHereRef} className="py-16 bg-green-50">
+      <section ref={startHereRef} className="py-16 bg-brand-lighter">
         <div className="container px-4 md:px-6">
           <div className="grid md:grid-cols-2 gap-12 items-center max-w-5xl mx-auto">
             <motion.div
@@ -571,16 +577,16 @@ export default function ResourcesPage() {
               animate={isStartHereInView ? { opacity: 1, x: 0 } : {}}
               transition={{ duration: 0.8 }}
             >
-              <h2 className="text-3xl md:text-4xl font-serif font-light text-gray-900 mb-6">Start Here!</h2>
-              <p className="text-lg text-gray-600 mb-6">
+              <h2 className="text-3xl md:text-4xl font-serif font-light text-brand-dark mb-6">Start Here!</h2>
+              <p className="text-lg text-muted-foreground mb-6">
                 Begin your health journey with a personalized assessment. Our comprehensive questionnaire helps us
                 understand your unique needs and goals.
               </p>
-              <p className="text-lg text-gray-600 mb-8">
+              <p className="text-lg text-muted-foreground mb-8">
                 After completing the assessment, you'll receive tailored recommendations and resources to support your
                 health transformation.
               </p>
-              <Button className="bg-green-600 hover:bg-green-700 text-white rounded-full px-8 py-6 text-lg">
+              <Button className="bg-brand hover:bg-brand-hover text-white rounded-full px-8 py-6 text-lg">
                 Take the Assessment <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
             </motion.div>
@@ -588,15 +594,17 @@ export default function ResourcesPage() {
               initial={{ opacity: 0, x: 40 }}
               animate={isStartHereInView ? { opacity: 1, x: 0 } : {}}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="bg-white p-6 rounded-xl shadow-md"
+              className="bg-background p-6 rounded-xl shadow-md"
             >
-              <div className="aspect-video relative bg-gray-100 rounded-lg overflow-hidden mb-4">
+              <div className="aspect-video relative bg-border rounded-lg overflow-hidden mb-4">
                 <Image src="/assessment-image.jpeg" alt="Health assessment form" fill className="object-cover" />
               </div>
-              <p className="text-gray-600 text-center">Our assessment takes approximately 5-10 minutes to complete</p>
+              <p className="text-muted-foreground text-center">
+                Our assessment takes approximately 5-10 minutes to complete
+              </p>
               <div className="text-center mt-4">
                 <Link href="/get-started">
-                  <Button className="bg-green-600 hover:bg-green-700 text-white rounded-full px-6 py-3">
+                  <Button className="bg-brand hover:bg-brand-hover text-white rounded-full px-6 py-3">
                     Get Started Now <ArrowRight className="ml-2 h-4 w-4" />
                   </Button>
                 </Link>
@@ -605,7 +613,7 @@ export default function ResourcesPage() {
           </div>
           <div className="text-center mt-8">
             <Link href="/get-started">
-              <Button className="bg-green-600 hover:bg-green-700 text-white rounded-full px-8 py-6 text-lg">
+              <Button className="bg-brand hover:bg-brand-hover text-white rounded-full px-8 py-6 text-lg">
                 Get Started Now <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
             </Link>
@@ -614,7 +622,7 @@ export default function ResourcesPage() {
       </section>
 
       {/* What To Eat Section */}
-      <section ref={whatToEatRef} className="py-16 bg-white">
+      <section ref={whatToEatRef} className="py-16 bg-background">
         <div className="container px-4 md:px-6">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
@@ -622,8 +630,8 @@ export default function ResourcesPage() {
             transition={{ duration: 0.8 }}
             className="max-w-4xl mx-auto text-center mb-12"
           >
-            <h2 className="text-3xl md:text-4xl font-serif font-light text-gray-900 mb-6">What To Eat</h2>
-            <p className="text-lg text-gray-600 mb-8">
+            <h2 className="text-3xl md:text-4xl font-serif font-light text-brand-dark mb-6">What To Eat</h2>
+            <p className="text-lg text-muted-foreground mb-8">
               Discover healthy meal ideas, explore different cuisines, and build your personalized grocery list.
             </p>
 
@@ -631,12 +639,12 @@ export default function ResourcesPage() {
               <Input
                 type="text"
                 placeholder="Search for recipes, ingredients, or meal ideas..."
-                className="pl-10 pr-4 py-6 rounded-full border-green-200 focus:border-green-500 focus:ring-green-500"
+                className="pl-10 pr-4 py-6 rounded-full border-border focus:border-brand focus:ring-brand"
               />
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-5 w-5" />
               <Button
                 type="submit"
-                className="absolute right-1 top-1/2 transform -translate-y-1/2 rounded-full bg-green-600 hover:bg-green-700 h-10 w-10 p-0"
+                className="absolute right-1 top-1/2 transform -translate-y-1/2 rounded-full bg-brand hover:bg-brand-hover h-10 w-10 p-0"
               >
                 <Search className="h-5 w-5" />
                 <span className="sr-only">Search</span>
@@ -655,7 +663,7 @@ export default function ResourcesPage() {
                 href="/resources/cuisines"
                 className="group block transform transition-all duration-300 hover:scale-105 hover:-translate-y-1"
               >
-                <div className="bg-green-50 rounded-xl overflow-hidden shadow-sm transition-all duration-300 hover:shadow-xl h-full">
+                <div className="bg-brand-lighter rounded-xl overflow-hidden shadow-sm transition-all duration-300 hover:shadow-xl h-full">
                   <div className="relative h-40 w-full">
                     <Image src="/culinary-diversity.png" alt="Various world cuisines" fill className="object-cover" />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end transition-all duration-300 group-hover:from-black/75">
@@ -672,7 +680,7 @@ export default function ResourcesPage() {
                 href="/resources/meal-planning"
                 className="group block transform transition-all duration-300 hover:scale-105 hover:-translate-y-1"
               >
-                <div className="bg-green-50 rounded-xl overflow-hidden shadow-sm transition-all duration-300 hover:shadow-xl h-full">
+                <div className="bg-brand-lighter rounded-xl overflow-hidden shadow-sm transition-all duration-300 hover:shadow-xl h-full">
                   <div className="relative h-40 w-full">
                     <Image
                       src="/colorful-meal-planning.png"
@@ -694,7 +702,7 @@ export default function ResourcesPage() {
                 href="/resources/calorie-counter"
                 className="group block transform transition-all duration-300 hover:scale-105 hover:-translate-y-1"
               >
-                <div className="bg-green-50 rounded-xl overflow-hidden shadow-sm transition-all duration-300 hover:shadow-xl h-full">
+                <div className="bg-brand-lighter rounded-xl overflow-hidden shadow-sm transition-all duration-300 hover:shadow-xl h-full">
                   <div className="relative h-40 w-full">
                     <Image src="/balanced-diet-calculation.png" alt="Calorie Counter" fill className="object-cover" />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end transition-all duration-300 group-hover:from-black/75">
@@ -741,9 +749,9 @@ export default function ResourcesPage() {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="max-w-5xl mx-auto mt-12"
           >
-            <Card className="border-green-100 shadow-md">
-              <CardHeader className="border-b border-green-50 bg-green-50">
-                <CardTitle className="text-2xl font-serif font-light text-green-800">Grocery List Builder</CardTitle>
+            <Card className="border-brand-lighter shadow-md">
+              <CardHeader className="border-b border-brand-lighter bg-brand-lighter">
+                <CardTitle className="text-2xl font-serif font-light text-brand-dark">Grocery List Builder</CardTitle>
                 <CardDescription>Generate a shopping list with quantities for a single meal</CardDescription>
               </CardHeader>
               <CardContent className="pt-6">
@@ -829,31 +837,31 @@ export default function ResourcesPage() {
                       </RadioGroup>
                     </div>
 
-                    <Button className="w-full bg-green-600 hover:bg-green-700" onClick={generateGroceryList}>
+                    <Button className="w-full bg-brand hover:bg-brand-hover" onClick={generateGroceryList}>
                       Generate Grocery List
                     </Button>
                   </div>
 
-                  <div className="border-t md:border-t-0 md:border-l border-green-100 pt-6 md:pt-0 md:pl-8">
-                    <h3 className="text-xl font-medium text-gray-900 mb-4">
+                  <div className="border-t md:border-t-0 md:border-l border-brand-lighter pt-6 md:pt-0 md:pl-8">
+                    <h3 className="text-xl font-medium text-brand-dark mb-4">
                       {groceryList ? "Your Grocery List" : "Grocery List Preview"}
                     </h3>
                     {!groceryList ? (
-                      <div className="text-center py-12 text-gray-500">
-                        <ShoppingBag className="mx-auto h-12 w-12 text-gray-400 mb-4" />
+                      <div className="text-center py-12 text-muted-foreground">
+                        <ShoppingBag className="mx-auto h-12 w-12 text-border mb-4" />
                         <p>Generate a list to see your personalized grocery items</p>
                       </div>
                     ) : (
                       <div className="space-y-4">
                         <div>
-                          <h4 className="font-medium text-green-700 mb-2">Produce</h4>
+                          <h4 className="font-medium text-brand mb-2">Produce</h4>
                           <ul className="space-y-1">
                             {groceryList.produce.map((item, index) => (
                               <li key={index} className="flex items-start">
-                                <Check className="h-5 w-5 text-green-500 mr-2 flex-shrink-0 mt-0.5" />
+                                <Check className="h-5 w-5 text-brand mr-2 flex-shrink-0 mt-0.5" />
                                 <span>
                                   <span className="font-medium">{item.name}</span>
-                                  <span className="text-gray-600 ml-2">({item.quantity})</span>
+                                  <span className="text-muted-foreground ml-2">({item.quantity})</span>
                                 </span>
                               </li>
                             ))}
@@ -861,14 +869,14 @@ export default function ResourcesPage() {
                         </div>
 
                         <div>
-                          <h4 className="font-medium text-green-700 mb-2">Protein</h4>
+                          <h4 className="font-medium text-brand mb-2">Protein</h4>
                           <ul className="space-y-1">
                             {groceryList.protein.map((item, index) => (
                               <li key={index} className="flex items-start">
-                                <Check className="h-5 w-5 text-green-500 mr-2 flex-shrink-0 mt-0.5" />
+                                <Check className="h-5 w-5 text-brand mr-2 flex-shrink-0 mt-0.5" />
                                 <span>
                                   <span className="font-medium">{item.name}</span>
-                                  <span className="text-gray-600 ml-2">({item.quantity})</span>
+                                  <span className="text-muted-foreground ml-2">({item.quantity})</span>
                                 </span>
                               </li>
                             ))}
@@ -876,14 +884,14 @@ export default function ResourcesPage() {
                         </div>
 
                         <div>
-                          <h4 className="font-medium text-green-700 mb-2">Grains</h4>
+                          <h4 className="font-medium text-brand mb-2">Grains</h4>
                           <ul className="space-y-1">
                             {groceryList.grains.map((item, index) => (
                               <li key={index} className="flex items-start">
-                                <Check className="h-5 w-5 text-green-500 mr-2 flex-shrink-0 mt-0.5" />
+                                <Check className="h-5 w-5 text-brand mr-2 flex-shrink-0 mt-0.5" />
                                 <span>
                                   <span className="font-medium">{item.name}</span>
-                                  <span className="text-gray-600 ml-2">({item.quantity})</span>
+                                  <span className="text-muted-foreground ml-2">({item.quantity})</span>
                                 </span>
                               </li>
                             ))}
@@ -891,21 +899,21 @@ export default function ResourcesPage() {
                         </div>
 
                         <div>
-                          <h4 className="font-medium text-green-700 mb-2">Pantry Items</h4>
+                          <h4 className="font-medium text-brand mb-2">Pantry Items</h4>
                           <ul className="space-y-1">
                             {groceryList.pantry.map((item, index) => (
                               <li key={index} className="flex items-start">
-                                <Check className="h-5 w-5 text-green-500 mr-2 flex-shrink-0 mt-0.5" />
+                                <Check className="h-5 w-5 text-brand mr-2 flex-shrink-0 mt-0.5" />
                                 <span>
                                   <span className="font-medium">{item.name}</span>
-                                  <span className="text-gray-600 ml-2">({item.quantity})</span>
+                                  <span className="text-muted-foreground ml-2">({item.quantity})</span>
                                 </span>
                               </li>
                             ))}
                           </ul>
                         </div>
 
-                        <div className="pt-4 border-t border-green-100">
+                        <div className="pt-4 border-t border-brand-lighter">
                           <Button variant="outline" className="w-full bg-transparent" onClick={downloadGroceryListPDF}>
                             Download PDF
                           </Button>
@@ -920,57 +928,15 @@ export default function ResourcesPage() {
         </div>
       </section>
 
-      {/* NxPlate Section */}
-      <section ref={nxplateRef} className="pt-24 pb-16 bg-white">
+      {/* NxPlate Section - now YouTube Media Hub */}
+      <section ref={nxplateRef} className="pt-24 pb-16 bg-background">
         <div className="container px-4 md:px-6">
-          <div className="grid md:grid-cols-2 gap-12 items-center max-w-5xl mx-auto">
-            <motion.div
-              initial={{ opacity: 0, x: -40 }}
-              animate={isNxplateInView ? { opacity: 1, x: 0 } : {}}
-              transition={{ duration: 0.8 }}
-              className="order-2 md:order-1 relative rounded-xl overflow-hidden"
-            >
-              <div className="aspect-video relative rounded-xl overflow-hidden shadow-md">
-                <iframe
-                  src="https://www.youtube.com/embed/0bKOol-3rJM"
-                  title="NxHealth Video"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                  className="absolute top-0 left-0 w-full h-full border-0"
-                ></iframe>
-              </div>
-              <div className="mt-4">
-                <h3 className="text-xl font-medium text-gray-900">Latest Episode: Nutrition Fundamentals</h3>
-              </div>
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, x: 40 }}
-              animate={isNxplateInView ? { opacity: 1, x: 0 } : {}}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="order-1 md:order-2"
-            >
-              <div className="flex items-center mb-6">
-                <h2 className="text-3xl md:text-4xl font-serif font-light text-gray-900">Watch NxHealth</h2>
-              </div>
-              <p className="text-lg text-gray-600 mb-6">
-                Discover our collection of educational videos featuring nutrition, health, and wellness guidance.
-              </p>
-              <p className="text-lg text-gray-600 mb-8">
-                Follow us on our various social media platforms for regular updates on the latest health trends and
-                practical wellness strategies you can implement today.
-              </p>
-              <a href="https://youtube.com/@nxhealth?si=rf5hEmahpl5aJCzV" target="_blank" rel="noopener noreferrer">
-                <Button className="bg-green-600 hover:bg-green-700 text-white rounded-full px-8 py-6 text-lg">
-                  Watch
-                </Button>
-              </a>
-            </motion.div>
-          </div>
+          <YoutubeMediaHub />
         </div>
       </section>
 
       {/* Transform Your Life eBook Section */}
-      <section className="py-16 bg-gradient-to-br from-green-50 to-emerald-50">
+      <section className="py-16 bg-gradient-to-br from-brand-lighter to-emerald-50">
         <div className="container px-4 md:px-6">
           <div className="grid md:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
             <motion.div
@@ -986,28 +952,19 @@ export default function ResourcesPage() {
                   transition={{ duration: 1, delay: 0.3 }}
                   className="relative mx-auto w-80 h-96 perspective-1000"
                 >
-                  <div className="relative w-full h-full transform-gpu transition-transform duration-700 hover:rotateY-12 hover:scale-105">
-                    <div className="absolute inset-0 bg-gradient-to-br from-green-600 to-green-800 rounded-lg shadow-2xl">
-                      <div className="p-6 h-full flex flex-col justify-between text-white">
-                        <div>
-                          <h3 className="text-2xl font-bold mb-2">Transform Your Life</h3>
-                          <p className="text-lg opacity-90">In 30 Days</p>
-                        </div>
-                        <div className="text-center">
-                          <div className="w-32 h-32 mx-auto bg-white/20 rounded-full flex items-center justify-center mb-4">
-                            <div className="w-24 h-24 bg-white/30 rounded-full flex items-center justify-center">
-                              <span className="text-4xl">📖</span>
-                            </div>
-                          </div>
-                        </div>
-                        <div>
-                          <p className="text-sm opacity-80 mb-2">By Eric Johnson</p>
-                          <p className="text-xs opacity-70">NxHealth Solutions</p>
-                        </div>
-                      </div>
+                  <div className="relative w-full h-full transform-gpu transition-transform duration-700 hover:scale-105">
+                    <div className="absolute inset-0 rounded-lg shadow-2xl overflow-hidden">
+                      <Image
+                        src="/transform-your-life-cover.jpg"
+                        alt="Transform Your Life in 30 Days book cover by Eric Johnson"
+                        fill
+                        className="object-cover"
+                        sizes="(max-width: 768px) 100vw, 320px"
+                        priority
+                      />
                     </div>
-                    <div className="absolute -right-2 top-2 w-full h-full bg-green-700 rounded-lg -z-10"></div>
-                    <div className="absolute -right-4 top-4 w-full h-full bg-green-800 rounded-lg -z-20"></div>
+                    <div className="absolute -right-2 top-2 w-full h-full bg-brand-hover rounded-lg -z-10"></div>
+                    <div className="absolute -right-4 top-4 w-full h-full bg-brand-dark rounded-lg -z-20"></div>
                   </div>
                 </motion.div>
 
@@ -1025,7 +982,7 @@ export default function ResourcesPage() {
                 <motion.div
                   animate={{ rotate: [0, 360] }}
                   transition={{ duration: 8, repeat: Number.POSITIVE_INFINITY, ease: "linear" }}
-                  className="absolute top-1/2 -left-8 w-4 h-4 border-2 border-green-500 opacity-60"
+                  className="absolute top-1/2 -left-8 w-4 h-4 border-2 border-brand opacity-60"
                 ></motion.div>
               </div>
             </motion.div>
@@ -1041,7 +998,7 @@ export default function ResourcesPage() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 0.4 }}
-                  className="text-3xl md:text-4xl font-serif font-light text-gray-900 mb-4"
+                  className="text-3xl md:text-4xl font-serif font-light text-brand-dark mb-4"
                 >
                   Transform Your Life In 30 Days
                 </motion.h2>
@@ -1049,7 +1006,7 @@ export default function ResourcesPage() {
                   initial={{ width: 0 }}
                   animate={{ width: "100px" }}
                   transition={{ duration: 0.8, delay: 0.6 }}
-                  className="h-1 bg-gradient-to-r from-green-600 to-emerald-600 mb-6"
+                  className="h-1 bg-gradient-to-r from-brand to-emerald-600 mb-6"
                 ></motion.div>
               </div>
 
@@ -1057,7 +1014,7 @@ export default function ResourcesPage() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.8 }}
-                className="prose prose-lg text-gray-600 mb-8"
+                className="prose prose-lg text-muted-foreground mb-8"
               >
                 <p className="mb-4">
                   Hello! I'm Eric Johnson, and I am thrilled you're here to explore the wonderful world of health with
@@ -1091,33 +1048,35 @@ export default function ResourcesPage() {
                 transition={{ duration: 0.6, delay: 1 }}
                 className="flex flex-col sm:flex-row gap-4"
               >
-                <Button
-                  variant="pdfDownload"
-                  className="bg-green-600 hover:bg-green-700 text-white rounded-full px-8 py-6 text-lg font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+                <a
+                  href="/transform-your-life-in-30-days.pdf"
+                  download="Transform-Your-Life-In-30-Days-NxHealth.pdf"
+                  className="inline-flex items-center justify-center bg-brand hover:bg-brand-hover text-white rounded-full px-8 py-6 text-lg font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
                 >
                   Get Your Copy Now
                   <ArrowRight className="ml-2 h-5 w-5" />
-                </Button>
+                </a>
                 <Button
+                  prvebook1="true"
                   variant="outline"
-                  className="border-green-600 text-green-600 hover:bg-green-50 rounded-full px-8 py-6 text-lg font-medium bg-transparent"
+                  className="border-brand text-brand hover:bg-brand-lighter rounded-full px-8 py-6 text-lg font-medium bg-transparent"
                 >
-                  Preview Sample
+                  Listen
                 </Button>
               </motion.div>
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 1.2 }}
-                className="mt-6 pt-6 border-t border-green-200"
+                className="mt-6 pt-6 border-t border-brand-lighter"
               ></motion.div>
             </motion.div>
           </div>
         </div>
       </section>
 
-      {/* NxHealth Podcast Section */}
-      <section className="py-16 bg-white">
+      {/* NxHealth Podcast Section - This section is now replaced by YoutubeMediaHub */}
+      {/* <section className="py-16 bg-background">
         <div className="container px-4 md:px-6">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
@@ -1126,15 +1085,15 @@ export default function ResourcesPage() {
             className="max-w-6xl mx-auto"
           >
             <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-serif font-light text-gray-900 mb-6">NxHealth Podcast</h2>
-              <p className="text-lg text-gray-600 mb-8">
+              <h2 className="text-3xl md:text-4xl font-serif font-light text-brand-dark mb-6">NxHealth Podcast</h2>
+              <p className="text-lg text-muted-foreground mb-8">
                 Tune in to our podcast for expert insights on nutrition, wellness, and healthy living.
               </p>
               <a
                 href="https://open.spotify.com/show/2E8oq25EKHAEscmPwstEvu?si=S9e8q9aiR_yq-sogzw4yvw"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center bg-green-600 hover:bg-green-700 text-white rounded-full px-6 py-3 text-lg transition-colors duration-300"
+                className="inline-flex items-center bg-brand hover:bg-brand-hover text-white rounded-full px-6 py-3 text-lg transition-colors duration-300"
               >
                 <svg className="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="currentColor">
                   <path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.42 1.56-.299.421-1.02.599-1.559.3z" />
@@ -1143,147 +1102,140 @@ export default function ResourcesPage() {
               </a>
             </div>
 
-            {/* Podcast Episodes Slider */}
             <div className="relative">
               <div className="overflow-x-auto scrollbar-hide">
                 <div className="flex space-x-6 pb-4" style={{ width: "max-content" }}>
-                  {/* Episode 1 */}
-                  <div className="flex-shrink-0 w-80 bg-green-50 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow duration-300">
+                  <div className="flex-shrink-0 w-80 bg-brand-lighter rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow duration-300">
                     <div className="flex items-center mb-4">
-                      <div className="w-16 h-16 bg-green-600 rounded-lg flex items-center justify-center mr-4">
+                      <div className="w-16 h-16 bg-brand rounded-lg flex items-center justify-center mr-4">
                         <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
                           <path d="M8 5v14l11-7z" />
                         </svg>
                       </div>
                       <div>
-                        <h3 className="font-semibold text-gray-900 mb-1">Episode 1: Nutrition Fundamentals</h3>
-                        <p className="text-sm text-gray-600">45 min • Health & Wellness</p>
+                        <h3 className="font-semibold text-brand-dark mb-1">Episode 1: Nutrition Fundamentals</h3>
+                        <p className="text-sm text-muted-foreground">45 min • Health & Wellness</p>
                       </div>
                     </div>
-                    <p className="text-gray-600 text-sm mb-4">
+                    <p className="text-muted-foreground text-sm mb-4">
                       Discover the building blocks of proper nutrition and how to create sustainable eating habits.
                     </p>
                     <div className="flex items-center justify-between">
-                      <button className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-full text-sm transition-colors duration-300">
+                      <button className="bg-brand hover:bg-brand-hover text-white px-4 py-2 rounded-full text-sm transition-colors duration-300">
                         Play Episode
                       </button>
-                      <span className="text-xs text-gray-500">Dec 15, 2024</span>
+                      <span className="text-xs text-muted-foreground">Dec 15, 2024</span>
                     </div>
                   </div>
 
-                  {/* Episode 2 */}
-                  <div className="flex-shrink-0 w-80 bg-green-50 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow duration-300">
+                  <div className="flex-shrink-0 w-80 bg-brand-lighter rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow duration-300">
                     <div className="flex items-center mb-4">
-                      <div className="w-16 h-16 bg-green-600 rounded-lg flex items-center justify-center mr-4">
+                      <div className="w-16 h-16 bg-brand rounded-lg flex items-center justify-center mr-4">
                         <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
                           <path d="M8 5v14l11-7z" />
                         </svg>
                       </div>
                       <div>
-                        <h3 className="font-semibold text-gray-900 mb-1">Episode 2: Plant-Based Power</h3>
-                        <p className="text-sm text-gray-600">38 min • Nutrition</p>
+                        <h3 className="font-semibold text-brand-dark mb-1">Episode 2: Plant-Based Power</h3>
+                        <p className="text-sm text-muted-foreground">38 min • Nutrition</p>
                       </div>
                     </div>
-                    <p className="text-gray-600 text-sm mb-4">
+                    <p className="text-muted-foreground text-sm mb-4">
                       Explore the benefits of plant-based eating and practical tips for incorporating more plants.
                     </p>
                     <div className="flex items-center justify-between">
-                      <button className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-full text-sm transition-colors duration-300">
+                      <button className="bg-brand hover:bg-brand-hover text-white px-4 py-2 rounded-full text-sm transition-colors duration-300">
                         Play Episode
                       </button>
-                      <span className="text-xs text-gray-500">Dec 8, 2024</span>
+                      <span className="text-xs text-muted-foreground">Dec 8, 2024</span>
                     </div>
                   </div>
 
-                  {/* Episode 3 */}
-                  <div className="flex-shrink-0 w-80 bg-green-50 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow duration-300">
+                  <div className="flex-shrink-0 w-80 bg-brand-lighter rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow duration-300">
                     <div className="flex items-center mb-4">
-                      <div className="w-16 h-16 bg-green-600 rounded-lg flex items-center justify-center mr-4">
+                      <div className="w-16 h-16 bg-brand rounded-lg flex items-center justify-center mr-4">
                         <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
                           <path d="M8 5v14l11-7z" />
                         </svg>
                       </div>
                       <div>
-                        <h3 className="font-semibold text-gray-900 mb-1">Episode 3: Mindful Eating</h3>
-                        <p className="text-sm text-gray-600">42 min • Wellness</p>
+                        <h3 className="font-semibold text-brand-dark mb-1">Episode 3: Mindful Eating</h3>
+                        <p className="text-sm text-muted-foreground">42 min • Wellness</p>
                       </div>
                     </div>
-                    <p className="text-gray-600 text-sm mb-4">
+                    <p className="text-muted-foreground text-sm mb-4">
                       Learn how to develop a healthier relationship with food through mindfulness practices.
                     </p>
                     <div className="flex items-center justify-between">
-                      <button className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-full text-sm transition-colors duration-300">
+                      <button className="bg-brand hover:bg-brand-hover text-white px-4 py-2 rounded-full text-sm transition-colors duration-300">
                         Play Episode
                       </button>
-                      <span className="text-xs text-gray-500">Dec 1, 2024</span>
+                      <span className="text-xs text-muted-foreground">Dec 1, 2024</span>
                     </div>
                   </div>
 
-                  {/* Episode 4 */}
-                  <div className="flex-shrink-0 w-80 bg-green-50 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow duration-300">
+                  <div className="flex-shrink-0 w-80 bg-brand-lighter rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow duration-300">
                     <div className="flex items-center mb-4">
-                      <div className="w-16 h-16 bg-green-600 rounded-lg flex items-center justify-center mr-4">
+                      <div className="w-16 h-16 bg-brand rounded-lg flex items-center justify-center mr-4">
                         <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
                           <path d="M8 5v14l11-7z" />
                         </svg>
                       </div>
                       <div>
-                        <h3 className="font-semibold text-gray-900 mb-1">Episode 4: Meal Prep Mastery</h3>
-                        <p className="text-sm text-gray-600">35 min • Practical Tips</p>
+                        <h3 className="font-semibold text-brand-dark mb-1">Episode 4: Meal Prep Mastery</h3>
+                        <p className="text-sm text-muted-foreground">35 min • Practical Tips</p>
                       </div>
                     </div>
-                    <p className="text-gray-600 text-sm mb-4">
+                    <p className="text-muted-foreground text-sm mb-4">
                       Master the art of meal preparation to save time and maintain healthy eating habits.
                     </p>
                     <div className="flex items-center justify-between">
-                      <button className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-full text-sm transition-colors duration-300">
+                      <button className="bg-brand hover:bg-brand-hover text-white px-4 py-2 rounded-full text-sm transition-colors duration-300">
                         Play Episode
                       </button>
-                      <span className="text-xs text-gray-500">Nov 24, 2024</span>
+                      <span className="text-xs text-muted-foreground">Nov 24, 2024</span>
                     </div>
                   </div>
 
-                  {/* Episode 5 */}
-                  <div className="flex-shrink-0 w-80 bg-green-50 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow duration-300">
+                  <div className="flex-shrink-0 w-80 bg-brand-lighter rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow duration-300">
                     <div className="flex items-center mb-4">
-                      <div className="w-16 h-16 bg-green-600 rounded-lg flex items-center justify-center mr-4">
+                      <div className="w-16 h-16 bg-brand rounded-lg flex items-center justify-center mr-4">
                         <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
                           <path d="M8 5v14l11-7z" />
                         </svg>
                       </div>
                       <div>
-                        <h3 className="font-semibold text-gray-900 mb-1">Episode 5: Stress & Nutrition</h3>
-                        <p className="text-sm text-gray-600">40 min • Mental Health</p>
+                        <h3 className="font-semibold text-brand-dark mb-1">Episode 5: Stress & Nutrition</h3>
+                        <p className="text-sm text-muted-foreground">40 min • Mental Health</p>
                       </div>
                     </div>
-                    <p className="text-gray-600 text-sm mb-4">
+                    <p className="text-muted-foreground text-sm mb-4">
                       Understanding the connection between stress, mental health, and nutritional choices.
                     </p>
                     <div className="flex items-center justify-between">
-                      <button className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-full text-sm transition-colors duration-300">
+                      <button className="bg-brand hover:bg-brand-hover text-white px-4 py-2 rounded-full text-sm transition-colors duration-300">
                         Play Episode
                       </button>
-                      <span className="text-xs text-gray-500">Nov 17, 2024</span>
+                      <span className="text-xs text-muted-foreground">Nov 17, 2024</span>
                     </div>
                   </div>
                 </div>
               </div>
 
-              {/* Scroll indicators */}
               <div className="flex justify-center mt-6 space-x-2">
-                <div className="w-2 h-2 bg-green-600 rounded-full"></div>
-                <div className="w-2 h-2 bg-gray-300 rounded-full"></div>
-                <div className="w-2 h-2 bg-gray-300 rounded-full"></div>
+                <div className="w-2 h-2 bg-brand rounded-full"></div>
+                <div className="w-2 h-2 bg-border rounded-full"></div>
+                <div className="w-2 h-2 bg-border rounded-full"></div>
               </div>
             </div>
 
             <div className="text-center mt-8">
-              <p className="text-gray-600 mb-4">Subscribe to never miss an episode</p>
+              <p className="text-muted-foreground mb-4">Subscribe to never miss an episode</p>
               <a
                 href="https://open.spotify.com/show/2E8oq25EKHAEscmPwstEvu?si=S9e8q9aiR_yq-sogzw4yvw"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center text-green-600 hover:text-green-700 font-medium transition-colors duration-300"
+                className="inline-flex items-center text-brand hover:text-brand-hover font-medium transition-colors duration-300"
               >
                 <svg className="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="currentColor">
                   <path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.42 1.56-.299.421-1.02.599-1.559.3z" />
@@ -1293,10 +1245,10 @@ export default function ResourcesPage() {
             </div>
           </motion.div>
         </div>
-      </section>
+      </section> */}
 
       {/* Refer a Friend Section */}
-      <section ref={referRef} className="py-16 bg-white">
+      <section ref={referRef} className="py-16 bg-background">
         <div className="container px-4 md:px-6">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
@@ -1306,10 +1258,10 @@ export default function ResourcesPage() {
           >
             <Card className="overflow-hidden border-0 shadow-lg">
               <div className="grid md:grid-cols-2">
-                <div className="bg-green-600 p-8 text-white flex flex-col justify-center">
+                <div className="bg-brand p-8 text-white flex flex-col justify-center">
                   <CardHeader className="pb-2">
                     <CardTitle className="text-3xl font-serif font-light">Refer A Friend</CardTitle>
-                    <CardDescription className="text-green-100 text-lg">
+                    <CardDescription className="text-brand-lighter text-lg">
                       Get a free consultation or health solution session!
                     </CardDescription>
                   </CardHeader>
@@ -1319,21 +1271,21 @@ export default function ResourcesPage() {
                       receive a complimentary consultation or health solution session.
                     </p>
                     <div className="flex items-center mb-4">
-                      <Users className="h-6 w-6 mr-3 text-green-200" />
+                      <Users className="h-6 w-6 mr-3 text-brand-lighter" />
                       <span>Help others discover their path to wellness</span>
                     </div>
                     <div className="flex items-center">
-                      <BookOpen className="h-6 w-6 mr-3 text-green-200" />
+                      <BookOpen className="h-6 w-6 mr-3 text-brand-lighter" />
                       <span>Earn valuable health resources for yourself</span>
                     </div>
                   </CardContent>
                   <CardFooter>
-                    <Button className="bg-white text-green-600 hover:bg-green-50 rounded-full px-6 py-5">
+                    <Button className="bg-background text-brand hover:bg-brand-lighter rounded-full px-6 py-5">
                       Refer A Friend
                     </Button>
                   </CardFooter>
                 </div>
-                <div className="relative min-h-[300px] p-4 flex items-center justify-center bg-white">
+                <div className="relative min-h-[300px] p-4 flex items-center justify-center bg-background">
                   <Image
                     src="/nxhealth-flyer.png"
                     alt="NxHealth referral program flyer showing free consultation offer"
@@ -1349,7 +1301,7 @@ export default function ResourcesPage() {
       </section>
 
       {/* Services Section */}
-      <section ref={servicesRef} className="py-16 bg-green-800 text-white">
+      <section ref={servicesRef} className="py-16 bg-brand-dark text-white">
         <div className="container px-4 md:px-6 mx-auto text-center">
           <motion.h2
             initial={{ opacity: 0, y: 40 }}
@@ -1363,7 +1315,7 @@ export default function ResourcesPage() {
             initial={{ opacity: 0, y: 40 }}
             animate={isServicesInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-xl text-green-100 max-w-2xl mx-auto mb-10"
+            className="text-xl text-brand-lighter max-w-2xl mx-auto mb-10"
           >
             Explore our range of personalized health and wellness services designed to support your unique journey.
           </motion.p>
@@ -1373,7 +1325,7 @@ export default function ResourcesPage() {
             transition={{ duration: 0.8, delay: 0.4 }}
           >
             <Link href="/services">
-              <Button className="bg-white text-green-800 hover:bg-green-100 rounded-full px-8 py-6 text-lg">
+              <Button className="bg-background text-brand-dark hover:bg-brand-lighter rounded-full px-8 py-6 text-lg">
                 View All Services
               </Button>
             </Link>
@@ -1382,7 +1334,7 @@ export default function ResourcesPage() {
       </section>
 
       {/* Articles Section */}
-      <section ref={articlesRef} className="py-16 bg-white">
+      <section ref={articlesRef} className="py-16 bg-background">
         <div className="container px-4 md:px-6">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
@@ -1390,8 +1342,8 @@ export default function ResourcesPage() {
             transition={{ duration: 0.8 }}
             className="max-w-4xl mx-auto text-center mb-12"
           >
-            <h2 className="text-3xl md:text-4xl font-serif font-light text-gray-900 mb-6">Explore Our Articles</h2>
-            <p className="text-lg text-gray-600 mb-8">
+            <h2 className="text-3xl md:text-4xl font-serif font-light text-brand-dark mb-6">Explore Our Articles</h2>
+            <p className="text-lg text-muted-foreground mb-8">
               Dive into our collection of articles covering a wide range of health and wellness topics.
             </p>
           </motion.div>
@@ -1408,19 +1360,19 @@ export default function ResourcesPage() {
                   Array(3)
                     .fill(0)
                     .map((_, index) => (
-                      <div key={index} className="bg-gray-100 rounded-xl overflow-hidden h-full animate-pulse">
-                        <div className="h-40 w-full bg-gray-200"></div>
+                      <div key={index} className="bg-border rounded-xl overflow-hidden h-full animate-pulse">
+                        <div className="h-40 w-full bg-border"></div>
                         <div className="p-4">
-                          <div className="h-6 bg-gray-200 rounded mb-2 w-3/4"></div>
-                          <div className="h-4 bg-gray-200 rounded w-full mb-2"></div>
-                          <div className="h-4 bg-gray-200 rounded w-2/3"></div>
+                          <div className="h-6 bg-border rounded mb-2 w-3/4"></div>
+                          <div className="h-4 bg-border rounded w-full mb-2"></div>
+                          <div className="h-4 bg-border rounded w-2/3"></div>
                         </div>
                       </div>
                     ))
                 : // Random articles
                   randomArticles.map((article) => (
                     <Link key={article.id} href={article.url} className="group block">
-                      <div className="bg-green-50 rounded-xl overflow-hidden shadow-sm transition-all duration-300 hover:shadow-xl h-full">
+                      <div className="bg-brand-lighter rounded-xl overflow-hidden shadow-sm transition-all duration-300 hover:shadow-xl h-full">
                         <div className="relative h-40 w-full">
                           <Image
                             src={article.image || "/placeholder.svg"}
@@ -1431,10 +1383,10 @@ export default function ResourcesPage() {
                           <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end">
                             <div className="p-4 text-white">
                               <div className="flex items-center mb-2">
-                                <span className="text-xs bg-green-600 text-white px-2 py-1 rounded-full">
+                                <span className="text-xs bg-brand text-white px-2 py-1 rounded-full">
                                   {article.category}
                                 </span>
-                                <span className="text-xs text-green-100 ml-2">{article.readTime}</span>
+                                <span className="text-xs text-brand-lighter ml-2">{article.readTime}</span>
                               </div>
                               <h3 className="text-xl font-medium mb-1 line-clamp-1">{article.title}</h3>
                               <p className="text-sm text-white/80 line-clamp-2">{article.description}</p>
@@ -1449,7 +1401,7 @@ export default function ResourcesPage() {
             <div className="mt-8 text-center">
               <Link
                 href="/resources/articles"
-                className="inline-block bg-green-600 hover:bg-green-700 text-white rounded-full px-8 py-3 text-lg transition-colors duration-300"
+                className="inline-block bg-brand hover:bg-brand-hover text-white rounded-full px-8 py-3 text-lg transition-colors duration-300"
               >
                 View All Articles
               </Link>

@@ -12,7 +12,7 @@ export default function CalorieArticlePage() {
   return (
     <div className="container mx-auto py-12 px-4 md:px-6">
       <div className="max-w-4xl mx-auto">
-        <Link href="/resources" className="text-green-600 hover:text-green-700 flex items-center mb-8">
+        <Link href="/resources" className="text-brand hover:text-brand-hover flex items-center mb-8">
           <ArrowLeft className="mr-2 h-4 w-4" />
           Back to Resources
         </Link>
@@ -54,7 +54,7 @@ export default function CalorieArticlePage() {
             blocks for your body.
           </p>
 
-          <div className="bg-green-50 p-6 rounded-lg my-8">
+          <div className="bg-brand-lighter p-6 rounded-lg my-8">
             <h3 className="text-xl font-medium text-gray-900 mb-3">Key Components of a Balanced Nutrition Plan</h3>
             <p>
               Creating a balanced nutrition plan involves more than just calories. It requires considering the
@@ -76,7 +76,7 @@ export default function CalorieArticlePage() {
             specific number of calories.
           </p>
 
-          <div className="mt-12 pt-8 border-t border-gray-200">
+          <div className="mt-12 pt-8 border-t border-border">
             <h3 className="text-xl font-medium text-gray-900 mb-4">
               Practical Steps to Create Your Balanced Nutrition Plan
             </h3>
@@ -90,11 +90,11 @@ export default function CalorieArticlePage() {
             </ul>
           </div>
 
-          <div className="mt-12 pt-8 border-t border-gray-200">
+          <div className="mt-12 pt-8 border-t border-border">
             <h3 className="text-xl font-medium text-gray-900 mb-4">Tools and Resources</h3>
             <p>
               For those interested in a more detailed approach to understanding their caloric needs, our{" "}
-              <Link href="/resources/calorie-counter" className="text-green-600 hover:text-green-700">
+              <Link href="/resources/calorie-counter" className="text-brand hover:text-brand-hover">
                 Calorie & Nutrition Calculator
               </Link>{" "}
               can provide personalized estimates based on your age, weight, height, activity level, and goals.

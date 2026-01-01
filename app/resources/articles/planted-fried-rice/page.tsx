@@ -4,7 +4,7 @@ import { ArrowLeft, ShoppingBag } from "lucide-react"
 
 export default function PlantedFriedRicePage() {
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-muted">
       {/* Hero Section */}
       <div className="relative h-[300px] md:h-[400px] w-full">
         <Image
@@ -24,11 +24,11 @@ export default function PlantedFriedRicePage() {
 
       {/* Content */}
       <div className="container mx-auto px-4 py-8">
-        <h1 className="text-3xl font-bold mb-6">Planted Fried Rice</h1>
+        <h1 className="text-3xl font-bold mb-6 text-foreground">Planted Fried Rice</h1>
         <p className="mb-4">A delicious and nutritious plant-based fried rice recipe.</p>
 
         <div className="mb-8">
-          <h2 className="text-xl font-semibold mb-2">Recipe Details</h2>
+          <h2 className="text-xl font-semibold mb-2 text-foreground">Recipe Details</h2>
           <ul className="list-disc pl-5 mb-4">
             <li>Prep time: 20 minutes</li>
             <li>Cook time: 20 minutes</li>
@@ -37,7 +37,7 @@ export default function PlantedFriedRicePage() {
         </div>
 
         <div className="mb-8">
-          <h2 className="text-xl font-semibold mb-2">Ingredients</h2>
+          <h2 className="text-xl font-semibold mb-2 text-foreground">Ingredients</h2>
           <ul className="list-disc pl-5">
             <li>1 cup jasmine rice (or alternative grain)</li>
             <li>1 tablespoon olive oil</li>
@@ -53,7 +53,7 @@ export default function PlantedFriedRicePage() {
         </div>
 
         <div>
-          <h2 className="text-xl font-semibold mb-2">Instructions</h2>
+          <h2 className="text-xl font-semibold mb-2 text-foreground">Instructions</h2>
           <ol className="list-decimal pl-5">
             <li className="mb-2">Cook rice according to package directions.</li>
             <li className="mb-2">Cook tofu in olive oil until crispy.</li>
@@ -66,19 +66,19 @@ export default function PlantedFriedRicePage() {
         </div>
 
         {/* Back Button */}
-        <Link href="/resources/articles" className="inline-flex items-center text-green-600 mb-6 hover:underline">
+        <Link href="/resources/articles" className="inline-flex items-center text-brand mb-6 hover:underline">
           <ArrowLeft className="mr-2 h-4 w-4" />
           Back to Articles
         </Link>
 
         {/* Shopping List */}
-        <div className="bg-white rounded-lg shadow-md p-6 mb-8">
-          <h2 className="text-xl font-serif font-medium text-gray-900 mb-4 flex items-center">
-            <ShoppingBag className="h-5 w-5 text-green-600 mr-2" />
+        <div className="bg-background rounded-lg shadow-md p-6 mb-8">
+          <h2 className="text-xl font-serif font-medium text-foreground mb-4 flex items-center">
+            <ShoppingBag className="h-5 w-5 text-brand mr-2" />
             Shopping List
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <ul className="space-y-2 text-gray-700">
+            <ul className="space-y-2 text-muted-foreground">
               <li>Jasmine rice</li>
               <li>Quinoa</li>
               <li>Couscous</li>
@@ -88,7 +88,7 @@ export default function PlantedFriedRicePage() {
               <li>Mixed vegetables (carrots, peas, corn)</li>
               <li>Broccolini</li>
             </ul>
-            <ul className="space-y-2 text-gray-700">
+            <ul className="space-y-2 text-muted-foreground">
               <li>Pineapple</li>
               <li>Coconut aminos</li>
               <li>Teriyaki sauce</li>
@@ -101,9 +101,9 @@ export default function PlantedFriedRicePage() {
         </div>
 
         {/* Dietary Swaps */}
-        <div className="bg-white rounded-lg shadow-md p-6 mb-8">
-          <h2 className="text-xl font-serif font-medium text-gray-900 mb-4">Dietary Swaps</h2>
-          <ul className="space-y-2 text-gray-700">
+        <div className="bg-background rounded-lg shadow-md p-6 mb-8">
+          <h2 className="text-xl font-serif font-medium text-foreground mb-4">Dietary Swaps</h2>
+          <ul className="space-y-2 text-muted-foreground">
             <li>
               <strong>Grain-free:</strong> Use cauliflower rice instead of rice or other grains.
             </li>
@@ -121,9 +121,9 @@ export default function PlantedFriedRicePage() {
         </div>
 
         {/* Tips */}
-        <div className="bg-green-50 rounded-lg p-6 mb-8">
-          <h2 className="text-xl font-serif font-medium text-gray-900 mb-4">Chef's Tips</h2>
-          <ul className="space-y-2 text-gray-700">
+        <div className="bg-brand-lighter rounded-lg p-6 mb-8">
+          <h2 className="text-xl font-serif font-medium text-foreground mb-4">Chef's Tips</h2>
+          <ul className="space-y-2 text-muted-foreground">
             <li>
               For best results, cook your rice a day ahead and refrigerate it overnight. Cold rice makes for better
               fried rice texture.

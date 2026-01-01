@@ -86,7 +86,7 @@ export default function LoginPage() {
     <div className="container max-w-screen-lg mx-auto py-10 px-4">
       <div className="flex flex-col items-center justify-center space-y-6">
         <div className="flex items-center justify-center">
-          <div className="relative h-16 w-16 overflow-hidden rounded-full bg-green-100/70 backdrop-blur-sm shadow-md p-1">
+          <div className="relative h-16 w-16 overflow-hidden rounded-full bg-brand-lighter backdrop-blur-sm shadow-md p-1">
             <Image
               src="/nxlogo-alt.png"
               alt="NxHealth Solutions Logo"
@@ -125,7 +125,7 @@ export default function LoginPage() {
                     <FormItem>
                       <div className="flex items-center justify-between">
                         <FormLabel>Password</FormLabel>
-                        <Link href="/forgot-password" className="text-sm text-green-600 hover:underline">
+                        <Link href="/forgot-password" className="text-sm text-brand hover:underline">
                           Forgot password?
                         </Link>
                       </div>
@@ -153,7 +153,7 @@ export default function LoginPage() {
                   <input
                     type="checkbox"
                     id="remember"
-                    className="h-4 w-4 rounded border-gray-300 text-green-600 focus:ring-green-500"
+                    className="h-4 w-4 rounded border-border text-brand focus:ring-brand"
                     onChange={(e) => form.setValue("rememberMe", e.target.checked)}
                   />
                   <label htmlFor="remember" className="text-sm text-gray-600">
@@ -163,7 +163,7 @@ export default function LoginPage() {
 
                 <Button
                   type="submit"
-                  className="w-full bg-green-600 hover:bg-green-700 text-white"
+                  className="w-full bg-brand hover:bg-brand-hover text-brand-foreground"
                   disabled={isLoading}
                 >
                   {isLoading ? (
@@ -176,21 +176,6 @@ export default function LoginPage() {
                   )}
                 </Button>
               </form>
-              <Button
-                type="submit"
-                className="w-full bg-green-600 hover:bg-green-700 text-white mt-6"
-                disabled={isLoading}
-                onClick={form.handleSubmit(onSubmit)}
-              >
-                {isLoading ? (
-                  <div className="flex items-center justify-center">
-                    <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
-                    Signing in...
-                  </div>
-                ) : (
-                  "Sign In"
-                )}
-              </Button>
             </Form>
 
             <div className="mt-6">
@@ -238,9 +223,9 @@ export default function LoginPage() {
             </div>
           </CardContent>
           <CardFooter className="flex justify-center">
-            <p className="text-sm text-gray-600">
+            <p className="text-sm text-muted-foreground">
               Don't have an account?{" "}
-              <Link href="/sign-up" className="text-green-600 hover:underline">
+              <Link href="/sign-up" className="text-brand hover:underline">
                 Sign up
               </Link>
             </p>

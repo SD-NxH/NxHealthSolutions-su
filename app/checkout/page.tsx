@@ -204,7 +204,7 @@ export default function CheckoutPage() {
   return (
     <div className="flex flex-col min-h-screen">
       {/* Header Section */}
-      <section className="relative w-full py-12 bg-gradient-to-b from-green-50 to-white">
+      <section className="relative w-full py-12 bg-gradient-to-b from-brand-lighter to-background">
         <div className="container px-4 md:px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -212,19 +212,19 @@ export default function CheckoutPage() {
             transition={{ duration: 0.8 }}
             className="max-w-3xl mx-auto"
           >
-            <Link href="/shop" className="inline-flex items-center text-green-600 hover:text-green-700 mb-6">
+            <Link href="/shop" className="inline-flex items-center text-brand hover:text-brand-hover mb-6">
               <ArrowLeft className="h-4 w-4 mr-1" />
               Continue Shopping
             </Link>
-            <h1 className="text-3xl md:text-4xl font-serif font-light tracking-tight text-gray-900 mb-4">Checkout</h1>
+            <h1 className="text-3xl md:text-4xl font-serif font-light tracking-tight text-foreground mb-4">Checkout</h1>
             <div className="flex items-center justify-between max-w-md">
               <div className="flex flex-col items-center">
                 <motion.div
                   initial={{ scale: 1 }}
                   animate={{
                     scale: step === 1 ? [1, 1.1, 1] : 1,
-                    backgroundColor: step >= 1 ? "#367936" : "#e5e7eb",
-                    color: step >= 1 ? "#ffffff" : "#6b7280",
+                    backgroundColor: step >= 1 ? "hsl(var(--brand))" : "hsl(var(--muted))",
+                    color: step >= 1 ? "hsl(var(--brand-foreground))" : "hsl(var(--muted-foreground))",
                   }}
                   transition={{ duration: 0.5 }}
                   className="w-10 h-10 rounded-full flex items-center justify-center"
@@ -234,12 +234,12 @@ export default function CheckoutPage() {
                 <span className="text-sm mt-2">Cart</span>
               </div>
               <motion.div
-                className="flex-1 h-1 mx-2 bg-gray-200 overflow-hidden"
+                className="flex-1 h-1 mx-2 bg-muted overflow-hidden"
                 initial={{ opacity: 1 }}
                 animate={{ opacity: 1 }}
               >
                 <motion.div
-                  className="h-full bg-green-600"
+                  className="h-full bg-brand"
                   initial={{ width: "0%" }}
                   animate={{ width: step >= 2 ? "100%" : "0%" }}
                   transition={{ duration: 0.5, delay: 0.1 }}
@@ -250,8 +250,8 @@ export default function CheckoutPage() {
                   initial={{ scale: 1 }}
                   animate={{
                     scale: step === 2 ? [1, 1.1, 1] : 1,
-                    backgroundColor: step >= 2 ? "#367936" : "#e5e7eb",
-                    color: step >= 2 ? "#ffffff" : "#6b7280",
+                    backgroundColor: step >= 2 ? "hsl(var(--brand))" : "hsl(var(--muted))",
+                    color: step >= 2 ? "hsl(var(--brand-foreground))" : "hsl(var(--muted-foreground))",
                   }}
                   transition={{ duration: 0.5 }}
                   className="w-10 h-10 rounded-full flex items-center justify-center"
@@ -261,12 +261,12 @@ export default function CheckoutPage() {
                 <span className="text-sm mt-2">Shipping</span>
               </div>
               <motion.div
-                className="flex-1 h-1 mx-2 bg-gray-200 overflow-hidden"
+                className="flex-1 h-1 mx-2 bg-muted overflow-hidden"
                 initial={{ opacity: 1 }}
                 animate={{ opacity: 1 }}
               >
                 <motion.div
-                  className="h-full bg-green-600"
+                  className="h-full bg-brand"
                   initial={{ width: "0%" }}
                   animate={{ width: step >= 3 ? "100%" : "0%" }}
                   transition={{ duration: 0.5, delay: 0.1 }}
@@ -277,8 +277,8 @@ export default function CheckoutPage() {
                   initial={{ scale: 1 }}
                   animate={{
                     scale: step === 3 ? [1, 1.1, 1] : 1,
-                    backgroundColor: step >= 3 ? "#367936" : "#e5e7eb",
-                    color: step >= 3 ? "#ffffff" : "#6b7280",
+                    backgroundColor: step >= 3 ? "hsl(var(--brand))" : "hsl(var(--muted))",
+                    color: step >= 3 ? "hsl(var(--brand-foreground))" : "hsl(var(--muted-foreground))",
                   }}
                   transition={{ duration: 0.5 }}
                   className="w-10 h-10 rounded-full flex items-center justify-center"
@@ -293,7 +293,7 @@ export default function CheckoutPage() {
       </section>
 
       {/* Checkout Content */}
-      <section className="py-12 bg-white flex-grow">
+      <section className="py-12 bg-background flex-grow">
         <div className="container px-4 md:px-6">
           <div className="grid lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
             {/* Left Column - Checkout Steps */}
@@ -334,9 +334,9 @@ export default function CheckoutPage() {
                                   />
                                 </div>
                                 <div className="flex-1">
-                                  <h3 className="font-medium text-gray-900">{item.name}</h3>
-                                  <p className="text-sm text-gray-500 line-clamp-1">{item.description}</p>
-                                  <p className="text-green-600 font-medium mt-1">${item.price.toFixed(2)}</p>
+                                  <h3 className="font-medium text-foreground">{item.name}</h3>
+                                  <p className="text-sm text-muted-foreground line-clamp-1">{item.description}</p>
+                                  <p className="text-brand font-medium mt-1">${item.price.toFixed(2)}</p>
                                 </div>
                                 <div className="flex flex-col items-end justify-between">
                                   <motion.button
@@ -373,12 +373,12 @@ export default function CheckoutPage() {
                         ) : (
                           <div className="text-center py-12">
                             <ShoppingBag className="h-12 w-12 text-gray-300 mx-auto mb-4" />
-                            <h3 className="text-lg font-medium text-gray-900 mb-2">Your cart is empty</h3>
-                            <p className="text-gray-500 mb-6">
+                            <h3 className="text-lg font-medium text-foreground mb-2">Your cart is empty</h3>
+                            <p className="text-muted-foreground mb-6">
                               Looks like you haven't added any items to your cart yet.
                             </p>
                             <Link href="/shop">
-                              <Button className="bg-green-600 hover:bg-green-700 text-white rounded-full">
+                              <Button className="bg-brand hover:bg-brand-hover text-brand-foreground rounded-full">
                                 Browse Menu
                               </Button>
                             </Link>
@@ -402,7 +402,7 @@ export default function CheckoutPage() {
                           >
                             <Button
                               onClick={nextStep}
-                              className="bg-green-600 hover:bg-green-700 text-white rounded-full px-8 group"
+                              className="bg-brand hover:bg-brand-hover text-brand-foreground rounded-full px-8 group"
                             >
                               Continue to Shipping
                               <motion.span
@@ -622,7 +622,7 @@ export default function CheckoutPage() {
                           <Button
                             variant="outline"
                             onClick={prevStep}
-                            className="border-green-600 text-green-600 hover:bg-green-50 rounded-full px-6"
+                            className="border-brand text-brand hover:bg-brand-hover rounded-full px-6 bg-transparent"
                           >
                             <ArrowLeft className="mr-2 h-4 w-4" />
                             Back to Cart
@@ -643,7 +643,7 @@ export default function CheckoutPage() {
                         >
                           <Button
                             onClick={nextStep}
-                            className="bg-green-600 hover:bg-green-700 text-white rounded-full px-8"
+                            className="bg-brand hover:bg-brand-hover text-brand-foreground rounded-full px-8"
                           >
                             Continue to Payment
                             <motion.span
@@ -678,7 +678,7 @@ export default function CheckoutPage() {
                       <CardContent>
                         {isLoadingPaymentIntent ? (
                           <div className="flex flex-col items-center justify-center py-8">
-                            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-green-600"></div>
+                            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-brand"></div>
                             <p className="mt-4 text-gray-600">Initializing payment form...</p>
                           </div>
                         ) : clientSecret ? (
@@ -704,7 +704,7 @@ export default function CheckoutPage() {
                             <p className="text-red-500">Failed to initialize payment form. Please try again.</p>
                             <Button
                               onClick={() => setStep(2)}
-                              className="mt-4 bg-green-600 hover:bg-green-700 text-white"
+                              className="mt-4 bg-brand hover:bg-brand-hover text-brand-foreground"
                             >
                               Go Back
                             </Button>
@@ -716,7 +716,7 @@ export default function CheckoutPage() {
                           <Button
                             variant="outline"
                             onClick={prevStep}
-                            className="border-green-600 text-green-600 hover:bg-green-50 rounded-full px-6"
+                            className="border-brand text-brand hover:bg-brand-hover rounded-full px-6 bg-transparent"
                           >
                             <ArrowLeft className="mr-2 h-4 w-4" />
                             Back to Shipping
@@ -799,7 +799,7 @@ export default function CheckoutPage() {
                           transition={{ duration: 0.5, delay: 0.7 }}
                         >
                           <span>Total</span>
-                          <span className="text-green-600">${total.toFixed(2)}</span>
+                          <span className="text-brand">${total.toFixed(2)}</span>
                         </motion.div>
                       </div>
                     </CardContent>
@@ -813,13 +813,13 @@ export default function CheckoutPage() {
                         </motion.div>
 
                         <motion.div
-                          className="bg-green-50 p-4 rounded-lg text-sm text-gray-700"
+                          className="bg-brand-50 p-4 rounded-lg text-sm text-gray-700"
                           initial={{ opacity: 0, y: 10 }}
                           animate={{ opacity: 1, y: 0 }}
                           transition={{ duration: 0.5, delay: 0.8 }}
                         >
                           <div className="flex items-start">
-                            <Check className="h-5 w-5 text-green-600 mr-2 mt-0.5 flex-shrink-0" />
+                            <Check className="h-5 w-5 text-brand mr-2 mt-0.5 flex-shrink-0" />
                             <p>
                               {subtotal >= 50
                                 ? "Your order qualifies for free shipping!"
@@ -834,7 +834,7 @@ export default function CheckoutPage() {
                   <div className="mt-6 text-center text-sm text-gray-500">
                     <p>
                       Need help?{" "}
-                      <Link href="/contact" className="text-green-600 hover:underline">
+                      <Link href="/contact" className="text-brand hover:underline">
                         Contact us
                       </Link>
                     </p>

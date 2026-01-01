@@ -244,18 +244,18 @@ const recipes = [
 
 export default function QuickHealthyRecipesPage() {
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-muted">
       {/* Hero Section */}
-      <section className="bg-green-700 text-white py-16 md:py-24">
+      <section className="bg-brand-dark text-white py-16 md:py-24">
         <div className="container mx-auto px-4 md:px-6">
           <div className="max-w-4xl mx-auto text-center">
             <h1 className="text-3xl md:text-5xl font-serif font-light mb-6">
               10 Quick and Healthy Recipes for Busy Professionals
             </h1>
-            <p className="text-lg md:text-xl mb-8 text-green-100">
+            <p className="text-lg md:text-xl mb-8 text-brand-lighter">
               Plant-based meals that can be prepared in 15 minutes or less, perfect for your busy lifestyle
             </p>
-            <Link href="/resources/articles" className="inline-flex items-center text-green-200 hover:text-white">
+            <Link href="/resources/articles" className="inline-flex items-center text-brand-lighter hover:text-white">
               <ArrowLeft className="mr-2 h-4 w-4" />
               Back to Articles
             </Link>
@@ -264,15 +264,15 @@ export default function QuickHealthyRecipesPage() {
       </section>
 
       {/* Introduction */}
-      <section className="py-12 md:py-16 bg-white">
+      <section className="py-12 md:py-16 bg-background">
         <div className="container mx-auto px-4 md:px-6 max-w-4xl">
           <div className="prose prose-green max-w-none">
-            <p className="text-lg text-gray-700 mb-6">
+            <p className="text-lg text-muted-foreground mb-6">
               Finding time to prepare healthy meals can be challenging when you're juggling a demanding career, but
               nourishing your body with wholesome plant-based foods is essential for maintaining energy, focus, and
               overall wellbeing throughout your busy day.
             </p>
-            <p className="text-lg text-gray-700 mb-6">
+            <p className="text-lg text-muted-foreground mb-6">
               We've compiled 10 quick and easy plant-based recipes that require minimal prep time, simple ingredients,
               and little to no cooking expertise. Each recipe can be prepared in 15 minutes or less, making them perfect
               for busy mornings, lunch breaks, or weeknight dinners when you're short on time but don't want to
@@ -283,17 +283,17 @@ export default function QuickHealthyRecipesPage() {
       </section>
 
       {/* Recipes */}
-      <section className="py-12 md:py-16 bg-gray-50">
+      <section className="py-12 md:py-16 bg-muted">
         <div className="container mx-auto px-4 md:px-6 max-w-4xl">
-          <h2 className="text-2xl md:text-3xl font-serif font-light text-gray-900 mb-12 text-center">The Recipes</h2>
+          <h2 className="text-2xl md:text-3xl font-serif font-light text-foreground mb-12 text-center">The Recipes</h2>
 
           <div className="space-y-16">
             {recipes.map((recipe) => (
-              <div key={recipe.id} className="bg-white rounded-lg shadow-md overflow-hidden">
+              <div key={recipe.id} className="bg-background rounded-lg shadow-md overflow-hidden">
                 <div className="p-6 md:p-8">
                   <div className="flex items-center justify-between mb-4">
-                    <h3 className="text-xl md:text-2xl font-serif font-medium text-gray-900">{recipe.title}</h3>
-                    <div className="flex items-center text-gray-500 text-sm">
+                    <h3 className="text-xl md:text-2xl font-serif font-medium text-foreground">{recipe.title}</h3>
+                    <div className="flex items-center text-muted-foreground text-sm">
                       <Clock className="h-4 w-4 mr-1" />
                       <span>
                         {recipe.prepTime} prep | {recipe.cookTime} cook
@@ -301,18 +301,18 @@ export default function QuickHealthyRecipesPage() {
                     </div>
                   </div>
 
-                  <p className="text-gray-700 mb-6">{recipe.description}</p>
+                  <p className="text-muted-foreground mb-6">{recipe.description}</p>
 
                   <div className="grid md:grid-cols-2 gap-8">
                     <div>
-                      <h4 className="flex items-center text-lg font-medium text-gray-900 mb-3">
-                        <Utensils className="h-5 w-5 mr-2 text-green-600" />
+                      <h4 className="flex items-center text-lg font-medium text-foreground mb-3">
+                        <Utensils className="h-5 w-5 mr-2 text-brand" />
                         Ingredients
                       </h4>
                       <ul className="space-y-2">
                         {recipe.ingredients.map((ingredient, index) => (
-                          <li key={index} className="text-gray-700 flex items-start">
-                            <span className="text-green-600 mr-2">•</span>
+                          <li key={index} className="text-muted-foreground flex items-start">
+                            <span className="text-brand mr-2">•</span>
                             {ingredient}
                           </li>
                         ))}
@@ -320,10 +320,10 @@ export default function QuickHealthyRecipesPage() {
                     </div>
 
                     <div>
-                      <h4 className="text-lg font-medium text-gray-900 mb-3">Instructions</h4>
+                      <h4 className="text-lg font-medium text-foreground mb-3">Instructions</h4>
                       <ol className="space-y-2 list-decimal list-inside">
                         {recipe.instructions.map((instruction, index) => (
-                          <li key={index} className="text-gray-700">
+                          <li key={index} className="text-muted-foreground">
                             {instruction}
                           </li>
                         ))}
@@ -338,41 +338,41 @@ export default function QuickHealthyRecipesPage() {
       </section>
 
       {/* Tips Section */}
-      <section className="py-12 md:py-16 bg-green-50">
+      <section className="py-12 md:py-16 bg-brand-lighter">
         <div className="container mx-auto px-4 md:px-6 max-w-4xl">
-          <h2 className="text-2xl md:text-3xl font-serif font-light text-gray-900 mb-8 text-center">
+          <h2 className="text-2xl md:text-3xl font-serif font-light text-foreground mb-8 text-center">
             Tips for Quick & Healthy Meal Prep
           </h2>
 
           <div className="grid md:grid-cols-2 gap-8">
-            <div className="bg-white p-6 rounded-lg shadow-sm">
-              <h3 className="text-lg font-medium text-gray-900 mb-3">Batch Cooking Basics</h3>
-              <p className="text-gray-700 mb-4">
+            <div className="bg-background p-6 rounded-lg shadow-sm">
+              <h3 className="text-lg font-medium text-foreground mb-3">Batch Cooking Basics</h3>
+              <p className="text-muted-foreground mb-4">
                 Dedicate 1-2 hours on the weekend to prep ingredients or batch cook staples like grains, beans, and
                 roasted vegetables. Store in containers in the refrigerator for quick assembly during the week.
               </p>
             </div>
 
-            <div className="bg-white p-6 rounded-lg shadow-sm">
-              <h3 className="text-lg font-medium text-gray-900 mb-3">Smart Shortcuts</h3>
-              <p className="text-gray-700 mb-4">
+            <div className="bg-background p-6 rounded-lg shadow-sm">
+              <h3 className="text-lg font-medium text-foreground mb-3">Smart Shortcuts</h3>
+              <p className="text-muted-foreground mb-4">
                 Don't hesitate to use time-saving ingredients like pre-cut vegetables, canned beans, frozen fruits, and
                 pre-cooked grains. These convenience items can significantly reduce prep time without compromising
                 nutrition.
               </p>
             </div>
 
-            <div className="bg-white p-6 rounded-lg shadow-sm">
-              <h3 className="text-lg font-medium text-gray-900 mb-3">One-Pot Wonders</h3>
-              <p className="text-gray-700 mb-4">
+            <div className="bg-background p-6 rounded-lg shadow-sm">
+              <h3 className="text-lg font-medium text-foreground mb-3">One-Pot Wonders</h3>
+              <p className="text-muted-foreground mb-4">
                 Embrace one-pot or one-pan meals that minimize cleanup. Sheet pan dinners, stir-fries, and skillet meals
                 are perfect for busy weeknights and can be customized based on what you have available.
               </p>
             </div>
 
-            <div className="bg-white p-6 rounded-lg shadow-sm">
-              <h3 className="text-lg font-medium text-gray-900 mb-3">Freezer-Friendly Options</h3>
-              <p className="text-gray-700 mb-4">
+            <div className="bg-background p-6 rounded-lg shadow-sm">
+              <h3 className="text-lg font-medium text-foreground mb-3">Freezer-Friendly Options</h3>
+              <p className="text-muted-foreground mb-4">
                 When you do have time to cook, make double batches and freeze portions for future meals. Soups, stews,
                 and casseroles freeze well and can be lifesavers on particularly hectic days.
               </p>
@@ -382,23 +382,23 @@ export default function QuickHealthyRecipesPage() {
       </section>
 
       {/* Call to Action */}
-      <section className="py-12 md:py-16 bg-white">
+      <section className="py-12 md:py-16 bg-background">
         <div className="container mx-auto px-4 md:px-6 max-w-4xl text-center">
-          <h2 className="text-2xl md:text-3xl font-serif font-light text-gray-900 mb-6">
+          <h2 className="text-2xl md:text-3xl font-serif font-light text-foreground mb-6">
             Ready to Transform Your Meals?
           </h2>
-          <p className="text-lg text-gray-700 mb-8 max-w-2xl mx-auto">
+          <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
             Explore more plant-based recipes and nutrition tips to support your busy lifestyle while prioritizing your
             health.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button className="bg-green-600 hover:bg-green-700 text-white">
-              <Link href="/resources/meal-planning" className="text-white">
+            <Button className="bg-brand hover:bg-brand-hover text-brand-foreground">
+              <Link href="/resources/meal-planning" className="text-brand-foreground">
                 Explore Meal Planning
               </Link>
             </Button>
-            <Button variant="outline" className="border-green-600 text-green-600 hover:bg-green-50">
-              <Link href="/resources/articles" className="text-green-600">
+            <Button variant="outline" className="border-brand text-brand hover:bg-brand-lighter bg-transparent">
+              <Link href="/resources/articles" className="text-brand">
                 Browse More Articles
               </Link>
             </Button>

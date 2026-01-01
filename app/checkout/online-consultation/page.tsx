@@ -61,7 +61,7 @@ export default function OnlineConsultationCheckout() {
   return (
     <div className="flex flex-col min-h-screen">
       {/* Header Section */}
-      <section className="relative w-full py-12 bg-gradient-to-b from-green-50 to-white">
+      <section className="relative w-full py-12 bg-gradient-to-b from-brand-lighter to-background">
         <div className="container px-4 md:px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -69,7 +69,7 @@ export default function OnlineConsultationCheckout() {
             transition={{ duration: 0.8 }}
             className="max-w-3xl mx-auto"
           >
-            <Link href="/services" className="inline-flex items-center text-green-600 hover:text-green-700 mb-6">
+            <Link href="/services" className="inline-flex items-center text-brand hover:text-brand-hover mb-6">
               <ArrowLeft className="h-4 w-4 mr-1" />
               Back to Services
             </Link>
@@ -94,10 +94,10 @@ export default function OnlineConsultationCheckout() {
                 </CardHeader>
                 <CardContent>
                   {error ? (
-                    <div className="text-center py-8 bg-red-50 rounded-lg">
-                      <AlertCircle className="h-12 w-12 text-red-500 mx-auto mb-4" />
-                      <h3 className="text-lg font-medium text-red-800 mb-2">Payment Error</h3>
-                      <p className="text-red-600 mb-4">{error}</p>
+                    <div className="text-center py-8 bg-destructive/10 rounded-lg">
+                      <AlertCircle className="h-12 w-12 text-destructive mx-auto mb-4" />
+                      <h3 className="text-lg font-medium text-destructive mb-2">Payment Error</h3>
+                      <p className="text-destructive mb-4">{error}</p>
                       <Button onClick={() => setError(null)} variant="outline" className="mx-auto">
                         Try Again
                       </Button>
@@ -114,7 +114,7 @@ export default function OnlineConsultationCheckout() {
                       <Button
                         onClick={handleCheckout}
                         disabled={isLoading}
-                        className="w-full max-w-md bg-green-600 hover:bg-green-700 text-white py-6 text-lg rounded-lg flex items-center justify-center"
+                        className="w-full max-w-md bg-brand hover:bg-brand-hover text-brand-foreground py-6 text-lg rounded-lg flex items-center justify-center"
                       >
                         {isLoading ? (
                           <span className="flex items-center justify-center">
@@ -152,12 +152,12 @@ export default function OnlineConsultationCheckout() {
 
                       <div className="flex justify-between text-lg font-medium">
                         <span>Total</span>
-                        <span className="text-green-600">${price.toFixed(2)}</span>
+                        <span className="text-brand">${price.toFixed(2)}</span>
                       </div>
 
-                      <div className="bg-green-50 p-4 rounded-lg mt-4">
+                      <div className="bg-brand-lighter p-4 rounded-lg mt-4">
                         <div className="flex items-start">
-                          <Check className="h-5 w-5 text-green-600 mr-2 mt-0.5 flex-shrink-0" />
+                          <Check className="h-5 w-5 text-brand mr-2 mt-0.5 flex-shrink-0" />
                           <div>
                             <p className="text-sm text-gray-700 font-medium">What's included:</p>
                             <ul className="text-sm text-gray-600 mt-2 space-y-1">
@@ -172,10 +172,10 @@ export default function OnlineConsultationCheckout() {
                     </div>
                   </CardContent>
                   <CardFooter>
-                    <div className="w-full text-center text-sm text-gray-500">
+                    <div className="w-full text-center text-sm text-muted-foreground">
                       <p>
                         Need help?{" "}
-                        <Link href="/contact" className="text-green-600 hover:underline">
+                        <Link href="/contact" className="text-brand hover:underline">
                           Contact us
                         </Link>
                       </p>
