@@ -20,30 +20,45 @@ export default function OtherServicesPage() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-            {/* Service Placeholder Cards */}
-            {Array.from({ length: 1 }, (_, i) => (
-              <div key={i} className="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow">
-                <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4">
-                  <div className="w-6 h-6 bg-green-500 rounded"></div>
-                </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-3">Health Professional WebService</h3>
-                <p className="text-gray-600 mb-4">
-                  This service specializes in building modern, secure, and effective websites for health professionals.
-                  Its purpose is to help them build their online presence, attract new patients, and manage their
-                  practice more efficiently. The websites are designed to look professional, work flawlessly on all
-                  devices, and include features that make it easier for users to understand the work that they do. This
-                  allows health professionals to focus on providing excellent care while their online presence works for
-                  them.
-                </p>
-                <Link
-                  href="/services/health-professional-webservice"
-                  className="text-green-600 font-medium hover:text-green-700 transition-colors"
-                >
-                  Learn More →
-                </Link>
+          <div className="grid md:grid-cols-2 gap-8 mb-12">
+            {/* Health Professional WebService Card */}
+            <Link
+              href="/services/health-professional-webservice"
+              className="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow cursor-pointer group"
+            >
+              <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4 group-hover:bg-green-200 transition-colors">
+                <div className="w-6 h-6 bg-green-500 rounded"></div>
               </div>
-            ))}
+              <h3 className="text-xl font-semibold text-gray-900 mb-3">Health Professional WebService</h3>
+              <p className="text-gray-600 mb-4">
+                This service specializes in building modern, secure, and effective websites for health professionals.
+                Its purpose is to help them build their online presence, attract new patients, and manage their practice
+                more efficiently. The websites are designed to look professional, work flawlessly on all devices, and
+                include features that make it easier for users to understand the work that they do. This allows health
+                professionals to focus on providing excellent care while their online presence works for them.
+              </p>
+              <span className="text-green-600 font-medium group-hover:text-green-700 transition-colors">
+                Learn More →
+              </span>
+            </Link>
+
+            <Link
+              href="/services/basketball"
+              className="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow cursor-pointer group"
+              aria-label="View Basketball Performance & Media services"
+            >
+              <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4 group-hover:bg-green-200 transition-colors">
+                <div className="w-6 h-6 bg-green-500 rounded"></div>
+              </div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-3">Basketball Performance & Media</h3>
+              <p className="text-gray-600 mb-4">
+                Sports photography & film, coaching, and performance training—powered by real nutrition and sustainable
+                habits.
+              </p>
+              <span className="text-green-600 font-medium group-hover:text-green-700 transition-colors">
+                Learn More →
+              </span>
+            </Link>
           </div>
 
           <div className="bg-white rounded-lg shadow-md p-8 text-center">

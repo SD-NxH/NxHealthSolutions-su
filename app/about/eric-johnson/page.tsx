@@ -251,6 +251,73 @@ export default function EricJohnsonPage() {
             </div>
           </motion.section>
 
+          {/* Credentials & Background Section */}
+          <motion.section
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="mb-16"
+          >
+            <h2 className="text-3xl font-bold text-foreground mb-6">Credentials & Background</h2>
+            <div className="prose prose-lg max-w-none text-muted-foreground space-y-6">
+              <p>
+                My work is grounded in both lived experience and formal education across exercise science, nutrition,
+                and health education.
+              </p>
+              <p>
+                I hold a Bachelor of Science in Exercise Science from Texas Wesleyan University, where my academic path
+                was reshaped by a foundational nutrition course that revealed the powerful role food plays in human
+                performance, recovery, and long-term health. I later completed my Master of Science in Health Science &
+                Nutrition at The University of Texas–Rio Grande Valley, studying during the height of the COVID-19
+                pandemic—a period that exposed deep cracks in our healthcare and food systems and reinforced my
+                commitment to prevention-focused, root-cause health solutions.
+              </p>
+              <p>
+                I am currently a Doctoral Candidate in Nutritional Medicine, continuing my research and training with a
+                focus on food as medicine, lifestyle-driven disease prevention, and sustainable health practices that
+                improve quality of life.
+              </p>
+              <p>
+                Professionally, my background spans education, fitness, and applied health practice. I have worked as a
+                personal trainer and health fitness specialist, guiding individuals through strength training, group
+                fitness, assessments, and behavior change. I've also served as a Health and Physical Education teacher,
+                bringing evidence-based health education directly into schools and communities—where access to clear,
+                practical health knowledge is often most needed.
+              </p>
+            </div>
+
+            {/* Certifications List */}
+            <div className="mt-8 bg-card border border-border rounded-xl p-6 md:p-8">
+              <ul className="space-y-3">
+                {[
+                  "Health EC–12",
+                  "Physical Education EC–12",
+                  "American Council on Exercise (ACE) Certified Personal Trainer",
+                  "American Heart Association CPR & AED",
+                ].map((cert, index) => (
+                  <li key={index} className="flex items-center gap-3">
+                    <span className="w-2 h-2 bg-brand rounded-full flex-shrink-0" />
+                    <span className="text-muted-foreground">{cert}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div className="mt-8 prose prose-lg max-w-none text-muted-foreground space-y-6">
+              <p>
+                Beyond formal roles, my experience includes years of community service, athletics, and leadership,
+                including collegiate basketball, food pantry volunteering, and community health initiatives. These
+                experiences shaped my belief that health is not an individual pursuit alone—it's cultural, communal, and
+                deeply connected to access, education, and environment.
+              </p>
+              <p>
+                This blend of academic training, real-world coaching, classroom teaching, and community involvement is
+                what informs everything I build through NxHealth Solutions.
+              </p>
+            </div>
+          </motion.section>
+
           {/* Signature */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}

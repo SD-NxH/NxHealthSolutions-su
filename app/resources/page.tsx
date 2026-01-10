@@ -17,6 +17,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Slider } from "@/components/ui/slider"
 import jsPDF from "jspdf"
 import { YoutubeMediaHub } from "@/components/youtube-media-hub"
+import { HealthProductsHub } from "@/components/health-products-hub"
 
 // Define the article interface
 interface Article {
@@ -555,10 +556,21 @@ export default function ResourcesPage() {
                           ? "/resources/d"
                           : letter === "F"
                             ? "/resources/f"
-                            : getLetterHref(letter)
+                            : letter === "G"
+                              ? "/resources/g"
+                              : // Added H button link to new Foods Starting with H page
+                                letter === "H"
+                                ? "/resources/h"
+                                : getLetterHref(letter)
                   }
                   className="flex items-center justify-center h-12 w-12 rounded-full font-medium text-lg transition-all duration-300 bg-brand text-white hover:bg-brand-hover"
-                  target={letter === "E" || letter === "F" ? undefined : letter >= "G" ? "_blank" : undefined}
+                  target={
+                    letter === "E" || letter === "F" || letter === "G" || letter === "H"
+                      ? undefined
+                      : letter >= "I"
+                        ? "_blank"
+                        : undefined
+                  }
                 >
                   {letter}
                 </Link>
@@ -925,6 +937,13 @@ export default function ResourcesPage() {
               </CardContent>
             </Card>
           </motion.div>
+        </div>
+      </section>
+
+      {/* CHANGE> Add Health Products Hub section between Grocery List Builder and Watch Coach J */}
+      <section className="pt-24 pb-16 bg-gradient-to-b from-background to-brand-lighter/20">
+        <div className="container px-4 md:px-6">
+          <HealthProductsHub />
         </div>
       </section>
 
