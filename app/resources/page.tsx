@@ -17,7 +17,6 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Slider } from "@/components/ui/slider"
 import jsPDF from "jspdf"
 import { YoutubeMediaHub } from "@/components/youtube-media-hub"
-import { HealthProductsHub } from "@/components/health-products-hub"
 
 // Define the article interface
 interface Article {
@@ -941,11 +940,11 @@ export default function ResourcesPage() {
       </section>
 
       {/* CHANGE> Add Health Products Hub section between Grocery List Builder and Watch Coach J */}
-      <section className="pt-24 pb-16 bg-gradient-to-b from-background to-brand-lighter/20">
+      {/* <section className="pt-24 pb-16 bg-gradient-to-b from-background to-brand-lighter/20">
         <div className="container px-4 md:px-6">
           <HealthProductsHub />
         </div>
-      </section>
+      </section> */}
 
       {/* NxPlate Section - now YouTube Media Hub */}
       <section ref={nxplateRef} className="pt-24 pb-16 bg-background">

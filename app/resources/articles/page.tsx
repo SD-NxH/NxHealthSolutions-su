@@ -208,6 +208,18 @@ const articles = [
     readTime: "8 min read",
     url: "/resources/articles/secret-eating-to-sobriety",
   },
+  {
+    id: "sweet-potato-oat-mix-waffles",
+    title: "Sweet Potato Oat Mix Waffles",
+    description:
+      "Gluten-free, plant-based waffles made with oat mix and creamy sweet potato—perfect for nourishing breakfast or freezer-friendly meal prep.",
+    image: "/images/recipes/sweet-potato-oat-waffles.jpg",
+    category: "Recipes",
+    date: "January 10, 2026",
+    readTime: "5 min read",
+    url: "/resources/articles/sweet-potato-oat-mix-waffles",
+    tags: ["Gluten-Free", "Plant-Based"],
+  },
 ]
 
 const categories = ["All", "Nutrition", "Health", "Wellness", "Lifestyle", "Fitness", "Recipes", "Public Health"]
