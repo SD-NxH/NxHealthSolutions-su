@@ -11,6 +11,7 @@ import { CartProvider } from "@/context/cart-context"
 import MaintenanceNotification from "@/components/maintenance-notification"
 import { Toaster } from "@/components/ui/toaster"
 import Script from "next/script"
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 const inter = Inter({
   subsets: ["latin"],
@@ -129,6 +130,7 @@ export default function RootLayout({
           </CartProvider>
         </ThemeProvider>
         <Toaster />
+        <SpeedInsights />
         <Script src="/register-sw.js" strategy="lazyOnload" />
       </body>
     </html>
