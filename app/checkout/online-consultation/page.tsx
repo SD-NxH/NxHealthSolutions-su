@@ -9,6 +9,7 @@ import { Separator } from "@/components/ui/separator"
 import { ArrowLeft, Check, AlertCircle, CreditCard } from "lucide-react"
 import { motion } from "framer-motion"
 import { loadStripe } from "@stripe/stripe-js"
+import { safeParseJson } from "@/lib/safe-json"
 
 // Use the publishable key from environment variables
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY || "")
@@ -39,11 +40,20 @@ export default function OnlineConsultationCheckout() {
         }),
       })
 
-      const data = await response.json()
+      const text = await response.text()
 
       if (!response.ok) {
-        throw new Error(data.error || "Failed to create checkout session")
+        let errorMessage = "Failed to create checkout session"
+        const contentType = response.headers.get("content-type")
+        if (contentType && contentType.includes("application/json") && text) {
+          const data = safeParseJson<{ error?: string }>(text, {})
+          errorMessage = data.error || errorMessage
+        }
+        throw new Error(errorMessage)
       }
+
+      // Parse the successful response safely
+      const data = safeParseJson<{ url?: string }>(text, {})
 
       // Redirect to Stripe Checkout
       if (data.url) {

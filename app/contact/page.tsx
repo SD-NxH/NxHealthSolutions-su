@@ -26,6 +26,7 @@ const ContactPage = () => {
                 type="text"
                 id="name"
                 name="name"
+                autoComplete="name"
                 className="shadow appearance-none border border-input rounded w-full py-2 px-3 text-foreground bg-background leading-tight focus:outline-none focus:ring-2 focus:ring-brand"
                 placeholder="Your Name"
                 required
@@ -39,6 +40,7 @@ const ContactPage = () => {
                 type="email"
                 id="email"
                 name="email"
+                autoComplete="email"
                 className="shadow appearance-none border border-input rounded w-full py-2 px-3 text-foreground bg-background leading-tight focus:outline-none focus:ring-2 focus:ring-brand"
                 placeholder="Your Email"
                 required
