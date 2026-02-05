@@ -1,12 +1,140 @@
 "use client"
 
 import { motion } from "framer-motion"
-import Image from "next/image"
+import { SafeImage } from "@/components/safe-image"
 import Link from "next/link"
-import { ArrowLeft, Leaf, Heart, Users, Sprout } from "lucide-react"
+import { ArrowLeft, Leaf, Heart, Users, Sprout, X, ChevronLeft, ChevronRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { useState, useEffect } from "react"
+
+const galleryItems = [
+  {
+    id: 1,
+    src: "/images/dsc00933.jpeg",
+    alt: "Eric Johnson graduation at University of Texas Rio Grande Valley",
+    caption: "Earning my Master of Science in Health Science & Nutrition at UT Rio Grande Valley",
+    category: "Education",
+  },
+  {
+    id: 2,
+    src: "/images/img-0805.jpg",
+    alt: "Eric Johnson coaching clients in gym",
+    caption: "Coaching and building healthy habits one session at a time",
+    category: "Coaching",
+  },
+  {
+    id: 3,
+    src: "/images/img-8234.jpeg",
+    alt: "Eric Johnson at Anytime Fitness",
+    caption: "Nothing truly great ever came from a comfort zone",
+    category: "Fitness",
+  },
+  {
+    id: 4,
+    src: "/images/img-1418.jpeg",
+    alt: "Eric Johnson mentoring student in library",
+    caption: "Teaching health education and building futures in the classroom",
+    category: "Community",
+  },
+  {
+    id: 5,
+    src: "/images/img-0802.jpg",
+    alt: "Eric Johnson training client with bench press",
+    caption: "Personal training and strength development",
+    category: "Coaching",
+  },
+  {
+    id: 6,
+    src: "/images/about/eric/img-3103.jpeg", // Fixed extension from .jpg to .jpeg
+    alt: "Eric Johnson with youth basketball team on court",
+    caption: "Building character and leadership through basketball",
+    category: "Basketball",
+  },
+  {
+    id: 7,
+    src: "/images/about/eric/img-0257.jpg",
+    alt: "Eric Johnson coaching youth basketball team",
+    caption: "Empowering young athletes on and off the court",
+    category: "Basketball",
+  },
+  {
+    id: 8,
+    src: "/images/about/eric/img-9331.jpeg", // Fixed extension from .jpg to .jpeg
+    alt: "Basketball player executing a dunk during training",
+    caption: "The game that shaped my discipline and drive",
+    category: "Basketball",
+  },
+  {
+    id: 9,
+    src: "/images/about/eric/img-2644.jpeg", // Fixed extension from .jpg to .jpeg
+    alt: "Eric Johnson with middle school basketball team",
+    caption: "Mentoring the next generation of leaders",
+    category: "Basketball",
+  },
+  {
+    id: 10,
+    src: "/images/about/eric/img-0150.jpg",
+    alt: "Eric Johnson with students in school hallway",
+    caption: "Community engagement and health education in schools",
+    category: "Community",
+  },
+  {
+    id: 11,
+    src: "/images/about/eric/img-0031.jpg",
+    alt: "Eric Johnson with students at school event",
+    caption: "Making health education fun and accessible for all",
+    category: "Community",
+  },
+  {
+    id: 12,
+    src: "/images/about/eric/img-0367.jpg",
+    alt: "Eric Johnson teaching youth basketball fundamentals",
+    caption: "Teaching fundamentals: basketball, health, and life",
+    category: "Basketball",
+  },
+  {
+    id: 13,
+    src: "/images/about/eric/img-9329.jpeg", // Fixed extension from .jpg to .jpeg
+    alt: "Action shot of dunk during basketball event",
+    caption: "Performance and passion meet on the court",
+    category: "Basketball",
+  },
+]
 
 export default function EricJohnsonPage() {
+  const [lightboxOpen, setLightboxOpen] = useState(false)
+  const [currentImageIndex, setCurrentImageIndex] = useState(0)
+
+  useEffect(() => {
+    if (!lightboxOpen) return
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setLightboxOpen(false)
+      } else if (e.key === "ArrowLeft") {
+        goToPrevious()
+      } else if (e.key === "ArrowRight") {
+        goToNext()
+      }
+    }
+
+    window.addEventListener("keydown", handleKeyDown)
+    return () => window.removeEventListener("keydown", handleKeyDown)
+  }, [lightboxOpen, currentImageIndex])
+
+  const openLightbox = (index: number) => {
+    setCurrentImageIndex(index)
+    setLightboxOpen(true)
+  }
+
+  const goToNext = () => {
+    setCurrentImageIndex((prev) => (prev + 1) % galleryItems.length)
+  }
+
+  const goToPrevious = () => {
+    setCurrentImageIndex((prev) => (prev - 1 + galleryItems.length) % galleryItems.length)
+  }
+
   return (
     <main className="min-h-screen bg-background">
       {/* Hero Section */}
@@ -32,7 +160,7 @@ export default function EricJohnsonPage() {
               transition={{ duration: 0.6 }}
               className="relative w-48 h-48 md:w-64 md:h-64 rounded-full overflow-hidden shadow-xl border-4 border-brand/20"
             >
-              <Image
+              <SafeImage
                 src="/ej-profile-photo.jpg"
                 alt="Eric Johnson, Founder of NxHealth Solutions"
                 fill
@@ -318,6 +446,52 @@ export default function EricJohnsonPage() {
             </div>
           </motion.section>
 
+          {/* Photo Gallery Section */}
+          <motion.section
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="mb-16"
+          >
+            <h2 className="text-3xl font-bold text-foreground mb-6">Journey in Photos</h2>
+            <p className="text-lg text-muted-foreground mb-8">
+              A visual story of my work in education, fitness, basketball, and community service.
+            </p>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+              {galleryItems.map((item, index) => (
+                <motion.div
+                  key={item.id}
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.4, delay: index * 0.05 }}
+                  className={`relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow cursor-pointer group ${
+                    index === 0 ? "sm:col-span-2 sm:row-span-2" : ""
+                  }`}
+                  onClick={() => openLightbox(index)}
+                >
+                  <div className={`relative ${index === 0 ? "h-96" : "h-64"}`}>
+                    <SafeImage
+                      src={item.src}
+                      alt={item.alt}
+                      fill
+                      className="object-cover transition-transform duration-300 group-hover:scale-105"
+                      sizes={index === 0 ? "(max-width: 768px) 100vw, 66vw" : "(max-width: 768px) 100vw, 33vw"}
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
+                      <div className="absolute bottom-0 left-0 right-0 p-4 text-white">
+                        <p className="text-sm font-medium mb-1">{item.category}</p>
+                        <p className="text-xs">{item.caption}</p>
+                      </div>
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </motion.section>
+
           {/* Signature */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -356,6 +530,64 @@ export default function EricJohnsonPage() {
           </motion.div>
         </div>
       </article>
+
+      {/* Lightbox Modal */}
+      {lightboxOpen && (
+        <div
+          className="fixed inset-0 z-50 bg-black/95 flex items-center justify-center p-4"
+          onClick={() => setLightboxOpen(false)}
+        >
+          <button
+            onClick={() => setLightboxOpen(false)}
+            className="absolute top-4 right-4 text-white hover:text-brand transition-colors z-50"
+            aria-label="Close lightbox"
+          >
+            <X className="w-8 h-8" />
+          </button>
+
+          <button
+            onClick={(e) => {
+              e.stopPropagation()
+              goToPrevious()
+            }}
+            className="absolute left-4 text-white hover:text-brand transition-colors z-50"
+            aria-label="Previous image"
+          >
+            <ChevronLeft className="w-12 h-12" />
+          </button>
+
+          <button
+            onClick={(e) => {
+              e.stopPropagation()
+              goToNext()
+            }}
+            className="absolute right-4 text-white hover:text-brand transition-colors z-50"
+            aria-label="Next image"
+          >
+            <ChevronRight className="w-12 h-12" />
+          </button>
+
+          <div className="max-w-5xl w-full" onClick={(e) => e.stopPropagation()}>
+            <div className="relative aspect-video w-full mb-4">
+              <SafeImage
+                src={galleryItems[currentImageIndex].src}
+                alt={galleryItems[currentImageIndex].alt}
+                fill
+                className="object-contain"
+                sizes="100vw"
+                priority
+              />
+            </div>
+            <div className="text-center text-white">
+              <p className="text-sm font-medium text-brand mb-2">{galleryItems[currentImageIndex].category}</p>
+              <p className="text-lg">{galleryItems[currentImageIndex].caption}</p>
+              <p className="text-sm text-white/60 mt-2">
+                {currentImageIndex + 1} / {galleryItems.length}
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
     </main>
   )
 }

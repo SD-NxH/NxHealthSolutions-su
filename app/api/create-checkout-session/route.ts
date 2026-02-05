@@ -9,7 +9,19 @@ export async function POST(request: Request) {
       apiVersion: "2023-10-16",
     })
 
-    const { price, productName, successUrl, cancelUrl } = await request.json()
+    let body: { price?: number; productName?: string; successUrl?: string; cancelUrl?: string }
+    try {
+      const text = await request.text()
+      if (!text || text.trim() === "") {
+        return NextResponse.json({ error: "Empty request body" }, { status: 400 })
+      }
+      body = JSON.parse(text)
+    } catch (parseError) {
+      console.error("Failed to parse request body:", parseError)
+      return NextResponse.json({ error: "Invalid JSON in request body" }, { status: 400 })
+    }
+
+    const { price, productName, successUrl, cancelUrl } = body
 
     // Validate inputs
     if (!price || !productName || !successUrl || !cancelUrl) {

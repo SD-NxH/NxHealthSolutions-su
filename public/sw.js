@@ -1,5 +1,5 @@
 // Service Worker for NxHealth PWA
-const CACHE_NAME = "nxhealth-cache-v1"
+let CACHE_NAME = "nxhealth-cache-v1" // Changed from const to let
 const APP_VERSION = "1.0.0" // Version identifier
 const VERSION_CHECK_INTERVAL = 60 * 60 * 1000 // Check for updates every hour (in milliseconds)
 
@@ -102,24 +102,39 @@ const checkForUpdates = async () => {
     // Fetch the version info from the server
     const response = await fetch("/version.json?_=" + new Date().getTime())
     if (response.ok) {
-      const data = await response.json()
+      const contentType = response.headers.get("content-type")
+      if (contentType && contentType.includes("application/json")) {
+        const text = await response.text()
+        if (!text || text.trim() === "") {
+          console.warn("[ServiceWorker] Empty version.json response")
+          return
+        }
 
-      // If server version is different from our version, notify clients
-      if (data.version !== APP_VERSION) {
-        console.log("[ServiceWorker] New version available:", data.version)
+        let data
+        try {
+          data = JSON.parse(text)
+        } catch (parseError) {
+          console.error("[ServiceWorker] Failed to parse version.json:", parseError)
+          return
+        }
 
-        // Notify all clients about the update
-        const clients = await self.clients.matchAll()
-        clients.forEach((client) => {
-          client.postMessage({
-            type: "UPDATE_AVAILABLE",
-            version: data.version,
+        // If server version is different from our version, notify clients
+        if (data.version !== APP_VERSION) {
+          console.log("[ServiceWorker] New version available:", data.version)
+
+          // Notify all clients about the update
+          const clients = await self.clients.matchAll()
+          clients.forEach((client) => {
+            client.postMessage({
+              type: "UPDATE_AVAILABLE",
+              version: data.version,
+            })
           })
-        })
 
-        // Update our cache name to force a refresh on next load
-        const newCacheName = "nxhealth-cache-" + data.version
-        CACHE_NAME = newCacheName
+          // Update our cache name to force a refresh on next load
+          const newCacheName = "nxhealth-cache-" + data.version
+          CACHE_NAME = newCacheName
+        }
       }
     }
   } catch (error) {
