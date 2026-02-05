@@ -184,7 +184,7 @@ export default function ServicesPage() {
                     alt="Coach J providing freelance wellness and education services"
                     fill
                     sizes="(max-width: 768px) 100vw, 40vw"
-                    className="object-cover"
+                    className="object-cover object-top"
                   />
                 </div>
                 <div className="md:w-3/5 p-8 md:p-10">
