@@ -12,6 +12,42 @@ import { motion } from "framer-motion"
 
 const articles = [
   {
+    id: "accountability-groups-cheat-code-health",
+    title: "Why Accountability Groups Are the Fastest \"Cheat Code\" for Better Health",
+    description:
+      "Health changes faster when it's social — structured, supportive, consistent.",
+    image: "/images/articles/accountability.jpg",
+    category: "Lifestyle",
+    date: "Feb 5, 2026",
+    readTime: "6 min read",
+    url: "/resources/articles/accountability-groups-cheat-code-health",
+    featured: true,
+  },
+  {
+    id: "why-diets-fail-what-actually-works",
+    title: "Why Diets Keep Failing (and What Actually Works Long-Term)",
+    description:
+      "Real health isn't restriction — it's habits, biology, and systems that last.",
+    image: "/images/articles/diets-failing.jpg",
+    category: "Nutrition",
+    date: "Feb 5, 2026",
+    readTime: "7 min read",
+    url: "/resources/articles/why-diets-fail-what-actually-works",
+    featured: true,
+  },
+  {
+    id: "intermittent-fasting-body-repair",
+    title: "Intermittent Fasting: Giving the Body Time to Repair, Not Just React",
+    description:
+      "Not deprivation — timing. Give your body space to reset and repair.",
+    image: "/images/articles/intermittent-fasting.jpg",
+    category: "Health",
+    date: "Feb 5, 2026",
+    readTime: "8 min read",
+    url: "/resources/articles/intermittent-fasting-body-repair",
+    featured: true,
+  },
+  {
     id: "free-vaccines-but-not-free-food",
     title: "Free Vaccines but Not Free Food? The Hidden Health Divide No One Talks About",
     description:
