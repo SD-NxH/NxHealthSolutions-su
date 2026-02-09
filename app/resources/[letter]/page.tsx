@@ -20,10 +20,13 @@ const categoryColors: Record<string, string> = {
   Grain: "bg-accent text-accent-foreground",
   Legume: "bg-brand-lighter text-brand-dark",
   Nut: "bg-accent text-accent-foreground",
+  Seed: "bg-accent text-accent-foreground",
   Tuber: "bg-brand-light text-brand-dark",
   Mushroom: "bg-secondary text-secondary-foreground",
   Squash: "bg-accent text-accent-foreground",
   Spice: "bg-secondary text-secondary-foreground",
+  Superfood: "bg-brand-light text-brand-dark",
+  Seaweed: "bg-brand-lighter text-brand-dark",
 }
 
 function getBenefitIcon(benefit: string) {
@@ -41,6 +44,14 @@ function getTopBenefits(food: FoodData): string[] {
 
 function getLetterDescription(letter: string): string {
   const descriptions: Record<string, string> = {
+    A: "Discover nutritious foods starting with A, from almonds and apples to avocados and artichokes.",
+    B: "Explore healthy foods beginning with B, including beetroot, blueberries, broccoli, and buckwheat.",
+    C: "Discover nutritious foods starting with C, from cauliflower and carrots to chia seeds and cranberries.",
+    D: "Explore healthy foods beginning with D, including daikon, dandelion greens, dragon fruit, and dark chocolate.",
+    E: "Discover nutritious foods starting with E, from elderberries and endive to ancient grains einkorn and emmer.",
+    F: "Explore healthy foods beginning with F, including figs, fennel, fava beans, and fiddlehead ferns.",
+    G: "Discover nutritious foods starting with G, from ginger and garlic to guava, grapes, and goji berries.",
+    H: "Explore healthy foods beginning with H, including honeydew melon, hazelnuts, hibiscus, and heirloom tomatoes.",
     I: "Explore nutritious foods beginning with the letter I.",
     J: "Discover healthy foods beginning with the letter J, including crunchy jicama.",
     K: "Explore nutritious foods beginning with the letter K, featuring nutrient-dense kale and kohlrabi.",

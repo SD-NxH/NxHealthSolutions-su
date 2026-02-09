@@ -2536,6 +2536,24 @@ const nutsAndSeeds: FoodData[] = [
     image: "/images/foods/almond.jpg",
     color: "amber",
   },
+  {
+    name: "Brazil Nuts",
+    slug: "brazil-nuts",
+    letter: "B",
+    category: "Nut",
+    shortDescription: "Selenium-rich nut supporting thyroid and immune health",
+    description: "Brazil nuts are large, creamy nuts from the Amazon rainforest, renowned as the richest natural food source of the mineral selenium.",
+    healthBenefits: [
+      { title: "Thyroid Support", description: "A single nut provides over 100% DV of selenium, critical for thyroid hormone production." },
+      { title: "Immune Support", description: "Selenium acts as a powerful antioxidant supporting immune function." },
+      { title: "Heart Health", description: "Rich in unsaturated fats and magnesium for cardiovascular support." },
+    ],
+    keyNutrients: ["Selenium", "Magnesium", "Copper", "Phosphorus", "Manganese", "Healthy Fats"],
+    howToUse: ["Eat 1-3 per day for selenium needs", "Add to trail mix", "Chop into salads", "Blend into nut butter"],
+    cautions: ["Limit to 1-3 nuts per day to avoid selenium toxicity."],
+    image: "/images/foods/brazil-nuts.jpg",
+    color: "amber",
+  },
 ]
 
 // ═══════════════════════════════════════════════════════════════
