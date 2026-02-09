@@ -7,63 +7,18 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { ChevronLeft } from "lucide-react"
 import { motion, useInView } from "framer-motion"
+import { getFoodsByLetter } from "@/lib/foods-data"
 
-const foods = [
-  {
-    id: "almond",
-    name: "Almonds",
-    image: "/fresh-almonds.jpg",
-    description: "Rich in healthy fats, protein, and essential nutrients",
-    benefits: ["Heart health support", "Blood sugar regulation", "Weight management", "Brain function support"],
-    link: "/resources/foods/almond",
-    isNextPage: true,
-  },
-  {
-    id: "apple",
-    name: "Apples",
-    image: "/basket-of-organic-apples.png",
-    description: "High in fiber, vitamin C, and various antioxidants",
-    benefits: ["Digestive health", "Immune system support", "Heart health", "Blood sugar regulation"],
-    link: "/resources/foods/apple",
-    isNextPage: true,
-  },
-  {
-    id: "apricot",
-    name: "Apricots",
-    image: "/fresh-apricots.jpg",
-    description: "Rich in vitamin A, vitamin C, and antioxidants",
-    benefits: ["Vision health", "Immune support", "Skin health", "Digestive health"],
-    link: "/resources/foods/apricot",
-    isNextPage: true,
-  },
-  {
-    id: "artichoke",
-    name: "Artichokes",
-    image: "/fresh-artichokes.jpg",
-    description: "High in fiber, antioxidants, and various nutrients",
-    benefits: ["Digestive health", "Liver support", "Cholesterol management", "Antioxidant protection"],
-    link: "/resources/foods/artichoke",
-    isNextPage: true,
-  },
-  {
-    id: "asparagus",
-    name: "Asparagus",
-    image: "/fresh-asparagus.jpg",
-    description: "Low in calories and high in essential vitamins and minerals",
-    benefits: ["Anti-inflammatory properties", "Digestive health", "Blood pressure regulation", "Antioxidant support"],
-    link: "/resources/foods/asparagus",
-    isNextPage: true,
-  },
-  {
-    id: "avocado",
-    name: "Avocados",
-    image: "/fresh-avocados.jpg",
-    description: "Packed with healthy fats, fiber, and essential nutrients",
-    benefits: ["Heart health", "Weight management", "Skin health", "Nutrient absorption"],
-    link: "/resources/foods/avocado",
-    isNextPage: true,
-  },
-]
+const datasetFoods = getFoodsByLetter("A")
+
+const foods = datasetFoods.map((food) => ({
+  id: food.slug,
+  name: food.name,
+  image: food.image || "/images/foods/placeholder.jpg",
+  description: food.shortDescription,
+  benefits: food.healthBenefits.slice(0, 4).map((b) => b.title),
+  link: `/resources/foods/${food.slug}`,
+}))
 
 export default function FoodsStartingWithA() {
   const headerRef = useRef(null)
@@ -129,29 +84,11 @@ export default function FoodsStartingWithA() {
                     </ul>
                   </CardContent>
                   <CardFooter>
-                    {food.link ? (
-                      food.isNextPage ? (
-                        <Button
-                          className="w-full bg-brand hover:bg-brand-hover text-brand-foreground"
-                          onClick={() => (window.location.href = food.link)}
-                        >
-                          Learn More About {food.name}
-                        </Button>
-                      ) : (
-                        <a href={food.link} target="_blank" rel="noopener noreferrer" className="w-full">
-                          <Button className="w-full bg-brand hover:bg-brand-hover text-brand-foreground">
-                            Learn More About {food.name}
-                          </Button>
-                        </a>
-                      )
-                    ) : (
-                      <Button
-                        className="w-full bg-brand hover:bg-brand-hover text-brand-foreground opacity-70"
-                        disabled
-                      >
-                        Coming Soon
+                    <Link href={food.link} className="w-full">
+                      <Button className="w-full bg-brand hover:bg-brand-hover text-brand-foreground">
+                        Learn More About {food.name}
                       </Button>
-                    )}
+                    </Link>
                   </CardFooter>
                 </Card>
               </motion.div>
