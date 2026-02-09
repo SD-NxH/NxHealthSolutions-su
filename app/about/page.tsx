@@ -259,6 +259,37 @@ export default function AboutPage() {
               </div>
             </div>
           </motion.div>
+
+          {/* Educational Disclaimer */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={isApproachInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className="max-w-3xl mx-auto mt-16"
+          >
+            <div className="border-t border-brand-light pt-8">
+              <div className="bg-brand-lighter/50 rounded-xl px-6 py-6 md:px-8 md:py-7">
+                <h3 className="text-sm font-semibold tracking-wide uppercase text-brand-dark mb-3">
+                  Educational Disclaimer
+                </h3>
+                <div className="space-y-3 text-sm text-muted-foreground leading-relaxed">
+                  <p>
+                    The information shared through NxHealth Solutions is for educational purposes only and is not
+                    intended to replace medical advice, diagnosis, or treatment.
+                  </p>
+                  <p>
+                    Our approach is designed to serve as a goldmine of evidence-based education, tools, and insights
+                    to help you better understand your body, your habits, and your lifestyle — so you can make
+                    informed decisions that improve your quality of life.
+                  </p>
+                  <p>
+                    Always consult a qualified healthcare professional before making changes related to medical care,
+                    nutrition, or treatment plans.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </motion.div>
         </div>
       </section>
 
