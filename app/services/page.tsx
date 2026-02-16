@@ -5,10 +5,11 @@ import Image from "next/image"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
-import { Users, Leaf, HeartPulse, Calendar, BookOpen, MessageCircle, CheckCircle } from "lucide-react"
+import { Users, Leaf, HeartPulse, Calendar, BookOpen, MessageCircle, CheckCircle, Briefcase } from "lucide-react"
 import { motion, useInView } from "framer-motion"
 import { redirectToStripePayment } from "../actions/stripe-redirect"
 import { useRouter } from "next/navigation"
+import { SafeImage } from "@/components/safe-image"
 
 export default function ServicesPage() {
   const router = useRouter()
@@ -18,12 +19,14 @@ export default function ServicesPage() {
   const pricingRef = useRef(null)
   const faqRef = useRef(null)
   const habitProgramRef = useRef(null)
+  const freelanceRef = useRef(null)
 
   const isMainServicesInView = useInView(mainServicesRef, { once: true, amount: 0.2 })
   const isSpecializedServicesInView = useInView(specializedServicesRef, { once: true, amount: 0.2 })
   const isPricingInView = useInView(pricingRef, { once: true, amount: 0.2 })
   const isFaqInView = useInView(faqRef, { once: true, amount: 0.2 })
   const isHabitProgramInView = useInView(habitProgramRef, { once: true, amount: 0.2 })
+  const isFreelanceInView = useInView(freelanceRef, { once: true, amount: 0.2 })
 
   const handlePaymentClick = async () => {
     const result = await redirectToStripePayment()
@@ -161,6 +164,59 @@ export default function ServicesPage() {
               </div>
             </motion.div>
           </div>
+        </div>
+      </section>
+
+      {/* Freelance Wellness & Education Services */}
+      <section ref={freelanceRef} className="py-16 bg-background">
+        <div className="container px-4 md:px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            animate={isFreelanceInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.8 }}
+            className="max-w-4xl mx-auto"
+          >
+            <div className="bg-brand-lighter rounded-2xl overflow-hidden shadow-lg">
+              <div className="md:flex items-center">
+                <div className="md:w-2/5 relative" style={{ minHeight: "280px" }}>
+                  <SafeImage
+                    src="/freelance-wellness.jpg"
+                    alt="Coach J providing freelance wellness and education services"
+                    fill
+                    sizes="(max-width: 768px) 100vw, 40vw"
+                    className="object-cover object-top"
+                  />
+                </div>
+                <div className="md:w-3/5 p-8 md:p-10">
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="w-10 h-10 bg-brand-light rounded-full flex items-center justify-center flex-shrink-0">
+                      <Briefcase className="h-5 w-5 text-brand" />
+                    </div>
+                    <h2 className="text-2xl md:text-3xl font-serif font-light text-foreground">
+                      Freelance Wellness & Education Services
+                    </h2>
+                  </div>
+                  <p className="text-lg text-brand-dark font-medium mb-3">
+                    Work directly with Coach J on custom wellness, education, and content solutions.
+                  </p>
+                  <p className="text-muted-foreground mb-6">
+                    Hire Eric Johnson (Coach J) for freelance services including wellness workshops,
+                    nutrition education, content creation, curriculum support, and digital health
+                    consulting — tailored for individuals, schools, and organizations.
+                  </p>
+                  <a
+                    href="https://www.fiverr.com/s/yvQNaPV"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <Button className="bg-brand hover:bg-brand-hover text-brand-foreground rounded-full px-8">
+                      View Services on Fiverr
+                    </Button>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </motion.div>
         </div>
       </section>
 
@@ -918,9 +974,7 @@ export default function ServicesPage() {
             >
               <Card>
                 <CardContent className="p-6">
-                  <h3 className="text-xl font-medium text-foreground mb-2">
-                    What happens if I need to cancel or reschedule?
-                  </h3>
+                  <h3 className="text-xl font-medium text-foreground mb-2">What happens if I need to cancel or reschedule?</h3>
                   <p className="text-muted-foreground">
                     We understand that schedules can change. We request at least 24 hours' notice for cancellations or
                     rescheduling to avoid a cancellation fee. You can easily reschedule through our online booking

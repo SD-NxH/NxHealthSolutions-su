@@ -3,7 +3,7 @@
 import type React from "react"
 
 import { useEffect, useState, useRef } from "react"
-import { useRouter } from "next/navigation"
+import { useRouter, useParams } from "next/navigation"
 import Link from "next/link"
 import {
   Award,
@@ -34,6 +34,7 @@ import { Separator } from "@/components/ui/separator"
 import { Textarea } from "@/components/ui/textarea"
 import { Input } from "@/components/ui/input"
 import { toast } from "@/hooks/use-toast"
+import { safeParseJson } from "@/lib/safe-json"
 
 interface JournalEntry {
   id: number
@@ -90,8 +91,9 @@ interface UserData {
   upcomingEvents?: Event[]
 }
 
-export default function UserProfilePage({ params }: { params: { username: string } }) {
+export default function UserProfilePage() {
   const router = useRouter()
+  const params = useParams<{ username: string }>()
   const [userData, setUserData] = useState<UserData | null>(null)
   const [loading, setLoading] = useState(true)
   const [activeTab, setActiveTab] = useState("dashboard")
@@ -118,7 +120,50 @@ export default function UserProfilePage({ params }: { params: { username: string
 
       const storedUser = localStorage.getItem("nxhealth_user")
       if (storedUser) {
-        const parsedUser = JSON.parse(storedUser)
+        const parsedUser = safeParseJson<{
+          firstName: string
+          lastName: string
+          email: string
+          username: string
+          isLoggedIn: boolean
+          joinedDate: string
+          purchasedServices: {
+            id: number
+            name: string
+            status: string
+            completedSessions: number
+            totalSessions: number
+          }[]
+          accolades: {
+            id: number
+            name: string
+            description: string
+            date: string
+          }[]
+          progress: {
+            nutritionScore: number
+            fitnessScore: number
+            overallWellness: number
+          }
+          journal?: Array<{ id: number; date: string; content: string; mood: string }>
+          goals?: Array<{
+            id: number
+            title: string
+            description: string
+            targetDate: string
+            progress: number
+            completed: boolean
+          }>
+          upcomingEvents?: Array<{
+            id: number
+            title: string
+            date: string
+            time: string
+            type: string
+            location: string
+          }>
+        }>(storedUser, {})
+
         if (parsedUser.username === params.username) {
           // Add journal entries if they don't exist
           if (!parsedUser.journal) {
@@ -182,7 +227,7 @@ export default function UserProfilePage({ params }: { params: { username: string
             ]
           }
 
-          setUserData(parsedUser)
+          setUserData(parsedUser as typeof userData)
           localStorage.setItem("nxhealth_user", JSON.stringify(parsedUser))
         } else {
           // Redirect if username doesn't match
@@ -547,7 +592,7 @@ export default function UserProfilePage({ params }: { params: { username: string
                     </div>
                   </CardContent>
                   <CardFooter>
-                    <Button asChild variant="outline" className="w-full">
+                    <Button asChild variant="outline" className="w-full bg-transparent">
                       <Link href="/shop">Browse More Services</Link>
                     </Button>
                   </CardFooter>

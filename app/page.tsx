@@ -413,12 +413,13 @@ export default function Home() {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="flex flex-col sm:flex-row gap-4 justify-center"
           >
-            <Button
-              className="bg-background text-brand hover:bg-brand-lighter rounded-full px-8 py-6 text-lg btn-get-started"
-              href="/get-started"
-            >
-              Get Started Today
-            </Button>
+            <Link href="/get-started">
+              <Button
+                className="bg-background text-brand hover:bg-brand-lighter rounded-full px-8 py-6 text-lg btn-get-started"
+              >
+                Get Started Today
+              </Button>
+            </Link>
             <Link href="/contact">
               <Button
                 variant="outline"

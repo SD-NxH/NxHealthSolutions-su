@@ -10,7 +10,6 @@ import "./globals.css"
 import { CartProvider } from "@/context/cart-context"
 import MaintenanceNotification from "@/components/maintenance-notification"
 import { Toaster } from "@/components/ui/toaster"
-import Script from "next/script"
 
 const inter = Inter({
   subsets: ["latin"],
@@ -82,7 +81,7 @@ export const metadata = {
       { url: "/icons/apple-touch-icon-180x180.png", sizes: "180x180" },
     ],
   },
-    generator: 'v0.app'
+  generator: "v0.app",
 }
 
 // Update the RootLayout function to wrap the content with CartProvider
@@ -129,7 +128,7 @@ export default function RootLayout({
           </CartProvider>
         </ThemeProvider>
         <Toaster />
-        <Script src="/register-sw.js" strategy="lazyOnload" />
+        {/* <Script src="/register-sw.js" strategy="lazyOnload" /> */}
       </body>
     </html>
   )
