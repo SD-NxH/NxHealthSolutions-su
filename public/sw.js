@@ -1,5 +1,5 @@
 // Service Worker for NxHealth PWA
-const CACHE_NAME = "nxhealth-cache-v1"
+let CACHE_NAME = "nxhealth-cache-v1" // Changed from const to let
 const APP_VERSION = "1.0.0" // Version identifier
 const VERSION_CHECK_INTERVAL = 60 * 60 * 1000 // Check for updates every hour (in milliseconds)
 
@@ -98,14 +98,33 @@ self.addEventListener("message", (event) => {
 
 // Function to check for updates
 const checkForUpdates = async () => {
-  try {
-    // Fetch the version info from the server
-    const response = await fetch("/version.json?_=" + new Date().getTime())
-    if (response.ok) {
-      const data = await response.json()
+  // Try multiple endpoints for version info
+  const versionUrls = [
+    "/api/version?_=" + new Date().getTime(),
+    "/version.json?_=" + new Date().getTime(),
+  ]
+
+  for (const url of versionUrls) {
+    try {
+      const response = await fetch(url)
+      if (!response.ok) continue
+
+      const contentType = response.headers.get("content-type")
+      if (!contentType || !contentType.includes("application/json")) continue
+
+      const text = await response.text()
+      if (!text || text.trim() === "") continue
+
+      let data
+      try {
+        data = JSON.parse(text)
+      } catch (parseError) {
+        console.warn("[ServiceWorker] Failed to parse version response from", url)
+        continue
+      }
 
       // If server version is different from our version, notify clients
-      if (data.version !== APP_VERSION) {
+      if (data.version && data.version !== APP_VERSION) {
         console.log("[ServiceWorker] New version available:", data.version)
 
         // Notify all clients about the update
@@ -121,9 +140,10 @@ const checkForUpdates = async () => {
         const newCacheName = "nxhealth-cache-" + data.version
         CACHE_NAME = newCacheName
       }
+      return // Successfully checked, exit
+    } catch (error) {
+      console.warn("[ServiceWorker] Update check failed for", url)
     }
-  } catch (error) {
-    console.error("[ServiceWorker] Update check failed:", error)
   }
 }
 
