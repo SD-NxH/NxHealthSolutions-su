@@ -120,6 +120,131 @@ export default function Home() {
         </div>
       </motion.section>
 
+      {/* About Section (Our Mission) */}
+      <section ref={aboutRef} className="py-20 bg-background">
+        <div className="container px-4 md:px-6 mx-auto">
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <motion.div
+              initial={{ opacity: 0, x: -40 }}
+              animate={isAboutInView ? { opacity: 1, x: 0 } : {}}
+              transition={{ duration: 0.8 }}
+            >
+              <h2 className="text-3xl md:text-4xl font-serif font-light text-gray-900 mb-6">Our Mission</h2>
+              <p className="text-xl text-gray-600 mb-6">
+                At NxHealth, our goal is to help increase the quality of your life in any way possible. We believe that
+                everyone deserves access to quality health information and services.
+              </p>
+              <p className="text-xl text-gray-600 mb-8">
+                Through evidence-based approaches and personalized care, we empower you to take control of your health
+                journey.
+              </p>
+              <Link href="/about">
+                <Button
+                  className="bg-brand hover:bg-brand-hover text-brand-foreground rounded-full px-8 py-6 text-lg btn-about"
+                >
+                  About Us
+                </Button>
+              </Link>
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, x: 40 }}
+              animate={isAboutInView ? { opacity: 1, x: 0 } : {}}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="relative h-[400px] rounded-2xl overflow-hidden shadow-xl"
+            >
+              <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent z-10"></div>
+              <Image
+                src="/fresh-produce.jpeg"
+                alt="Fresh fruits and vegetables including apples, oranges, broccoli and spinach"
+                fill
+                className="object-cover hover:scale-105 transition-transform duration-700"
+              />
+              <div className="absolute bottom-6 left-6 right-6 z-20">
+                <p className="text-white text-lg font-medium drop-shadow-md">
+                  Food as medicine: The foundation of our approach to health
+                </p>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Services Section */}
+      <section ref={servicesRef} className="py-20 bg-brand-lighter">
+        <div className="container px-4 md:px-6 mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-3xl md:text-4xl font-serif font-light text-gray-900 mb-4">Our Services</h2>
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+              Comprehensive health and wellness solutions tailored to your individual needs
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
+            <motion.div
+              initial={{ opacity: 0, y: 40 }}
+              animate={isServicesInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="flex flex-col items-center text-center p-6 rounded-xl transition-all duration-300 hover:shadow-lg"
+            >
+              <div className="w-20 h-20 bg-brand-light rounded-full flex items-center justify-center mb-6">
+                <Leaf className="w-10 h-10 text-brand" />
+              </div>
+              <h3 className="text-2xl font-serif font-medium text-gray-900 mb-3">Health & Wellness</h3>
+              <p className="text-gray-600">
+                Holistic approaches to improve your overall health and wellbeing through personalized wellness plans.
+              </p>
+              {/* For the Health & Wellness service */}
+              <Link href="/health-wellness" className="mt-6 inline-flex items-center text-brand font-medium">
+                Explore <ChevronRight className="ml-1 w-4 h-4" />
+              </Link>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 40 }}
+              animate={isServicesInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.8, delay: 0.4 }}
+              className="flex flex-col items-center text-center p-6 rounded-xl transition-all duration-300 hover:shadow-lg"
+            >
+              <div className="w-20 h-20 bg-brand-light rounded-full flex items-center justify-center mb-6">
+                <ClipboardList className="w-10 h-10 text-brand" />
+              </div>
+              <h3 className="text-2xl font-serif font-medium text-gray-900 mb-3">Diet Coaching</h3>
+              <p className="text-gray-600">
+                Expert guidance on nutrition and dietary habits to help you achieve your health goals.
+              </p>
+              {/* For the Diet Counseling service */}
+              <Link href="/services/diet-coaching" className="mt-6 inline-flex items-center text-brand font-medium">
+                Explore <ChevronRight className="ml-1 w-4 h-4" />
+              </Link>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 40 }}
+              animate={isServicesInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.8, delay: 0.6 }}
+              className="flex flex-col items-center text-center p-6 rounded-xl transition-all duration-300 hover:shadow-lg"
+            >
+              <div className="w-20 h-20 bg-brand-light rounded-full flex items-center justify-center mb-6">
+                <Apple className="w-10 h-10 text-brand" />
+              </div>
+              <h3 className="text-2xl font-serif font-medium text-gray-900 mb-3">Nutrition Planning</h3>
+              <p className="text-gray-600">
+                Personalized nutrition recommendations based on your unique health profile and goals.
+              </p>
+              {/* For the Nutrition Advice service */}
+              <Link href="/get-started" className="mt-6 inline-flex items-center text-brand font-medium">
+                Get Started <ChevronRight className="ml-1 w-4 h-4" />
+              </Link>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
       {/* Featured Articles Section */}
       <section ref={featuredRef} className="py-20 bg-background">
         <div className="container px-4 md:px-6 mx-auto">
@@ -245,134 +370,10 @@ export default function Home() {
               View All Articles
             </Button>
           </div>
-        </div>
-      </section>
-
-      {/* Services Section */}
-      <section ref={servicesRef} className="py-20 bg-brand-lighter">
-        <div className="container px-4 md:px-6 mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-3xl md:text-4xl font-serif font-light text-gray-900 mb-4">Our Services</h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Comprehensive health and wellness solutions tailored to your individual needs
-            </p>
-          </motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
-            <motion.div
-              initial={{ opacity: 0, y: 40 }}
-              animate={isServicesInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="flex flex-col items-center text-center p-6 rounded-xl transition-all duration-300 hover:shadow-lg"
-            >
-              <div className="w-20 h-20 bg-brand-light rounded-full flex items-center justify-center mb-6">
-                <Leaf className="w-10 h-10 text-brand" />
-              </div>
-              <h3 className="text-2xl font-serif font-medium text-gray-900 mb-3">Health & Wellness</h3>
-              <p className="text-gray-600">
-                Holistic approaches to improve your overall health and wellbeing through personalized wellness plans.
-              </p>
-              {/* For the Health & Wellness service */}
-              <Link href="/health-wellness" className="mt-6 inline-flex items-center text-brand font-medium">
-                Explore <ChevronRight className="ml-1 w-4 h-4" />
-              </Link>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 40 }}
-              animate={isServicesInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.8, delay: 0.4 }}
-              className="flex flex-col items-center text-center p-6 rounded-xl transition-all duration-300 hover:shadow-lg"
-            >
-              <div className="w-20 h-20 bg-brand-light rounded-full flex items-center justify-center mb-6">
-                <ClipboardList className="w-10 h-10 text-brand" />
-              </div>
-              <h3 className="text-2xl font-serif font-medium text-gray-900 mb-3">Diet Coaching</h3>
-              <p className="text-gray-600">
-                Expert guidance on nutrition and dietary habits to help you achieve your health goals.
-              </p>
-              {/* For the Diet Counseling service */}
-              <Link href="/services/diet-coaching" className="mt-6 inline-flex items-center text-brand font-medium">
-                Explore <ChevronRight className="ml-1 w-4 h-4" />
-              </Link>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 40 }}
-              animate={isServicesInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.8, delay: 0.6 }}
-              className="flex flex-col items-center text-center p-6 rounded-xl transition-all duration-300 hover:shadow-lg"
-            >
-              <div className="w-20 h-20 bg-brand-light rounded-full flex items-center justify-center mb-6">
-                <Apple className="w-10 h-10 text-brand" />
-              </div>
-              <h3 className="text-2xl font-serif font-medium text-gray-900 mb-3">Nutrition Planning</h3>
-              <p className="text-gray-600">
-                Personalized nutrition recommendations based on your unique health profile and goals.
-              </p>
-              {/* For the Nutrition Advice service */}
-              <Link href="/get-started" className="mt-6 inline-flex items-center text-brand font-medium">
-                Get Started <ChevronRight className="ml-1 w-4 h-4" />
-              </Link>
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
-      {/* About Section */}
-      <section ref={aboutRef} className="py-20 bg-background">
-        <div className="container px-4 md:px-6 mx-auto">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            <motion.div
-              initial={{ opacity: 0, x: -40 }}
-              animate={isAboutInView ? { opacity: 1, x: 0 } : {}}
-              transition={{ duration: 0.8 }}
-            >
-              <h2 className="text-3xl md:text-4xl font-serif font-light text-gray-900 mb-6">Our Mission</h2>
-              <p className="text-xl text-gray-600 mb-6">
-                At NxHealth, our goal is to help increase the quality of your life in any way possible. We believe that
-                everyone deserves access to quality health information and services.
-              </p>
-              <p className="text-xl text-gray-600 mb-8">
-                Through evidence-based approaches and personalized care, we empower you to take control of your health
-                journey.
-              </p>
-              <Button
-                className="bg-brand hover:bg-brand-hover text-brand-foreground rounded-full px-8 py-6 text-lg btn-about"
-                href="/about"
-              >
-                About Us
-              </Button>
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, x: 40 }}
-              animate={isAboutInView ? { opacity: 1, x: 0 } : {}}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="relative h-[400px] rounded-2xl overflow-hidden shadow-xl"
-            >
-              <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent z-10"></div>
-              <Image
-                src="/fresh-produce.jpeg"
-                alt="Fresh fruits and vegetables including apples, oranges, broccoli and spinach"
-                fill
-                className="object-cover hover:scale-105 transition-transform duration-700"
-              />
-              <div className="absolute bottom-6 left-6 right-6 z-20">
-                <p className="text-white text-lg font-medium drop-shadow-md">
-                  Food as medicine: The foundation of our approach to health
-                </p>
-              </div>
-            </motion.div>
-          </div>
 
           <motion.div
             initial={{ opacity: 0, y: 40 }}
-            animate={isAboutInView ? { opacity: 1, y: 0 } : {}}
+            animate={isFeaturedInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.4 }}
             className="mt-16 bg-gradient-to-r from-brand-lighter to-blue-50 rounded-2xl p-8 text-center max-w-2xl mx-auto"
             id="newsletter-success"

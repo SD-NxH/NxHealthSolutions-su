@@ -5,7 +5,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
-import { Users, Leaf, HeartPulse, Calendar, BookOpen, MessageCircle, CheckCircle, Briefcase } from "lucide-react"
+import { Users, Leaf, HeartPulse, Calendar, BookOpen, MessageCircle, CheckCircle, Briefcase, Zap } from "lucide-react"
 import { motion, useInView } from "framer-motion"
 import { redirectToStripePayment } from "../actions/stripe-redirect"
 import { useRouter } from "next/navigation"
@@ -20,6 +20,7 @@ export default function ServicesPage() {
   const faqRef = useRef(null)
   const habitProgramRef = useRef(null)
   const freelanceRef = useRef(null)
+  const nxlifeRef = useRef(null)
 
   const isMainServicesInView = useInView(mainServicesRef, { once: true, amount: 0.2 })
   const isSpecializedServicesInView = useInView(specializedServicesRef, { once: true, amount: 0.2 })
@@ -27,6 +28,7 @@ export default function ServicesPage() {
   const isFaqInView = useInView(faqRef, { once: true, amount: 0.2 })
   const isHabitProgramInView = useInView(habitProgramRef, { once: true, amount: 0.2 })
   const isFreelanceInView = useInView(freelanceRef, { once: true, amount: 0.2 })
+  const isNxlifeInView = useInView(nxlifeRef, { once: true, amount: 0.2 })
 
   const handlePaymentClick = async () => {
     const result = await redirectToStripePayment()
@@ -214,6 +216,37 @@ export default function ServicesPage() {
                     </Button>
                   </a>
                 </div>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* NxLife Performance Community Section */}
+      <section ref={nxlifeRef} className="py-16 bg-brand-lighter">
+        <div className="container px-4 md:px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            animate={isNxlifeInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.8 }}
+            className="max-w-4xl mx-auto"
+          >
+            <div className="bg-brand-dark rounded-2xl overflow-hidden shadow-xl">
+              <div className="p-8 md:p-12 text-center">
+                <div className="w-16 h-16 bg-brand-light rounded-full flex items-center justify-center mx-auto mb-6">
+                  <Zap className="h-8 w-8 text-brand" />
+                </div>
+                <h2 className="text-3xl md:text-4xl font-serif font-semibold text-white mb-4 text-balance">
+                  If Your Brain Is Your Income, Your Energy Is Your Leverage.
+                </h2>
+                <p className="text-xl text-brand-light mb-8 max-w-2xl mx-auto">
+                  NxLife is a private performance community for high-responsibility adults who are tired of being tired.
+                </p>
+                <Link href="/nxlive">
+                  <Button className="bg-background text-brand hover:bg-brand-lighter rounded-full px-10 py-6 text-lg transition-transform transform hover:scale-105">
+                    Explore NxLife
+                  </Button>
+                </Link>
               </div>
             </div>
           </motion.div>
