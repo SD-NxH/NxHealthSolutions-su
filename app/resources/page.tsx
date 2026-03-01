@@ -17,6 +17,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Slider } from "@/components/ui/slider"
 import jsPDF from "jspdf"
 import { YoutubeMediaHub } from "@/components/youtube-media-hub"
+import { HealthHub } from "@/components/health-hub"
 
 // Define the article interface
 interface Article {
@@ -939,12 +940,153 @@ export default function ResourcesPage() {
         </div>
       </section>
 
-      {/* CHANGE> Add Health Products Hub section between Grocery List Builder and Watch Coach J */}
-      {/* <section className="pt-24 pb-16 bg-gradient-to-b from-background to-brand-lighter/20">
+      {/* Nutrition Tools Section */}
+      <section className="py-16 bg-brand-lighter">
         <div className="container px-4 md:px-6">
-          <HealthProductsHub />
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="max-w-4xl mx-auto text-center mb-12"
+          >
+            <h2 className="text-3xl md:text-4xl font-serif font-light text-brand-dark mb-6">Nutrition Tools</h2>
+            <p className="text-lg text-muted-foreground mb-8">
+              Empower your health journey with our interactive nutrition tools. Search foods, analyze recipes, and track
+              your daily intake with our practical, science-based calculators.
+            </p>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="max-w-6xl mx-auto"
+          >
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <Link
+                href="/resources/tools/nutrition-search"
+                className="group block transform transition-all duration-300 hover:scale-105 hover:-translate-y-1"
+              >
+                <div className="bg-background rounded-xl overflow-hidden shadow-sm transition-all duration-300 hover:shadow-xl h-full">
+                  <div className="relative h-40 w-full bg-gradient-to-br from-green-100 to-emerald-200">
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <Search className="h-16 w-16 text-brand opacity-60" />
+                    </div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end transition-all duration-300 group-hover:from-black/75">
+                      <div className="p-4 text-white transform transition-all duration-300 group-hover:translate-y-[-4px]">
+                        <h3 className="text-xl font-medium mb-1">Nutrition Facts Search</h3>
+                        <p className="text-sm text-white/80">Look up nutritional data for any food</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </Link>
+
+              <Link
+                href="/resources/tools/recipe-calculator"
+                className="group block transform transition-all duration-300 hover:scale-105 hover:-translate-y-1"
+              >
+                <div className="bg-background rounded-xl overflow-hidden shadow-sm transition-all duration-300 hover:shadow-xl h-full">
+                  <div className="relative h-40 w-full bg-gradient-to-br from-amber-100 to-orange-200">
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <BookOpen className="h-16 w-16 text-amber-700 opacity-60" />
+                    </div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end transition-all duration-300 group-hover:from-black/75">
+                      <div className="p-4 text-white transform transition-all duration-300 group-hover:translate-y-[-4px]">
+                        <h3 className="text-xl font-medium mb-1">Recipe Nutrition Calculator</h3>
+                        <p className="text-sm text-white/80">Analyze the nutrition in your recipes</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </Link>
+
+              <Link
+                href="/resources/tools/food-log"
+                className="group block transform transition-all duration-300 hover:scale-105 hover:-translate-y-1"
+              >
+                <div className="bg-background rounded-xl overflow-hidden shadow-sm transition-all duration-300 hover:shadow-xl h-full">
+                  <div className="relative h-40 w-full bg-gradient-to-br from-blue-100 to-cyan-200">
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <Users className="h-16 w-16 text-blue-700 opacity-60" />
+                    </div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end transition-all duration-300 group-hover:from-black/75">
+                      <div className="p-4 text-white transform transition-all duration-300 group-hover:translate-y-[-4px]">
+                        <h3 className="text-xl font-medium mb-1">Daily Food Log</h3>
+                        <p className="text-sm text-white/80">Track what you eat throughout the day</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </Link>
+
+              <Link
+                href="/resources/tools/nutrient-ranking"
+                className="group block transform transition-all duration-300 hover:scale-105 hover:-translate-y-1"
+              >
+                <div className="bg-background rounded-xl overflow-hidden shadow-sm transition-all duration-300 hover:shadow-xl h-full">
+                  <div className="relative h-40 w-full bg-gradient-to-br from-purple-100 to-violet-200">
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <ArrowRight className="h-16 w-16 text-purple-700 opacity-60 rotate-[-90deg]" />
+                    </div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end transition-all duration-300 group-hover:from-black/75">
+                      <div className="p-4 text-white transform transition-all duration-300 group-hover:translate-y-[-4px]">
+                        <h3 className="text-xl font-medium mb-1">Nutrient Density Ranking</h3>
+                        <p className="text-sm text-white/80">Find the most nutrient-rich foods</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </Link>
+
+              <Link
+                href="/resources/tools/amino-acid-profile"
+                className="group block transform transition-all duration-300 hover:scale-105 hover:-translate-y-1"
+              >
+                <div className="bg-background rounded-xl overflow-hidden shadow-sm transition-all duration-300 hover:shadow-xl h-full">
+                  <div className="relative h-40 w-full bg-gradient-to-br from-rose-100 to-pink-200">
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <div className="h-16 w-16 text-rose-700 opacity-60 font-bold text-3xl flex items-center justify-center">
+                        AA
+                      </div>
+                    </div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end transition-all duration-300 group-hover:from-black/75">
+                      <div className="p-4 text-white transform transition-all duration-300 group-hover:translate-y-[-4px]">
+                        <h3 className="text-xl font-medium mb-1">Amino Acid Profile</h3>
+                        <p className="text-sm text-white/80">Explore protein quality in foods</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </Link>
+
+              <Link
+                href="/resources/tools/nutrient-ratio"
+                className="group block transform transition-all duration-300 hover:scale-105 hover:-translate-y-1"
+              >
+                <div className="bg-background rounded-xl overflow-hidden shadow-sm transition-all duration-300 hover:shadow-xl h-full">
+                  <div className="relative h-40 w-full bg-gradient-to-br from-teal-100 to-emerald-200">
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <div className="h-16 w-16 border-4 border-teal-700 opacity-60 rounded-full flex items-center justify-center">
+                        <div className="h-8 w-8 bg-teal-700 opacity-60 rounded-full" />
+                      </div>
+                    </div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end transition-all duration-300 group-hover:from-black/75">
+                      <div className="p-4 text-white transform transition-all duration-300 group-hover:translate-y-[-4px]">
+                        <h3 className="text-xl font-medium mb-1">Nutrient Ratio Visualizer</h3>
+                        <p className="text-sm text-white/80">See your macro and micro balance</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </Link>
+            </div>
+          </motion.div>
         </div>
-      </section> */}
+      </section>
+
+      {/* CHANGE> Add Health Hub section between Grocery List Builder and Watch Coach J */}
+      <HealthHub />
 
       {/* NxPlate Section - now YouTube Media Hub */}
       <section ref={nxplateRef} className="pt-24 pb-16 bg-background">
