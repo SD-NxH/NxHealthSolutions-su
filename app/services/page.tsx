@@ -102,9 +102,11 @@ export default function ServicesPage() {
                   In this consultation, we will figure out your why and form a plan for moving forward. Meet with our
                   health experts face-to-face for personalized guidance.
                 </p>
-                <Button className="w-full bg-brand hover:bg-brand-hover text-brand-foreground rounded-full">
-                  Schedule
-                </Button>
+                <a href="https://buy.stripe.com/cNibJ13JC8Ht7HO5V29oc0L" target="_blank" rel="noopener noreferrer">
+                  <Button className="w-full bg-brand hover:bg-brand-hover text-brand-foreground rounded-full">
+                    Schedule
+                  </Button>
+                </a>
               </div>
             </motion.div>
 
@@ -162,9 +164,11 @@ export default function ServicesPage() {
                   This is a standard Health Solution session. These sessions will be composed of services comparable to
                   health & nutrition counseling or therapy, symptom alleviation, lifestyle change planning.
                 </p>
-                <Button className="w-full bg-brand hover:bg-brand-hover text-brand-foreground rounded-full">
-                  Schedule
-                </Button>
+                <a href="https://buy.stripe.com/eVq14n3JC0aXfag1EM9oc0M" target="_blank" rel="noopener noreferrer">
+                  <Button className="w-full bg-brand hover:bg-brand-hover text-brand-foreground rounded-full">
+                    Schedule
+                  </Button>
+                </a>
               </div>
             </motion.div>
           </div>

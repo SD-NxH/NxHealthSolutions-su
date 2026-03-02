@@ -280,12 +280,12 @@ export default function NxLifeApplyPage() {
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <div className="bg-background rounded-xl p-6">
-                <p className="text-4xl font-bold text-brand mb-2">$29</p>
+                <p className="text-4xl font-bold text-brand mb-2">$7</p>
                 <p className="text-muted-foreground">Monthly rate locked for founding members</p>
               </div>
               <div className="bg-background rounded-xl p-6">
                 <p className="text-4xl font-bold text-brand mb-2">Weekly</p>
-                <p className="text-muted-foreground">Performance briefs delivered to you</p>
+                <p className="text-muted-foreground">Health solutions delivered to you</p>
               </div>
               <div className="bg-background rounded-xl p-6">
                 <p className="text-4xl font-bold text-brand mb-2">Direct</p>
