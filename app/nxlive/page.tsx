@@ -66,7 +66,7 @@ export default function NxLifePage() {
             <div className="flex flex-col sm:flex-row items-center justify-center gap-6 sm:gap-10 mb-12 py-6 border-y border-border/50">
               <div className="flex items-center gap-3">
                 <FileText className="w-5 h-5 text-brand" />
-                <span className="text-sm font-medium text-foreground">Weekly Performance Brief</span>
+                <span className="text-sm font-medium text-foreground">Weekly Health Solutions </span>
               </div>
               <div className="flex items-center gap-3">
                 <Video className="w-5 h-5 text-brand" />
