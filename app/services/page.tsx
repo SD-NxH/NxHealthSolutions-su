@@ -5,10 +5,11 @@ import Image from "next/image"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
-import { Users, Leaf, HeartPulse, Calendar, BookOpen, MessageCircle, CheckCircle } from "lucide-react"
+import { Users, Leaf, HeartPulse, Calendar, BookOpen, MessageCircle, CheckCircle, Briefcase, Zap, Crosshair } from "lucide-react"
 import { motion, useInView } from "framer-motion"
 import { redirectToStripePayment } from "../actions/stripe-redirect"
 import { useRouter } from "next/navigation"
+import { SafeImage } from "@/components/safe-image"
 
 export default function ServicesPage() {
   const router = useRouter()
@@ -18,12 +19,18 @@ export default function ServicesPage() {
   const pricingRef = useRef(null)
   const faqRef = useRef(null)
   const habitProgramRef = useRef(null)
+  const freelanceRef = useRef(null)
+  const nxlifeRef = useRef(null)
+  const controlRef = useRef(null)
 
   const isMainServicesInView = useInView(mainServicesRef, { once: true, amount: 0.2 })
   const isSpecializedServicesInView = useInView(specializedServicesRef, { once: true, amount: 0.2 })
   const isPricingInView = useInView(pricingRef, { once: true, amount: 0.2 })
   const isFaqInView = useInView(faqRef, { once: true, amount: 0.2 })
   const isHabitProgramInView = useInView(habitProgramRef, { once: true, amount: 0.2 })
+  const isFreelanceInView = useInView(freelanceRef, { once: true, amount: 0.2 })
+  const isNxlifeInView = useInView(nxlifeRef, { once: true, amount: 0.2 })
+  const isControlInView = useInView(controlRef, { once: true, amount: 0.2 })
 
   const handlePaymentClick = async () => {
     const result = await redirectToStripePayment()
@@ -95,9 +102,11 @@ export default function ServicesPage() {
                   In this consultation, we will figure out your why and form a plan for moving forward. Meet with our
                   health experts face-to-face for personalized guidance.
                 </p>
-                <Button className="w-full bg-brand hover:bg-brand-hover text-brand-foreground rounded-full">
-                  Schedule
-                </Button>
+                <a href="https://buy.stripe.com/cNibJ13JC8Ht7HO5V29oc0L" target="_blank" rel="noopener noreferrer">
+                  <Button className="w-full bg-brand hover:bg-brand-hover text-brand-foreground rounded-full">
+                    Schedule
+                  </Button>
+                </a>
               </div>
             </motion.div>
 
@@ -155,12 +164,129 @@ export default function ServicesPage() {
                   This is a standard Health Solution session. These sessions will be composed of services comparable to
                   health & nutrition counseling or therapy, symptom alleviation, lifestyle change planning.
                 </p>
-                <Button className="w-full bg-brand hover:bg-brand-hover text-brand-foreground rounded-full">
-                  Schedule
-                </Button>
+                <a href="https://buy.stripe.com/eVq14n3JC0aXfag1EM9oc0M" target="_blank" rel="noopener noreferrer">
+                  <Button className="w-full bg-brand hover:bg-brand-hover text-brand-foreground rounded-full">
+                    Schedule
+                  </Button>
+                </a>
               </div>
             </motion.div>
           </div>
+        </div>
+      </section>
+
+      {/* Freelance Wellness & Education Services */}
+      <section ref={freelanceRef} className="py-16 bg-background">
+        <div className="container px-4 md:px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            animate={isFreelanceInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.8 }}
+            className="max-w-4xl mx-auto"
+          >
+            <div className="bg-brand-lighter rounded-2xl overflow-hidden shadow-lg">
+              <div className="md:flex items-center">
+                <div className="md:w-2/5 relative" style={{ minHeight: "280px" }}>
+                  <SafeImage
+                    src="/freelance-wellness.jpg"
+                    alt="Coach J providing freelance wellness and education services"
+                    fill
+                    sizes="(max-width: 768px) 100vw, 40vw"
+                    className="object-cover object-top"
+                  />
+                </div>
+                <div className="md:w-3/5 p-8 md:p-10">
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="w-10 h-10 bg-brand-light rounded-full flex items-center justify-center flex-shrink-0">
+                      <Briefcase className="h-5 w-5 text-brand" />
+                    </div>
+                    <h2 className="text-2xl md:text-3xl font-serif font-light text-foreground">
+                      Freelance Wellness & Education Services
+                    </h2>
+                  </div>
+                  <p className="text-lg text-brand-dark font-medium mb-3">
+                    Work directly with Coach J on custom wellness, education, and content solutions.
+                  </p>
+                  <p className="text-muted-foreground mb-6">
+                    Hire Eric Johnson (Coach J) for freelance services including wellness workshops,
+                    nutrition education, content creation, curriculum support, and digital health
+                    consulting — tailored for individuals, schools, and organizations.
+                  </p>
+                  <a
+                    href="https://www.fiverr.com/s/yvQNaPV"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <Button className="bg-brand hover:bg-brand-hover text-brand-foreground rounded-full px-8">
+                      View Services on Fiverr
+                    </Button>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* NxLife Performance Community Section */}
+      <section ref={nxlifeRef} className="py-16 bg-brand-lighter">
+        <div className="container px-4 md:px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            animate={isNxlifeInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.8 }}
+            className="max-w-4xl mx-auto"
+          >
+            <div className="bg-brand-dark rounded-2xl overflow-hidden shadow-xl">
+              <div className="p-8 md:p-12 text-center">
+                <div className="w-16 h-16 bg-brand-light rounded-full flex items-center justify-center mx-auto mb-6">
+                  <Zap className="h-8 w-8 text-brand" />
+                </div>
+                <h2 className="text-3xl md:text-4xl font-serif font-semibold text-white mb-4 text-balance">
+                  If Your Brain Is Your Income, Your Energy Is Your Leverage.
+                </h2>
+                <p className="text-xl text-brand-light mb-8 max-w-2xl mx-auto">
+                  NxLife is a private performance community for high-responsibility adults who are tired of being tired.
+                </p>
+                <Link href="/nxlive">
+                  <Button className="bg-background text-brand hover:bg-brand-lighter rounded-full px-10 py-6 text-lg transition-transform transform hover:scale-105">
+                    Explore NxLife
+                  </Button>
+                </Link>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* CONTROL Performance Infrastructure Section */}
+      <section ref={controlRef} className="py-16 bg-[#0a0a0f]">
+        <div className="container px-4 md:px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            animate={isControlInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.8 }}
+            className="max-w-4xl mx-auto"
+          >
+            <div className="border border-[#1a1f2e] rounded-2xl overflow-hidden bg-[#0d0d14]/50">
+              <div className="p-8 md:p-12 text-center">
+                <div className="w-16 h-16 bg-[#0d4f8b]/20 rounded-full flex items-center justify-center mx-auto mb-6 border border-[#1e90ff]/30">
+                  <Crosshair className="h-8 w-8 text-[#1e90ff]" />
+                </div>
+                <h2 className="text-3xl md:text-4xl font-bold tracking-wider text-white mb-4">
+                  CONTROL — Performance Infrastructure
+                </h2>
+                <p className="text-lg text-[#8892a0] mb-8 max-w-2xl mx-auto">
+                  CONTROL is our behavioral system for stabilizing overloaded professionals.
+                </p>
+                <Link href="/control">
+                  <Button className="bg-[#0d4f8b] text-white hover:bg-[#1e90ff] rounded-sm px-10 py-6 text-lg font-bold tracking-widest uppercase transition-all hover:shadow-[0_0_20px_rgba(30,144,255,0.3)] border border-[#1e90ff]/50">
+                    Learn More
+                  </Button>
+                </Link>
+              </div>
+            </div>
+          </motion.div>
         </div>
       </section>
 
@@ -918,9 +1044,7 @@ export default function ServicesPage() {
             >
               <Card>
                 <CardContent className="p-6">
-                  <h3 className="text-xl font-medium text-foreground mb-2">
-                    What happens if I need to cancel or reschedule?
-                  </h3>
+                  <h3 className="text-xl font-medium text-foreground mb-2">What happens if I need to cancel or reschedule?</h3>
                   <p className="text-muted-foreground">
                     We understand that schedules can change. We request at least 24 hours' notice for cancellations or
                     rescheduling to avoid a cancellation fee. You can easily reschedule through our online booking

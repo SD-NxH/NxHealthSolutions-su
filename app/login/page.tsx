@@ -15,6 +15,7 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { Input } from "@/components/ui/input"
 import { Separator } from "@/components/ui/separator"
 import { toast } from "@/hooks/use-toast"
+import { safeParseJson } from "@/lib/safe-json"
 
 const formSchema = z.object({
   email: z.string().email({
@@ -50,7 +51,7 @@ export default function LoginPage() {
     const storedUser = localStorage.getItem("nxhealth_user")
 
     if (storedUser) {
-      const user = JSON.parse(storedUser)
+      const user = safeParseJson<{ email?: string; username?: string; isLoggedIn?: boolean }>(storedUser, {})
 
       // In a real app, you would validate credentials against a backend
       // Here we're just checking if the email matches for demo purposes

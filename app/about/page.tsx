@@ -259,6 +259,37 @@ export default function AboutPage() {
               </div>
             </div>
           </motion.div>
+
+          {/* Educational Disclaimer */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={isApproachInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className="max-w-3xl mx-auto mt-16"
+          >
+            <div className="border-t border-brand-light pt-8">
+              <div className="bg-brand-lighter/50 rounded-xl px-6 py-6 md:px-8 md:py-7">
+                <h3 className="text-sm font-semibold tracking-wide uppercase text-brand-dark mb-3">
+                  Educational Disclaimer
+                </h3>
+                <div className="space-y-3 text-sm text-muted-foreground leading-relaxed">
+                  <p>
+                    The information shared through NxHealth Solutions is for educational purposes only and is not
+                    intended to replace medical advice, diagnosis, or treatment.
+                  </p>
+                  <p>
+                    Our approach is designed to serve as a goldmine of evidence-based education, tools, and insights
+                    to help you better understand your body, your habits, and your lifestyle — so you can make
+                    informed decisions that improve your quality of life.
+                  </p>
+                  <p>
+                    Always consult a qualified healthcare professional before making changes related to medical care,
+                    nutrition, or treatment plans.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </motion.div>
         </div>
       </section>
 
@@ -317,7 +348,7 @@ export default function AboutPage() {
             >
               <div className="relative h-80 w-full overflow-hidden">
                 <Image
-                  src="/images/design-mode/jasmine_profile%20photo.jpeg"
+                  src="/images/design-mode/jasmine-profile-photo.jpeg"
                   alt="Jasmine M. Johnson, Holistic Health Practitioner"
                   fill
                   className="object-cover"
@@ -401,23 +432,19 @@ export default function AboutPage() {
               <div className="relative h-80 w-full overflow-hidden">
                 <Image
                   src="/team/cintya-campos.jpg"
-                  alt="Cintya Campos M.S., Nutritious Meals Specialist"
+                  alt="Cintya Campos, Health Coach"
                   fill
                   className="object-cover"
                   priority
                 />
               </div>
               <div className="p-6 text-center">
-                <h3 className="text-xl font-medium text-gray-900 mb-1">Cintya Campos M.S.</h3>
-                <p className="text-brand mb-3">Nutritious Meals Specialist </p>
+                <h3 className="text-xl font-medium text-gray-900 mb-1">Cintya Campos</h3>
+                <p className="text-brand mb-3">Health Coach</p>
                 <p className="text-gray-600 text-sm">
-                  With over a decade of experience in the food industry, Cintya Campos has dedicated her career to
-                  creating delicious and nutritious meals. Inspired by her son, who is a dedicated army servicemember
-                  and a passionate advocate for healthy living, Cintya embarked on her meal prep journey to help others
-                  achieve their health and wellness goals. Despite facing her own health challenges, including lupus and
-                  heart conditions, Cintya firmly believes that proper nutrition and regular exercise are key to a
-                  healthy lifestyle. Her passion for wholesome food and dedication to helping others shines through in
-                  every meal she prepares.
+                  With a passion for transforming lives through holistic wellness, Cintya specializes in personalized
+                  nutrition and lifestyle coaching. Her approach combines evidence-based practices with compassionate
+                  support.
                 </p>
               </div>
             </motion.div>
@@ -426,7 +453,7 @@ export default function AboutPage() {
       </section>
 
       {/* Testimonials Section */}
-      <section ref={testimonialsRef} className="py-16 bg-white">
+      <section ref={testimonialsRef} className="py-16 bg-background">
         <div className="container px-4 md:px-6">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
@@ -436,86 +463,100 @@ export default function AboutPage() {
           >
             <h2 className="text-3xl md:text-4xl font-serif font-light text-gray-900 mb-6">What Our Clients Say</h2>
             <p className="text-lg text-gray-600">
-              Hear from people whose lives have been transformed through our services.
+              Hear from people whose lives have been transformed by NxHealth Solutions.
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
             <motion.div
               initial={{ opacity: 0, y: 40 }}
               animate={isTestimonialsInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.8, delay: 0.1 }}
-              className="bg-brand-lighter p-8 rounded-xl"
+              className="bg-card p-6 rounded-xl shadow-sm"
             >
-              <p className="text-gray-600 italic mb-6">
-                "Working with NxHealth Solutions has been life-changing. Their personalized approach helped me address
-                long-standing health issues that other providers couldn't solve. I'm healthier and happier than I've
-                been in years."
-              </p>
-              <div className="flex items-center">
-                <div className="w-12 h-12 bg-brand-light rounded-full mr-4"></div>
-                <div>
-                  <p className="font-medium text-gray-900">Rebecca T.</p>
-                  <p className="text-sm text-gray-500">Client since 2020</p>
-                </div>
+              <div className="flex mb-4">
+                {[...Array(5)].map((_, i) => (
+                  <svg key={i} className="w-5 h-5 text-yellow-400 fill-current" viewBox="0 0 20 20">
+                    <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
+                  </svg>
+                ))}
               </div>
+              <p className="text-gray-600 mb-4">
+                "Working with NxHealth has completely changed my relationship with food and my overall health. I've lost
+                weight, gained energy, and feel better than I have in years."
+              </p>
+              <p className="font-medium text-gray-900">Sarah M.</p>
+              <p className="text-sm text-gray-500">Client since 2023</p>
             </motion.div>
 
             <motion.div
               initial={{ opacity: 0, y: 40 }}
               animate={isTestimonialsInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="bg-brand-lighter p-8 rounded-xl"
+              className="bg-card p-6 rounded-xl shadow-sm"
             >
-              <p className="text-gray-600 italic mb-6">
-                "The nutrition plan I received from NxHealth Solutions was exactly what I needed. It was practical, easy
-                to follow, and most importantly, it worked! I've lost weight, gained energy, and feel better overall."
-              </p>
-              <div className="flex items-center">
-                <div className="w-12 h-12 bg-brand-light rounded-full mr-4"></div>
-                <div>
-                  <p className="font-medium text-gray-900">David M.</p>
-                  <p className="text-sm text-gray-500">Client since 2021</p>
-                </div>
+              <div className="flex mb-4">
+                {[...Array(5)].map((_, i) => (
+                  <svg key={i} className="w-5 h-5 text-yellow-400 fill-current" viewBox="0 0 20 20">
+                    <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
+                  </svg>
+                ))}
               </div>
+              <p className="text-gray-600 mb-4">
+                "The personalized approach and ongoing support from NxHealth made all the difference. They truly care
+                about their clients' success."
+              </p>
+              <p className="font-medium text-gray-900">Michael T.</p>
+              <p className="text-sm text-gray-500">Client since 2024</p>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 40 }}
+              animate={isTestimonialsInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.8, delay: 0.3 }}
+              className="bg-card p-6 rounded-xl shadow-sm"
+            >
+              <div className="flex mb-4">
+                {[...Array(5)].map((_, i) => (
+                  <svg key={i} className="w-5 h-5 text-yellow-400 fill-current" viewBox="0 0 20 20">
+                    <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
+                  </svg>
+                ))}
+              </div>
+              <p className="text-gray-600 mb-4">
+                "I was skeptical at first, but the results speak for themselves. My chronic health issues have
+                significantly improved, and I have so much more energy."
+              </p>
+              <p className="font-medium text-gray-900">Jennifer L.</p>
+              <p className="text-sm text-gray-500">Client since 2023</p>
             </motion.div>
           </div>
         </div>
       </section>
 
       {/* CTA Section */}
-      <section ref={ctaRef} className="py-16 bg-brand-dark text-white">
-        <div className="container px-4 md:px-6 mx-auto text-center">
-          <motion.h2
-            initial={{ opacity: 0, y: 40 }}
-            animate={isCtaInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8 }}
-            className="text-3xl md:text-4xl font-serif font-light mb-6"
-          >
-            Ready to start your health journey?
-          </motion.h2>
-          <motion.p
-            initial={{ opacity: 0, y: 40 }}
-            animate={isCtaInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-xl text-brand-light max-w-2xl mx-auto mb-10"
-          >
-            Contact us today to learn how we can help you achieve your health and wellness goals.
-          </motion.p>
+      <section ref={ctaRef} className="py-16 bg-brand-lighter">
+        <div className="container px-4 md:px-6">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             animate={isCtaInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="flex flex-col sm:flex-row gap-4 justify-center"
+            transition={{ duration: 0.8 }}
+            className="max-w-3xl mx-auto text-center"
           >
-            <Button className="bg-background text-brand hover:bg-brand-lighter rounded-full px-8 py-6 text-lg">
-              Contact Us
-            </Button>
-            <Link href="/services">
-              <Button className="bg-background text-brand hover:bg-brand-lighter rounded-full px-8 py-6 text-lg">
-                Explore Our Services
+            <h2 className="text-3xl md:text-4xl font-serif font-light text-gray-900 mb-6">
+              Ready to Transform Your Health?
+            </h2>
+            <p className="text-lg text-gray-600 mb-8">
+              Join the countless individuals who have improved their lives with NxHealth Solutions.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Button asChild size="lg" className="bg-brand hover:bg-brand-hover text-brand-foreground">
+                <Link href="/get-started">Get Started Today</Link>
               </Button>
-            </Link>
+              <Button asChild size="lg" variant="outline">
+                <Link href="/contact">Contact Us</Link>
+              </Button>
+            </div>
           </motion.div>
         </div>
       </section>
