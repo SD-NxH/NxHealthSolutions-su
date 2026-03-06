@@ -1,97 +1,15 @@
 "use client"
 
-import { useState } from "react"
 import Image from "next/image"
 import { motion } from "framer-motion"
 import { ChevronDown, Check, Shield, Zap, Target, TrendingUp, Award, Lock, BookOpen } from "lucide-react"
 
 export default function ControlGameTestPage() {
-  const [isSubmitted, setIsSubmitted] = useState(false)
-  const [formData, setFormData] = useState({
-    name: "",
-    missionCompletion: [] as string[],
-    sleep: "",
-    energy: "",
-    clarity: "",
-    physical: "",
-    load: "",
-    emotional: "",
-    obstacles: "",
-  })
-
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id)
     if (element) {
       element.scrollIntoView({ behavior: "smooth" })
     }
-  }
-
-  const handleCheckboxChange = (value: string) => {
-    setFormData((prev) => ({
-      ...prev,
-      missionCompletion: prev.missionCompletion.includes(value)
-        ? prev.missionCompletion.filter((v) => v !== value)
-        : [...prev.missionCompletion, value],
-    }))
-  }
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    // Local mock submission - logs to console only
-    console.log("[CONTROL Game Test] Check-in submitted:", formData)
-    setIsSubmitted(true)
-  }
-
-  const resetForm = () => {
-    setFormData({
-      name: "",
-      missionCompletion: [],
-      sleep: "",
-      energy: "",
-      clarity: "",
-      physical: "",
-      load: "",
-      emotional: "",
-      obstacles: "",
-    })
-    setIsSubmitted(false)
-  }
-
-  if (isSubmitted) {
-    return (
-      <div className="min-h-screen bg-[#050508] flex items-center justify-center px-4">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="text-center max-w-md"
-        >
-          <div className="w-20 h-20 mx-auto mb-8 rounded-full bg-brand/20 flex items-center justify-center border border-brand/30">
-            <Check className="w-10 h-10 text-brand" />
-          </div>
-          <h1 className="text-3xl md:text-4xl font-bold text-white mb-4 tracking-wide">
-            CHECK-IN SUBMITTED
-          </h1>
-          <p className="text-[#8892a0] text-lg mb-8">
-            Keep playing — your body thanks you.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button
-              onClick={resetForm}
-              className="px-8 py-3 bg-brand text-white font-bold tracking-widest uppercase text-sm rounded-sm transition-all duration-300 hover:bg-brand-hover"
-            >
-              Submit Another Check-In
-            </button>
-            <button
-              onClick={() => scrollToSection("hero")}
-              className="px-8 py-3 border border-[#1a1f2e] text-[#8892a0] hover:text-white font-bold tracking-widest uppercase text-sm rounded-sm transition-all"
-            >
-              Back to Top
-            </button>
-          </div>
-        </motion.div>
-      </div>
-    )
   }
 
   return (
@@ -556,217 +474,27 @@ export default function ControlGameTestPage() {
             <p className="text-[#6b7280]">Takes ~60 seconds.</p>
           </motion.div>
 
-          <motion.form
+{/* Google Form Embed */}
+          <motion.div
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            onSubmit={handleSubmit}
-            className="space-y-8"
+            className="max-w-3xl mx-auto w-full overflow-hidden"
           >
-            {/* 1. Name */}
-            <div>
-              <label className="block text-white text-sm font-bold tracking-wider mb-3 uppercase">
-                Name <span className="text-red-500">*</span>
-              </label>
-              <input
-                type="text"
-                required
-                value={formData.name}
-                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                className="w-full bg-[#0d0d14] border border-[#1a1f2e] rounded-sm px-4 py-3 text-white placeholder-[#4b5563] focus:outline-none focus:border-brand focus:shadow-[0_0_10px_rgba(34,139,34,0.2)] transition-all"
-                placeholder="Your name"
-              />
-            </div>
-
-            {/* 2. Previous Day Mission Completion */}
-            <div>
-              <label className="block text-white text-sm font-bold tracking-wider mb-3 uppercase">
-                Previous Day Mission Completion? <span className="text-[#6b7280] text-xs font-normal">(optional)</span>
-              </label>
-              <p className="text-[#6b7280] text-sm mb-4">Check all that apply: Mission #1, Mission #2, Mission #3, All missions.</p>
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-                {["#1", "#2", "#3", "All"].map((label) => (
-                  <label
-                    key={label}
-                    className={`flex items-center justify-center gap-2 p-4 border rounded-sm cursor-pointer transition-all ${
-                      formData.missionCompletion.includes(label)
-                        ? "border-brand bg-brand/10 text-white"
-                        : "border-[#1a1f2e] bg-[#0d0d14] text-[#8892a0] hover:border-[#3b4451]"
-                    }`}
-                  >
-                    <input
-                      type="checkbox"
-                      checked={formData.missionCompletion.includes(label)}
-                      onChange={() => handleCheckboxChange(label)}
-                      className="sr-only"
-                    />
-                    <span className="text-sm font-medium">{label}</span>
-                  </label>
-                ))}
-              </div>
-            </div>
-
-            {/* 3. Sleep Quality */}
-            <div>
-              <label className="block text-white text-sm font-bold tracking-wider mb-3 uppercase">
-                Sleep Quality (Last Night) <span className="text-red-500">*</span>
-              </label>
-              <div className="space-y-3">
-                {["Rested", "Adequate", "Fragmented / Poor"].map((option) => (
-                  <label key={option} className="flex items-center gap-3 cursor-pointer group">
-                    <input
-                      type="radio"
-                      name="sleep"
-                      value={option}
-                      required
-                      checked={formData.sleep === option}
-                      onChange={(e) => setFormData({ ...formData, sleep: e.target.value })}
-                      className="w-4 h-4 accent-brand"
-                    />
-                    <span className="text-[#b0b8c4] group-hover:text-white transition-colors">{option}</span>
-                  </label>
-                ))}
-              </div>
-            </div>
-
-            {/* 4. Current Energy State */}
-            <div>
-              <label className="block text-white text-sm font-bold tracking-wider mb-3 uppercase">
-                Current Energy State <span className="text-red-500">*</span>
-              </label>
-              <div className="space-y-3">
-                {["High", "Moderate", "Low"].map((option) => (
-                  <label key={option} className="flex items-center gap-3 cursor-pointer group">
-                    <input
-                      type="radio"
-                      name="energy"
-                      value={option}
-                      required
-                      checked={formData.energy === option}
-                      onChange={(e) => setFormData({ ...formData, energy: e.target.value })}
-                      className="w-4 h-4 accent-brand"
-                    />
-                    <span className="text-[#b0b8c4] group-hover:text-white transition-colors">{option}</span>
-                  </label>
-                ))}
-              </div>
-            </div>
-
-            {/* 5. Cognitive Clarity */}
-            <div>
-              <label className="block text-white text-sm font-bold tracking-wider mb-3 uppercase">
-                Cognitive Clarity <span className="text-red-500">*</span>
-              </label>
-              <div className="space-y-3">
-                {["Clear / Focused", "Slightly Foggy", "Distracted / Scattered"].map((option) => (
-                  <label key={option} className="flex items-center gap-3 cursor-pointer group">
-                    <input
-                      type="radio"
-                      name="clarity"
-                      value={option}
-                      required
-                      checked={formData.clarity === option}
-                      onChange={(e) => setFormData({ ...formData, clarity: e.target.value })}
-                      className="w-4 h-4 accent-brand"
-                    />
-                    <span className="text-[#b0b8c4] group-hover:text-white transition-colors">{option}</span>
-                  </label>
-                ))}
-              </div>
-            </div>
-
-            {/* 6. Physical Readiness */}
-            <div>
-              <label className="block text-white text-sm font-bold tracking-wider mb-3 uppercase">
-                Physical Readiness <span className="text-red-500">*</span>
-              </label>
-              <div className="space-y-3">
-                {["Ready", "Tight / Tense", "Fatigued / Drained"].map((option) => (
-                  <label key={option} className="flex items-center gap-3 cursor-pointer group">
-                    <input
-                      type="radio"
-                      name="physical"
-                      value={option}
-                      required
-                      checked={formData.physical === option}
-                      onChange={(e) => setFormData({ ...formData, physical: e.target.value })}
-                      className="w-4 h-4 accent-brand"
-                    />
-                    <span className="text-[#b0b8c4] group-hover:text-white transition-colors">{option}</span>
-                  </label>
-                ))}
-              </div>
-            </div>
-
-            {/* 7. Today's Load */}
-            <div>
-              <label className="block text-white text-sm font-bold tracking-wider mb-3 uppercase">
-                Today's Load <span className="text-red-500">*</span>
-              </label>
-              <div className="space-y-3">
-                {["Light", "Normal", "Heavy / High Pressure"].map((option) => (
-                  <label key={option} className="flex items-center gap-3 cursor-pointer group">
-                    <input
-                      type="radio"
-                      name="load"
-                      value={option}
-                      required
-                      checked={formData.load === option}
-                      onChange={(e) => setFormData({ ...formData, load: e.target.value })}
-                      className="w-4 h-4 accent-brand"
-                    />
-                    <span className="text-[#b0b8c4] group-hover:text-white transition-colors">{option}</span>
-                  </label>
-                ))}
-              </div>
-            </div>
-
-            {/* 8. Emotional State */}
-            <div>
-              <label className="block text-white text-sm font-bold tracking-wider mb-3 uppercase">
-                Emotional State <span className="text-red-500">*</span>
-              </label>
-              <div className="space-y-3">
-                {["Stable", "Irritable", "Overwhelmed"].map((option) => (
-                  <label key={option} className="flex items-center gap-3 cursor-pointer group">
-                    <input
-                      type="radio"
-                      name="emotional"
-                      value={option}
-                      required
-                      checked={formData.emotional === option}
-                      onChange={(e) => setFormData({ ...formData, emotional: e.target.value })}
-                      className="w-4 h-4 accent-brand"
-                    />
-                    <span className="text-[#b0b8c4] group-hover:text-white transition-colors">{option}</span>
-                  </label>
-                ))}
-              </div>
-            </div>
-
-            {/* 9. Obstacles */}
-            <div>
-              <label className="block text-white text-sm font-bold tracking-wider mb-3 uppercase">
-                What could get in your way of being great today? <span className="text-[#6b7280] text-xs font-normal">(optional)</span>
-              </label>
-              <textarea
-                value={formData.obstacles}
-                onChange={(e) => setFormData({ ...formData, obstacles: e.target.value })}
-                rows={3}
-                className="w-full bg-[#0d0d14] border border-[#1a1f2e] rounded-sm px-4 py-3 text-white placeholder-[#4b5563] focus:outline-none focus:border-brand focus:shadow-[0_0_10px_rgba(34,139,34,0.2)] transition-all resize-none"
-                placeholder="Meetings, distractions, low energy, stress..."
-              />
-            </div>
-
-            {/* Submit Button */}
-            <button
-              type="submit"
-              className="w-full px-10 py-4 bg-brand text-white font-bold tracking-widest uppercase text-sm rounded-sm transition-all duration-300 hover:bg-brand-hover hover:shadow-[0_0_30px_rgba(34,139,34,0.4)] border border-brand/50"
+            <iframe
+              src="https://docs.google.com/forms/d/e/1FAIpQLSfw5YkvQWaS4QZejQTnopDuFizUWbqwwPGnsi06oxG1s8Mxjw/viewform?embedded=true"
+              width="100%"
+              height="2843"
+              frameBorder="0"
+              marginHeight={0}
+              marginWidth={0}
+              className="max-w-[640px] mx-auto block"
+              title="CONTROL Player Check-In Form"
             >
-              Submit Check-In
-            </button>
-          </motion.form>
+              Loading...
+            </iframe>
+          </motion.div>
         </div>
       </section>
 
