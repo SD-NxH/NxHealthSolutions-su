@@ -285,6 +285,7 @@ const articles = [
 const categories = ["All", "Nutrition", "Health", "Wellness", "Lifestyle", "Blog", "Fitness", "Recipes", "Public Health"]
 
 export default function ArticlesPage() {
+  console.log("[v0] ArticlesPage component is rendering")
   const [searchTerm, setSearchTerm] = React.useState("")
   const [selectedCategory, setSelectedCategory] = React.useState("All")
 
