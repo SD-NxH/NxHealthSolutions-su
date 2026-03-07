@@ -12,6 +12,30 @@ import { motion } from "framer-motion"
 
 const articles = [
   {
+    id: "newsletter-006-quality-life-series-has-begun",
+    title: "Newsletter 006 - The Quality Life Series Has Begun",
+    description:
+      "This week marked the start of something I've been wanting to build for a long time. I officially launched a new recurring series called Quality Life.",
+    image: "/images/articles/quality-life-series.png",
+    category: "Blog",
+    date: "Mar 6, 2026",
+    readTime: "5 min read",
+    url: "/resources/articles/newsletter-006-quality-life-series-has-begun",
+    featured: true,
+  },
+  {
+    id: "newsletter-005-do-you-need-protein",
+    title: 'Newsletter 005 - Do I really need "Protein"?',
+    description:
+      'You don\'t technically "need protein." You need amino acids. Protein is just the delivery system.',
+    image: "/images/articles/do-you-need-protein.jpg",
+    category: "Blog",
+    date: "Feb 27, 2026",
+    readTime: "6 min read",
+    url: "/resources/articles/newsletter-005-do-you-need-protein",
+    featured: true,
+  },
+  {
     id: "accountability-groups-cheat-code-health",
     title: "Why Accountability Groups Are the Fastest \"Cheat Code\" for Better Health",
     description:
@@ -258,7 +282,7 @@ const articles = [
   },
 ]
 
-const categories = ["All", "Nutrition", "Health", "Wellness", "Lifestyle", "Fitness", "Recipes", "Public Health"]
+const categories = ["All", "Nutrition", "Health", "Wellness", "Lifestyle", "Blog", "Fitness", "Recipes", "Public Health"]
 
 export default function ArticlesPage() {
   const [searchTerm, setSearchTerm] = React.useState("")
