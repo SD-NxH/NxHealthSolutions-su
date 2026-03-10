@@ -12,6 +12,18 @@ import { motion } from "framer-motion"
 
 const articles = [
   {
+    id: "navigating-protein-phobia",
+    title: "Navigating the Protein Phobia: Debunking the Myths Around Plant-Based Protein",
+    description:
+      "Discover the truth about plant-based protein — why protein combining is a myth, how much you really need, and why overconsumption may be the real issue.",
+    image: "/images/articles/protein-phobia.jpg",
+    category: "Nutrition",
+    date: "Mar 10, 2026",
+    readTime: "10 min read",
+    url: "/resources/articles/navigating-protein-phobia",
+    featured: true,
+  },
+  {
     id: "accountability-groups-cheat-code-health",
     title: "Why Accountability Groups Are the Fastest \"Cheat Code\" for Better Health",
     description:
