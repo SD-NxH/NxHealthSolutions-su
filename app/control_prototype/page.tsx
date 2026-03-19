@@ -722,10 +722,10 @@ export default function ControlPrototypePage() {
             className="text-center mb-12"
           >
             <h2 className="text-3xl md:text-5xl font-bold text-slate-900 mb-4">
-              AI Mission Generator
+              System Mission Generator
             </h2>
             <p className="text-slate-600 text-lg max-w-2xl mx-auto">
-              The AI receives your state data and generates personalized missions matched to your current capacity.
+              The System receives your state data and generates personalized missions matched to your current capacity.
             </p>
           </motion.div>
 
@@ -737,7 +737,7 @@ export default function ControlPrototypePage() {
           >
             <div className="flex items-center gap-3 mb-8">
               <Brain className="w-8 h-8 text-purple-400" />
-              <span className="text-slate-400 font-mono text-sm">CONTROL AI // MISSION GENERATOR</span>
+              <span className="text-slate-400 font-mono text-sm">CONTROL SYSTEM // MISSION GENERATOR</span>
             </div>
 
             <div className="grid md:grid-cols-2 gap-8">
@@ -979,7 +979,7 @@ export default function ControlPrototypePage() {
             className="text-center mb-12"
           >
             <h2 className="text-3xl md:text-5xl font-bold mb-4">
-              AI Game Master
+              System Game Master
             </h2>
             <p className="text-slate-400 text-lg max-w-2xl mx-auto">
               Clear. Strategic. Operational. Never motivational.
