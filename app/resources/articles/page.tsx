@@ -11,6 +11,79 @@ import { Badge } from "@/components/ui/badge"
 import { motion } from "framer-motion"
 
 const articles = [
+  // Quality Life Articles
+  {
+    id: "quiet-realization-about-health",
+    title: "A Quiet Realization About Health",
+    description:
+      "Health doesn't fall apart randomly. It usually breaks down in this order: Environment, Habits, Biology, Symptoms. If you skip the first two, the body never really gets a chance to heal.",
+    image: "/images/articles/quiet-realization.jpg",
+    category: "Quality Life",
+    date: "Mar 25, 2026",
+    readTime: "4 min read",
+    url: "/resources/articles/quiet-realization-about-health",
+    featured: true,
+  },
+  {
+    id: "food-is-a-tool-or-liability",
+    title: "Your Food Is Either A Tool or a Liability",
+    description:
+      "Are you eating to pass time or to power your life? Food isn't random. It's not neutral. It's either a tool or it quietly works against you.",
+    image: "/images/articles/food-tool-liability.jpg",
+    category: "Quality Life",
+    date: "Mar 20, 2026",
+    readTime: "6 min read",
+    url: "/resources/articles/food-is-a-tool-or-liability",
+    featured: true,
+  },
+  {
+    id: "practical-way-to-think-about-food",
+    title: "A Practical Way to Think About Food (Without Diet Culture)",
+    description:
+      "Diet isn't a trend. Diet is simply what you eat to nourish your body. The problem isn't food itself — it's how disconnected we've become from it.",
+    image: "/images/articles/practical-food.jpg",
+    category: "Quality Life",
+    date: "Mar 15, 2026",
+    readTime: "7 min read",
+    url: "/resources/articles/practical-way-to-think-about-food",
+    featured: true,
+  },
+  {
+    id: "truth-doesnt-go-viral",
+    title: "The TRUTH Doesn't Go Viral (But It Works)",
+    description:
+      "Why do biohack powders explode and quick fixes trend, but real health advice struggles? Because the lie looks exciting and the truth looks like responsibility.",
+    image: "/images/articles/truth-viral.jpg",
+    category: "Quality Life",
+    date: "Mar 10, 2026",
+    readTime: "5 min read",
+    url: "/resources/articles/truth-doesnt-go-viral",
+    featured: true,
+  },
+  {
+    id: "stop-quitting-cold-turkey",
+    title: "Stop Quitting Cold Turkey, Do This Instead",
+    description:
+      "Most diet changes fail not because of discipline issues — it's pure shock. Instead of deleting everything overnight, add first and let your body level out.",
+    image: "/images/articles/cold-turkey.jpg",
+    category: "Quality Life",
+    date: "Mar 5, 2026",
+    readTime: "6 min read",
+    url: "/resources/articles/stop-quitting-cold-turkey",
+    featured: true,
+  },
+  {
+    id: "how-a-silly-game-could-help",
+    title: "How a Silly Game Could Help",
+    description:
+      "What if a game secretly made you healthier? Personal daily state determines your missions. Stability earns points. Consistency multiplies power. Miss a day, reset.",
+    image: "/images/articles/silly-game.jpg",
+    category: "Quality Life",
+    date: "Mar 1, 2026",
+    readTime: "5 min read",
+    url: "/resources/articles/how-a-silly-game-could-help",
+    featured: true,
+  },
   {
     id: "navigating-protein-phobia",
     title: "Navigating the Protein Phobia: Debunking the Myths Around Plant-Based Protein",
@@ -270,7 +343,7 @@ const articles = [
   },
 ]
 
-const categories = ["All", "Nutrition", "Health", "Wellness", "Lifestyle", "Fitness", "Recipes", "Public Health"]
+const categories = ["All", "Quality Life", "Nutrition", "Health", "Wellness", "Lifestyle", "Fitness", "Recipes", "Public Health"]
 
 export default function ArticlesPage() {
   const [searchTerm, setSearchTerm] = React.useState("")
