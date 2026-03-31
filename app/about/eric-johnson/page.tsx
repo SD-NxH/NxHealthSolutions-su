@@ -104,6 +104,18 @@ const galleryItems = [
 export default function EricJohnsonPage() {
   const [lightboxOpen, setLightboxOpen] = useState(false)
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
+  const [direction, setDirection] = useState(0)
+  const [touchStart, setTouchStart] = useState<number | null>(null)
+
+  const goToNext = () => {
+    setDirection(1)
+    setCurrentImageIndex((prev) => (prev + 1) % galleryItems.length)
+  }
+
+  const goToPrevious = () => {
+    setDirection(-1)
+    setCurrentImageIndex((prev) => (prev - 1 + galleryItems.length) % galleryItems.length)
+  }
 
   useEffect(() => {
     if (!lightboxOpen) return
@@ -118,21 +130,53 @@ export default function EricJohnsonPage() {
       }
     }
 
+    // Prevent body scroll when lightbox is open
+    document.body.style.overflow = "hidden"
+
     window.addEventListener("keydown", handleKeyDown)
-    return () => window.removeEventListener("keydown", handleKeyDown)
-  }, [lightboxOpen, currentImageIndex])
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown)
+      document.body.style.overflow = ""
+    }
+  }, [lightboxOpen])
 
   const openLightbox = (index: number) => {
+    setDirection(0)
     setCurrentImageIndex(index)
     setLightboxOpen(true)
   }
 
-  const goToNext = () => {
-    setCurrentImageIndex((prev) => (prev + 1) % galleryItems.length)
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setTouchStart(e.touches[0].clientX)
   }
 
-  const goToPrevious = () => {
-    setCurrentImageIndex((prev) => (prev - 1 + galleryItems.length) % galleryItems.length)
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    if (touchStart === null) return
+    const touchEnd = e.changedTouches[0].clientX
+    const diff = touchStart - touchEnd
+    if (Math.abs(diff) > 50) {
+      if (diff > 0) {
+        goToNext()
+      } else {
+        goToPrevious()
+      }
+    }
+    setTouchStart(null)
+  }
+
+  const slideVariants = {
+    enter: (direction: number) => ({
+      x: direction > 0 ? 300 : -300,
+      opacity: 0,
+    }),
+    center: {
+      x: 0,
+      opacity: 1,
+    },
+    exit: (direction: number) => ({
+      x: direction > 0 ? -300 : 300,
+      opacity: 0,
+    }),
   }
 
   return (
@@ -533,13 +577,19 @@ export default function EricJohnsonPage() {
 
       {/* Lightbox Modal */}
       {lightboxOpen && (
-        <div
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.2 }}
           className="fixed inset-0 z-50 bg-black/95 flex items-center justify-center p-4"
           onClick={() => setLightboxOpen(false)}
+          onTouchStart={handleTouchStart}
+          onTouchEnd={handleTouchEnd}
         >
           <button
             onClick={() => setLightboxOpen(false)}
-            className="absolute top-4 right-4 text-white hover:text-brand transition-colors z-50"
+            className="absolute top-4 right-4 text-white hover:text-brand transition-colors z-50 p-2"
             aria-label="Close lightbox"
           >
             <X className="w-8 h-8" />
@@ -550,10 +600,10 @@ export default function EricJohnsonPage() {
               e.stopPropagation()
               goToPrevious()
             }}
-            className="absolute left-4 text-white hover:text-brand transition-colors z-50"
+            className="absolute left-2 md:left-4 text-white hover:text-brand transition-colors z-50 p-2 bg-black/30 rounded-full hover:bg-black/50"
             aria-label="Previous image"
           >
-            <ChevronLeft className="w-12 h-12" />
+            <ChevronLeft className="w-8 h-8 md:w-12 md:h-12" />
           </button>
 
           <button
@@ -561,32 +611,53 @@ export default function EricJohnsonPage() {
               e.stopPropagation()
               goToNext()
             }}
-            className="absolute right-4 text-white hover:text-brand transition-colors z-50"
+            className="absolute right-2 md:right-4 text-white hover:text-brand transition-colors z-50 p-2 bg-black/30 rounded-full hover:bg-black/50"
             aria-label="Next image"
           >
-            <ChevronRight className="w-12 h-12" />
+            <ChevronRight className="w-8 h-8 md:w-12 md:h-12" />
           </button>
 
-          <div className="max-w-5xl w-full" onClick={(e) => e.stopPropagation()}>
-            <div className="relative aspect-video w-full mb-4">
-              <SafeImage
-                src={galleryItems[currentImageIndex].src}
-                alt={galleryItems[currentImageIndex].alt}
-                fill
-                className="object-contain"
-                sizes="100vw"
-                priority
-              />
+          <div 
+            className="max-w-5xl w-full max-h-[90vh] flex flex-col" 
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="relative flex-1 min-h-0 w-full overflow-hidden">
+              <motion.div
+                key={currentImageIndex}
+                custom={direction}
+                variants={slideVariants}
+                initial="enter"
+                animate="center"
+                exit="exit"
+                transition={{ duration: 0.3, ease: "easeInOut" }}
+                className="relative w-full h-full"
+                style={{ minHeight: "50vh", maxHeight: "70vh" }}
+              >
+                <SafeImage
+                  src={galleryItems[currentImageIndex].src}
+                  alt={galleryItems[currentImageIndex].alt}
+                  fill
+                  className="object-contain"
+                  sizes="100vw"
+                  priority
+                />
+              </motion.div>
             </div>
-            <div className="text-center text-white">
+            <motion.div 
+              key={`caption-${currentImageIndex}`}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.2, delay: 0.1 }}
+              className="text-center text-white pt-4 pb-2"
+            >
               <p className="text-sm font-medium text-brand mb-2">{galleryItems[currentImageIndex].category}</p>
-              <p className="text-lg">{galleryItems[currentImageIndex].caption}</p>
+              <p className="text-base md:text-lg px-4">{galleryItems[currentImageIndex].caption}</p>
               <p className="text-sm text-white/60 mt-2">
                 {currentImageIndex + 1} / {galleryItems.length}
               </p>
-            </div>
+            </motion.div>
           </div>
-        </div>
+        </motion.div>
       )}
     </main>
   )
