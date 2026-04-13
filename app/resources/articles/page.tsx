@@ -11,7 +11,43 @@ import { Badge } from "@/components/ui/badge"
 import { motion } from "framer-motion"
 
 const articles = [
-  // Quality Life Articles
+  // Quality Life Articles - Latest
+  {
+    id: "quality-life-series-has-begun",
+    title: "The Quality Life Series Has BEGUN",
+    description:
+      "This week marked the start of something I've been wanting to build for a long time. I officially launched a new recurring series called Quality Life. The goal is simple: to make health clearer, calmer, and more practical.",
+    image: "/images/articles/quality-life-series.jpg",
+    category: "Quality Life",
+    date: "Apr 10, 2026",
+    readTime: "5 min read",
+    url: "/resources/articles/quality-life-series-has-begun",
+    featured: true,
+  },
+  {
+    id: "a-powerful-seed-of-truth",
+    title: "A Powerful Seed of Truth",
+    description:
+      "You'll hear people claim magnesium can improve sleep, calm the nervous system, boost energy, and even regulate blood sugar. The interesting part is that some of the best sources aren't expensive supplements at all.",
+    image: "/images/articles/powerful-seed-truth.jpg",
+    category: "Nutrition",
+    date: "Apr 7, 2026",
+    readTime: "8 min read",
+    url: "/resources/articles/a-powerful-seed-of-truth",
+    featured: true,
+  },
+  {
+    id: "protein-was-never-the-problem",
+    title: "Oh Gosh, Protein Was Never The Problem",
+    description:
+      "You don't technically 'need protein.' You need amino acids. Protein is just the delivery system. The biggest problem isn't protein — it's ultra-processed 'fitness food' pretending to be infrastructure.",
+    image: "/images/articles/protein-problem.jpg",
+    category: "Quality Life",
+    date: "Apr 3, 2026",
+    readTime: "6 min read",
+    url: "/resources/articles/protein-was-never-the-problem",
+    featured: true,
+  },
   {
     id: "quiet-realization-about-health",
     title: "A Quiet Realization About Health",
