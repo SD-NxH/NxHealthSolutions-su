@@ -41,30 +41,37 @@ export default function QualityLifeSeriesHasBegunPage() {
   const qualityLifeVideos = [
     {
       id: 1,
-      title: "Quality Life - Episode 1",
+      title: "Lift or Decline",
       thumbnail: "/images/articles/quality-life-video-1.jpg",
       duration: "8:24",
       url: "https://youtube.com/playlist?list=PLb4-LURph2uCCNtLXPeHb-XUGHVhfpseq",
     },
     {
       id: 2,
-      title: "Quality Life - Episode 2",
+      title: "The Missing Pillar",
       thumbnail: "/images/articles/quality-life-video-2.jpg",
       duration: "10:12",
       url: "https://youtube.com/playlist?list=PLb4-LURph2uCCNtLXPeHb-XUGHVhfpseq",
     },
     {
       id: 3,
-      title: "Quality Life - Episode 3",
+      title: "Your Food System",
       thumbnail: "/images/articles/quality-life-video-3.jpg",
       duration: "7:45",
       url: "https://youtube.com/playlist?list=PLb4-LURph2uCCNtLXPeHb-XUGHVhfpseq",
     },
     {
       id: 4,
-      title: "Quality Life - Episode 4",
+      title: "This Is Why You're Stuck",
       thumbnail: "/images/articles/quality-life-video-4.jpg",
       duration: "9:30",
+      url: "https://youtube.com/playlist?list=PLb4-LURph2uCCNtLXPeHb-XUGHVhfpseq",
+    },
+    {
+      id: 5,
+      title: "This Saved Her Life",
+      thumbnail: "/images/articles/quality-life-video-5.jpg",
+      duration: "11:15",
       url: "https://youtube.com/playlist?list=PLb4-LURph2uCCNtLXPeHb-XUGHVhfpseq",
     },
   ]

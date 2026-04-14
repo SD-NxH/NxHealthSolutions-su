@@ -13,6 +13,18 @@ import { motion } from "framer-motion"
 const articles = [
   // Quality Life Articles - Latest
   {
+    id: "quality-life-episode-4",
+    title: "This Is Why You're Stuck",
+    description:
+      "Mental health is a lifestyle. Your thoughts, feelings, and behaviors are all connected. In this episode with Fatima, we explore how to break through barriers and create lasting change.",
+    image: "/images/articles/quality-life-video-4.jpg",
+    category: "Quality Life",
+    date: "Apr 12, 2026",
+    readTime: "8 min read",
+    url: "/resources/articles/quality-life-episode-4",
+    featured: true,
+  },
+  {
     id: "quality-life-series-has-begun",
     title: "The Quality Life Series Has BEGUN",
     description:

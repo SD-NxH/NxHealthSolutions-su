@@ -122,7 +122,7 @@ export default function ProteinWasNeverTheProblemPage() {
             <div className="bg-white rounded-2xl overflow-hidden shadow-lg border border-[#c8e6d7]">
               <div className="aspect-video relative bg-black">
                 <iframe
-                  src="https://www.youtube.com/embed/VIDEO_ID_HERE"
+                  src="https://www.youtube.com/embed/NWUzuX-oJFg"
                   title="Oh Gosh, Protein Was Never The Problem"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen
