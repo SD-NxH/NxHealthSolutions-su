@@ -29,7 +29,7 @@ const articles = [
     title: "The Quality Life Series Has BEGUN",
     description:
       "This week marked the start of something I've been wanting to build for a long time. I officially launched a new recurring series called Quality Life. The goal is simple: to make health clearer, calmer, and more practical.",
-    image: "/images/articles/quality-life-series.jpg",
+    image: "/images/articles/quality-life-tn1.jpg",
     category: "Quality Life",
     date: "Apr 10, 2026",
     readTime: "5 min read",

@@ -121,7 +121,7 @@ export default function QualityLifeSeriesHasBegunPage() {
       <section className="relative w-full h-[60vh] md:h-[70vh] overflow-hidden">
         <div className="absolute inset-0">
           <Image
-            src="/images/articles/quality-life-series.jpg"
+            src="/images/articles/quality-life-tn1.jpg"
             alt="The Quality Life Series Has Begun"
             fill
             className="object-cover"
