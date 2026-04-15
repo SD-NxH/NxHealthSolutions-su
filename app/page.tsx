@@ -10,6 +10,7 @@ import { useMobile } from "@/hooks/use-mobile"
 import { useRouter } from "next/navigation"
 import { cn } from "@/lib/utils"
 import { NewsletterForm } from "@/components/newsletter-form"
+import { FeaturedArticles } from "@/components/featured-articles"
 
 function getRandomUrl() {
   const urls = ["/resources", "/about", "/shop", "/resources/foods/apple", "/resources/foods/dates"]
@@ -260,106 +261,7 @@ export default function Home() {
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {/* Article 1 */}
-            <motion.div
-              initial={{ opacity: 0, y: 40 }}
-              animate={isFeaturedInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.8, delay: 0.1 }}
-              className="bg-card rounded-xl overflow-hidden shadow-md transition-all duration-300 hover:shadow-lg"
-            >
-              <div className="relative h-48 w-full">
-                <Image
-                  src="/colorful-fruits-vegetables.png"
-                  alt="Colorful array of fresh fruits and vegetables"
-                  fill
-                  className="object-cover"
-                />
-              </div>
-              <div className="p-6">
-                <span className="text-xs font-semibold text-brand uppercase tracking-wider">Nutrition</span>
-                <h3 className="text-xl font-serif font-medium text-gray-900 mt-2 mb-3">
-                  The Power of Plant-Based Eating
-                </h3>
-                <p className="text-gray-600 mb-4 line-clamp-3">
-                  Discover how incorporating more plant-based foods into your diet can transform your health and energy
-                  levels.
-                </p>
-                <Link
-                  href="/resources/articles/power-up-with-plants"
-                  className="inline-flex items-center text-brand hover:bg-brand-lighter font-medium"
-                >
-                  Read More <ArrowRight className="ml-2 h-4 w-4" />
-                </Link>
-              </div>
-            </motion.div>
-
-            {/* Article 2 */}
-            <motion.div
-              initial={{ opacity: 0, y: 40 }}
-              animate={isFeaturedInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="bg-card rounded-xl overflow-hidden shadow-md transition-all duration-300 hover:shadow-lg"
-            >
-              <div className="relative h-48 w-full">
-                <Image
-                  src="/dark-chocolate-still-life.png"
-                  alt="Pieces of dark chocolate with cacao beans"
-                  fill
-                  className="object-cover"
-                />
-              </div>
-              <div className="p-6">
-                <span className="text-xs font-semibold text-brand uppercase tracking-wider">Wellness</span>
-                <h3 className="text-xl font-serif font-medium text-gray-900 mt-2 mb-3">
-                  Dark Chocolate: A Healthy Indulgence
-                </h3>
-                <p className="text-gray-600 mb-4 line-clamp-3">
-                  Learn about the surprising health benefits of dark chocolate and how to incorporate it into a balanced
-                  diet.
-                </p>
-                <Link
-                  href="/resources/foods/dark-chocolate"
-                  className="inline-flex items-center text-brand hover:bg-brand-lighter font-medium"
-                >
-                  Read More <ArrowRight className="ml-2 h-4 w-4" />
-                </Link>
-              </div>
-            </motion.div>
-
-            {/* Article 3 */}
-            <motion.div
-              initial={{ opacity: 0, y: 40 }}
-              animate={isFeaturedInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.8, delay: 0.3 }}
-              className="bg-card rounded-xl overflow-hidden shadow-md transition-all duration-300 hover:shadow-lg"
-            >
-              <div className="relative h-48 w-full">
-                <Image
-                  src="/balanced-diet-calculation.png"
-                  alt="Person calculating nutritional information"
-                  fill
-                  className="object-cover"
-                />
-              </div>
-              <div className="p-6">
-                <span className="text-xs font-semibold text-brand uppercase tracking-wider">Health</span>
-                <h3 className="text-xl font-serif font-medium text-gray-900 mt-2 mb-3">
-                  Understanding Your Caloric Needs
-                </h3>
-                <p className="text-gray-600 mb-4 line-clamp-3">
-                  Find out how to calculate your daily caloric needs and create a balanced nutrition plan that works for
-                  your lifestyle.
-                </p>
-                <Link
-                  href="/resources/articles/understanding-caloric-needs"
-                  className="inline-flex items-center text-brand hover:bg-brand-lighter font-medium"
-                >
-                  Read More <ArrowRight className="ml-2 h-4 w-4" />
-                </Link>
-              </div>
-            </motion.div>
-          </div>
+          <FeaturedArticles isInView={isFeaturedInView} />
 
           <div className="text-center mt-12">
             <Button
