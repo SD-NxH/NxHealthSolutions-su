@@ -118,6 +118,11 @@ export default function SiteFooter() {
                   Articles
                 </Link>
               </li>
+              <li>
+                <Link href="/newsletter" className="text-gray-600 hover:text-green-600">
+                  Newsletter
+                </Link>
+              </li>
             </ul>
           </div>
 
