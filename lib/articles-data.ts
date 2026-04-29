@@ -12,7 +12,32 @@ export interface Article {
 }
 
 export const articles: Article[] = [
+  // Ingredient Investigation - New Dark Series
+  {
+    id: "the-multi-color-addictive-hot-chip",
+    title: "The Multi-Color Addictive Hot Chip",
+    description:
+      "This rolled chip has had children and adults in a choke hold since 2001. Welcome to the Ingredient Investigation, where I investigate popular foods and snacks so you don't have to.",
+    image: "/images/articles/ingredient-investigation-hot-chip.png",
+    category: "Ingredient Investigation",
+    date: "Apr 28, 2026",
+    readTime: "10 min read",
+    url: "/resources/articles/the-multi-color-addictive-hot-chip",
+    featured: true,
+  },
   // Quality Life Articles - Latest
+  {
+    id: "quality-life-episode-3",
+    title: "Food is Bigger Than What's on Your Plate",
+    description:
+      "Food is bigger than nutrition. It's about where food comes from, how it's produced, and the systems behind it. This week's Quality Life episode explores the bigger picture with Gabriella.",
+    image: "/images/articles/quality-life-episode-3.png",
+    category: "Quality Life",
+    date: "Apr 28, 2026",
+    readTime: "6 min read",
+    url: "/resources/articles/quality-life-episode-3",
+    featured: true,
+  },
   {
     id: "quality-life-episode-4",
     title: "This Is Why You're Stuck",
@@ -392,7 +417,7 @@ export const articles: Article[] = [
   },
 ]
 
-export const categories = ["All", "Quality Life", "Nutrition", "Health", "Wellness", "Lifestyle", "Fitness", "Recipes", "Public Health"]
+export const categories = ["All", "Ingredient Investigation", "Quality Life", "Nutrition", "Health", "Wellness", "Lifestyle", "Fitness", "Recipes", "Public Health"]
 
 /**
  * Get random featured articles for the homepage
