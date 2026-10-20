@@ -3,8 +3,9 @@
 import { motion } from "framer-motion"
 import { SafeImage } from "@/components/safe-image"
 import Link from "next/link"
-import { ArrowLeft, Leaf, Heart, Users, Sprout, X, ChevronLeft, ChevronRight } from "lucide-react"
+import { ArrowLeft, X, ChevronLeft, ChevronRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { EricJohnsonBio } from "@/components/about/eric-johnson-bio"
 import { useState, useEffect } from "react"
 
 const galleryItems = [
@@ -104,6 +105,18 @@ const galleryItems = [
 export default function EricJohnsonPage() {
   const [lightboxOpen, setLightboxOpen] = useState(false)
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
+  const [direction, setDirection] = useState(0)
+  const [touchStart, setTouchStart] = useState<number | null>(null)
+
+  const goToNext = () => {
+    setDirection(1)
+    setCurrentImageIndex((prev) => (prev + 1) % galleryItems.length)
+  }
+
+  const goToPrevious = () => {
+    setDirection(-1)
+    setCurrentImageIndex((prev) => (prev - 1 + galleryItems.length) % galleryItems.length)
+  }
 
   useEffect(() => {
     if (!lightboxOpen) return
@@ -118,21 +131,53 @@ export default function EricJohnsonPage() {
       }
     }
 
+    // Prevent body scroll when lightbox is open
+    document.body.style.overflow = "hidden"
+
     window.addEventListener("keydown", handleKeyDown)
-    return () => window.removeEventListener("keydown", handleKeyDown)
-  }, [lightboxOpen, currentImageIndex])
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown)
+      document.body.style.overflow = ""
+    }
+  }, [lightboxOpen])
 
   const openLightbox = (index: number) => {
+    setDirection(0)
     setCurrentImageIndex(index)
     setLightboxOpen(true)
   }
 
-  const goToNext = () => {
-    setCurrentImageIndex((prev) => (prev + 1) % galleryItems.length)
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setTouchStart(e.touches[0].clientX)
   }
 
-  const goToPrevious = () => {
-    setCurrentImageIndex((prev) => (prev - 1 + galleryItems.length) % galleryItems.length)
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    if (touchStart === null) return
+    const touchEnd = e.changedTouches[0].clientX
+    const diff = touchStart - touchEnd
+    if (Math.abs(diff) > 50) {
+      if (diff > 0) {
+        goToNext()
+      } else {
+        goToPrevious()
+      }
+    }
+    setTouchStart(null)
+  }
+
+  const slideVariants = {
+    enter: (direction: number) => ({
+      x: direction > 0 ? 300 : -300,
+      opacity: 0,
+    }),
+    center: {
+      x: 0,
+      opacity: 1,
+    },
+    exit: (direction: number) => ({
+      x: direction > 0 ? -300 : 300,
+      opacity: 0,
+    }),
   }
 
   return (
@@ -176,7 +221,10 @@ export default function EricJohnsonPage() {
               className="text-center md:text-left"
             >
               <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-3">About Me</h1>
-              <p className="text-xl md:text-2xl text-brand font-medium">Founder of NxHealth Solutions</p>
+              <p className="text-xl md:text-2xl text-brand font-medium">
+                Eric Johnson <span aria-hidden="true">|</span>
+                <span className="sr-only">,</span> Founder of NxHealth Solutions
+              </p>
             </motion.div>
           </div>
         </div>
@@ -185,266 +233,8 @@ export default function EricJohnsonPage() {
       {/* Main Content */}
       <article className="py-16 md:py-24">
         <div className="container px-4 md:px-6 max-w-4xl mx-auto">
-          {/* About Me Section */}
-          <motion.section
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="mb-16"
-          >
-            <h2 className="text-3xl font-bold text-foreground mb-6">About Me</h2>
-            <div className="prose prose-lg max-w-none text-muted-foreground space-y-6">
-              <p>
-                My name is Eric Johnson, and I believe health was never meant to be complicated, commercialized, or out
-                of reach.
-              </p>
-              <p>
-                I was born in Arkansas and raised largely in Texas, and for as long as I can remember, health, movement,
-                and service have been central themes in my life. What began as a passion for sports—especially
-                basketball—evolved into a deeper calling: helping people reclaim their health through real food,
-                intentional living, and sustainable habits.
-              </p>
-              <p>
-                I entered the fitness world as a personal trainer at 18, but it wasn't long before I realized something
-                was missing. I could help people move, sweat, and push their bodies—but many were still sick, tired,
-                inflamed, and confused about food. That curiosity led me into higher education and the world of
-                nutrition and health science.
-              </p>
-              <p>
-                I earned my Bachelor of Science in Exercise Science from Texas Wesleyan University, where a single
-                nutrition course changed the direction of my life. From there, I went on to complete my Master of
-                Science in Health Science & Nutrition at The University of Texas–Rio Grande Valley during the height of
-                the pandemic—a time when the cracks in our healthcare and food systems became impossible to ignore. I am
-                currently continuing my academic journey as a PhD candidate in Nutritional Medicine, deepening my focus
-                on food as a foundational tool for healing, prevention, and quality of life.
-              </p>
-            </div>
-          </motion.section>
+          <EricJohnsonBio />
 
-          {/* Why I Created NxHealth Section */}
-          <motion.section
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="mb-16"
-          >
-            <h2 className="text-3xl font-bold text-foreground mb-6">Why I Created NxHealth Solutions</h2>
-            <div className="prose prose-lg max-w-none text-muted-foreground space-y-6">
-              <p>
-                NxHealth Solutions was born quietly in my college apartment in 2018—not as a brand, but as a response.
-              </p>
-              <p>
-                I grew up seeing too many people struggle with preventable health issues. I saw confusion, burnout,
-                chronic disease, and a system that often treats symptoms instead of addressing root causes. I also saw
-                how far we've drifted from the basics—real food, movement, rest, community, and purpose.
-              </p>
-              <p>NxHealth exists to bring people back to those fundamentals.</p>
-            </div>
-
-            {/* Focus Areas */}
-            <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div className="flex items-start gap-3 p-4 bg-brand-lighter rounded-lg">
-                <Leaf className="w-6 h-6 text-brand flex-shrink-0 mt-1" />
-                <div>
-                  <h4 className="font-semibold text-foreground">Food as Medicine</h4>
-                  <p className="text-sm text-muted-foreground">Using food as medicine, not fear</p>
-                </div>
-              </div>
-              <div className="flex items-start gap-3 p-4 bg-brand-lighter rounded-lg">
-                <Sprout className="w-6 h-6 text-brand flex-shrink-0 mt-1" />
-                <div>
-                  <h4 className="font-semibold text-foreground">Plant-Forward</h4>
-                  <p className="text-sm text-muted-foreground">
-                    Prioritizing plants, whole foods, and minimal processing
-                  </p>
-                </div>
-              </div>
-              <div className="flex items-start gap-3 p-4 bg-brand-lighter rounded-lg">
-                <Heart className="w-6 h-6 text-brand flex-shrink-0 mt-1" />
-                <div>
-                  <h4 className="font-semibold text-foreground">Sustainable Habits</h4>
-                  <p className="text-sm text-muted-foreground">Building habits, not short-term fixes</p>
-                </div>
-              </div>
-              <div className="flex items-start gap-3 p-4 bg-brand-lighter rounded-lg">
-                <Users className="w-6 h-6 text-brand flex-shrink-0 mt-1" />
-                <div>
-                  <h4 className="font-semibold text-foreground">Health Ownership</h4>
-                  <p className="text-sm text-muted-foreground">Teaching people to take ownership—without gimmicks</p>
-                </div>
-              </div>
-            </div>
-
-            <div className="mt-8 prose prose-lg max-w-none text-muted-foreground">
-              <p>
-                Through NxHealth, I offer education, coaching, and transformational programs that help individuals
-                improve their quality of life step by step. My 30-day LifeRight Transformation approach is built around
-                simple, evidence-based practices: hydration, plant-forward nutrition, mindful movement, sleep, mindset,
-                community, and consistency—not perfection.
-              </p>
-            </div>
-          </motion.section>
-
-          {/* My Philosophy Section */}
-          <motion.section
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="mb-16"
-          >
-            <h2 className="text-3xl font-bold text-foreground mb-6">My Philosophy</h2>
-            <div className="prose prose-lg max-w-none text-muted-foreground space-y-6">
-              <p>
-                I don't believe health should feel overwhelming.
-                <br />I don't believe it should be locked behind paywalls, products, or pressure.
-                <br />
-                And I don't believe we need more ultra-processed "solutions" to fix problems created by ultra-processed
-                lifestyles.
-              </p>
-            </div>
-
-            {/* Beliefs */}
-            <div className="mt-8 bg-card border border-border rounded-xl p-6 md:p-8">
-              <h3 className="text-xl font-semibold text-foreground mb-4">I believe:</h3>
-              <ul className="space-y-3">
-                {[
-                  "Food heals",
-                  "Plants are foundational",
-                  "Small daily changes compound",
-                  "Progress beats perfection",
-                  "Health is a lifelong practice",
-                ].map((belief, index) => (
-                  <li key={index} className="flex items-center gap-3">
-                    <span className="w-2 h-2 bg-brand rounded-full flex-shrink-0" />
-                    <span className="text-muted-foreground">{belief}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <div className="mt-8 prose prose-lg max-w-none text-muted-foreground">
-              <p>
-                Much of what I teach is freely shared—because access to knowledge should never be the barrier to better
-                health. My goal is not to sell fear or trends, but to restore confidence and clarity around how the
-                human body actually works.
-              </p>
-            </div>
-          </motion.section>
-
-          {/* Operation Free Food Section */}
-          <motion.section
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="mb-16"
-          >
-            <h2 className="text-3xl font-bold text-foreground mb-6">Beyond the Individual: Operation Free Food</h2>
-            <div className="prose prose-lg max-w-none text-muted-foreground">
-              <p>My mission extends beyond individual transformation.</p>
-              <p>
-                Through Operation Free Food, I'm working toward a future where communities are less dependent on broken
-                systems and more connected to food, land, and each other. This includes education, gardening, local food
-                systems, and reimagining how we feed ourselves—starting with feeding ourselves first.
-              </p>
-            </div>
-          </motion.section>
-
-          {/* Why I Do This Section */}
-          <motion.section
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="mb-16"
-          >
-            <h2 className="text-3xl font-bold text-foreground mb-6">Why I Do This</h2>
-            <div className="prose prose-lg max-w-none text-muted-foreground space-y-6">
-              <p>
-                I do this because I've seen what happens when people feel empowered instead of confused.
-                <br />I do this because food was never meant to make us sick.
-                <br />
-                And I do this because I truly believe that changing our relationship with food can change our lives—and
-                our communities.
-              </p>
-              <p>
-                If you're here, you don't need perfection.
-                <br />
-                You need a starting point.
-              </p>
-              <p className="font-medium text-foreground">And I'm honored to walk that path with you.</p>
-            </div>
-          </motion.section>
-
-          {/* Credentials & Background Section */}
-          <motion.section
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="mb-16"
-          >
-            <h2 className="text-3xl font-bold text-foreground mb-6">Credentials & Background</h2>
-            <div className="prose prose-lg max-w-none text-muted-foreground space-y-6">
-              <p>
-                My work is grounded in both lived experience and formal education across exercise science, nutrition,
-                and health education.
-              </p>
-              <p>
-                I hold a Bachelor of Science in Exercise Science from Texas Wesleyan University, where my academic path
-                was reshaped by a foundational nutrition course that revealed the powerful role food plays in human
-                performance, recovery, and long-term health. I later completed my Master of Science in Health Science &
-                Nutrition at The University of Texas–Rio Grande Valley, studying during the height of the COVID-19
-                pandemic—a period that exposed deep cracks in our healthcare and food systems and reinforced my
-                commitment to prevention-focused, root-cause health solutions.
-              </p>
-              <p>
-                I am currently a Doctoral Candidate in Nutritional Medicine, continuing my research and training with a
-                focus on food as medicine, lifestyle-driven disease prevention, and sustainable health practices that
-                improve quality of life.
-              </p>
-              <p>
-                Professionally, my background spans education, fitness, and applied health practice. I have worked as a
-                personal trainer and health fitness specialist, guiding individuals through strength training, group
-                fitness, assessments, and behavior change. I've also served as a Health and Physical Education teacher,
-                bringing evidence-based health education directly into schools and communities—where access to clear,
-                practical health knowledge is often most needed.
-              </p>
-            </div>
-
-            {/* Certifications List */}
-            <div className="mt-8 bg-card border border-border rounded-xl p-6 md:p-8">
-              <ul className="space-y-3">
-                {[
-                  "Health EC–12",
-                  "Physical Education EC–12",
-                  "American Council on Exercise (ACE) Certified Personal Trainer",
-                  "American Heart Association CPR & AED",
-                ].map((cert, index) => (
-                  <li key={index} className="flex items-center gap-3">
-                    <span className="w-2 h-2 bg-brand rounded-full flex-shrink-0" />
-                    <span className="text-muted-foreground">{cert}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <div className="mt-8 prose prose-lg max-w-none text-muted-foreground space-y-6">
-              <p>
-                Beyond formal roles, my experience includes years of community service, athletics, and leadership,
-                including collegiate basketball, food pantry volunteering, and community health initiatives. These
-                experiences shaped my belief that health is not an individual pursuit alone—it's cultural, communal, and
-                deeply connected to access, education, and environment.
-              </p>
-              <p>
-                This blend of academic training, real-world coaching, classroom teaching, and community involvement is
-                what informs everything I build through NxHealth Solutions.
-              </p>
-            </div>
-          </motion.section>
 
           {/* Photo Gallery Section */}
           <motion.section
@@ -454,10 +244,14 @@ export default function EricJohnsonPage() {
             transition={{ duration: 0.6 }}
             className="mb-16"
           >
-            <h2 className="text-3xl font-bold text-foreground mb-6">Journey in Photos</h2>
-            <p className="text-lg text-muted-foreground mb-8">
-              A visual story of my work in education, fitness, basketball, and community service.
-            </p>
+            <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-6">Journey in Photos</h2>
+            <div className="text-base md:text-lg leading-relaxed text-muted-foreground space-y-4 mb-8 text-pretty">
+              <p>
+                These moments represent the people, experiences, and communities that have shaped my journey through
+                education, athletics, coaching, and service.
+              </p>
+              <p>They are reminders of where I started, what I’ve learned, and why I continue this work.</p>
+            </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
               {galleryItems.map((item, index) => (
@@ -500,9 +294,10 @@ export default function EricJohnsonPage() {
             transition={{ duration: 0.6 }}
             className="border-t border-border pt-8 text-center md:text-left"
           >
-            <p className="text-lg font-semibold text-foreground">— Eric Johnson, M.S.</p>
+            <p className="text-lg font-semibold text-foreground">Eric Johnson, M.Sc, DHNM</p>
             <p className="text-brand">Founder, NxHealth Solutions</p>
             <p className="text-muted-foreground italic mt-2">Better Health. Better Life.</p>
+            <p className="text-foreground font-medium mt-4">Be well</p>
           </motion.div>
 
           {/* CTA */}
@@ -533,13 +328,19 @@ export default function EricJohnsonPage() {
 
       {/* Lightbox Modal */}
       {lightboxOpen && (
-        <div
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.2 }}
           className="fixed inset-0 z-50 bg-black/95 flex items-center justify-center p-4"
           onClick={() => setLightboxOpen(false)}
+          onTouchStart={handleTouchStart}
+          onTouchEnd={handleTouchEnd}
         >
           <button
             onClick={() => setLightboxOpen(false)}
-            className="absolute top-4 right-4 text-white hover:text-brand transition-colors z-50"
+            className="absolute top-4 right-4 text-white hover:text-brand transition-colors z-50 p-2"
             aria-label="Close lightbox"
           >
             <X className="w-8 h-8" />
@@ -550,10 +351,10 @@ export default function EricJohnsonPage() {
               e.stopPropagation()
               goToPrevious()
             }}
-            className="absolute left-4 text-white hover:text-brand transition-colors z-50"
+            className="absolute left-2 md:left-4 text-white hover:text-brand transition-colors z-50 p-2 bg-black/30 rounded-full hover:bg-black/50"
             aria-label="Previous image"
           >
-            <ChevronLeft className="w-12 h-12" />
+            <ChevronLeft className="w-8 h-8 md:w-12 md:h-12" />
           </button>
 
           <button
@@ -561,32 +362,53 @@ export default function EricJohnsonPage() {
               e.stopPropagation()
               goToNext()
             }}
-            className="absolute right-4 text-white hover:text-brand transition-colors z-50"
+            className="absolute right-2 md:right-4 text-white hover:text-brand transition-colors z-50 p-2 bg-black/30 rounded-full hover:bg-black/50"
             aria-label="Next image"
           >
-            <ChevronRight className="w-12 h-12" />
+            <ChevronRight className="w-8 h-8 md:w-12 md:h-12" />
           </button>
 
-          <div className="max-w-5xl w-full" onClick={(e) => e.stopPropagation()}>
-            <div className="relative aspect-video w-full mb-4">
-              <SafeImage
-                src={galleryItems[currentImageIndex].src}
-                alt={galleryItems[currentImageIndex].alt}
-                fill
-                className="object-contain"
-                sizes="100vw"
-                priority
-              />
+          <div 
+            className="max-w-5xl w-full max-h-[90vh] flex flex-col" 
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="relative flex-1 min-h-0 w-full overflow-hidden">
+              <motion.div
+                key={currentImageIndex}
+                custom={direction}
+                variants={slideVariants}
+                initial="enter"
+                animate="center"
+                exit="exit"
+                transition={{ duration: 0.3, ease: "easeInOut" }}
+                className="relative w-full h-full"
+                style={{ minHeight: "50vh", maxHeight: "70vh" }}
+              >
+                <SafeImage
+                  src={galleryItems[currentImageIndex].src}
+                  alt={galleryItems[currentImageIndex].alt}
+                  fill
+                  className="object-contain"
+                  sizes="100vw"
+                  priority
+                />
+              </motion.div>
             </div>
-            <div className="text-center text-white">
+            <motion.div 
+              key={`caption-${currentImageIndex}`}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.2, delay: 0.1 }}
+              className="text-center text-white pt-4 pb-2"
+            >
               <p className="text-sm font-medium text-brand mb-2">{galleryItems[currentImageIndex].category}</p>
-              <p className="text-lg">{galleryItems[currentImageIndex].caption}</p>
+              <p className="text-base md:text-lg px-4">{galleryItems[currentImageIndex].caption}</p>
               <p className="text-sm text-white/60 mt-2">
                 {currentImageIndex + 1} / {galleryItems.length}
               </p>
-            </div>
+            </motion.div>
           </div>
-        </div>
+        </motion.div>
       )}
     </main>
   )
